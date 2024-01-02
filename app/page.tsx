@@ -2,7 +2,7 @@ import styles from "./page.module.css";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
+    <main>
       <section>
         <h1>Welcome to RendezEvite</h1>
         <p>
@@ -13,7 +13,7 @@ export default function Home() {
       </section>
       <section>
         <a href="/api/auth/signin">Login</a>
-        <a href="/register">Register</a>
+        <a href="/">Register</a>
       </section>
     </main>
   );
