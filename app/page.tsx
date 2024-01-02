@@ -13,7 +13,7 @@ export default function Home() {
       </section>
       <section>
         <a href="/api/auth/signin">Login</a>
-        <a href="/">Register</a>
+        <a href="/register">Register</a>
       </section>
     </main>
   );
