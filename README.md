@@ -34,3 +34,10 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Checklist
+
+- [ ] Lämna in koden zippad på itslearning (utan node_modules-mappen så att zippen inte blir orimligt stor) och en länk till ditt repo.
+- [ ] Länka också till ditt live-projekt.
+- [ ] Om repot inte ligger publikt, bjud in användaren postmodernistx som granskare till ditt repo.
+- [ ] Boka in på redovisningstillfälle på itslearning
