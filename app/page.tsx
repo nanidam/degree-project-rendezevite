@@ -12,7 +12,7 @@ export default function Home() {
         </p>
       </section>
       <section>
-        <a href="/">Login</a>
+        <a href="/api/auth/signin">Login</a>
         <a href="/">Register</a>
       </section>
     </main>
