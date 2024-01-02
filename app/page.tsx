@@ -1,19 +1,23 @@
-import styles from "./page.module.css";
+import "./style.scss";
 
 export default function Home() {
   return (
     <main>
-      <section>
-        <h1>Welcome to RendezEvite</h1>
-        <p>
+      <section className="welcome-overview">
+        <h1 className="welcome-header">Welcome to RendezEvite</h1>
+        <p className="welcome-text">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque ea ab pariatur
           nostrum ipsum quis doloribus eveniet libero iste qui molestias quos, cumque,
           nesciunt mollitia exercitationem repudiandae! Ex, tempore nihil?
         </p>
       </section>
-      <section>
-        <a href="/api/auth/signin">Login</a>
-        <a href="/">Register</a>
+      <section className="login-register-links">
+        <button className="login-btn">
+          <a href="/api/auth/signin">Login</a>
+        </button>
+        <button className="register-btn">
+          <a href="/">Register</a>
+        </button>
       </section>
     </main>
   );
