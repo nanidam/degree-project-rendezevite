@@ -1,6 +1,6 @@
 import "./style.scss";
 
-export default function Home() {
+const Home = () => {
   return (
     <main>
       <section className="welcome-overview">
@@ -21,4 +21,6 @@ export default function Home() {
       </section>
     </main>
   );
-}
+};
+
+export default Home;
