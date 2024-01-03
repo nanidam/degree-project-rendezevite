@@ -1,0 +1,35 @@
+.login-register-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+
+  .input-container {
+    margin-top: 10px;
+
+    .inputfield {
+      border: none;
+      border-bottom: 1px solid black;
+      width: 100%;
+      height: 30px;
+    }
+  }
+
+  .btns-container {
+    margin-top: 10px;
+
+    .login-register-btn,
+    .cancel-btn {
+      width: 100%;
+      height: 35px;
+      margin-bottom: 10px;
+      transition: ease-in-out 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        background-color: grey;
+      }
+    }
+  }
+}
