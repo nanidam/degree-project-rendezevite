@@ -1,5 +1,6 @@
 import prisma from "../db";
 import { redirect } from "next/navigation";
+import "./style.scss";
 
 const Register = async () => {
   const handleRegister = async (data: FormData) => {
@@ -27,21 +28,49 @@ const Register = async () => {
     console.log(response);
     redirect("/");
   };
+
+  const handleCancel = async () => {
+    "use server";
+    redirect("/");
+  };
+
   return (
     <>
-      <section>
-        <h1>Register Page</h1>
+      <section className="register-container">
+        <h1>Register new user</h1>
         <form action={handleRegister}>
-          <article>
-            <label htmlFor="email">Email:</label>
-            <input type="email" id="email" name="email" required />
-          </article>
-          <article>
-            <label htmlFor="password">Password:</label>
-            <input type="password" id="password" name="password" required />
-          </article>
-          <article>
-            <button type="submit">Register</button>
+          <fieldset>
+            <legend>Account Information</legend>
+            <article className="register-input-container">
+              <label htmlFor="email">Email:</label>
+              <input
+                className="register-input"
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Your email"
+                required
+              />
+            </article>
+            <article className="register-input-container">
+              <label htmlFor="password">Password:</label>
+              <input
+                className="register-input"
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Choose a password"
+                required
+              />
+            </article>
+          </fieldset>
+          <article className="btn-container">
+            <button className="register-btn" type="submit">
+              Register
+            </button>
+            <button className="cancel-btn" type="button" onClick={handleCancel}>
+              Cancel
+            </button>
           </article>
         </form>
       </section>
