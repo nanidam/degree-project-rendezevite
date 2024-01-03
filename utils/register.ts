@@ -1,11 +1,9 @@
 "use server";
 
 import prisma from "@/app/db";
-import { redirect } from "next/navigation";
+import { REGISTER_STATUS } from "./constants";
 // @TODO Samtyckeknapp
-// export const errormap = {
-//   email
-// }
+
 const handleRegister = async (data: FormData) => {
   const email = data.get("email") as string;
   const password = data.get("password") as string;
@@ -15,18 +13,19 @@ const handleRegister = async (data: FormData) => {
   });
 
   if (existingUser) {
-    return { error: "Email already exists" };
+    return REGISTER_STATUS.EMAIL_EXISTS;
   }
 
-  await prisma.user.create({
+  const newUser = await prisma.user.create({
     data: {
       email,
       hashedPassword: password,
     },
   });
 
-  // vid lyckad, ska vi visa i frontend
-  redirect("/login");
+  if (newUser) {
+    return REGISTER_STATUS.SUCCESS;
+  }
 };
 
 export default handleRegister;

@@ -4,18 +4,20 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import "./style/loginRegisterForm.scss";
 import React from "react";
+import { REGISTER_STATUS } from "@/utils/constants";
 
 interface LoginRegisterFormProps {
   loginRegisterHeader: string;
   handleSubmit?: (e: React.FormEvent<HTMLFormElement>) => Promise<void>; // Updated type
-  handleRegister?: (data: FormData) => Promise<{ error?: string }>;
+  handleRegister?: (data: FormData) => Promise<string | undefined>;
 }
+
 const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
   loginRegisterHeader,
   handleSubmit,
   handleRegister,
 }) => {
-  const [error, setError] = React.useState<string | undefined>(undefined);
+  const [registerMsg, setRegisterMsg] = React.useState<string | undefined>(undefined);
   const router = useRouter();
   const handleCancel = () => {
     router.push("/");
@@ -25,8 +27,19 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
     if (handleRegister) {
       const result = await handleRegister(data);
 
-      if (result.error) {
-        setError(result.error);
+      switch (result) {
+        case REGISTER_STATUS.EMAIL_EXISTS:
+        case REGISTER_STATUS.INVALID_PASSWORD:
+          setRegisterMsg(result);
+          break;
+
+        case REGISTER_STATUS.SUCCESS:
+          router.push("/registration-success");
+          break;
+
+        default:
+          setRegisterMsg(REGISTER_STATUS.GENERIC);
+          break;
       }
     }
   };
@@ -64,7 +77,7 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
             </article>
           </fieldset>
 
-          {error && <p className="error-message">{error}</p>}
+          {registerMsg && <p className="error-message">{registerMsg}</p>}
 
           <article className="btns-container">
             <button className="login-register-btn" type="submit">

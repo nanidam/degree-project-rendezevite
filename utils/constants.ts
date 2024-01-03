@@ -1,1 +1,6 @@
-const users = [{ id: "1", name: "James", email: "james@me.com", password: "12345" }];
+export const REGISTER_STATUS = {
+  SUCCESS: "Success",
+  EMAIL_EXISTS: "Email already exists",
+  INVALID_PASSWORD: "Invalid password",
+  GENERIC: "Something went wrong, please try again",
+};
