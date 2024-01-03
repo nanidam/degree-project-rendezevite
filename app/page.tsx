@@ -1,6 +1,17 @@
+"use client";
+import { redirect, useRouter } from "next/navigation";
 import "./style.scss";
 
 const Home = () => {
+  const router = useRouter();
+  const handleRegister = () => {
+    router.push("/register");
+  };
+
+  const handleLogin = () => {
+    router.push("/api/auth/signin");
+  };
+
   return (
     <main>
       <section className="welcome-overview">
@@ -12,11 +23,11 @@ const Home = () => {
         </p>
       </section>
       <section className="login-register-links">
-        <button className="login-btn">
-          <a href="/api/auth/signin">Login</a>
+        <button className="login-btn" type="button" onClick={handleLogin}>
+          Login
         </button>
-        <button className="register-btn">
-          <a href="/register">Register</a>
+        <button className="register-btn" type="button" onClick={handleRegister}>
+          Register
         </button>
       </section>
     </main>
