@@ -2,6 +2,7 @@ import prisma from "@/app/db";
 import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
+import CryptoJS from "crypto-js";
 
 export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
@@ -17,9 +18,15 @@ export const authOptions: NextAuthOptions = {
           where: { email: credentials?.email },
         });
 
+        const bytes = CryptoJS.AES.decrypt(
+          user?.hashedPassword!,
+          process.env.DECRYPT_SECRET!
+        );
+        const decryptedPassword = bytes.toString(CryptoJS.enc.Utf8);
+
         if (
           credentials?.email === user?.email &&
-          credentials?.password === user?.hashedPassword
+          credentials?.password === decryptedPassword
         ) {
           return user;
         } else {

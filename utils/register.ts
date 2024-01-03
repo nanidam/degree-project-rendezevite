@@ -4,6 +4,7 @@ import prisma from "@/app/db";
 import { REGISTER_STATUS } from "./constants";
 import { passwordSchema } from "./passwordValidator";
 import { IPasswordValidation } from "./interfaces";
+import CryptoJS from "crypto-js";
 // @TODO Samtyckeknapp
 
 const handleRegister = async (data: FormData) => {
@@ -40,11 +41,21 @@ const handleRegister = async (data: FormData) => {
       }
     }
   }
+  if (!process.env.DECRYPT_SECRET) {
+    return REGISTER_STATUS.GENERIC;
+  }
 
+  const hashedPassword = CryptoJS.AES.encrypt(
+    password,
+    process.env.DECRYPT_SECRET!
+  ).toString();
+  // const bytes = CryptoJS.AES.decrypt(encryptedPassword, process.env.DECRYPT_SECRET!);
+  // const decryptedPassword = bytes.toString(CryptoJS.enc.Utf8);
+  // console.log(decryptedPassword, "SYCCESS");
   const newUser = await prisma.user.create({
     data: {
       email,
-      hashedPassword: password,
+      hashedPassword,
     },
   });
 
