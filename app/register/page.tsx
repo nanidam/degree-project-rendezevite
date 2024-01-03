@@ -1,37 +1,13 @@
-import prisma from "../db";
-import { redirect } from "next/navigation";
+"use client";
+
+import { useRouter } from "next/navigation";
 import "./style.scss";
+import handleRegister from "@/utils/register";
 
-const Register = async () => {
-  const handleRegister = async (data: FormData) => {
-    "use server";
-    const email = data.get("email") as string;
-    const password = data.get("password") as string;
-
-    const existingUser = await prisma.user.findUnique({
-      where: { email },
-    });
-
-    if (existingUser) {
-      // Handle the case where the email already exists
-      console.log("Email already exists");
-      return;
-    }
-
-    const response = await prisma.user.create({
-      data: {
-        email,
-        hashedPassword: password,
-      },
-    });
-
-    console.log(response);
-    redirect("/");
-  };
-
-  const handleCancel = async () => {
-    "use server";
-    redirect("/");
+const Register = () => {
+  const router = useRouter();
+  const handleCancel = () => {
+    router.push("/");
   };
 
   return (
