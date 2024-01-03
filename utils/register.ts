@@ -24,8 +24,7 @@ const handleRegister = async (data: FormData) => {
     },
   });
 
-  console.log(response);
-  redirect("/");
+  redirect("/login");
 };
 
 export default handleRegister;
