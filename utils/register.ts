@@ -2,7 +2,10 @@
 
 import prisma from "@/app/db";
 import { redirect } from "next/navigation";
-
+// @TODO Samtyckeknapp
+// export const errormap = {
+//   email
+// }
 const handleRegister = async (data: FormData) => {
   const email = data.get("email") as string;
   const password = data.get("password") as string;
@@ -12,18 +15,17 @@ const handleRegister = async (data: FormData) => {
   });
 
   if (existingUser) {
-    // Handle the case where the email already exists
-    console.log("Email already exists");
-    return;
+    return { error: "Email already exists" };
   }
 
-  const response = await prisma.user.create({
+  await prisma.user.create({
     data: {
       email,
       hashedPassword: password,
     },
   });
 
+  // vid lyckad, ska vi visa i frontend
   redirect("/login");
 };
 

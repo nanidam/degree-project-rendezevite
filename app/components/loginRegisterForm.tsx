@@ -3,27 +3,39 @@
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import "./style/loginRegisterForm.scss";
+import React from "react";
 
 interface LoginRegisterFormProps {
   loginRegisterHeader: string;
   handleSubmit?: (e: React.FormEvent<HTMLFormElement>) => Promise<void>; // Updated type
-  handleRegister?: (data: FormData) => Promise<void>;
+  handleRegister?: (data: FormData) => Promise<{ error?: string }>;
 }
 const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
   loginRegisterHeader,
   handleSubmit,
   handleRegister,
 }) => {
+  const [error, setError] = React.useState<string | undefined>(undefined);
   const router = useRouter();
   const handleCancel = () => {
     router.push("/");
+  };
+
+  const handleAction = async (data: FormData) => {
+    if (handleRegister) {
+      const result = await handleRegister(data);
+
+      if (result.error) {
+        setError(result.error);
+      }
+    }
   };
 
   return (
     <>
       <section className="login-register-container">
         <h1>{loginRegisterHeader}</h1>
-        <form onSubmit={handleSubmit} action={handleRegister}>
+        <form onSubmit={handleSubmit} action={handleAction}>
           <fieldset>
             <legend>Account Information</legend>
             <article className="input-container">
@@ -51,6 +63,9 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
               />
             </article>
           </fieldset>
+
+          {error && <p className="error-message">{error}</p>}
+
           <article className="btns-container">
             <button className="login-register-btn" type="submit">
               {loginRegisterHeader}
