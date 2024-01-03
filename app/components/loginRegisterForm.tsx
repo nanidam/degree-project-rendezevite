@@ -29,7 +29,12 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
 
       switch (result) {
         case REGISTER_STATUS.EMAIL_EXISTS:
-        case REGISTER_STATUS.INVALID_PASSWORD:
+        case REGISTER_STATUS.INVALID_PASSWORD_MAX_LENGTH:
+        case REGISTER_STATUS.INVALID_PASSWORD_MIN_LENGTH:
+        case REGISTER_STATUS.INVALID_PASSWORD_DIGITS:
+        case REGISTER_STATUS.INVALID_PASSWORD_LOWERCASE:
+        case REGISTER_STATUS.INVALID_PASSWORD_UPPERCASE:
+        case REGISTER_STATUS.INVALID_PASSWORD_SPACES:
           setRegisterMsg(result);
           break;
 

@@ -2,11 +2,36 @@
 
 import prisma from "@/app/db";
 import { REGISTER_STATUS } from "./constants";
+import { passwordSchema } from "./passwordValidator";
+import { IPasswordValidation } from "./interfaces";
 // @TODO Samtyckeknapp
 
 const handleRegister = async (data: FormData) => {
   const email = data.get("email") as string;
   const password = data.get("password") as string;
+
+  if (!passwordSchema.validate(password)) {
+    const details = passwordSchema.validate(password, {
+      details: true,
+    }) as IPasswordValidation[];
+
+    if (details.length > 0) {
+      switch (details[0].validation) {
+        case "min":
+          return REGISTER_STATUS.INVALID_PASSWORD_MIN_LENGTH;
+        case "max":
+          return REGISTER_STATUS.INVALID_PASSWORD_MAX_LENGTH;
+        case "lowercase":
+          return REGISTER_STATUS.INVALID_PASSWORD_LOWERCASE;
+        case "uppercase":
+          return REGISTER_STATUS.INVALID_PASSWORD_UPPERCASE;
+        case "digits":
+          return REGISTER_STATUS.INVALID_PASSWORD_DIGITS;
+        case "spaces":
+          return REGISTER_STATUS.INVALID_PASSWORD_SPACES;
+      }
+    }
+  }
 
   const existingUser = await prisma.user.findUnique({
     where: { email },
