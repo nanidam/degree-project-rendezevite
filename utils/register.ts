@@ -49,9 +49,7 @@ const handleRegister = async (data: FormData) => {
     password,
     process.env.DECRYPT_SECRET!
   ).toString();
-  // const bytes = CryptoJS.AES.decrypt(encryptedPassword, process.env.DECRYPT_SECRET!);
-  // const decryptedPassword = bytes.toString(CryptoJS.enc.Utf8);
-  // console.log(decryptedPassword, "SYCCESS");
+
   const newUser = await prisma.user.create({
     data: {
       email,
