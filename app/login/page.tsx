@@ -13,7 +13,7 @@ const Login = () => {
       email,
       password,
       redirect: true,
-      callbackUrl: "/eventOverview",
+      callbackUrl: "/event-overview",
     });
   };
 
