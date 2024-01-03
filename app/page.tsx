@@ -16,7 +16,7 @@ export default function Home() {
           <a href="/api/auth/signin">Login</a>
         </button>
         <button className="register-btn">
-          <a href="/">Register</a>
+          <a href="/register">Register</a>
         </button>
       </section>
     </main>
