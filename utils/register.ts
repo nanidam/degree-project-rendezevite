@@ -10,6 +10,14 @@ const handleRegister = async (data: FormData) => {
   const email = data.get("email") as string;
   const password = data.get("password") as string;
 
+  const existingUser = await prisma.user.findUnique({
+    where: { email },
+  });
+
+  if (existingUser) {
+    return REGISTER_STATUS.EMAIL_EXISTS;
+  }
+
   if (!passwordSchema.validate(password)) {
     const details = passwordSchema.validate(password, {
       details: true,
@@ -31,14 +39,6 @@ const handleRegister = async (data: FormData) => {
           return REGISTER_STATUS.INVALID_PASSWORD_SPACES;
       }
     }
-  }
-
-  const existingUser = await prisma.user.findUnique({
-    where: { email },
-  });
-
-  if (existingUser) {
-    return REGISTER_STATUS.EMAIL_EXISTS;
   }
 
   const newUser = await prisma.user.create({

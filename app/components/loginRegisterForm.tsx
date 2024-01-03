@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import "./style/loginRegisterForm.scss";
+import SVG, { ReactSVG } from "react-svg";
 import React from "react";
 import { REGISTER_STATUS } from "@/utils/constants";
 
@@ -18,9 +19,14 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
   handleRegister,
 }) => {
   const [registerMsg, setRegisterMsg] = React.useState<string | undefined>(undefined);
+  const [showPassword, setShowPassword] = React.useState<boolean>(false);
   const router = useRouter();
   const handleCancel = () => {
     router.push("/");
+  };
+
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   const handleAction = async (data: FormData) => {
@@ -71,7 +77,7 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
               <label htmlFor="password">Password:</label>
               <input
                 className="inputfield"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 id="password"
                 name="password"
                 placeholder={
@@ -79,6 +85,19 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
                 }
                 required
               />
+              {showPassword ? (
+                <ReactSVG
+                  className="svg-eye"
+                  src="/closed-eye.svg"
+                  onClick={handleTogglePasswordVisibility}
+                />
+              ) : (
+                <ReactSVG
+                  className="svg-eye"
+                  src="/opened-eye.svg"
+                  onClick={handleTogglePasswordVisibility}
+                />
+              )}
             </article>
           </fieldset>
 
