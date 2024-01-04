@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "@prisma/client": "^5.7.1",
+    "@types/nodemailer": "^6.4.14",
     "crypto-js": "^4.2.0",
     "next": "14.0.4",
     "next-auth": "^4.24.5",
+    "nodemailer": "^6.9.8",
     "password-validator": "^5.3.0",
     "react": "^18",
     "react-dom": "^18",
