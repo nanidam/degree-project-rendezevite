@@ -12,14 +12,12 @@ export const sendMail = async (email: string) => {
     return existingUser;
   }
 
-  //decrypt password
   const bytes = CryptoJS.AES.decrypt(
     existingUser?.hashedPassword!,
     process.env.DECRYPT_SECRET!
   );
 
   const decryptedPassword = bytes.toString(CryptoJS.enc.Utf8);
-  console.log("sendMail decryptedPassword:", decryptedPassword);
 
   await mailConfig({
     to: email,
