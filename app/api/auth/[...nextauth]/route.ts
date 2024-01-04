@@ -3,7 +3,6 @@ import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import CryptoJS from "crypto-js";
-import { NextApiHandler } from "next";
 
 const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
@@ -41,7 +40,6 @@ const authOptions: NextAuthOptions = {
   },
 };
 
-const handler: NextApiHandler = (req, res) => NextAuth(req, res, authOptions);
+const handler = NextAuth(authOptions);
 
-export default handler;
-export { authOptions };
+export { handler as GET, handler as POST };
