@@ -44,3 +44,4 @@ const authOptions: NextAuthOptions = {
 const handler: NextApiHandler = (req, res) => NextAuth(req, res, authOptions);
 
 export default handler;
+export { authOptions };
