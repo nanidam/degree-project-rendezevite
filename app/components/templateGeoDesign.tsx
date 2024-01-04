@@ -1,15 +1,15 @@
+import { TemplateGeometricDesignProps } from "../models/ITemplateGeometricDesign";
 import "./style/templateGeoDesign.scss";
 
-const TemplateGeometricDesign = () => {
+const TemplateGeometricDesign: React.FC<TemplateGeometricDesignProps> = ({
+  header,
+  text,
+}) => {
   return (
     <section className="template-bg">
-      <h1 className="template-header">geo design</h1>
+      <h1 className="template-header">{header}</h1>
       <article className="template-text-container">
-        <p className="template-text">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum perspiciatis fuga
-          praesentium, mollitia maxime commodi, ea laborum voluptate sed impedit modi nemo
-          deleniti suscipit ipsum illo, atque dolorum illum assumenda.
-        </p>
+        <p className="template-text">{text}</p>
       </article>
     </section>
   );
