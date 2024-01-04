@@ -12,9 +12,9 @@
 
   .template-header {
     outline: 2px solid rgb(102, 244, 86);
-    margin-top: 50%;
     font-size: 2rem;
     color: white;
+    margin-top: 60%;
   }
 
   .template-text-container {
@@ -25,6 +25,18 @@
     text-align: center;
     box-sizing: border-box;
     color: white;
-    height: 300px;
+    height: 350px;
+  }
+}
+
+@media screen and (max-height: 667px) {
+  .template-bg {
+    .template-header {
+      margin-top: 40%;
+    }
+
+    .template-text-container {
+      max-height: 250px;
+    }
   }
 }
