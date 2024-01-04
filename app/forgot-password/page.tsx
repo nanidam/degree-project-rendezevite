@@ -1,13 +1,21 @@
+import "./style.scss";
+
 const ForgotPassword = () => {
   return (
-    <section>
+    <section className="forgot-password-container">
       <h1>Forgot Password</h1>
       <p>Enter your email address to reset your password. You will recieve an email.</p>
-      <label htmlFor="forgot-password">
-        Email:
-        <input type="email" id="forgot-password" name="forgot-password" />
-      </label>
-      <button type="submit">Reset Password</button>
+      <label htmlFor="forgot-password">Email:</label>
+      <input
+        className="forgot-input"
+        type="email"
+        id="forgot-password"
+        name="forgot-password"
+        placeholder="Your email"
+      />
+      <button className="reset-password-btn" type="submit">
+        Reset Password
+      </button>
     </section>
   );
 };
