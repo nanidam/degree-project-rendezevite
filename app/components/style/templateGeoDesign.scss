@@ -16,6 +16,8 @@
     font-size: 2rem;
     color: white;
     margin-top: 60%;
+    max-width: 350px;
+    text-align: center;
   }
 
   .template-text-container {
@@ -33,7 +35,8 @@
 @media screen and (max-height: 667px) {
   .template-bg {
     .template-header {
-      margin-top: 50%;
+      margin-top: 45%;
+      max-width: 200px;
     }
 
     .template-text-container {
