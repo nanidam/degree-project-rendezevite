@@ -7,14 +7,15 @@ import { useRouter } from "next/navigation";
 const ForgotPassword = () => {
   const [msg, setMsg] = useState<string | null>(null);
   const router = useRouter();
-  const handleForgotPassword = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleForgotPassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const email = e.currentTarget["forgot-password"].value;
 
-    const result = sendMail(email);
+    const result = await sendMail(email);
 
-    if (result === null) {
-      setMsg("Email not found");
+    console.log(result);
+    if (!result) {
+      setMsg("Invalid email");
     } else {
       router.push("/password-sent");
     }
@@ -33,6 +34,8 @@ const ForgotPassword = () => {
           name="forgot-password"
           placeholder="Your email"
         />
+
+        {msg && <p className="forgot-password-error">{msg}</p>}
         <button type="submit" className="reset-password-btn">
           Send
         </button>
