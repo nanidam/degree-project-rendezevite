@@ -4,7 +4,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh;
+  min-height: 115vh;
 
   display: flex;
   flex-direction: column;
@@ -25,18 +25,18 @@
     text-align: center;
     box-sizing: border-box;
     color: white;
-    height: 350px;
+    height: 400px;
   }
 }
 
 @media screen and (max-height: 667px) {
   .template-bg {
     .template-header {
-      margin-top: 40%;
+      margin-top: 50%;
     }
 
     .template-text-container {
-      max-height: 250px;
+      max-height: 300px;
     }
   }
 }
