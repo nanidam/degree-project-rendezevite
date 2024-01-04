@@ -1,14 +1,23 @@
 "use client";
 import { sendMail } from "@/utils/sendMail";
 import "./style.scss";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const ForgotPassword = () => {
+  const [msg, setMsg] = useState<string | null>(null);
+  const router = useRouter();
   const handleForgotPassword = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const email = e.currentTarget["forgot-password"].value;
-    console.log("Email from forgot-password:", email);
 
-    sendMail(email);
+    const result = sendMail(email);
+
+    if (result === null) {
+      setMsg("Email not found");
+    } else {
+      router.push("/password-sent");
+    }
   };
 
   return (
