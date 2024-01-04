@@ -1,34 +1,37 @@
-.welcome-overview {
+.welcome-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  // align-items: center;
 
   padding: 20px;
+
+  .welcome-options-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    .login-btn,
+    .register-btn {
+      width: 100%;
+      height: 35px;
+      margin: 10px;
+
+      transition: ease-in-out 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        background: grey;
+      }
+    }
+  }
 }
 
-.login-register-links {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  .login-btn,
-  .register-btn {
-    width: 50%;
-    height: 35px;
-    margin: 10px;
-
-    transition: ease-in-out 0.3s;
-    cursor: pointer;
-
-    &:hover {
-      background: grey;
-    }
-
-    & > a {
-      text-decoration: none;
-      font-size: 0.9rem;
-    }
+@media screen and (min-width: 768px) {
+  .welcome-container {
+    max-width: 400px;
+    margin: 0 auto;
   }
 }
