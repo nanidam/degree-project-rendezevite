@@ -1,11 +1,29 @@
 "use server";
+import prisma from "@/app/db";
 import { mailConfig } from "./mailConfig";
+import CryptoJS from "crypto-js";
 
-export const sendMail = async () => {
+export const sendMail = async (email: string) => {
+  const existingUser = await prisma.user.findUnique({
+    where: { email },
+  });
+
+  if (!existingUser) {
+    return existingUser;
+  }
+
+  //decrypt password
+  const bytes = CryptoJS.AES.decrypt(
+    existingUser?.hashedPassword!,
+    process.env.DECRYPT_SECRET!
+  );
+
+  const decryptedPassword = bytes.toString(CryptoJS.enc.Utf8);
+  console.log("sendMail decryptedPassword:", decryptedPassword);
+
   await mailConfig({
-    to: "giadi735@gmail.com",
-    name: "Vahid",
-    subject: "Test Mail",
-    body: "Testing body hihihihi <br/> hihihi",
+    to: email,
+    subject: "Your RendezEvite password",
+    body: "Hello, here is your RendezEvite password: " + decryptedPassword,
   });
 };

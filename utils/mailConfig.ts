@@ -2,12 +2,10 @@ import nodemailer from "nodemailer";
 
 export const mailConfig = async ({
   to,
-  name,
   subject,
   body,
 }: {
   to: string;
-  name: string;
   subject: string;
   body: string;
 }) => {
