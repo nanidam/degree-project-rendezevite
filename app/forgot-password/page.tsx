@@ -1,10 +1,12 @@
 "use client";
+import { sendMail } from "@/utils/sendMail";
 import "./style.scss";
 
 const ForgotPassword = () => {
   const handleForgotPassword = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Forgot Password clicked");
+    sendMail();
   };
 
   return (
@@ -20,7 +22,7 @@ const ForgotPassword = () => {
           name="forgot-password"
           placeholder="Your email"
         />
-        <button className="reset-password-btn">Reset Password</button>
+        <button className="reset-password-btn">Send</button>
       </form>
     </section>
   );
