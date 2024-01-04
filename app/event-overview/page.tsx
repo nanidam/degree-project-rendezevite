@@ -7,6 +7,8 @@ const EventOverview: React.FC = () => {
       <TemplateGeometricDesign
         header="Event Overview"
         text="Lorem ipsum"
+        rsvpGeneric={true}
+        rsvpFood={true}
       ></TemplateGeometricDesign>
     </div>
   );
