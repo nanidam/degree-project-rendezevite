@@ -1,13 +1,15 @@
 "use client";
 import { ReactSVG } from "react-svg";
 import "./style/logoutBtn.scss";
+import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Logout = () => {
-  const handleLogout = () => {
-    //   localStorage.clear();
-    //   window.location.reload();
+  const router = useRouter();
 
-    alert("Logged out");
+  const handleLogout = async () => {
+    router.push("/registration-success");
+    await signOut();
   };
   return (
     <section className="logout-btn-container">
