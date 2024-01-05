@@ -5,6 +5,7 @@ import { authOptions } from "../api/auth/[...nextauth]/authOptions";
 import Logout from "../components/logout";
 import "./style.scss";
 import { ReactSVG } from "react-svg";
+import Link from "next/link";
 
 const EventOverview = () => {
   // const session = await getServerSession(authOptions);
@@ -22,21 +23,31 @@ const EventOverview = () => {
           <button className="create-event-btn">Create event</button>
         </article>
 
-        <article className="current-events">
+        <article className="current-events-container">
           <h2>Current events:</h2>
-          <ul>
-            <li>
-              event 1
+          <ul className="current-events">
+            <li className="current-event">
+              <Link className="event" href="/">
+                event 1
+              </Link>
               <div className="edit-delete-icons">
-                <ReactSVG src="/edit-icon.svg"></ReactSVG>
-                <ReactSVG src="/trash-can.svg"></ReactSVG>
+                <ReactSVG className="edit-icon" src="/edit-icon.svg"></ReactSVG>
+                <ReactSVG className="trash-icon" src="/trash-can.svg"></ReactSVG>
               </div>
             </li>
-            <li>event 2</li>
+            <li className="current-event">
+              <Link className="event" href="/">
+                event 2
+              </Link>
+              <div className="edit-delete-icons">
+                <ReactSVG className="edit-icon" src="/edit-icon.svg"></ReactSVG>
+                <ReactSVG className="trash-icon" src="/trash-can.svg"></ReactSVG>
+              </div>
+            </li>
           </ul>
         </article>
 
-        <article className="past-events">
+        <article className="past-events-container">
           <h2>Past events:</h2>
           <ul>
             <li>event 3</li>
