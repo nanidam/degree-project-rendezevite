@@ -8,8 +8,7 @@ const Logout = () => {
   const router = useRouter();
 
   const handleLogout = async () => {
-    router.push("/registration-success");
-    await signOut();
+    await signOut({ callbackUrl: "/" });
   };
   return (
     <section className="logout-btn-container">
