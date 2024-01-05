@@ -58,6 +58,7 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
 
   return (
     <>
+      {/* TODO: remove value when dev is done */}
       <section className="login-register-container">
         <h1>{loginRegisterHeader}</h1>
         <form onSubmit={handleSubmit} action={handleAction}>
@@ -71,6 +72,7 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
                 id="email"
                 name="email"
                 placeholder="Your email"
+                value="hej@mail.com"
                 required
               />
             </article>
@@ -84,6 +86,7 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
                 placeholder={
                   loginRegisterHeader === "Register" ? "Choose a password" : "Password"
                 }
+                value="Testtest123"
                 required
               />
               {loginRegisterHeader === "Login" && (
