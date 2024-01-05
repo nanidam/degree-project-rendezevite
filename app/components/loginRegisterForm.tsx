@@ -6,10 +6,11 @@ import "./style/loginRegisterForm.scss";
 import SVG, { ReactSVG } from "react-svg";
 import React from "react";
 import { REGISTER_STATUS } from "@/utils/constants";
+import Link from "next/link";
 
 interface LoginRegisterFormProps {
   loginRegisterHeader: string;
-  handleSubmit?: (e: React.FormEvent<HTMLFormElement>) => Promise<void>; // Updated type
+  handleSubmit?: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
   handleRegister?: (data: FormData) => Promise<string | undefined>;
 }
 
@@ -85,6 +86,9 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
                 }
                 required
               />
+              {loginRegisterHeader === "Login" && (
+                <Link href="/forgot-password">Forgot password?</Link>
+              )}
               {showPassword ? (
                 <ReactSVG
                   className="svg-eye"
