@@ -1,11 +1,14 @@
+"use client";
+
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../api/auth/[...nextauth]/authOptions";
 import Logout from "../components/logout";
 import "./style.scss";
+import { ReactSVG } from "react-svg";
 
-const EventOverview = async () => {
-  const session = await getServerSession(authOptions);
-  console.log(session);
+const EventOverview = () => {
+  // const session = await getServerSession(authOptions);
+  // console.log(session);
 
   return (
     <main>
@@ -22,7 +25,13 @@ const EventOverview = async () => {
         <article className="current-events">
           <h2>Current events:</h2>
           <ul>
-            <li>event 1</li>
+            <li>
+              event 1
+              <div className="edit-delete-icons">
+                <ReactSVG src="/edit-icon.svg"></ReactSVG>
+                <ReactSVG src="/trash-can.svg"></ReactSVG>
+              </div>
+            </li>
             <li>event 2</li>
           </ul>
         </article>
