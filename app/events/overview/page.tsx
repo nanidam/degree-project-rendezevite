@@ -1,8 +1,8 @@
 "use client";
 
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "../api/auth/[...nextauth]/authOptions";
-import Logout from "../components/logout";
+import { authOptions } from "../../api/auth/[...nextauth]/authOptions";
+import Logout from "../../components/logout";
 import "./style.scss";
 import { ReactSVG } from "react-svg";
 import Link from "next/link";
