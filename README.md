@@ -40,4 +40,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - [ ] Lämna in koden zippad på itslearning (utan node_modules-mappen så att zippen inte blir orimligt stor) och en länk till ditt repo.
 - [ ] Länka också till ditt live-projekt.
 - [ ] Om repot inte ligger publikt, bjud in användaren postmodernistx som granskare till ditt repo.
-- [ ] Boka in på redovisningstillfälle på itslearning
+- [x] Boka in på redovisningstillfälle på itslearning
+- [ ] Remove values i input för login/registrering
