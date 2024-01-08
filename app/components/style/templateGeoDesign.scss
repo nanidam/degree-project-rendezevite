@@ -12,7 +12,6 @@
   border-radius: 15px;
 
   .template-header {
-    outline: 2px solid rgb(102, 244, 86);
     font-size: 2rem;
     color: white;
     margin-top: 60%;
@@ -21,14 +20,40 @@
   }
 
   .template-text-container {
-    outline: 2px solid red;
     width: 100%;
-    padding: 0 85px;
+    padding: 0 80px;
     font-size: 1rem;
     text-align: center;
     box-sizing: border-box;
     color: white;
     height: 400px;
+
+    .rsvp-form {
+      height: 100%;
+      width: 100%;
+      font-size: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      text-align: left;
+
+      .rsvp-wrapper {
+        width: 100%;
+      }
+
+      .rsvp-input {
+        border: none;
+        border-bottom: 1px solid white;
+        background-color: transparent;
+        color: white;
+        font-size: 1rem;
+
+        &:focus {
+          outline: goldenrod;
+        }
+      }
+    }
   }
 }
 
@@ -49,6 +74,24 @@
   .template-bg {
     .template-header {
       max-width: 200px;
+    }
+
+    .template-text-container {
+      max-height: 320px;
+    }
+  }
+}
+
+@media screen and (min-width: 400px) {
+  .template-bg {
+    .template-text-container {
+      .rsvp-form {
+        font-size: 1.3rem;
+
+        .rsvp-input {
+          font-size: 1.3rem;
+        }
+      }
     }
   }
 }

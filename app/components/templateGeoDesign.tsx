@@ -9,43 +9,63 @@ const TemplateGeometricDesign: React.FC<TemplateGeometricDesignProps> = ({
 }) => {
   const headerContent = rsvpGeneric && rsvpFood ? "RSVP" : header;
 
+  // TODO: Fix guest name
+  const guestName = "Test Person 1";
   const renderRSVPContent = () => (
     <>
-      <form>
-        <label htmlFor="guest">Guest:</label>
-        <input type="text" id="guest" name="guest" readOnly />
+      <form className="rsvp-form">
+        <label htmlFor="guest">
+          Guest:
+          <input
+            className="rsvp-input"
+            type="text"
+            id="guest"
+            name="guest"
+            value={guestName}
+            readOnly
+          />
+        </label>
 
-        <div>
+        <div className="rsvp-wrapper">
           <label htmlFor="attending">
             {" "}
-            Attending:
+            Attending: <br />
             <input type="radio" name="attending" value="yes" /> Yes
-          </label>
-          <label>
             <input type="radio" name="attending" value="no" /> No
           </label>
         </div>
 
-        <div>
-          <label htmlFor="diet">
-            Diet:
-            <input type="radio" name="diet" value="meat" /> Meat
-          </label>
-          <label>
-            <input type="radio" name="diet" value="vegetarian" /> Vegetarian
-          </label>
-          <label>
-            <input type="radio" name="diet" value="vegan" /> Vegan
+        <div className="rsvp-wrapper">
+          <label className="diet-label" htmlFor="diet">
+            Diet: <br />
+            <input className="rsvp-input" type="radio" name="diet" value="meat" /> Meat
+            <input
+              className="rsvp-input"
+              type="radio"
+              name="diet"
+              value="vegan"
+            /> Vegan <br />
+            <input
+              className="rsvp-input"
+              type="radio"
+              name="diet"
+              value="vegetarian"
+            />{" "}
+            Vegetarian
           </label>
         </div>
 
-        <label htmlFor="allergies">Allergies:</label>
-        <input type="text" id="allergies" name="allergies" />
+        <label htmlFor="allergies">
+          Allergies:
+          <input className="rsvp-input" type="text" id="allergies" name="allergies" />
+        </label>
 
-        <label htmlFor="comments">Comments:</label>
-        <input type="text" id="comments" name="comments" />
+        <label htmlFor="comments">
+          Comments:
+          <input className="rsvp-input" type="text" id="comments" name="comments" />
+        </label>
 
-        <button>Submit</button>
+        <button>Send</button>
       </form>
     </>
   );
