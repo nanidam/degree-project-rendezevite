@@ -1,3 +1,5 @@
+"use client";
+
 import { TemplateGeometricDesignProps } from "../models/ITemplateGeometricDesign";
 import "./style/templateGeoDesign.scss";
 
@@ -11,9 +13,14 @@ const TemplateGeometricDesign: React.FC<TemplateGeometricDesignProps> = ({
 
   // TODO: Fix guest name
   const guestName = "Test Person 1";
+
+  const handleRsvp = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log("RSVP CLICK!!! ");
+  };
   const renderRSVPContent = () => (
     <>
-      <form className="rsvp-form">
+      <form className="rsvp-form" onSubmit={handleRsvp}>
         <label htmlFor="guest">
           Guest:
           <input
@@ -65,7 +72,7 @@ const TemplateGeometricDesign: React.FC<TemplateGeometricDesignProps> = ({
           <input className="rsvp-input" type="text" id="comments" name="comments" />
         </label>
 
-        <button>Send</button>
+        <button className="rsvp-btn">Send</button>
       </form>
     </>
   );

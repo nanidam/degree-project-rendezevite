@@ -53,6 +53,20 @@
           outline: goldenrod;
         }
       }
+
+      .rsvp-btn {
+        width: 120px;
+        height: 36px;
+        border-radius: 15px;
+        border-color: rgb(233, 196, 105);
+        background-color: transparent;
+        color: white;
+
+        &:hover {
+          background-color: rgb(233, 196, 105);
+          color: black;
+        }
+      }
     }
   }
 }
