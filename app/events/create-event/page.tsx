@@ -4,7 +4,7 @@ import { useState } from "react";
 import "./style.scss";
 import getUserId from "@/app/services/getUserId";
 import createEvent from "@/app/services/createEvent";
-import { IEvent } from "@/app/models/IEvent";
+import { useRouter } from "next/navigation";
 
 const CREATE_EVENT_STATUS = {
   EMPTY_NAME: "Please give your event a name",
@@ -16,6 +16,7 @@ const CREATE_EVENT_STATUS = {
 };
 
 const CreateEvent = () => {
+  const router = useRouter();
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const handleCreateEvent = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -57,9 +58,11 @@ const CreateEvent = () => {
 
           console.log(newEvent);
 
-          //   if (newEvent) {
-          //     redirect(`/admin/event/${eventName}`)
-          //   }
+          if (newEvent) {
+            router.push(`/events/create-event/${eventName}/template`);
+
+            // redirect(`/events/create-event/${eventName}/template`);
+          }
         }
         break;
 
