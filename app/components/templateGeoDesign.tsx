@@ -16,23 +16,26 @@ const TemplateGeometricDesign: React.FC<TemplateGeometricDesignProps> = ({
         <input type="text" id="guest" name="guest" readOnly />
 
         <div>
-          <label>
-            <input type="checkbox" name="attendingYes" /> Attending (Yes)
+          <label htmlFor="attending">
+            {" "}
+            Attending:
+            <input type="radio" name="attending" value="yes" /> Yes
           </label>
           <label>
-            <input type="checkbox" name="attendingNo" /> Attending (No)
+            <input type="radio" name="attending" value="no" /> No
           </label>
         </div>
 
         <div>
-          <label>
-            <input type="checkbox" name="meat" /> Meat
+          <label htmlFor="diet">
+            Diet:
+            <input type="radio" name="diet" value="meat" /> Meat
           </label>
           <label>
-            <input type="checkbox" name="vegetarian" /> Vegetarian
+            <input type="radio" name="diet" value="vegetarian" /> Vegetarian
           </label>
           <label>
-            <input type="checkbox" name="vegan" /> Vegan
+            <input type="radio" name="diet" value="vegan" /> Vegan
           </label>
         </div>
 
