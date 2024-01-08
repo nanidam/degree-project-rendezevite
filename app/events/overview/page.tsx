@@ -6,10 +6,16 @@ import Logout from "../../components/logout";
 import "./style.scss";
 import { ReactSVG } from "react-svg";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const EventOverview = () => {
   // const session = await getServerSession(authOptions);
   // console.log(session);
+  const router = useRouter();
+
+  const createEvent = () => {
+    router.push("/events/create-event");
+  };
 
   return (
     <main>
@@ -20,7 +26,9 @@ const EventOverview = () => {
       <Logout></Logout>
       <section className="event-overview-container">
         <article className="create-event">
-          <button className="create-event-btn">Create event</button>
+          <button className="create-event-btn" onClick={createEvent}>
+            Create event
+          </button>
         </article>
 
         <article className="current-events-container">
