@@ -2,10 +2,14 @@
 
 import { useState } from "react";
 import "./style.scss";
+import getUserId from "@/app/services/getUserId";
+import createEvent from "@/app/services/createEvent";
+import { IEvent } from "@/app/models/IEvent";
 
 const CREATE_EVENT_STATUS = {
   EMPTY_NAME: "Please give your event a name",
   EMPTY_DATE: "Please choose a date",
+  EMPTY_PASSWORD: "Please enter a password",
   GENERIC: "Something went wrong. Please try again",
   INVALID: "Invalid date",
   SUCCESS: "Event created",
@@ -18,7 +22,9 @@ const CreateEvent = () => {
     const formData = new FormData(e.currentTarget);
     const eventName = formData.get("event-name") as string;
     const eventDate = formData.get("event-date") as string;
-    console.log(eventName, eventDate);
+    const eventPassword = formData.get("event-password") as string;
+
+    console.log(eventName, eventDate, eventPassword);
 
     switch (true) {
       case eventName === "":
@@ -33,30 +39,34 @@ const CreateEvent = () => {
         setErrorMsg(CREATE_EVENT_STATUS.INVALID);
         break;
 
+      case eventPassword === "":
+        setErrorMsg(CREATE_EVENT_STATUS.EMPTY_PASSWORD);
+        break;
+
       case eventDate !== "" && eventName !== "":
         setErrorMsg(CREATE_EVENT_STATUS.SUCCESS);
+        const userId = await getUserId();
+
+        if (userId) {
+          const newEvent = await createEvent({
+            eventDate,
+            eventName,
+            userId,
+            eventPassword,
+          });
+
+          console.log(newEvent);
+
+          //   if (newEvent) {
+          //     redirect(`/admin/event/${eventName}`)
+          //   }
+        }
         break;
 
       default:
         setErrorMsg(CREATE_EVENT_STATUS.GENERIC);
         break;
     }
-
-    // const userId = await getUserId()
-
-    // if (userId) {
-    //   const newEvent = await prisma.event.create({
-    //     data: {
-    //       eventName,
-    //       eventDate: new Date(eventDate),
-    //       eventPlannerUserId: userId,
-    //     },
-    //   })
-
-    //   if (newEvent) {
-    //     redirect(`/admin/event/${eventName}`)
-    //   }
-    // }
   };
 
   return (
@@ -79,6 +89,15 @@ const CreateEvent = () => {
           <label className="create-event-label" htmlFor="event-date">
             Event date:
             <input className="create-event-input" type="date" name="event-date" />
+          </label>
+          <label className="create-event-password" htmlFor="event-date">
+            Event password:
+            <input
+              className="create-event-input"
+              type="text"
+              name="event-password"
+              placeholder="Password"
+            />
           </label>
           {errorMsg && <span className="error-message">{errorMsg}</span>}
           <button className="submit-event-btn" type="submit">
