@@ -1,4 +1,7 @@
 "use client";
+
+import "./style.scss";
+
 const CreateEvent = () => {
   const handleCreateEvent = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,22 +26,27 @@ const CreateEvent = () => {
     // }
   };
   return (
-    <section className="container">
-      <h1>Create Event</h1>
-      <article className="info-text">
+    <section className="create-event-container">
+      <h1 className="create-event-header">Create Event</h1>
+      <article className="info-text-wrapper">
         <p>Please enter event details below.</p>
       </article>
-      <article className="form-container">
-        <form onSubmit={handleCreateEvent}>
-          <label htmlFor="event-name">
+      <article className="create-event-wrapper">
+        <form onSubmit={handleCreateEvent} className="create-event-form">
+          <label className="create-event-label" htmlFor="event-name">
             Event name:
-            <input type="text" name="event-name" placeholder="Event Name" />
+            <input
+              className="create-event-input"
+              type="text"
+              name="event-name"
+              placeholder="Event name"
+            />
           </label>
-          <label htmlFor="event-date">
+          <label className="create-event-label" htmlFor="event-date">
             Event date:
-            <input type="date" name="event-date" />
+            <input className="create-event-input" type="date" name="event-date" />
           </label>
-          <button className="submit-btn" type="submit">
+          <button className="submit-event-btn" type="submit">
             Submit
           </button>
         </form>
