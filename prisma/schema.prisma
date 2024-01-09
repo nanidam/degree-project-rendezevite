@@ -26,6 +26,7 @@ model Event {
   user          User      @relation(fields: [userId], references: [id])
   eventPassword String
   inviteLink    String?
+  template      String?
   guestList     Guest[]
 }
 
