@@ -3,21 +3,26 @@
 import Logout from "@/app/components/logout";
 import "./style.scss";
 import chooseTemplate from "@/app/services/chooseTemplate";
+import { useRouter } from "next/navigation";
 
 const Template = ({
   params: { eventName },
 }: {
   readonly params: { readonly eventName: string };
 }) => {
+  const router = useRouter();
+
   if (eventName.includes(".")) {
     return null;
   }
 
-  const choosingTemplate = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+  const choosingTemplate = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
     const template = formData.get("options") as string;
     chooseTemplate(template, eventName);
+
+    router.push(`/events/create-event/${eventName}/invitations`);
   };
   return (
     <section className="choose-template-container">
