@@ -5,11 +5,13 @@ import "./style.scss";
 import getUserId from "@/app/services/getUserId";
 import createEvent from "@/app/services/createEvent";
 import { useRouter } from "next/navigation";
+import Logout from "@/app/components/logout";
 
 const CREATE_EVENT_STATUS = {
   EMPTY_NAME: "Please give your event a name",
   EMPTY_DATE: "Please choose a date",
   EMPTY_PASSWORD: "Please enter a password",
+  EVENT_NAME_EXISTS: "Event name already exists",
   GENERIC: "Something went wrong. Please try again",
   INVALID: "Invalid date",
   SUCCESS: "Event created",
@@ -25,11 +27,28 @@ const CreateEvent = () => {
     const eventDate = formData.get("event-date") as string;
     const eventPassword = formData.get("event-password") as string;
 
-    console.log(eventName, eventDate, eventPassword);
-
     switch (true) {
       case eventName === "":
         setErrorMsg(CREATE_EVENT_STATUS.EMPTY_NAME);
+        break;
+
+      case eventDate !== "" && eventName !== "":
+        const userId = await getUserId();
+
+        if (userId) {
+          const newEvent = await createEvent({
+            eventDate,
+            eventName,
+            userId,
+            eventPassword,
+          });
+
+          if (newEvent) {
+            router.push(`/events/create-event/${eventName}/template`);
+          } else {
+            setErrorMsg(CREATE_EVENT_STATUS.EVENT_NAME_EXISTS);
+          }
+        }
         break;
 
       case eventDate === "":
@@ -44,28 +63,6 @@ const CreateEvent = () => {
         setErrorMsg(CREATE_EVENT_STATUS.EMPTY_PASSWORD);
         break;
 
-      case eventDate !== "" && eventName !== "":
-        setErrorMsg(CREATE_EVENT_STATUS.SUCCESS);
-        const userId = await getUserId();
-
-        if (userId) {
-          const newEvent = await createEvent({
-            eventDate,
-            eventName,
-            userId,
-            eventPassword,
-          });
-
-          console.log(newEvent);
-
-          if (newEvent) {
-            router.push(`/events/create-event/${eventName}/template`);
-
-            // redirect(`/events/create-event/${eventName}/template`);
-          }
-        }
-        break;
-
       default:
         setErrorMsg(CREATE_EVENT_STATUS.GENERIC);
         break;
@@ -75,6 +72,7 @@ const CreateEvent = () => {
   return (
     <section className="create-event-container">
       <h1 className="create-event-header">Create Event</h1>
+      <Logout />
       <article className="info-text-wrapper">
         <p>Please enter event details below.</p>
       </article>
