@@ -8,7 +8,6 @@
     width: 100%;
 
     .create-inv-form {
-      outline: 2px solid pink;
       display: flex;
       flex-direction: column;
 
@@ -28,6 +27,7 @@
         width: 50%;
         height: 45px;
         margin: 20px 0;
+        align-self: center;
       }
     }
   }
