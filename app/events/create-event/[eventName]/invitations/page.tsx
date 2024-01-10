@@ -28,7 +28,6 @@ const Invitations = ({
   }
   const createInvitation = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("CLICKED!!", headerValue, textareaValue);
     switch (true) {
       case headerValue === "":
         setErrorMsg(CREATE_INVITATION_STATUS.EMPTY_HEADER);
