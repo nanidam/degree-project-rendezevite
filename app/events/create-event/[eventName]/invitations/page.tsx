@@ -82,7 +82,7 @@ const Invitations = ({
             value={textareaValue}
             onChange={(e) => setTextareaValue(e.target.value)}
           ></textarea>
-          {errorMsg && <p>{errorMsg}</p>}
+          {errorMsg && <p className="create-inv-error">{errorMsg}</p>}
           <button className="create-inv-btn">Save</button>
         </form>
       </article>
