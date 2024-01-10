@@ -27,6 +27,8 @@ model Event {
   eventPassword String
   inviteLink    String?
   template      String?
+  text          String?
+  header        String?
   guestList     Guest[]
 }
 
