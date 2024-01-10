@@ -1,11 +1,48 @@
 "use client";
+
 import Logout from "@/app/components/logout";
 import "./style.scss";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
-const Invitations = () => {
+const CREATE_INVITATION_STATUS = {
+  EMPTY_HEADER: "Please give your invitation a header",
+  EMPTY_TEXTAREA: "Please add some text",
+  GENERIC: "Something went wrong. Please try again",
+};
+
+const Invitations = ({
+  params: { eventName },
+}: {
+  readonly params: { readonly eventName: string };
+}) => {
+  const router = useRouter();
+
+  const [headerValue, setHeaderValue] = useState<string>("");
+  const [textareaValue, setTextareaValue] = useState<string>("");
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
+  if (eventName.includes(".")) {
+    return null;
+  }
   const createInvitation = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("createInvitation click");
+    console.log("CLICKED!!", headerValue, textareaValue);
+
+    switch (true) {
+      case headerValue === "":
+        setErrorMsg(CREATE_INVITATION_STATUS.EMPTY_HEADER);
+        break;
+      case textareaValue === "":
+        setErrorMsg(CREATE_INVITATION_STATUS.EMPTY_TEXTAREA);
+        break;
+      case headerValue !== "" && textareaValue !== "":
+        router.push(`/events/create-event/${eventName}/create-RSVP`);
+        break;
+      default:
+        setErrorMsg(CREATE_INVITATION_STATUS.GENERIC);
+        break;
+    }
   };
 
   return (
@@ -28,6 +65,8 @@ const Invitations = () => {
             className="create-inv-input"
             id="create-inv-header"
             placeholder="Header"
+            value={headerValue}
+            onChange={(e) => setHeaderValue(e.target.value)}
           ></input>
 
           <label className="create-inv-label" htmlFor="create-inv-text">
@@ -37,8 +76,10 @@ const Invitations = () => {
             className="create-inv-textarea"
             id="create-inv-text"
             placeholder="What do you want your invitation to say?"
+            value={textareaValue}
+            onChange={(e) => setTextareaValue(e.target.value)}
           ></textarea>
-
+          {errorMsg && <p>{errorMsg}</p>}
           <button className="create-inv-btn">Save</button>
         </form>
       </article>
