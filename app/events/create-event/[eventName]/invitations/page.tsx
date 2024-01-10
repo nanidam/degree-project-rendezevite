@@ -4,6 +4,7 @@ import Logout from "@/app/components/logout";
 import "./style.scss";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import updateEventText from "@/app/services/updateEventText";
 
 const CREATE_INVITATION_STATUS = {
   EMPTY_HEADER: "Please give your invitation a header",
@@ -25,10 +26,9 @@ const Invitations = ({
   if (eventName.includes(".")) {
     return null;
   }
-  const createInvitation = (e: React.FormEvent<HTMLFormElement>) => {
+  const createInvitation = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("CLICKED!!", headerValue, textareaValue);
-
     switch (true) {
       case headerValue === "":
         setErrorMsg(CREATE_INVITATION_STATUS.EMPTY_HEADER);
@@ -37,7 +37,10 @@ const Invitations = ({
         setErrorMsg(CREATE_INVITATION_STATUS.EMPTY_TEXTAREA);
         break;
       case headerValue !== "" && textareaValue !== "":
-        router.push(`/events/create-event/${eventName}/create-RSVP`);
+        const updatedEvent = await updateEventText(headerValue, textareaValue, eventName);
+        if (updatedEvent) {
+          router.push(`/events/create-event/${eventName}/create-RSVP`);
+        }
         break;
       default:
         setErrorMsg(CREATE_INVITATION_STATUS.GENERIC);
