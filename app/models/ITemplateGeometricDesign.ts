@@ -1,4 +1,4 @@
-export interface TemplateGeometricDesignProps {
+export interface ITemplateGeometricDesignProps {
   header: string;
   text: string;
   rsvpGeneric: boolean;

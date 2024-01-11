@@ -1,0 +1,48 @@
+.create-event-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+
+  .create-event-header {
+    text-align: center;
+  }
+
+  .create-event-wrapper,
+  .info-text-wrapper {
+    font-size: 1.3rem;
+
+    .create-event-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 1.3rem;
+
+      .create-event-label {
+        width: 100%;
+      }
+
+      .create-event-input {
+        border: none;
+        border-bottom: 1px solid grey;
+        background-color: transparent;
+        font-size: 1.3rem;
+        margin: 10px 0;
+        width: 100%;
+      }
+
+      .submit-event-btn {
+        margin: 10px;
+        height: 40px;
+        border-radius: 15px;
+        width: 50%;
+
+        transition: ease-in-out 0.3s;
+        cursor: pointer;
+
+        &:hover {
+          background: grey;
+        }
+      }
+    }
+  }
+}

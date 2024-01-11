@@ -1,9 +1,9 @@
 "use client";
 
-import { TemplateGeometricDesignProps } from "../models/ITemplateGeometricDesign";
+import { ITemplateGeometricDesignProps } from "../models/ITemplateGeometricDesign";
 import "./style/templateGeoDesign.scss";
 
-const TemplateGeometricDesign: React.FC<TemplateGeometricDesignProps> = ({
+const TemplateGeometricDesign: React.FC<ITemplateGeometricDesignProps> = ({
   header,
   text,
   rsvpGeneric,
