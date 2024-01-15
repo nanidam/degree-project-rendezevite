@@ -1,3 +1,4 @@
+"use server"
 import prisma from "../db";
 
 export const getEvent = async (userId: string, eventName: string) => {
