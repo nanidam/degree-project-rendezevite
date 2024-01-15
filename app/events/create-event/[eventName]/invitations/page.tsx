@@ -1,51 +1,55 @@
-"use client";
+"use client"
 
-import Logout from "@/app/components/logout";
-import "./style.scss";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import updateEventText from "@/app/services/updateEventText";
+import Logout from "@/app/components/logout"
+import "./style.scss"
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import updateEventText from "@/app/services/updateEventText"
 
 const CREATE_INVITATION_STATUS = {
   EMPTY_HEADER: "Please give your invitation a header",
   EMPTY_TEXTAREA: "Please add some text",
   GENERIC: "Something went wrong. Please try again",
-};
+}
 
 const Invitations = ({
   params: { eventName },
 }: {
-  readonly params: { readonly eventName: string };
+  readonly params: { readonly eventName: string }
 }) => {
-  const router = useRouter();
+  const router = useRouter()
 
-  const [headerValue, setHeaderValue] = useState<string>("");
-  const [textareaValue, setTextareaValue] = useState<string>("");
-  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [headerValue, setHeaderValue] = useState<string>("")
+  const [textareaValue, setTextareaValue] = useState<string>("")
+  const [errorMsg, setErrorMsg] = useState<string | null>(null)
 
   if (eventName.includes(".")) {
-    return null;
+    return null
   }
   const createInvitation = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
     switch (true) {
       case headerValue === "":
-        setErrorMsg(CREATE_INVITATION_STATUS.EMPTY_HEADER);
-        break;
+        setErrorMsg(CREATE_INVITATION_STATUS.EMPTY_HEADER)
+        break
       case textareaValue === "":
-        setErrorMsg(CREATE_INVITATION_STATUS.EMPTY_TEXTAREA);
-        break;
+        setErrorMsg(CREATE_INVITATION_STATUS.EMPTY_TEXTAREA)
+        break
       case headerValue !== "" && textareaValue !== "":
-        const updatedEvent = await updateEventText(headerValue, textareaValue, eventName);
+        const updatedEvent = await updateEventText(
+          headerValue,
+          textareaValue,
+          eventName.toLowerCase()
+        )
         if (updatedEvent) {
-          router.push(`/events/create-event/${eventName}/create-RSVP`);
+          router.push(`/events/create-event/${eventName}/create-RSVP`)
         }
-        break;
+        break
       default:
-        setErrorMsg(CREATE_INVITATION_STATUS.GENERIC);
-        break;
+        setErrorMsg(CREATE_INVITATION_STATUS.GENERIC)
+        break
     }
-  };
+  }
 
   return (
     <section className="create-inv-container">
@@ -53,9 +57,9 @@ const Invitations = ({
       <Logout></Logout>
       <article className="create-inv-wrapper">
         <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem, quod ipsam saepe
-          totam, deserunt fugiat ea vitae similique quas consectetur fugit aspernatur eaque
-          non quia accusamus provident at velit dicta?
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem, quod
+          ipsam saepe totam, deserunt fugiat ea vitae similique quas consectetur
+          fugit aspernatur eaque non quia accusamus provident at velit dicta?
         </p>
       </article>
       <article className="create-inv-wrapper">
@@ -86,7 +90,7 @@ const Invitations = ({
         </form>
       </article>
     </section>
-  );
-};
+  )
+}
 
-export default Invitations;
+export default Invitations
