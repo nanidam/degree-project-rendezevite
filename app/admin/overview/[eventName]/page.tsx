@@ -1,41 +1,73 @@
-"use client";
+"use client"
 
-import Logout from "@/app/components/logout";
-import "./style.scss";
+import Logout from "@/app/components/logout"
+import "./style.scss"
+import { useCallback, useEffect, useState } from "react"
+import { getEvent } from "@/app/services/getEvent"
+import getUserId from "@/app/services/getUserId"
+import { dateFormat } from "@/utils/dateFormat"
 
-const AdminOverview = () => {
-  const rsvpDate = "2022-11-11";
-  const invLink = "www.inv-link.com";
-  const eventPassword = "password";
+const AdminOverview = ({
+  params: { eventName },
+}: {
+  readonly params: { readonly eventName: string }
+}) => {
+  const [event, setEvent] = useState<any>(null)
+  const fetchAndSetEvents = useCallback(async () => {
+    const userId = await getUserId()
+    console.log(userId)
+    if (userId) {
+      const data = await getEvent(userId, eventName)
+      const date = new Date(event.eventDate)
+      const formattedDate = dateFormat(date)
+      const temp = { ...data, eventDate: formattedDate }
+      setEvent(temp)
+    }
+  }, [event.eventDate, eventName])
+
+  useEffect(() => {
+    fetchAndSetEvents()
+  }, [fetchAndSetEvents])
+
+  const rsvpDate = "2022-11-11"
+  const invLink = "www.inv-link.com"
+  const eventPassword = "password"
 
   const editInvite = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    console.log("edit invite");
-  };
+    e.preventDefault()
+    console.log("edit invite")
+  }
 
   const editInvitePassword = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("edit invite password");
-  };
+    e.preventDefault()
+    console.log("edit invite password")
+  }
 
   const inviteGuest = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("invite guest");
-  };
+    e.preventDefault()
+    console.log("invite guest")
+  }
+
+  // @TODO fix loader here instead
+  if (!event) {
+    return null
+  }
 
   return (
     <section className="admin-overview">
-      <h1 className="admin-header">*Event name*</h1>
+      <h1 className="admin-header">
+        {event.eventName.charAt(0).toUpperCase() + event.eventName.slice(1)}
+      </h1>
       <Logout></Logout>
       <article className="admin-wrapper">
         <h3>Info</h3>
-        <p>RSVP date: {rsvpDate}</p>
+        <p>Event date: {event.eventDate}</p>
         <p>
           Event link: <a>{invLink}</a>
         </p>
-        <button className="admin-btn" onClick={editInvite}>
+        {/* <button className="admin-btn" onClick={editInvite}>
           Edit invitation
-        </button>
+        </button> */}
       </article>
 
       <article className="admin-wrapper">
@@ -49,7 +81,7 @@ const AdminOverview = () => {
             className="admin-input"
             type="password"
             name="eventPassword"
-            defaultValue={eventPassword}
+            defaultValue={event.eventPassword}
           />
           <button className="admin-btn" type="submit">
             Change
@@ -100,7 +132,7 @@ const AdminOverview = () => {
         <h3>Guestlist:</h3>
       </article>
     </section>
-  );
-};
+  )
+}
 
-export default AdminOverview;
+export default AdminOverview
