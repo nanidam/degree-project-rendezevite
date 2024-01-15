@@ -1,41 +1,45 @@
-"use client";
-import Logout from "@/app/components/logout";
-import "./style.scss";
-import updateEventFood from "@/app/services/updateEventFood";
-import { useRouter } from "next/navigation";
+"use client"
+import Logout from "@/app/components/logout"
+import "./style.scss"
+import updateEventFood from "@/app/services/updateEventFood"
+import { useRouter } from "next/navigation"
 
 const CreateRsvp = ({
   params: { eventName },
 }: {
-  readonly params: { readonly eventName: string };
+  readonly params: { readonly eventName: string }
 }) => {
-  const router = useRouter();
+  const router = useRouter()
 
   if (eventName.includes(".")) {
-    return null;
+    return null
   }
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.target as HTMLFormElement;
-    const formData = new FormData(form);
+    e.preventDefault()
+    const form = e.target as HTMLFormElement
+    const formData = new FormData(form)
 
-    const includeFood = formData.get("ask-about-food") === "true";
-    const includeAllergies = formData.get("ask-about-allergies") === "true";
+    const includeFood = formData.get("ask-about-food") === "true"
+    const includeAllergies = formData.get("ask-about-allergies") === "true"
 
-    const updatedEvent = await updateEventFood(includeFood, includeAllergies, eventName);
+    const updatedEvent = await updateEventFood(
+      includeFood,
+      includeAllergies,
+      eventName.toLocaleLowerCase()
+    )
 
     if (updatedEvent) {
-      router.push(`/admin/overview/${eventName}`);
+      router.push(`/admin/overview/${eventName}`)
     }
-  };
+  }
 
   return (
     <section className="create-rsvp-container">
       <h1 className="choose-template-header">Create RSVP</h1>
       <Logout />
       <p className="create-rsvp-text">
-        Will your event be including any food? If so, it could be a good idea to ask about
-        diet or allergies
+        Will your event be including any food? If so, it could be a good idea to
+        ask about diet or allergies
       </p>
 
       <form className="create-rsvp-form" onSubmit={handleSubmit}>
@@ -89,7 +93,7 @@ const CreateRsvp = ({
         </button>
       </form>
     </section>
-  );
-};
+  )
+}
 
-export default CreateRsvp;
+export default CreateRsvp
