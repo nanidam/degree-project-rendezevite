@@ -1,13 +1,29 @@
 "use client";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import "./style.scss";
+import { ReactSVG } from "react-svg";
+import { useEffect, useState } from "react";
 
 const Home = () => {
   const router = useRouter();
+  const [desktopMode, setDesktopMode] = useState(false);
 
   const handleLogin = () => {
     router.push("/api/auth/signin");
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setDesktopMode(window.innerWidth >= 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <main>
@@ -15,9 +31,17 @@ const Home = () => {
         <a className="register-link" href="/register">
           Register
         </a>
-        <button className="login-btn" type="button" onClick={handleLogin}>
-          Login
-        </button>
+        {desktopMode ? (
+          <button className="login-btn" type="button" onClick={handleLogin}>
+            Login
+          </button>
+        ) : (
+          <ReactSVG
+            className="profile-icon"
+            src="/profile-icon.svg"
+            onClick={handleLogin}
+          />
+        )}
       </nav>
       <section className="welcome-container">
         <article className="welcome-text-container">
