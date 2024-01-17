@@ -17,13 +17,15 @@ const AdminOverview = ({
     const userId = await getUserId()
     console.log(userId)
     if (userId) {
-      const data = await getEvent(userId, eventName)
-      const date = new Date(event.eventDate)
-      const formattedDate = dateFormat(date)
-      const temp = { ...data, eventDate: formattedDate }
-      setEvent(temp)
+      const result = await getEvent(userId, eventName)
+      if (result) {
+        const date = new Date(result.eventDate)
+        const formattedDate = dateFormat(date)
+        const temp = { ...result, eventDate: formattedDate }
+        setEvent(temp)
+      }
     }
-  }, [event.eventDate, eventName])
+  }, [eventName])
 
   useEffect(() => {
     fetchAndSetEvents()
