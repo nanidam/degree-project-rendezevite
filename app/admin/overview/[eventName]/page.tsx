@@ -6,6 +6,7 @@ import { useCallback, useEffect, useState } from "react"
 import { getEvent } from "@/app/services/getEvent"
 import getUserId from "@/app/services/getUserId"
 import { dateFormat } from "@/utils/dateFormat"
+import { updateEventPassword } from "@/app/services/updateEventPassword"
 
 const AdminOverview = ({
   params: { eventName },
@@ -13,9 +14,10 @@ const AdminOverview = ({
   readonly params: { readonly eventName: string }
 }) => {
   const [event, setEvent] = useState<any>(null)
+  const [editPassword, setEditPassword] = useState(false)
+
   const fetchAndSetEvents = useCallback(async () => {
     const userId = await getUserId()
-    console.log(userId)
     if (userId) {
       const result = await getEvent(userId, eventName)
       if (result) {
@@ -36,12 +38,20 @@ const AdminOverview = ({
 
   const editInvite = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
+
     console.log("edit invite")
   }
 
-  const editInvitePassword = (e: React.FormEvent<HTMLFormElement>) => {
+  const changeInvitePassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log("edit invite password")
+
+    const data = new FormData(e.currentTarget)
+    const eventPassword = data.get("eventPassword") as string
+
+    const newPassword = await updateEventPassword(eventPassword, event.id)
+
+    console.log(newPassword)
+    setEditPassword(false)
   }
 
   const inviteGuest = (e: React.FormEvent<HTMLFormElement>) => {
@@ -74,7 +84,7 @@ const AdminOverview = ({
       <article className="admin-wrapper">
         <h3>Password</h3>
         <p>Change or see your password for the event</p>
-        <form className="admin-form" onSubmit={editInvitePassword}>
+        <form className="admin-form" onSubmit={changeInvitePassword}>
           <label className="admin-label" htmlFor="eventPassword">
             Password:
           </label>
@@ -82,12 +92,31 @@ const AdminOverview = ({
             className="admin-input"
             type="text"
             name="eventPassword"
-            readOnly
+            readOnly={!editPassword}
             defaultValue={event.eventPassword}
           />
-          <button className="admin-btn" type="submit">
-            Change
-          </button>
+          {editPassword ? (
+            <>
+              <button
+                className="admin-btn"
+                onClick={() => setEditPassword(false)}
+                type="button"
+              >
+                Cancel
+              </button>
+              <button className="admin-btn" type="submit">
+                Save
+              </button>
+            </>
+          ) : (
+            <button
+              className="admin-btn"
+              type="button"
+              onClick={() => setEditPassword(true)}
+            >
+              Change
+            </button>
+          )}
         </form>
       </article>
 
