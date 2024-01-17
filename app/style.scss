@@ -68,6 +68,11 @@
   }
 }
 
+footer {
+  display: flex;
+  justify-content: center;
+}
+
 @media screen and (min-width: 768px) {
   .welcome-container {
     width: 780px;
