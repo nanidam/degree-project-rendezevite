@@ -31,7 +31,6 @@ const AdminOverview = ({
     fetchAndSetEvents()
   }, [fetchAndSetEvents])
 
-  const rsvpDate = "2022-11-11"
   const invLink = "www.inv-link.com"
   const eventPassword = "password"
 
@@ -81,8 +80,9 @@ const AdminOverview = ({
           </label>
           <input
             className="admin-input"
-            type="password"
+            type="text"
             name="eventPassword"
+            readOnly
             defaultValue={event.eventPassword}
           />
           <button className="admin-btn" type="submit">
