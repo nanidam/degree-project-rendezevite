@@ -96,25 +96,31 @@ const AdminOverview = ({
             defaultValue={event.eventPassword}
           />
           {editPassword ? (
-            <>
+            <div className="password-btn-container">
               <button
-                className="admin-btn"
+                className="admin-btn cancel-password-btn"
                 onClick={() => setEditPassword(false)}
                 type="button"
+                aria-label="Cancel password change"
               >
                 Cancel
               </button>
-              <button className="admin-btn" type="submit">
+              <button
+                className="admin-btn save-password-btn"
+                type="submit"
+                aria-label="Save new password"
+              >
                 Save
               </button>
-            </>
+            </div>
           ) : (
             <button
               className="admin-btn"
               type="button"
               onClick={() => setEditPassword(true)}
+              aria-label="Change password"
             >
-              Change
+              Change Password
             </button>
           )}
         </form>

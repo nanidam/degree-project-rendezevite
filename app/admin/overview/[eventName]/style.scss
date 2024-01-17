@@ -26,6 +26,21 @@
       }
     }
 
+    .password-btn-container {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      .cancel-password-btn {
+        background: rgb(255, 0, 0);
+        width: 49%;
+      }
+
+      .save-password-btn {
+        background: rgb(28, 138, 11);
+        width: 49%;
+      }
+    }
+
     .admin-form {
       display: flex;
       flex-direction: column;
