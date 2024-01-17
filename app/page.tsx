@@ -47,9 +47,10 @@ const Home = () => {
         <article className="welcome-text-container">
           <h1 className="welcome-header">RendezEvite</h1>
           <p className="welcome-text">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque ea ab pariatur
-            nostrum ipsum quis doloribus eveniet libero iste qui molestias quos, cumque,
-            nesciunt mollitia exercitationem repudiandae! Ex, tempore nihil?
+            Whether it&apos;s a casual gathering or a special celebration, RendezEvite makes
+            it easy to customize your invites and manage all the details seamlessly. <br />{" "}
+            <br /> Join us and experience the simplicity of event planning at your
+            fingertips.
           </p>
         </article>
         <article className="overview-wrapper">
