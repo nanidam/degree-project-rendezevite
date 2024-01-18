@@ -7,6 +7,7 @@ import { getEvent } from "@/app/services/getEvent"
 import getUserId from "@/app/services/getUserId"
 import { dateFormat } from "@/utils/dateFormat"
 import { updateEventPassword } from "@/app/services/updateEventPassword"
+import inviteGuests from "@/app/services/inviteGuests"
 
 const AdminOverview = ({
   params: { eventName },
@@ -54,9 +55,25 @@ const AdminOverview = ({
     setEditPassword(false)
   }
 
-  const inviteGuest = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleInviteGuests = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log("invite guest")
+    const data = new FormData(e.currentTarget)
+
+    const guestName = data.get("guestName") as string
+    const guestEmail = data.get("guestEmail") as string
+    const additionalGuest = data.get("additionalGuest") as string
+
+    const updatedGuestList = await inviteGuests({
+      guestName,
+      guestEmail,
+      additionalGuest,
+      eventId: event.id,
+    })
+
+    // if(updatedGuestList) {
+    //   setEvent(updatedGuestList)
+    // }
+    console.log(updatedGuestList)
   }
 
   // @TODO fix loader here instead
@@ -127,7 +144,7 @@ const AdminOverview = ({
       </article>
 
       <article className="admin-wrapper">
-        <form className="admin-form" onSubmit={inviteGuest}>
+        <form className="admin-form" onSubmit={handleInviteGuests}>
           <h3>Invite guests</h3>
           <label className="admin-label" htmlFor="guestName">
             Guest name:
