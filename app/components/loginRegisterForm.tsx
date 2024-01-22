@@ -89,9 +89,6 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
                 value="Testtest123"
                 required
               />
-              {loginRegisterHeader === "Login" && (
-                <Link href="/forgot-password">Forgot password?</Link>
-              )}
               {showPassword ? (
                 <ReactSVG
                   className="svg-eye"
@@ -104,6 +101,11 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
                   src="/opened-eye.svg"
                   onClick={handleTogglePasswordVisibility}
                 />
+              )}
+              {loginRegisterHeader === "Login" && (
+                <Link className="forgot-password" href="/forgot-password">
+                  Forgot password?
+                </Link>
               )}
             </article>
           </fieldset>
