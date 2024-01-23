@@ -1,5 +1,19 @@
-$olive-green: #606c38;
+// Colors
+$olive-green: #85915e;
 $dark-green: #283618;
 $cream: #fef5e0;
 $tan: #dda15e;
 $rusty-orange: #bc6c25;
+
+//Fonts
+@font-face {
+  font-family: "Cedarville";
+  src: url("../public/fonts/CedarvilleCursive-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Alegreya";
+  src: url("../public/fonts/Alegreya_Sans/AlegreyaSans-Regular.ttf");
+  //   font-weight: 400;
+  //   font-style: normal;
+}

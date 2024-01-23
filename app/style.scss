@@ -39,6 +39,12 @@
   padding: 20px;
   margin: 0 auto;
 
+  .welcome-text {
+    background-color: $olive-green;
+    font-family: "Alegreya";
+    // color: $cream;
+  }
+
   .overview-wrapper {
     .overview-list {
       overflow-x: scroll;
