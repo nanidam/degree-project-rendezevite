@@ -7,6 +7,9 @@ export const getEvent = async (userId: string, eventName: string) => {
       eventName: eventName.toLowerCase(),
       userId,
     },
+    include: {
+      guestList: true,
+    }
   });
   if (event) {
     return event;
