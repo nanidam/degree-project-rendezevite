@@ -1,10 +1,15 @@
 "use server";
 
 import prisma from "../db";
-import { IEvent } from "../models/IEvent";
 import { getEvent } from "./getEvent";
+interface ICreateEvent {
+  eventName: string;
+  eventDate: string;
+  userId: string;
+  eventPassword: string;
+}
 
-const createEvent = async ({ eventDate, eventName, userId, eventPassword }: IEvent) => {
+const createEvent = async ({ eventDate, eventName, userId, eventPassword }: ICreateEvent) => {
   const existingEvent = await getEvent(userId, eventName);
   if (existingEvent) {
     console.error("Error creating event:", "Event already exists");
@@ -14,7 +19,7 @@ const createEvent = async ({ eventDate, eventName, userId, eventPassword }: IEve
   const newEvent = await prisma.event.create({
     data: {
       eventName: eventName.toLowerCase(),
-      eventDate: new Date(eventDate),
+      eventDate,
       userId,
       eventPassword,
     },
