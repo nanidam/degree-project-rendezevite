@@ -1,89 +1,91 @@
-"use client"
+"use client";
 
-import Logout from "@/app/components/logout"
-import "./style.scss"
-import { useCallback, useEffect, useState } from "react"
-import { getEvent } from "@/app/services/getEvent"
-import getUserId from "@/app/services/getUserId"
-import { dateFormat } from "@/utils/dateFormat"
-import { updateEventPassword } from "@/app/services/updateEventPassword"
-import inviteGuests from "@/app/services/inviteGuests"
-import { IEvent, IGuest } from "@/utils/interfaces"
+import Logout from "@/app/components/logout";
+import "./style.scss";
+import { useCallback, useEffect, useState } from "react";
+import { getEvent } from "@/app/services/getEvent";
+import getUserId from "@/app/services/getUserId";
+import { dateFormat } from "@/utils/dateFormat";
+import { updateEventPassword } from "@/app/services/updateEventPassword";
+import inviteGuests from "@/app/services/inviteGuests";
+import { Accordion, AccordionItem } from "@szhsin/react-accordion";
+import { IEvent } from "@/app/models/IEvent";
+import { IGuest } from "@/app/models/IGuest";
 
 const AdminOverview = ({
   params: { eventName },
 }: {
-  readonly params: { readonly eventName: string }
+  readonly params: { readonly eventName: string };
 }) => {
-  const [event, setEvent] = useState<IEvent | null>(null)
-  const [editPassword, setEditPassword] = useState(false)
+  const [event, setEvent] = useState<IEvent | null>(null);
+  const [editPassword, setEditPassword] = useState(false);
 
   const fetchAndSetEvents = useCallback(async () => {
-    const userId = await getUserId()
+    const userId = await getUserId();
     if (userId) {
-      const result = await getEvent(userId, eventName)
+      const result = await getEvent(userId, eventName);
       if (result) {
-        const date = new Date(result.eventDate)
-        const formattedDate = dateFormat(date)
-        const temp = { ...result, eventDate: formattedDate } as IEvent
-        setEvent(temp)
+        const date = new Date(result.eventDate);
+        const formattedDate = dateFormat(date);
+        const temp = { ...result, eventDate: formattedDate } as IEvent;
+        setEvent(temp);
       }
     }
-  }, [eventName])
+  }, [eventName]);
 
   useEffect(() => {
-    fetchAndSetEvents()
-  }, [fetchAndSetEvents])
+    fetchAndSetEvents();
+  }, [fetchAndSetEvents]);
 
   if (!event) {
-    return null
+    return null;
   }
 
-  const invLink = "www.inv-link.com"
-  const eventPassword = "password"
+  const invLink = "www.inv-link.com";
+  const eventPassword = "password";
 
   const editInvite = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    console.log("edit invite")
-  }
+    console.log("edit invite");
+  };
 
   const changeInvitePassword = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const data = new FormData(e.currentTarget)
-    const eventPassword = data.get("eventPassword") as string
+    const data = new FormData(e.currentTarget);
+    const eventPassword = data.get("eventPassword") as string;
 
-    const newPassword = await updateEventPassword(eventPassword, event.id)
+    const newPassword = await updateEventPassword(eventPassword, event.id);
 
-    console.log(newPassword)
-    setEditPassword(false)
-  }
+    console.log(newPassword);
+    setEditPassword(false);
+  };
 
   const handleInviteGuests = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const data = new FormData(e.currentTarget)
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
 
-    const guestName = data.get("guestName") as string
-    const guestEmail = data.get("guestEmail") as string
-    const additionalGuest = data.get("additionalGuest") as string
+    const guestName = data.get("guestName") as string;
+    const guestEmail = data.get("guestEmail") as string;
+    const additionalGuest = data.get("additionalGuest") as string;
 
     const updatedEvent = (await inviteGuests({
       guestName,
       guestEmail,
       additionalGuest,
       eventId: event.id,
-    })) as IEvent
+    })) as IEvent;
 
-    console.log(updatedEvent)
+    console.log(updatedEvent);
     if (updatedEvent) {
-      setEvent(updatedEvent)
+      setEvent(updatedEvent);
     }
-  }
+  };
 
   // @TODO fix loader here instead
 
-  console.log(event)
+  console.log(event);
   return (
     <section className="admin-overview">
       <h1 className="admin-header">
@@ -188,11 +190,16 @@ const AdminOverview = ({
       <article className="admin-wrapper">
         <h3>Guestlist:</h3>
         {event.guestList.map((guest: IGuest) => (
-          <p key={guest.id}>{guest.name}</p>
+          <Accordion key={guest.id} transition transitionTimeout={250}>
+            <AccordionItem header={guest.name} initialEntered>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </AccordionItem>
+          </Accordion>
         ))}
       </article>
     </section>
-  )
-}
+  );
+};
 
-export default AdminOverview
+export default AdminOverview;

@@ -3,8 +3,8 @@
 import prisma from "@/app/db";
 import { REGISTER_STATUS } from "./constants";
 import { passwordSchema } from "./passwordValidator";
-import { IPasswordValidation } from "./interfaces";
 import CryptoJS from "crypto-js";
+import { IPasswordValidation } from "@/app/models/IPasswordValidation";
 // @TODO Samtyckeknapp
 
 const handleRegister = async (data: FormData) => {
