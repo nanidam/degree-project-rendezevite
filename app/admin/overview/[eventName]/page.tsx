@@ -8,13 +8,14 @@ import getUserId from "@/app/services/getUserId"
 import { dateFormat } from "@/utils/dateFormat"
 import { updateEventPassword } from "@/app/services/updateEventPassword"
 import inviteGuests from "@/app/services/inviteGuests"
+import { IEvent, IGuest } from "@/utils/interfaces"
 
 const AdminOverview = ({
   params: { eventName },
 }: {
   readonly params: { readonly eventName: string }
 }) => {
-  const [event, setEvent] = useState<any>(null)
+  const [event, setEvent] = useState<IEvent | null>(null)
   const [editPassword, setEditPassword] = useState(false)
 
   const fetchAndSetEvents = useCallback(async () => {
@@ -24,7 +25,7 @@ const AdminOverview = ({
       if (result) {
         const date = new Date(result.eventDate)
         const formattedDate = dateFormat(date)
-        const temp = { ...result, eventDate: formattedDate }
+        const temp = { ...result, eventDate: formattedDate } as IEvent
         setEvent(temp)
       }
     }
@@ -33,6 +34,10 @@ const AdminOverview = ({
   useEffect(() => {
     fetchAndSetEvents()
   }, [fetchAndSetEvents])
+
+  if (!event) {
+    return null
+  }
 
   const invLink = "www.inv-link.com"
   const eventPassword = "password"
@@ -63,24 +68,22 @@ const AdminOverview = ({
     const guestEmail = data.get("guestEmail") as string
     const additionalGuest = data.get("additionalGuest") as string
 
-    const updatedGuestList = await inviteGuests({
+    const updatedEvent = (await inviteGuests({
       guestName,
       guestEmail,
       additionalGuest,
       eventId: event.id,
-    })
+    })) as IEvent
 
-    // if(updatedGuestList) {
-    //   setEvent(updatedGuestList)
-    // }
-    console.log(updatedGuestList)
+    console.log(updatedEvent)
+    if (updatedEvent) {
+      setEvent(updatedEvent)
+    }
   }
 
   // @TODO fix loader here instead
-  if (!event) {
-    return null
-  }
 
+  console.log(event)
   return (
     <section className="admin-overview">
       <h1 className="admin-header">
@@ -184,6 +187,9 @@ const AdminOverview = ({
 
       <article className="admin-wrapper">
         <h3>Guestlist:</h3>
+        {event.guestList.map((guest: IGuest) => (
+          <p key={guest.id}>{guest.name}</p>
+        ))}
       </article>
     </section>
   )
