@@ -60,5 +60,21 @@
         }
       }
     }
+
+    .szh-accordion__item-btn {
+      width: 100%;
+      height: 45px;
+      text-align: left;
+      border: none;
+      border-bottom: 1px solid black;
+      margin: 2px 0;
+      padding: 10px;
+      cursor: pointer;
+      transition: ease-in-out 0.3s;
+
+      &:hover {
+        background-color: rgb(191, 154, 154);
+      }
+    }
   }
 }
