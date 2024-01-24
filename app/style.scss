@@ -29,6 +29,8 @@
   .register-link {
     text-decoration: none;
     color: $dark-green;
+    font-family: "Alegreya";
+    font-size: 1.3rem;
   }
 }
 
@@ -39,30 +41,56 @@
   padding: 20px;
   margin: 0 auto;
 
-  .welcome-text {
-    background-color: $olive-green;
+  .welcome-header {
+    font-size: 3rem;
     font-family: "Alegreya";
+    color: $dark-green;
+  }
+
+  .welcome-text {
+    font-family: "Alegreya";
+    font-size: 1.3rem;
+    margin-bottom: 50px;
+    // background-color: $olive-green;
     // color: $cream;
   }
 
   .overview-wrapper {
+    .sub-header {
+      font-size: 2rem;
+      font-family: "Dancing script";
+      color: $dark-green;
+    }
+
     .overview-list {
       overflow-x: scroll;
+      scroll-behavior: smooth;
       display: flex;
       flex-direction: row;
       gap: 10px;
       padding: 20px;
       list-style-type: none;
+      transition: transform 0.5s ease;
+
+      &:hover {
+        transform: translateX(-20px);
+      }
 
       .list-card {
         background-color: $tan;
-        color: white;
+        color: $white;
         border-radius: 50%;
         display: flex;
         align-items: center;
         text-align: center;
         padding: 20px;
         font-size: 1.2rem;
+        transition: transform 0.5s ease;
+        cursor: pointer;
+
+        &:hover {
+          transform: scale(1.1);
+        }
       }
 
       .feature-card {
@@ -74,6 +102,11 @@
         height: 100px;
       }
     }
+  }
+
+  .how-to-use {
+    background-color: $white;
+    border-radius: 20px;
   }
 }
 
@@ -87,6 +120,7 @@ footer {
     width: 780px;
     text-align: center;
     align-items: center;
+    padding: 0;
     .overview-wrapper {
       .overview-list {
         overflow-x: auto;

@@ -44,8 +44,9 @@ const Home = () => {
         )}
       </nav>
       <section className="welcome-container">
+        <h1 className="welcome-header-svg">RendezEvite icon</h1>
         <article className="welcome-text-container">
-          <h1 className="welcome-header">RendezEvite</h1>
+          <h2 className="welcome-header">Easy, simple, done!</h2>
           <p className="welcome-text">
             Whether it&apos;s a casual gathering or a special celebration, RendezEvite makes
             it easy to customize your invites and manage all the details seamlessly. <br />{" "}
@@ -53,8 +54,8 @@ const Home = () => {
             fingertips.
           </p>
         </article>
-        <article className="overview-wrapper">
-          <h2>Easy to use:</h2>
+        <article className="overview-wrapper how-to-use">
+          <h2 className="sub-header">Easy to use:</h2>
           <ul className="overview-list">
             <li className="list-card">Register or login</li>
             <li className="list-card">Create your invitations</li>
@@ -64,7 +65,7 @@ const Home = () => {
           </ul>
         </article>
         <article className="overview-wrapper">
-          <h2>Features:</h2>
+          <h2 className="sub-header">Features:</h2>
           <ul className="overview-list">
             <li className="feature-card">Personalize text</li>
             <li className="feature-card">Create guest list</li>
@@ -72,7 +73,7 @@ const Home = () => {
           </ul>
         </article>
         <article className="show-templates">
-          <h2>Templates:</h2>
+          <h2 className="sub-header">Templates:</h2>
           <div className="show-templates-wrapper">
             <div>Template 1</div>
             <div>Template 2</div>
