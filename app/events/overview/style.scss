@@ -17,48 +17,77 @@
     .create-event-btn {
       width: 100%;
       height: 100%;
+      background-color: $cream;
+      border-radius: 15px;
+      border-color: $dark-green;
+      font-family: "Alegreya";
+      font-size: 1.2rem;
+      transition: ease-in-out 0.35s;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $olive-green;
+        color: $cream;
+      }
     }
   }
 
-  .current-events-container,
-  .past-events-container {
-    background-color: $cream;
-    width: 80%;
-    border-radius: 15px;
-    padding: 0 20px;
-    margin: 15px;
+  .event-wrapper {
+    width: 100%;
 
-    .current-events {
-      padding: 0;
+    .current-events-container,
+    .past-events-container {
+      background-color: $cream;
+      border-radius: 15px;
+      padding: 20px;
 
-      .current-event {
-        height: 50px;
-        font-size: 1.2rem;
-        padding: 10px 0;
-        list-style: none;
-        margin: 0;
+      .current-events {
+        padding: 0;
 
-        .event {
-          text-decoration: none;
-        }
+        .current-event {
+          height: 50px;
+          font-size: 1.2rem;
+          padding: 10px 0;
+          list-style: none;
+          margin: 0;
 
-        .edit-delete-icons {
-          display: flex;
-          flex-direction: row;
-          float: right;
+          .event {
+            text-decoration: none;
+            font-family: "Alegreya";
+          }
 
-          .edit-icon,
-          .trash-icon {
-            width: 30px;
-            transition: ease-in-out 0.3s;
-            cursor: pointer;
+          .edit-delete-icons {
+            display: flex;
+            flex-direction: row;
+            float: right;
 
-            &:hover {
-              transform: scale(1.2);
+            .edit-icon,
+            .trash-icon {
+              width: 30px;
+              transition: ease-in-out 0.3s;
+              cursor: pointer;
+
+              &:hover {
+                transform: scale(1.2);
+              }
             }
           }
         }
       }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .event-wrapper {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+
+    .current-events-container,
+    .past-events-container {
+      width: 40%;
+      max-width: 500px;
     }
   }
 }
