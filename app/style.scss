@@ -40,6 +40,7 @@
   justify-content: center;
   padding: 20px;
   margin: 0 auto;
+  background-image: url("../public/gold-confetti.png");
 
   .welcome-header {
     font-size: 3rem;
@@ -51,6 +52,7 @@
     font-family: "Alegreya";
     font-size: 1.3rem;
     margin-bottom: 50px;
+
     // background-color: $olive-green;
     // color: $cream;
   }
@@ -70,6 +72,9 @@
       gap: 10px;
       padding: 20px;
       list-style-type: none;
+      background-color: $white;
+      border-radius: 15px;
+
       transition: transform 0.5s ease;
 
       &:hover {
@@ -105,7 +110,7 @@
   }
 
   .how-to-use {
-    background-color: $white;
+    // background-color: $white;
     border-radius: 20px;
   }
 }
