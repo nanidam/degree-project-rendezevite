@@ -6,6 +6,7 @@ import getUserId from "@/app/services/getUserId";
 import createEvent from "@/app/services/createEvent";
 import { useRouter } from "next/navigation";
 import Logout from "@/app/components/logout";
+import Image from "next/image";
 
 const CREATE_EVENT_STATUS = {
   EMPTY_NAME: "Please give your event a name",
@@ -70,43 +71,57 @@ const CreateEvent = () => {
   };
 
   return (
-    <section className="create-event-container">
-      <h1 className="create-event-header">Create Event</h1>
+    <>
       <Logout />
-      <article className="info-text-wrapper">
-        <p>Please enter event details below.</p>
-      </article>
-      <article className="create-event-wrapper">
-        <form onSubmit={handleCreateEvent} className="create-event-form">
-          <label className="create-event-label" htmlFor="event-name">
-            Event name:
-            <input
-              className="create-event-input"
-              type="text"
-              name="event-name"
-              placeholder="Event name"
-            />
-          </label>
-          <label className="create-event-label" htmlFor="event-date">
-            Event date:
-            <input className="create-event-input" type="date" name="event-date" />
-          </label>
-          <label className="create-event-password" htmlFor="event-date">
-            Event password:
-            <input
-              className="create-event-input"
-              type="text"
-              name="event-password"
-              placeholder="Password"
-            />
-          </label>
-          {errorMsg && <span className="error-message">{errorMsg}</span>}
-          <button className="submit-event-btn" type="submit">
-            Submit
-          </button>
-        </form>
-      </article>
-    </section>
+      <section className="create-event-container">
+        <h1 className="create-event-header">Create Event</h1>
+        <article className="info-text-wrapper">
+          <p>
+            Your first step is to furnish essential information for your event, including an
+            event name to help you track invitations.
+          </p>
+          <p>
+            Select a date for your occasion, and the password will functions as a secure
+            access key for your guests to retrieve their invitations.
+          </p>
+        </article>
+        <article className="create-event-wrapper">
+          <form onSubmit={handleCreateEvent} className="create-event-form">
+            <div className="create-event-form-wrapper">
+              <label className="create-event-label" htmlFor="event-name">
+                Event name:
+                <input
+                  className="create-event-input"
+                  type="text"
+                  name="event-name"
+                  placeholder="Name"
+                />
+              </label>
+              <label className="create-event-label" htmlFor="event-date">
+                Event date:
+                <input className="create-event-input" type="date" name="event-date" />
+              </label>
+              <label className="create-event-label" htmlFor="event-date">
+                Event password:
+                <input
+                  className="create-event-input"
+                  type="text"
+                  name="event-password"
+                  placeholder="Password"
+                />
+              </label>
+              {errorMsg && <span className="error-message">{errorMsg}</span>}
+              <button className="submit-event-btn" type="submit">
+                Next -{">"}
+              </button>
+            </div>
+            <div className="envelope-wrapper">
+              <Image src="/gold-envelope.png" alt="envelope" width={200} height={200} />
+            </div>
+          </form>
+        </article>
+      </section>
+    </>
   );
 };
 
