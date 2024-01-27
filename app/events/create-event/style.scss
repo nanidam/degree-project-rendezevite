@@ -1,46 +1,97 @@
+@import "../../globals.scss";
+@import "../../../utils/constants.scss";
+
 .create-event-container {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 10px;
+  font-family: "Alegreya";
 
   .create-event-header {
     text-align: center;
   }
 
-  .create-event-wrapper,
   .info-text-wrapper {
+    background-color: $white;
+    border-radius: 15px;
+    padding: 10px;
     font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
 
+  .create-event-wrapper {
     .create-event-form {
       display: flex;
       flex-direction: column;
       align-items: center;
       font-size: 1.3rem;
+      background-color: $white;
+      border-radius: 15px;
+      padding: 10px;
 
-      .create-event-label {
-        width: 100%;
+      .create-event-form-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .create-event-label {
+          width: 100%;
+          margin-bottom: 20px;
+          font-size: 1.4rem;
+        }
+
+        .create-event-input {
+          border: none;
+          border-bottom: 1px solid $grey;
+          background-color: transparent;
+          font-size: 1.2rem;
+          margin: 10px 0;
+          width: 100%;
+        }
+
+        .submit-event-btn {
+          margin-top: 10px;
+          height: 40px;
+          border-radius: 15px;
+          width: 50%;
+          background-color: transparent;
+          border-color: $olive-green;
+          font-size: 1.2rem;
+          transition: ease-in-out 0.3s;
+          cursor: pointer;
+
+          &:hover {
+            background: $olive-green;
+            color: $off-white;
+          }
+        }
       }
+    }
+  }
+}
 
-      .create-event-input {
-        border: none;
-        border-bottom: 1px solid grey;
-        background-color: transparent;
-        font-size: 1.3rem;
-        margin: 10px 0;
-        width: 100%;
-      }
+@media screen and (min-width: 768px) {
+  .create-event-container {
+    justify-content: center;
+    align-items: center;
 
-      .submit-event-btn {
-        margin: 10px;
-        height: 40px;
-        border-radius: 15px;
-        width: 50%;
+    .info-text-wrapper {
+      max-width: calc(729px - 40px);
+      text-align: center;
+    }
 
-        transition: ease-in-out 0.3s;
-        cursor: pointer;
+    .create-event-wrapper {
+      .create-event-form {
+        flex-direction: row;
+        justify-content: center;
+        gap: 30px;
 
-        &:hover {
-          background: grey;
+        .create-event-form-wrapper {
+          margin: 30px;
+        }
+
+        .envelope-wrapper {
+          margin-right: 15px;
         }
       }
     }
