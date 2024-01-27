@@ -17,6 +17,10 @@
     padding: 10px;
     font-size: 1.3rem;
     margin-bottom: 10px;
+
+    .info-text {
+      margin: 10px;
+    }
   }
 
   .create-event-wrapper {
@@ -50,7 +54,7 @@
         }
 
         .submit-event-btn {
-          margin-top: 10px;
+          margin: 15px 0;
           height: 40px;
           border-radius: 15px;
           width: 50%;
@@ -66,6 +70,10 @@
           }
         }
       }
+    }
+
+    .envelope-wrapper {
+      display: none;
     }
   }
 }
@@ -91,6 +99,7 @@
         }
 
         .envelope-wrapper {
+          display: block;
           margin-right: 15px;
         }
       }
