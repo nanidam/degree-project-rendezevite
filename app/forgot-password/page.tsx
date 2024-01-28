@@ -23,23 +23,33 @@ const ForgotPassword = () => {
 
   return (
     <section className="forgot-password-container">
-      <h1>Forgot Password</h1>
-      <p>Enter your email address to reset your password. You will recieve an email.</p>
-      <form className="forgot-password-form" onSubmit={handleForgotPassword}>
-        <label htmlFor="forgot-password">Email:</label>
-        <input
-          className="forgot-input"
-          type="email"
-          id="forgot-password"
-          name="forgot-password"
-          placeholder="Your email"
-        />
+      <h1 className="forgot-password-header">Forgot Password</h1>
+      <article className="forgot-password-wrapper">
+        <p className="forgot-password-text">
+          Receive your password in your email by entering your registered email.
+        </p>
+        <form className="forgot-password-form" onSubmit={handleForgotPassword}>
+          <label htmlFor="forgot-password">Your Email:</label>
+          <input
+            className="forgot-input"
+            type="email"
+            id="forgot-password"
+            name="forgot-password"
+            placeholder="Email"
+            required
+          />
 
-        {msg && <p className="forgot-password-error">{msg}</p>}
-        <button type="submit" className="reset-password-btn">
-          Send
-        </button>
-      </form>
+          {msg && <p className="forgot-password-error">{msg}</p>}
+          <div className="forgot-return-btn">
+            <button type="submit" className="reset-password-btn">
+              Send
+            </button>
+            <button type="button" className="return-btn" onClick={() => router.push("/")}>
+              Back
+            </button>
+          </div>
+        </form>
+      </article>
     </section>
   );
 };
