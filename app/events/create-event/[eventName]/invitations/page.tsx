@@ -55,7 +55,7 @@ const Invitations = ({
   return (
     <section className="create-inv-container">
       <Logout />
-      <h1>Create invitation</h1>
+      <h1 className="create-inv-header">Create invitation</h1>
       <article className="create-inv-wrapper">
         <p>Select a header for your invitations and craft the desired message.</p>
         <p>
