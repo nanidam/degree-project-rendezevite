@@ -15,7 +15,6 @@
     margin: 5px 0;
     padding: 10px;
     width: 100%;
-    // animation: swingIn 0.5s ease-in-out forwards;
 
     .login-register-text {
       font-family: "Alegreya";
@@ -118,6 +117,14 @@
           color: $off-white;
         }
       }
+    }
+  }
+}
+
+@media screen and (min-width: 790px) {
+  .login-register-container {
+    .login-register-wrapper {
+      width: 400px;
     }
   }
 }
