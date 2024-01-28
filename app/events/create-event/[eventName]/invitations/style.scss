@@ -1,3 +1,6 @@
+@import "../../../../globals.scss";
+@import "../../../../../utils/constants.scss";
+
 .create-inv-container {
   display: flex;
   flex-direction: column;
@@ -6,6 +9,12 @@
 
   .create-inv-wrapper {
     width: 100%;
+    font-family: "Alegreya";
+    font-size: 1.2rem;
+    background-color: $white;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
 
     .create-inv-form {
       display: flex;
@@ -13,6 +22,9 @@
 
       .create-inv-label {
         margin-top: 10px;
+        color: $dark-green;
+        font-family: "Dancing script";
+        font-size: 1.6rem;
       }
 
       .create-inv-input {
@@ -24,15 +36,44 @@
       }
 
       .create-inv-error {
-        color: red;
         text-align: center;
+        background-color: $white;
+        border-radius: 15px;
+        border: 1px solid red;
+        color: black;
+        padding: 10px;
       }
 
       .create-inv-btn {
-        width: 50%;
-        height: 45px;
-        margin: 20px 0;
         align-self: center;
+        margin: 15px 0;
+        height: 40px;
+        border-radius: 15px;
+        width: 50%;
+        background-color: transparent;
+        border-color: $olive-green;
+        font-size: 1.2rem;
+        transition: ease-in-out 0.3s;
+        cursor: pointer;
+
+        &:hover {
+          background: $olive-green;
+          color: $off-white;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .create-inv-container {
+    .create-inv-wrapper {
+      max-width: 600px;
+
+      .create-inv-form {
+        .create-inv-btn {
+          width: 200px;
+        }
       }
     }
   }
