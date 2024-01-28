@@ -1,65 +1,66 @@
-"use client"
+"use client";
 
-import Logout from "@/app/components/logout"
-import "./style.scss"
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import updateEventText from "@/app/services/updateEventText"
+import "./style.scss";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import updateEventText from "@/app/services/updateEventText";
+import Logout from "@/app/components/logout";
 
 const CREATE_INVITATION_STATUS = {
   EMPTY_HEADER: "Please give your invitation a header",
   EMPTY_TEXTAREA: "Please add some text",
   GENERIC: "Something went wrong. Please try again",
-}
+};
 
+//TODO: add character counter
 const Invitations = ({
   params: { eventName },
 }: {
-  readonly params: { readonly eventName: string }
+  readonly params: { readonly eventName: string };
 }) => {
-  const router = useRouter()
+  const router = useRouter();
 
-  const [headerValue, setHeaderValue] = useState<string>("")
-  const [textareaValue, setTextareaValue] = useState<string>("")
-  const [errorMsg, setErrorMsg] = useState<string | null>(null)
+  const [headerValue, setHeaderValue] = useState<string>("");
+  const [textareaValue, setTextareaValue] = useState<string>("");
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   if (eventName.includes(".")) {
-    return null
+    return null;
   }
   const createInvitation = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
     switch (true) {
       case headerValue === "":
-        setErrorMsg(CREATE_INVITATION_STATUS.EMPTY_HEADER)
-        break
+        setErrorMsg(CREATE_INVITATION_STATUS.EMPTY_HEADER);
+        break;
       case textareaValue === "":
-        setErrorMsg(CREATE_INVITATION_STATUS.EMPTY_TEXTAREA)
-        break
+        setErrorMsg(CREATE_INVITATION_STATUS.EMPTY_TEXTAREA);
+        break;
       case headerValue !== "" && textareaValue !== "":
         const updatedEvent = await updateEventText(
           headerValue,
           textareaValue,
           eventName.toLowerCase()
-        )
+        );
         if (updatedEvent) {
-          router.push(`/events/create-event/${eventName}/create-RSVP`)
+          router.push(`/events/create-event/${eventName}/create-RSVP`);
         }
-        break
+        break;
       default:
-        setErrorMsg(CREATE_INVITATION_STATUS.GENERIC)
-        break
+        setErrorMsg(CREATE_INVITATION_STATUS.GENERIC);
+        break;
     }
-  }
+  };
 
   return (
     <section className="create-inv-container">
+      <Logout />
       <h1>Create invitation</h1>
-      <Logout></Logout>
       <article className="create-inv-wrapper">
+        <p>Select a header for your invitations and craft the desired message.</p>
         <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem, quod
-          ipsam saepe totam, deserunt fugiat ea vitae similique quas consectetur
-          fugit aspernatur eaque non quia accusamus provident at velit dicta?
+          Kindly note that, currently, there is no option to modify fonts and colors, as
+          they are optimized to best suit the overall design of the invitations.
         </p>
       </article>
       <article className="create-inv-wrapper">
@@ -86,11 +87,11 @@ const Invitations = ({
             onChange={(e) => setTextareaValue(e.target.value)}
           ></textarea>
           {errorMsg && <p className="create-inv-error">{errorMsg}</p>}
-          <button className="create-inv-btn">Save</button>
+          <button className="create-inv-btn">Next -{">"}</button>
         </form>
       </article>
     </section>
-  )
-}
+  );
+};
 
-export default Invitations
+export default Invitations;
