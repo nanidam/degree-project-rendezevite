@@ -62,9 +62,20 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
       <section className="login-register-container">
         <h1>{loginRegisterHeader}</h1>
         <article className="login-register-wrapper">
-          <p className="login-register-text">
+          {/* <p className="login-register-text">
             To login you need to use your registered email and password.
-          </p>
+          </p> */}
+
+          {loginRegisterHeader === "Login" ? (
+            <p className="login-register-text">
+              To login you need to use your registered email and password.
+            </p>
+          ) : (
+            <p className="login-register-text">
+              To register a new account, you need to enter a valid email and choose a
+              password.
+            </p>
+          )}
         </article>
         <article className="login-register-wrapper">
           <form
@@ -134,7 +145,10 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
                     />
                     <label className="terms-conditions" htmlFor="terms">
                       By checking this, you agree to the <br />
-                      <Link href="/terms-and-conditions">terms and conditions</Link>.
+                      <Link href="/terms-and-conditions">
+                        <b>Terms and Conditions</b>
+                      </Link>
+                      .
                     </label>
                   </>
                 )}
@@ -152,7 +166,7 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
                 type="button"
                 onClick={handleCancel}
               >
-                Back
+                Return
               </button>
             </div>
           </form>
