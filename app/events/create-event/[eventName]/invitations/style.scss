@@ -7,6 +7,10 @@
   align-items: center;
   padding: 20px;
 
+  .create-inv-header {
+    animation: fadeIn 0.5s ease-in-out forwards;
+  }
+
   .create-inv-wrapper {
     width: 100%;
     font-family: "Alegreya";
@@ -15,6 +19,7 @@
     border-radius: 15px;
     padding: 10px;
     margin-bottom: 10px;
+    animation: swingIn 0.5s ease-in-out forwards;
 
     .create-inv-form {
       display: flex;
@@ -76,5 +81,31 @@
         }
       }
     }
+  }
+}
+
+@keyframes swingIn {
+  0% {
+    transform: translateX(-50%);
+    transform-origin: left;
+    transform-skew: 20deg;
+  }
+  50% {
+    transform: translateX(0);
+    transform-origin: center;
+    transform-skew: 0;
+  }
+  100% {
+    transform: translateX(0);
+    transform-origin: center;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
