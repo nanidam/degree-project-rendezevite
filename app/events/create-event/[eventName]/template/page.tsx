@@ -49,7 +49,7 @@ const Template = ({
             <div>Preview?</div>
           </div>
           <button className="template-btn" type="submit">
-            Confirm
+            Next -{">"}
           </button>
         </form>
       </article>
