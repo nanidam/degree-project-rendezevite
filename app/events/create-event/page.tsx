@@ -33,7 +33,10 @@ const CreateEvent = () => {
         setErrorMsg(CREATE_EVENT_STATUS.EMPTY_NAME);
         break;
 
-      case eventDate !== "" && eventName !== "":
+      case eventDate !== "" &&
+        eventName !== "" &&
+        eventPassword !== "" &&
+        new Date(eventDate) > new Date():
         const userId = await getUserId();
 
         if (userId) {
@@ -50,6 +53,8 @@ const CreateEvent = () => {
             setErrorMsg(CREATE_EVENT_STATUS.EVENT_NAME_EXISTS);
           }
         }
+
+        console.log("NEXT");
         break;
 
       case eventDate === "":
