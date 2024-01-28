@@ -52,7 +52,6 @@ model Guest {
 
 type AdditionalGuest {
   name      String
-  comments  String?
   diet      String?
   allergies String?
   attending Boolean @default(false)
