@@ -1,45 +1,121 @@
+@import "../../globals.scss";
+@import "../../../utils/constants.scss";
+@import "../../../utils/keyframes.scss";
+
 .login-register-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 15px;
 
-  .input-container {
-    margin-top: 10px;
+  .login-register-wrapper {
+    background-color: $white;
+    border-radius: 15px;
+    margin: 5px 0;
+    padding: 10px;
+    width: 100%;
+    // animation: swingIn 0.5s ease-in-out forwards;
 
-    .inputfield {
-      border: none;
-      border-bottom: 1px solid black;
-      width: 100%;
-      height: 30px;
+    .login-register-text {
+      font-family: "Alegreya";
+      font-size: 1.3rem;
     }
 
-    .svg-eye {
-      position: relative;
-      left: 90%;
-      bottom: 30px;
-      cursor: pointer;
-    }
+    .login-register-form {
+      .login-register-fieldset {
+        border-radius: 15px;
 
-    .forgot-password {
-      text-decoration: none;
-    }
-  }
+        .login-register-legend {
+          font-family: "Alegreya";
+          font-size: 1.3rem;
+        }
 
-  .btns-container {
-    margin-top: 10px;
+        .input-container {
+          margin: 10px 0;
 
-    .login-register-btn,
-    .cancel-btn {
-      width: 100%;
-      height: 35px;
-      margin-bottom: 10px;
-      transition: ease-in-out 0.3s;
-      cursor: pointer;
+          .login-register-label {
+            font-family: "Alegreya";
+            font-size: 1.2rem;
+          }
 
-      &:hover {
-        background-color: grey;
+          .login-register-inputfield {
+            border: none;
+            border-bottom: 1px solid $grey;
+            width: 100%;
+            height: 30px;
+          }
+
+          .svg-eye {
+            position: relative;
+            left: 90%;
+            bottom: 25px;
+            cursor: pointer;
+          }
+        }
+
+        .password-terms {
+          margin-bottom: 10px;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+          align-items: center;
+
+          .terms-checkbox {
+            height: 30px;
+            width: 30px;
+            margin: 0 10px;
+          }
+
+          .terms-conditions {
+            margin-right: 5px;
+          }
+
+          .forgot-password {
+            text-decoration: none;
+            color: $green;
+            font-family: "Alegreya";
+            font-size: 1.1rem;
+            cursor: pointer;
+          }
+        }
+      }
+
+      .btns-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .login-register-btn,
+        .cancel-login-register-btn {
+          margin-top: 10px;
+          height: 45px;
+          border-radius: 15px;
+          width: 50%;
+          background-color: transparent;
+          font-size: 1.2rem;
+          transition: ease-in-out 0.3s;
+          cursor: pointer;
+        }
+
+        .login-register-btn {
+          border-color: $olive-green;
+        }
+
+        .cancel-login-register-btn {
+          border-color: $rusty-orange;
+        }
+
+        .login-register-btn:hover {
+          background: $olive-green;
+          color: $off-white;
+        }
+
+        .cancel-login-register-btn:hover {
+          background: $rusty-orange;
+          color: $off-white;
+        }
       }
     }
   }

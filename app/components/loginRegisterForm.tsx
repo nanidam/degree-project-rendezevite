@@ -1,9 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
 import "./style/loginRegisterForm.scss";
-import SVG, { ReactSVG } from "react-svg";
+import { ReactSVG } from "react-svg";
 import React from "react";
 import { REGISTER_STATUS } from "@/utils/constants";
 import Link from "next/link";
@@ -30,6 +29,7 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
     setShowPassword(!showPassword);
   };
 
+  //TODO: test all cases. Does every case need a break of their own?
   const handleAction = async (data: FormData) => {
     if (handleRegister) {
       const result = await handleRegister(data);
@@ -61,66 +61,102 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
       {/* TODO: remove value when dev is done */}
       <section className="login-register-container">
         <h1>{loginRegisterHeader}</h1>
-        <form onSubmit={handleSubmit} action={handleAction}>
-          <fieldset>
-            <legend>Account Information</legend>
-            <article className="input-container">
-              <label htmlFor="email">Email:</label>
-              <input
-                className="inputfield"
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Your email"
-                value="hej@mail.com"
-                required
-              />
-            </article>
-            <article className="input-container">
-              <label htmlFor="password">Password:</label>
-              <input
-                className="inputfield"
-                type={showPassword ? "text" : "password"}
-                id="password"
-                name="password"
-                placeholder={
-                  loginRegisterHeader === "Register" ? "Choose a password" : "Password"
-                }
-                value="Testtest123"
-                required
-              />
-              {showPassword ? (
-                <ReactSVG
-                  className="svg-eye"
-                  src="/closed-eye.svg"
-                  onClick={handleTogglePasswordVisibility}
+        <article className="login-register-wrapper">
+          <p className="login-register-text">
+            To login you need to use your registered email and password.
+          </p>
+        </article>
+        <article className="login-register-wrapper">
+          <form
+            className="login-register-form"
+            onSubmit={handleSubmit}
+            action={handleAction}
+          >
+            <fieldset className="login-register-fieldset">
+              <legend className="login-register-legend">Account Information</legend>
+              <div className="input-container">
+                <label className="login-register-label" htmlFor="email">
+                  Email:
+                </label>
+                <input
+                  className="login-register-inputfield"
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Your email"
+                  value="hej@mail.com"
+                  required
                 />
-              ) : (
-                <ReactSVG
-                  className="svg-eye"
-                  src="/opened-eye.svg"
-                  onClick={handleTogglePasswordVisibility}
+              </div>
+
+              <div className="input-container">
+                <label className="login-register-label" htmlFor="password">
+                  Password:
+                </label>
+                <input
+                  className="login-register-inputfield"
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  name="password"
+                  placeholder={
+                    loginRegisterHeader === "Register" ? "Choose a password" : "Password"
+                  }
+                  value="Testtest123"
+                  required
                 />
-              )}
-              {loginRegisterHeader === "Login" && (
-                <Link className="forgot-password" href="/forgot-password">
-                  Forgot password?
-                </Link>
-              )}
-            </article>
-          </fieldset>
 
-          {registerMsg && <p className="error-message">{registerMsg}</p>}
+                {showPassword ? (
+                  <ReactSVG
+                    className="svg-eye"
+                    src="/closed-eye.svg"
+                    onClick={handleTogglePasswordVisibility}
+                  />
+                ) : (
+                  <ReactSVG
+                    className="svg-eye"
+                    src="/opened-eye.svg"
+                    onClick={handleTogglePasswordVisibility}
+                  />
+                )}
+              </div>
+              <div className="password-terms">
+                {loginRegisterHeader === "Login" ? (
+                  <Link className="forgot-password" href="/forgot-password">
+                    Forgot password?
+                  </Link>
+                ) : (
+                  <>
+                    <input
+                      className="terms-checkbox"
+                      type="checkbox"
+                      name="terms"
+                      required
+                    />
+                    <label className="terms-conditions" htmlFor="terms">
+                      By checking this, you agree to the{" "}
+                      <Link href="/terms-and-conditions">terms and conditions</Link>.
+                    </label>
+                  </>
+                )}
+              </div>
+            </fieldset>
 
-          <article className="btns-container">
-            <button className="login-register-btn" type="submit">
-              {loginRegisterHeader}
-            </button>
-            <button className="cancel-btn" type="button" onClick={handleCancel}>
-              Cancel
-            </button>
-          </article>
-        </form>
+            {registerMsg && <p className="login-register-errorMsg">{registerMsg}</p>}
+
+            <div className="btns-container">
+              <button className="login-register-btn" type="submit">
+                {loginRegisterHeader}
+              </button>
+              <button
+                className="cancel-login-register-btn"
+                type="button"
+                onClick={handleCancel}
+              >
+                Back
+              </button>
+            </div>
+          </form>
+        </article>
       </section>
     </>
   );
