@@ -1,28 +1,87 @@
+@import "../globals.scss";
+@import "../../utils/constants.scss";
+@import "../../utils/keyframes.scss";
+
 .forgot-password-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  padding: 20px;
+  height: 100vh;
 
-  .forgot-password-form {
-    .forgot-input {
-      width: 100%;
-      height: 45px;
-      text-align: center;
-      border-radius: 15px;
+  .forgot-password-header {
+    text-align: center;
+  }
+
+  .forgot-password-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    max-width: 600px;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: $white;
+    position: absolute;
+    top: 25%;
+
+    .forgot-password-text {
+      font-family: "Alegreya";
+      font-size: 1.3rem;
     }
 
-    .reset-password-btn {
-      height: 45px;
-      width: 50%;
-      margin: 10px;
-      border-radius: 15px;
-      transition: ease-in-out 0.3s;
-      cursor: pointer;
+    .forgot-password-form {
+      font-family: "Alegreya";
+      font-size: 1.3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      padding: 10px;
 
-      &:hover {
-        background: grey;
+      .forgot-input {
+        width: 80%;
+        height: 45px;
+        text-align: center;
+        border-radius: 5px;
+        font-family: "Alegreya";
+        font-size: 1.1rem;
+      }
+
+      .forgot-return-btn {
+        display: flex;
+        gap: 15px;
+        margin-top: 30px;
+
+        .reset-password-btn,
+        .return-btn {
+          align-self: center;
+          border-radius: 15px;
+          height: 45px;
+          width: 100px;
+          background-color: transparent;
+          font-size: 1rem;
+          transition: ease-in-out 0.3s;
+          cursor: pointer;
+        }
+
+        .reset-password-btn {
+          border-color: $olive-green;
+
+          &:hover {
+            background-color: $olive-green;
+            color: $white;
+          }
+        }
+
+        .return-btn {
+          border-color: $tan;
+
+          &:hover {
+            background-color: $tan;
+            color: $white;
+          }
+        }
       }
     }
   }
