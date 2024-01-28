@@ -1,3 +1,6 @@
+@import "../../../../globals.scss";
+@import "../../../../../utils/constants.scss";
+
 .choose-template-container {
   padding: 0 20px;
   text-align: center;
@@ -12,6 +15,21 @@
       height: 40px;
       width: 200px;
       margin: 10px;
+      border-radius: 15px;
+      padding: 10px;
+      font-size: 1.1rem;
+      // max-height: 0;
+      transition: max-height 0.5s ease-out;
+      cursor: pointer;
+
+      &:focus {
+        outline: none;
+        color: $dark-green;
+      }
+
+      .template-option {
+        font-size: 1.1rem;
+      }
     }
 
     .preview-template {
@@ -22,8 +40,43 @@
     }
 
     .template-btn {
-      width: 50%;
+      margin: 15px 0;
       height: 40px;
+      border-radius: 15px;
+      width: 50%;
+      background-color: transparent;
+      border-color: $olive-green;
+      font-size: 1.2rem;
+      transition: ease-in-out 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        background: $olive-green;
+        color: $off-white;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .choose-template-container {
+    .choose-template-header {
+      .choose-template-br {
+        display: none;
+      }
+    }
+
+    .choose-template-form {
+      .preview-template {
+        max-width: 400px;
+        background-color: $white;
+        border-radius: 15px;
+      }
+
+      .template-btn {
+        background-color: $white;
+        max-width: 200px;
+      }
     }
   }
 }
