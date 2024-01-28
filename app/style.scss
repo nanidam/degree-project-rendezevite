@@ -17,12 +17,15 @@
     width: 100px;
     border-radius: 15px;
     margin: 10px;
-
+    font-size: 1.3rem;
+    font-family: "Alegreya";
+    background-color: transparent;
     transition: ease-in-out 0.3s;
     cursor: pointer;
 
     &:hover {
-      background: grey;
+      background: $olive-green;
+      color: $off-white;
     }
   }
 
