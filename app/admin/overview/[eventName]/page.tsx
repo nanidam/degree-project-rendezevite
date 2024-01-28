@@ -11,6 +11,7 @@ import inviteGuests from "@/app/services/inviteGuests";
 import { Accordion, AccordionItem } from "@szhsin/react-accordion";
 import { IEvent } from "@/app/models/IEvent";
 import { IGuest } from "@/app/models/IGuest";
+import { GuestList } from "./GuestList";
 
 const AdminOverview = ({
   params: { eventName },
@@ -18,6 +19,7 @@ const AdminOverview = ({
   readonly params: { readonly eventName: string };
 }) => {
   const [event, setEvent] = useState<IEvent | null>(null);
+  const [editGuestList, setEditGuestList] = useState<IGuest[]>([]);
   const [editPassword, setEditPassword] = useState(false);
 
   const fetchAndSetEvents = useCallback(async () => {
@@ -29,6 +31,7 @@ const AdminOverview = ({
         const formattedDate = dateFormat(date);
         const temp = { ...result, eventDate: formattedDate } as IEvent;
         setEvent(temp);
+        setEditGuestList(temp.guestList);
       }
     }
   }, [eventName]);
@@ -43,12 +46,6 @@ const AdminOverview = ({
 
   const invLink = "www.inv-link.com";
   const eventPassword = "password";
-
-  const editInvite = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-
-    console.log("edit invite");
-  };
 
   const changeInvitePassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -79,11 +76,9 @@ const AdminOverview = ({
 
     if (updatedEvent) {
       setEvent(updatedEvent);
+      setEditGuestList(updatedEvent.guestList);
     }
   };
-
-  console.log(event);
-  // @TODO fix loader here
 
   return (
     <section className="admin-overview">
@@ -186,201 +181,13 @@ const AdminOverview = ({
         </form>
       </article>
 
-      <article className="admin-wrapper">
-        <h3>Guestlist:</h3>
-        {event.guestList.map((guest: IGuest) => (
-          <Accordion key={guest.id}>
-            <AccordionItem header={guest.name}>
-              <form>
-                <label htmlFor="guest-name">
-                  Name:
-                  <input
-                    name="guest-name"
-                    type="text"
-                    defaultValue={guest.name}
-                    readOnly
-                  />
-                </label>
-
-                <hr />
-
-                <label htmlFor="guest-email">
-                  Email:
-                  <input
-                    name="guest-email"
-                    type="text"
-                    defaultValue={guest.email}
-                    readOnly
-                  />
-                </label>
-
-                <hr />
-
-                <label htmlFor="has-responded">
-                  Has responded:
-                  <select
-                    name="has-responded"
-                    defaultValue={guest.hasResponded.toString()}
-                  >
-                    <option value="true">Yes</option>
-                    <option value="false">No</option>
-                  </select>
-                </label>
-
-                <hr />
-
-                {guest.hasResponded && (
-                  <>
-                    <label htmlFor="attending">
-                      Attending:
-                      <select
-                        name="attending"
-                        defaultValue={guest.attending.toString()}
-                      >
-                        <option value="true">Yes</option>
-                        <option value="false">No</option>
-                      </select>
-                    </label>
-
-                    <hr />
-
-                    <label htmlFor="guest-number">
-                      Phone number:
-                      <input
-                        name="guest-number"
-                        type="text"
-                        defaultValue={guest.phoneNumber || "Not available"}
-                        readOnly
-                      />
-                    </label>
-
-                    <hr />
-
-                    {event.includeFood && (
-                      <>
-                        <label htmlFor="diet">
-                          Diet:
-                          <select name="diet" defaultValue={guest.diet || ""}>
-                            <option value="meat">Meat</option>
-                            <option value="vegetarian">Vegetarian</option>
-                            <option value="vegan">Vegan</option>
-                          </select>
-                        </label>
-                        <hr />
-                      </>
-                    )}
-
-                    {event.includeAllergies && (
-                      <>
-                        <label htmlFor="allergies">
-                          Allergies:
-                          <input
-                            name="allergies"
-                            type="text"
-                            defaultValue={guest.allergies!}
-                            readOnly
-                          />
-                        </label>
-                        <hr />
-                      </>
-                    )}
-
-                    <label htmlFor="comments">
-                      Comments:
-                      <input
-                        name="comments"
-                        type="text"
-                        defaultValue={guest.comments || "Not available"}
-                        readOnly
-                      />
-                    </label>
-                    <hr />
-                  </>
-                )}
-
-                {guest.additionalGuest.name.length > 0 &&
-                  guest.hasResponded && (
-                    <>
-                      <label htmlFor="additional-guest">
-                        Additional guest:
-                        <input
-                          name="additional-guest"
-                          type="text"
-                          defaultValue={guest.additionalGuest.name}
-                          readOnly
-                        />
-                      </label>
-
-                      <hr />
-
-                      <label htmlFor="additional-guest-attending">
-                        Additional guest attending:
-                        <select
-                          name="additional-guest-attending"
-                          defaultValue={guest.additionalGuest.attending.toString()}
-                        >
-                          <option value="true">Yes</option>
-                          <option value="false">No</option>
-                        </select>
-                      </label>
-
-                      <hr />
-
-                      {event.includeFood && (
-                        <>
-                          <label htmlFor="additional-guest-diet">
-                            Additional guest diet:
-                            <select
-                              name="dditional-guest-diet"
-                              defaultValue={guest.additionalGuest.diet || ""}
-                            >
-                              <option value="meat">Meat</option>
-                              <option value="vegetarian">Vegetarian</option>
-                              <option value="vegan">Vegan</option>
-                            </select>
-                          </label>
-                          <hr />
-                        </>
-                      )}
-
-                      {event.includeAllergies && (
-                        <>
-                          <label htmlFor="additional-guest-allergies">
-                            Additional guest allergies:
-                            <input
-                              name="additional-guest-allergies"
-                              type="text"
-                              defaultValue={
-                                guest.additionalGuest.allergies ||
-                                "Not available"
-                              }
-                              readOnly
-                            />
-                          </label>
-                          <hr />
-                        </>
-                      )}
-
-                      <label htmlFor="additional-guest-comments">
-                        Additional guest comments:
-                        <input
-                          name="additional-guest-comments"
-                          type="text"
-                          defaultValue={
-                            guest.additionalGuest.comments || "Not available"
-                          }
-                          readOnly
-                        />
-                      </label>
-                    </>
-                  )}
-
-                {true && <button>Edit</button>}
-              </form>
-            </AccordionItem>
-          </Accordion>
-        ))}
-      </article>
+      <GuestList
+        guestList={event.guestList}
+        editGuestList={editGuestList}
+        setEditGuestList={setEditGuestList}
+        includeFood={event.includeFood}
+        includeAllergies={event.includeAllergies}
+      />
     </section>
   );
 };
