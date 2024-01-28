@@ -26,19 +26,28 @@ const Template = ({
   };
   return (
     <section className="choose-template-container">
-      <h1 className="choose-template-header">Choose template</h1>
+      <h1 className="choose-template-header">
+        Choose your <br className="choose-template-br" />
+        template
+      </h1>
       <Logout />
       <article className="choose-template">
         <form onSubmit={choosingTemplate} className="choose-template-form">
-          <label htmlFor="options">Select a template:</label>
-          <select className="template-options" id="options" name="options">
-            <option value="templateGeoDesign">Geometric</option>
-            <option value="templateFlowerDesign">Flowers</option>
-          </select>
+          <h2>
+            Template:
+            <select className="template-options" id="options" name="options">
+              <option className="template-option" value="templateGeoDesign">
+                Geometric
+              </option>
+              <option className="template-option" value="templateFlowerDesign">
+                Flowers
+              </option>
+            </select>
+          </h2>
 
-          <article className="preview-template">
+          <div className="preview-template">
             <div>Preview?</div>
-          </article>
+          </div>
           <button className="template-btn" type="submit">
             Confirm
           </button>
