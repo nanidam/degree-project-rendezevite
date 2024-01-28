@@ -133,7 +133,7 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
                       required
                     />
                     <label className="terms-conditions" htmlFor="terms">
-                      By checking this, you agree to the{" "}
+                      By checking this, you agree to the <br />
                       <Link href="/terms-and-conditions">terms and conditions</Link>.
                     </label>
                   </>
