@@ -1,5 +1,6 @@
 @import "../../globals.scss";
 @import "../../../utils/constants.scss";
+@import "../../../utils/keyframes.scss";
 
 .create-event-container {
   display: flex;
@@ -9,6 +10,7 @@
 
   .create-event-header {
     text-align: center;
+    animation: swingIn 0.5s ease-in-out forwards;
   }
 
   .info-text-wrapper {
@@ -17,6 +19,7 @@
     padding: 10px;
     font-size: 1.3rem;
     margin-bottom: 10px;
+    animation: swingIn 0.5s ease-in-out forwards;
 
     .info-text {
       margin: 10px;
@@ -24,6 +27,8 @@
   }
 
   .create-event-wrapper {
+    animation: swingIn 0.5s ease-in-out forwards;
+
     .create-event-form {
       display: flex;
       flex-direction: column;

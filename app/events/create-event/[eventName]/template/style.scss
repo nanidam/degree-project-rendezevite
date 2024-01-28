@@ -1,15 +1,21 @@
 @import "../../../../globals.scss";
 @import "../../../../../utils/constants.scss";
+@import "../../../../../utils/keyframes.scss";
 
 .choose-template-container {
   padding: 0 20px;
   text-align: center;
+
+  .choose-template-header {
+    animation: fadeIn 0.5s ease-in-out forwards;
+  }
 
   .choose-template-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    animation: swingIn 0.5s ease-in-out forwards;
 
     .template-options {
       height: 40px;
