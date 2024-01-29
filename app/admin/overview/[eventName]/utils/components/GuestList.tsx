@@ -1,19 +1,19 @@
 import { IGuest } from "@/app/utils/models/IGuest";
 import { Accordion, AccordionItem } from "@szhsin/react-accordion";
 import { useState } from "react";
-import { handleName } from "./utils/handleName";
-import { handleEmail } from "./utils/handleEmail";
-import { editGuest } from "./utils/editGuest";
-import { handleHasResponded } from "./utils/handleHasResponded";
-import { handleAttending } from "./utils/handleAttending";
-import { handleAdditionalGuestAttending } from "./utils/handleAdditionalGuestAttending";
-import { handlePhoneNumber } from "./utils/handlePhoneNumber";
-import { handleDiet } from "./utils/handleDiet";
-import { handleAllergies } from "./utils/handleAllergies";
-import { cancelEditMode } from "./utils/cancelEditMode";
-import { handleComments } from "./utils/handleComments";
-import { handleAdditionalGuestName } from "./utils/handleAdditionalGuestName";
-import { handleAdditionalGuestDiet } from "./utils/handleAdditionalGuestDiet";
+import { handleName } from "../handleName";
+import { handleEmail } from "../handleEmail";
+import { editGuest } from "../editGuest";
+import { handleHasResponded } from "../handleHasResponded";
+import { handleAttending } from "../handleAttending";
+import { handleAdditionalGuestAttending } from "../handleAdditionalGuestAttending";
+import { handlePhoneNumber } from "../handlePhoneNumber";
+import { handleDiet } from "../handleDiet";
+import { handleAllergies } from "../handleAllergies";
+import { cancelEditMode } from "../cancelEditMode";
+import { handleComments } from "../handleComments";
+import { handleAdditionalGuestName } from "../handleAdditionalGuestName";
+import { handleAdditionalGuestDiet } from "../handleAdditionalGuestDiet";
 
 interface GuestListProps {
   guestList: IGuest[];
