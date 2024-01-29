@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import "./style/loginRegisterForm.scss";
 import { ReactSVG } from "react-svg";
 import React from "react";
-import { REGISTER_STATUS } from "@/utils/constants";
+import { REGISTER_STATUS } from "@/app/utils/constants";
 import Link from "next/link";
 
 interface LoginRegisterFormProps {

@@ -5,7 +5,7 @@ import "./style.scss";
 import { useCallback, useEffect, useState } from "react";
 import { getEvent } from "@/app/services/getEvent";
 import getUserId from "@/app/services/getUserId";
-import { dateFormat } from "@/utils/dateFormat";
+import { dateFormat } from "@/app/utils/dateFormat";
 import { updateEventPassword } from "@/app/services/updateEventPassword";
 import inviteGuests from "@/app/services/inviteGuests";
 import { Accordion, AccordionItem } from "@szhsin/react-accordion";
