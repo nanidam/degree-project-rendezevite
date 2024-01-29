@@ -1,4 +1,4 @@
-import TemplateGeometricDesign from "@/app/components/templateGeoDesign";
+import TemplateGeometricDesign from "@/app/utils/components/templateGeoDesign";
 
 const Invitation = () => {
   return (
