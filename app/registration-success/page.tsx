@@ -1,5 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
+import "./style.scss";
 
 const RegistrationSuccess = () => {
   const router = useRouter();
@@ -8,11 +9,13 @@ const RegistrationSuccess = () => {
   };
   return (
     <section>
-      <h1>Registration successful,</h1>
-      <p> Click here to login</p>
-      <button className="login-btn" type="button" onClick={handleLogin}>
-        Login
-      </button>
+      <h1>Registration successful!</h1>
+      <article className="registration-success-container">
+        <p> Click here to login and start creating invitations :)</p>
+        <button className="return-login-btn" type="button" onClick={handleLogin}>
+          Login
+        </button>
+      </article>
     </section>
   );
 };
