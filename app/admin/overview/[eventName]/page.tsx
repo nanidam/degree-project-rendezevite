@@ -11,7 +11,7 @@ import inviteGuests from "@/app/services/inviteGuests";
 import { Accordion, AccordionItem } from "@szhsin/react-accordion";
 import { IEvent } from "@/app/models/IEvent";
 import { IGuest } from "@/app/models/IGuest";
-import { GuestList } from "./GuestList";
+import { GuestList } from "./components/GuestList";
 
 const AdminOverview = ({
   params: { eventName },
