@@ -1,6 +1,6 @@
 "use client";
 
-import Logout from "@/app/components/logout";
+import Logout from "@/app/utils/components/logout";
 import "./style.scss";
 import { useCallback, useEffect, useState } from "react";
 import { getEvent } from "@/app/services/getEvent";
