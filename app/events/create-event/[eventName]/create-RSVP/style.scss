@@ -1,6 +1,5 @@
 @import "../../../../globals.scss";
 @import "../../../../utils/constants.scss";
-@import "../../../../utils/keyframes.scss";
 
 .create-rsvp-container {
   display: flex;
@@ -112,7 +111,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      align-content: end;
+      align-content: flex-end;
       gap: 10px;
 
       .create-rsvp-text-container {
