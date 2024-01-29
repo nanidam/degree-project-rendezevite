@@ -1,8 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import handleRegister from "@/utils/register";
-import LoginRegisterForm from "../components/loginRegisterForm";
+import handleRegister from "@/app/utils/register";
+import LoginRegisterForm from "../utils/components/loginRegisterForm";
 
 const Register = () => {
   return (

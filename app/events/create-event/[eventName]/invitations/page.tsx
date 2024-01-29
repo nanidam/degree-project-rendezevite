@@ -4,7 +4,7 @@ import "./style.scss";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import updateEventText from "@/app/services/updateEventText";
-import Logout from "@/app/components/logout";
+import Logout from "@/app/utils/components/logout";
 
 const CREATE_INVITATION_STATUS = {
   EMPTY_HEADER: "Please give your invitation a header",

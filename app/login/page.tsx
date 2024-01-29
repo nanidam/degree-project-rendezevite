@@ -1,7 +1,7 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import LoginRegisterForm from "../components/loginRegisterForm";
+import LoginRegisterForm from "../utils/components/loginRegisterForm";
 
 const Login = () => {
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {

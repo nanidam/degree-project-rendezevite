@@ -1,5 +1,5 @@
 "use client";
-import { sendMail } from "@/utils/sendMail";
+import { sendMail } from "@/app/utils/sendMail";
 import "./style.scss";
 import { useState } from "react";
 import { useRouter } from "next/navigation";

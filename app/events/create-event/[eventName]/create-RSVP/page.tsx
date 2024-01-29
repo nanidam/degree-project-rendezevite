@@ -1,5 +1,5 @@
 "use client";
-import Logout from "@/app/components/logout";
+import Logout from "@/app/utils/components/logout";
 import "./style.scss";
 import updateEventFood from "@/app/services/updateEventFood";
 import { useRouter } from "next/navigation";

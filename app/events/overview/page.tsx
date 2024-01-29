@@ -1,6 +1,6 @@
 "use client";
 
-import Logout from "../../components/logout";
+import Logout from "../../utils/components/logout";
 import "./style.scss";
 import { ReactSVG } from "react-svg";
 import Link from "next/link";

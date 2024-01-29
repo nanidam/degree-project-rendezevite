@@ -1,16 +1,16 @@
 "use client";
 
-import Logout from "@/app/components/logout";
+import Logout from "@/app/utils/components/logout";
 import "./style.scss";
 import { useCallback, useEffect, useState } from "react";
 import { getEvent } from "@/app/services/getEvent";
 import getUserId from "@/app/services/getUserId";
-import { dateFormat } from "@/utils/dateFormat";
+import { dateFormat } from "@/app/utils/dateFormat";
 import { updateEventPassword } from "@/app/services/updateEventPassword";
 import inviteGuests from "@/app/services/inviteGuests";
 import { Accordion, AccordionItem } from "@szhsin/react-accordion";
-import { IEvent } from "@/app/models/IEvent";
-import { IGuest } from "@/app/models/IGuest";
+import { IEvent } from "@/app/utils/models/IEvent";
+import { IGuest } from "@/app/utils/models/IGuest";
 import { GuestList } from "./GuestList";
 
 const AdminOverview = ({

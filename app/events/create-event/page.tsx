@@ -5,7 +5,7 @@ import "./style.scss";
 import getUserId from "@/app/services/getUserId";
 import createEvent from "@/app/services/createEvent";
 import { useRouter } from "next/navigation";
-import Logout from "@/app/components/logout";
+import Logout from "@/app/utils/components/logout";
 import Image from "next/image";
 
 const CREATE_EVENT_STATUS = {

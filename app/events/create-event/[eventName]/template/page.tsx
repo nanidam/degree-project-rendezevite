@@ -1,6 +1,6 @@
 "use client";
 
-import Logout from "@/app/components/logout";
+import Logout from "@/app/utils/components/logout";
 import "./style.scss";
 import chooseTemplate from "@/app/services/chooseTemplate";
 import { useRouter } from "next/navigation";
