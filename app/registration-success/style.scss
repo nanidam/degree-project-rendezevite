@@ -1,0 +1,28 @@
+@import "../globals.scss";
+@import "../../utils/constants.scss";
+@import "../../utils/keyframes.scss";
+
+.registration-success-container {
+  text-align: center;
+  padding: 20px;
+  background-color: $white;
+  font-family: "Alegreya";
+  font-size: 1.3rem;
+
+  .return-login-btn {
+    align-self: center;
+    border-radius: 15px;
+    height: 45px;
+    width: 170px;
+    background-color: transparent;
+    font-size: 1rem;
+    transition: ease-in-out 0.3s;
+    border-color: $olive-green;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $olive-green;
+      color: $white;
+    }
+  }
+}
