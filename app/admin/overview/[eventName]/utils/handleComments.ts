@@ -1,13 +1,13 @@
-import { IGuest } from "@/app/models/IGuest";
+import { IGuest } from "@/app/utils/models/IGuest";
 export const handleComments = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    guestId: string,
-    setEditGuestList: React.Dispatch<React.SetStateAction<IGuest[]>>,
-    editGuestList: IGuest[]
+  e: React.ChangeEvent<HTMLInputElement>,
+  guestId: string,
+  setEditGuestList: React.Dispatch<React.SetStateAction<IGuest[]>>,
+  editGuestList: IGuest[]
 ) => {
-    setEditGuestList(
-        editGuestList.map((guest) =>
-            guest.id === guestId ? { ...guest, comments: e.target.value } : guest
-        )
-    );
+  setEditGuestList(
+    editGuestList.map((guest) =>
+      guest.id === guestId ? { ...guest, comments: e.target.value } : guest
+    )
+  );
 };

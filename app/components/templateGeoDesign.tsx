@@ -1,6 +1,6 @@
 "use client";
 
-import { ITemplateGeometricDesignProps } from "../models/ITemplateGeometricDesign";
+import { ITemplateGeometricDesignProps } from "../utils/models/ITemplateGeometricDesign";
 import "./style/templateGeoDesign.scss";
 
 const TemplateGeometricDesign: React.FC<ITemplateGeometricDesignProps> = ({

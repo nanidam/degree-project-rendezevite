@@ -1,4 +1,4 @@
-import { IGuest } from "@/app/models/IGuest";
+import { IGuest } from "@/app/utils/models/IGuest";
 import { Accordion, AccordionItem } from "@szhsin/react-accordion";
 import { useState } from "react";
 import { handleName } from "../utils/handleName";
