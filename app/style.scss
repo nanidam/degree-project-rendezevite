@@ -10,6 +10,8 @@
   .profile-icon {
     margin: 10px;
     cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
   }
 
   .login-btn {
