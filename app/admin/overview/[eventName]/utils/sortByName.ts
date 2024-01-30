@@ -7,12 +7,12 @@ interface ISortByName {
 
 export const sortByName = ({ event, setEvent }: ISortByName) => {
     let sortedList = [...event.guestList].sort((a, b) =>
-        b.name.localeCompare(a.name, 'sv')
+        a.name.localeCompare(b.name, 'sv')
     );
 
     if (sortedList[0].name === event.guestList[0].name) {
         sortedList = [...event.guestList].sort((a, b) =>
-            a.name.localeCompare(b.name, 'sv')
+            b.name.localeCompare(a.name, 'sv')
         );
     }
 
