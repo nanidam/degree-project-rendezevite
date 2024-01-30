@@ -6,12 +6,12 @@ import { useCallback, useEffect, useState } from "react";
 import { getEvent } from "@/app/services/getEvent";
 import getUserId from "@/app/services/getUserId";
 import { dateFormat } from "@/app/utils/dateFormat";
-import { updateEventPassword } from "@/app/services/updateEventPassword";
-import inviteGuests from "@/app/services/inviteGuests";
-import { Accordion, AccordionItem } from "@szhsin/react-accordion";
 import { IEvent } from "@/app/utils/models/IEvent";
 import { IGuest } from "@/app/utils/models/IGuest";
 import { GuestList } from "./components/GuestList";
+import { EventInfo } from "./components/EventInfo";
+import { EventPassword } from "./components/EventPassword";
+import { InviteGuests } from "./components/InviteGuests";
 
 const AdminOverview = ({
   params: { eventName },
@@ -20,7 +20,6 @@ const AdminOverview = ({
 }) => {
   const [event, setEvent] = useState<IEvent | null>(null);
   const [editGuestList, setEditGuestList] = useState<IGuest[]>([]);
-  const [editPassword, setEditPassword] = useState(false);
 
   const fetchAndSetEvents = useCallback(async () => {
     const userId = await getUserId();
@@ -44,142 +43,22 @@ const AdminOverview = ({
     return null;
   }
 
-  const invLink = "www.inv-link.com";
-  const eventPassword = "password";
-
-  const changeInvitePassword = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const data = new FormData(e.currentTarget);
-    const eventPassword = data.get("eventPassword") as string;
-
-    const newPassword = await updateEventPassword(eventPassword, event.id);
-
-    console.log(newPassword);
-    setEditPassword(false);
-  };
-
-  const handleInviteGuests = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const data = new FormData(e.currentTarget);
-
-    const guestName = data.get("guestName") as string;
-    const guestEmail = data.get("guestEmail") as string;
-    const additionalGuest = data.get("additionalGuest") as string;
-
-    const updatedEvent = (await inviteGuests({
-      guestName,
-      guestEmail,
-      additionalGuest,
-      eventId: event.id,
-    })) as IEvent;
-
-    if (updatedEvent) {
-      setEvent(updatedEvent);
-      setEditGuestList(updatedEvent.guestList);
-    }
-  };
-
   return (
     <section className="admin-overview">
       <h1 className="admin-header">
         {event.eventName.charAt(0).toUpperCase() + event.eventName.slice(1)}
       </h1>
       <Logout></Logout>
-      <article className="admin-wrapper">
-        <h3>Info</h3>
-        <p>Event date: {event.eventDate}</p>
-        <p>
-          Event link: <a>{invLink}</a>
-        </p>
-        {/* <button className="admin-btn" onClick={editInvite}>
-          Edit invitation
-        </button> */}
-      </article>
 
-      <article className="admin-wrapper">
-        <h3>Password</h3>
-        <p>Change or see your password for the event</p>
-        <form className="admin-form" onSubmit={changeInvitePassword}>
-          <label className="admin-label" htmlFor="eventPassword">
-            Password:
-          </label>
-          <input
-            className="admin-input"
-            type="text"
-            name="eventPassword"
-            readOnly={!editPassword}
-            defaultValue={event.eventPassword}
-          />
-          {editPassword ? (
-            <div className="password-btn-container">
-              <button
-                className="admin-btn cancel-password-btn"
-                onClick={() => setEditPassword(false)}
-                type="button"
-                aria-label="Cancel password change"
-              >
-                Cancel
-              </button>
-              <button
-                className="admin-btn save-password-btn"
-                type="submit"
-                aria-label="Save new password"
-              >
-                Save
-              </button>
-            </div>
-          ) : (
-            <button
-              className="admin-btn"
-              type="button"
-              onClick={() => setEditPassword(true)}
-              aria-label="Change password"
-            >
-              Change Password
-            </button>
-          )}
-        </form>
-      </article>
+      <EventInfo eventDate={event.eventDate} eventId={event.id} />
 
-      <article className="admin-wrapper">
-        <form className="admin-form" onSubmit={handleInviteGuests}>
-          <h3>Invite guests</h3>
-          <label className="admin-label" htmlFor="guestName">
-            Guest name:
-          </label>
-          <input
-            className="admin-input"
-            type="text"
-            name="guestName"
-            placeholder="Guest name"
-          />
+      <EventPassword eventPassword={event.eventPassword} eventId={event.id} />
 
-          <label className="admin-label" htmlFor="guestEmail">
-            Guest email:
-          </label>
-          <input
-            className="admin-input"
-            type="email"
-            name="guestEmail"
-            placeholder="Guest email"
-          />
-
-          <label className="admin-label" htmlFor="additionalGuest">
-            Additional guest name:
-          </label>
-          <input
-            className="admin-input"
-            type="text"
-            name="additionalGuest"
-            placeholder="Additional guest name"
-          />
-
-          <button className="admin-btn" type="submit">
-            Invite
-          </button>
-        </form>
-      </article>
+      <InviteGuests
+        eventId={event.id}
+        setEvent={setEvent}
+        setEditGuestList={setEditGuestList}
+      />
 
       <GuestList
         guestList={event.guestList}
