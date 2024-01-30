@@ -2,6 +2,9 @@
 @import "../../constants.scss";
 
 .confirm-delete-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: $alert-box-background-grey;
   width: 100%;
   height: 100%;
@@ -10,15 +13,77 @@
   left: 0;
   z-index: 1000;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   .confirm-delete {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     height: 300px;
-    width: 200px;
+    width: 250px;
     background-color: $white;
     border-radius: 15px;
     padding: 20px;
+
+    .confirm-delete-header {
+      // font-family: "Alegreya";
+      font-size: 1.5rem;
+
+      .event-name {
+        text-decoration: underline;
+      }
+    }
+
+    .confirm-delete-text {
+      font-family: "Alegreya";
+      font-size: 1.2rem;
+      margin: 5px;
+    }
+
+    .confirm-delete-btns {
+      display: flex;
+      justify-content: space-around;
+      gap: 20px;
+      margin: 20px;
+
+      .confirm-delete-btn,
+      .denied-delete-btn {
+        border-radius: 15px;
+        height: 45px;
+        width: 100px;
+        background-color: transparent;
+        font-family: "Alegreya";
+        font-size: 1rem;
+        transition: ease-in-out 0.3s;
+        cursor: pointer;
+      }
+
+      .confirm-delete-btn {
+        border-color: $olive-green;
+
+        &:hover {
+          background: $olive-green;
+          color: $off-white;
+        }
+      }
+
+      .denied-delete-btn {
+        border-color: $rusty-orange;
+
+        &:hover {
+          background: $rusty-orange;
+          color: $off-white;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 767px) {
+  .confirm-delete-container {
+    .confirm-delete {
+      width: 400px;
+      height: 250px;
+    }
   }
 }

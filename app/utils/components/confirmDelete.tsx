@@ -28,13 +28,16 @@ const ConfirmDelete: React.FC<IConfirmDeleteProps> = ({
     <section className="confirm-delete-container">
       <article className="confirm-delete">
         <h1 className="confirm-delete-header">
-          Are you sure you want to delete this event?
+          Are you sure you want to delete <span className="event-name">{eventName}</span>?
         </h1>
-        <div>
-          <button className="confirm-delete-button" onClick={handleConfirmDelete}>
+        <p className="confirm-delete-text">
+          Once you delete the event, it cannot be undone.
+        </p>
+        <div className="confirm-delete-btns">
+          <button className="confirm-delete-btn" onClick={handleConfirmDelete}>
             Delete Event
           </button>
-          <button className="denied-delete-button" onClick={handleCancel}>
+          <button className="denied-delete-btn" onClick={handleCancel}>
             Cancel
           </button>
         </div>
