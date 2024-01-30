@@ -1,0 +1,13 @@
+.admin-wrapper {
+  .sorting-btns {
+    margin-bottom: 1px;
+    .sort-name-btn {
+      width: 50%;
+    }
+
+    .sort-rsvp-btn,
+    .sort-attending-btn {
+      width: 25%;
+    }
+  }
+}

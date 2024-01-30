@@ -1,3 +1,4 @@
+import "./style/guestList.scss";
 import { IGuest } from "@/app/utils/models/IGuest";
 import { Accordion, AccordionItem } from "@szhsin/react-accordion";
 import { useState } from "react";
@@ -14,9 +15,14 @@ import { cancelEditMode } from "../utils/cancelEditMode";
 import { handleComments } from "../utils/handleComments";
 import { handleAdditionalGuestName } from "../utils/handleAdditionalGuestName";
 import { handleAdditionalGuestDiet } from "../utils/handleAdditionalGuestDiet";
+import { sortByRsvp } from "../utils/sortByRsvp";
+import { sortByAttending } from "../utils/sortByAttending";
+import { sortByName } from "../utils/sortByName";
+import { IEvent } from "@/app/utils/models/IEvent";
 
 interface GuestListProps {
-  guestList: IGuest[];
+  event: IEvent;
+  setEvent: React.Dispatch<React.SetStateAction<IEvent | null>>;
   editGuestList: IGuest[];
   setEditGuestList: React.Dispatch<React.SetStateAction<IGuest[]>>;
   includeFood?: boolean | null;
@@ -24,7 +30,8 @@ interface GuestListProps {
 }
 
 export const GuestList = ({
-  guestList,
+  event,
+  setEvent,
   editGuestList,
   setEditGuestList,
   includeFood,
@@ -32,7 +39,10 @@ export const GuestList = ({
 }: GuestListProps) => {
   const [editModeId, setEditModeId] = useState<string | null>(null);
 
-  const handleSaveClick = async (e: React.FormEvent<HTMLFormElement>, guestId: string) => {
+  const handleSaveClick = async (
+    e: React.FormEvent<HTMLFormElement>,
+    guestId: string
+  ) => {
     e.preventDefault();
 
     console.log("save", guestId);
@@ -41,8 +51,31 @@ export const GuestList = ({
   return (
     <article className="admin-wrapper">
       <h3>Guestlist:</h3>
+      <div className="sorting-btns">
+        <button
+          className="sort-btn sort-name-btn"
+          data-sort="name"
+          onClick={() => sortByName({ event, setEvent })}
+        >
+          Name
+        </button>
+        <button
+          className="sort-btn sort-rsvp-btn"
+          data-sort="responded"
+          onClick={() => sortByRsvp()}
+        >
+          RSVP
+        </button>
+        <button
+          className="sort-btn sort-attending-btn"
+          data-sort="attending"
+          onClick={() => sortByAttending()}
+        >
+          Attending
+        </button>
+      </div>
       <Accordion>
-        {guestList.map((guest: IGuest) => (
+        {event.guestList.map((guest: IGuest) => (
           <AccordionItem key={guest.id} header={guest.name}>
             <form onSubmit={(e) => handleSaveClick(e, guest.id)}>
               <label htmlFor="guest-name">
@@ -50,8 +83,12 @@ export const GuestList = ({
                 <input
                   name="guest-name"
                   type="text"
-                  value={editGuestList.find((g) => g.id === guest.id)?.name || ""}
-                  onChange={(e) => handleName(e, guest.id, setEditGuestList, editGuestList)}
+                  value={
+                    editGuestList.find((g) => g.id === guest.id)?.name || ""
+                  }
+                  onChange={(e) =>
+                    handleName(e, guest.id, setEditGuestList, editGuestList)
+                  }
                   readOnly={editModeId !== guest.id}
                 />
               </label>
@@ -63,7 +100,9 @@ export const GuestList = ({
                 <input
                   name="guest-email"
                   type="text"
-                  value={editGuestList.find((g) => g.id === guest.id)?.email || ""}
+                  value={
+                    editGuestList.find((g) => g.id === guest.id)?.email || ""
+                  }
                   onChange={(e) =>
                     handleEmail(e, guest.id, setEditGuestList, editGuestList)
                   }
@@ -78,11 +117,17 @@ export const GuestList = ({
                 <select
                   name="has-responded"
                   value={
-                    editGuestList.find((g) => g.id === guest.id)?.hasResponded.toString() ||
-                    "false"
+                    editGuestList
+                      .find((g) => g.id === guest.id)
+                      ?.hasResponded.toString() || "false"
                   }
                   onChange={(e) =>
-                    handleHasResponded(e, guest.id, setEditGuestList, editGuestList)
+                    handleHasResponded(
+                      e,
+                      guest.id,
+                      setEditGuestList,
+                      editGuestList
+                    )
                   }
                   disabled={editModeId !== guest.id}
                 >
@@ -105,7 +150,12 @@ export const GuestList = ({
                           ?.attending.toString() || "false"
                       }
                       onChange={(e) =>
-                        handleAttending(e, guest.id, setEditGuestList, editGuestList)
+                        handleAttending(
+                          e,
+                          guest.id,
+                          setEditGuestList,
+                          editGuestList
+                        )
                       }
                       disabled={editModeId !== guest.id}
                     >
@@ -122,10 +172,16 @@ export const GuestList = ({
                       name="guest-number"
                       type="text"
                       value={
-                        editGuestList.find((g) => g.id === guest.id)?.phoneNumber || ""
+                        editGuestList.find((g) => g.id === guest.id)
+                          ?.phoneNumber || ""
                       }
                       onChange={(e) =>
-                        handlePhoneNumber(e, guest.id, setEditGuestList, editGuestList)
+                        handlePhoneNumber(
+                          e,
+                          guest.id,
+                          setEditGuestList,
+                          editGuestList
+                        )
                       }
                       readOnly={editModeId !== guest.id}
                     />
@@ -140,10 +196,16 @@ export const GuestList = ({
                         <select
                           name="diet"
                           value={
-                            editGuestList.find((g) => g.id === guest.id)?.diet || "meat"
+                            editGuestList.find((g) => g.id === guest.id)
+                              ?.diet || "meat"
                           }
                           onChange={(e) =>
-                            handleDiet(e, guest.id, setEditGuestList, editGuestList)
+                            handleDiet(
+                              e,
+                              guest.id,
+                              setEditGuestList,
+                              editGuestList
+                            )
                           }
                           disabled={editModeId !== guest.id}
                         >
@@ -164,10 +226,16 @@ export const GuestList = ({
                           name="allergies"
                           type="text"
                           value={
-                            editGuestList.find((g) => g.id === guest.id)?.allergies || ""
+                            editGuestList.find((g) => g.id === guest.id)
+                              ?.allergies || ""
                           }
                           onChange={(e) =>
-                            handleAllergies(e, guest.id, setEditGuestList, editGuestList)
+                            handleAllergies(
+                              e,
+                              guest.id,
+                              setEditGuestList,
+                              editGuestList
+                            )
                           }
                           readOnly={editModeId !== guest.id}
                         />
@@ -181,9 +249,17 @@ export const GuestList = ({
                     <input
                       name="comments"
                       type="text"
-                      value={editGuestList.find((g) => g.id === guest.id)?.comments || ""}
+                      value={
+                        editGuestList.find((g) => g.id === guest.id)
+                          ?.comments || ""
+                      }
                       onChange={(e) =>
-                        handleComments(e, guest.id, setEditGuestList, editGuestList)
+                        handleComments(
+                          e,
+                          guest.id,
+                          setEditGuestList,
+                          editGuestList
+                        )
                       }
                       readOnly={editModeId !== guest.id}
                     />
@@ -200,8 +276,8 @@ export const GuestList = ({
                       name="additional-guest"
                       type="text"
                       value={
-                        editGuestList.find((g) => g.id === guest.id)?.additionalGuest
-                          .name || ""
+                        editGuestList.find((g) => g.id === guest.id)
+                          ?.additionalGuest.name || ""
                       }
                       onChange={(e) =>
                         handleAdditionalGuestName(
@@ -315,7 +391,11 @@ export const GuestList = ({
                   <button
                     type="button"
                     onClick={() =>
-                      cancelEditMode(guestList, setEditModeId, setEditGuestList)
+                      cancelEditMode(
+                        event.guestList,
+                        setEditModeId,
+                        setEditGuestList
+                      )
                     }
                     className="cancel-btn"
                   >

@@ -61,7 +61,8 @@ const AdminOverview = ({
       />
 
       <GuestList
-        guestList={event.guestList}
+        event={event}
+        setEvent={setEvent}
         editGuestList={editGuestList}
         setEditGuestList={setEditGuestList}
         includeFood={event.includeFood}
