@@ -8,9 +8,14 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getAllEvents } from "@/app/services/getAllEvents";
 import { deleteEvent } from "@/app/services/deleteEvent";
+import ConfirmDelete from "@/app/utils/components/confirmDelete";
+import React from "react";
 
 const EventOverview = () => {
   const [events, setEvents] = useState<string[]>([]);
+  const [showConfirmDelete, setShowConfirmDelete] = useState<boolean>(false);
+  const [eventNameState, setEventNameState] = useState<string>("");
+
   const fetchAndSetEvents = async () => {
     const data = await getAllEvents();
     if (data) {
@@ -27,10 +32,13 @@ const EventOverview = () => {
     router.push("/events/create-event");
   };
 
-  const handleDeleteEvent = (eventName: string) => {
-    deleteEvent(eventName);
-    fetchAndSetEvents();
+  const handleDeleteEvent = async (eventName: string) => {
+    setEventNameState(eventName);
+    setShowConfirmDelete(true);
+
+    // setEvents(events.filter((event) => event !== eventName));
   };
+
   return (
     <main>
       <h1 className="event-overview-header">
@@ -50,18 +58,20 @@ const EventOverview = () => {
             <h2>Current events:</h2>
             <ul className="current-events">
               {events.map((eventName) => (
-                <li key={eventName} className="current-event">
-                  <Link className="event" href={`/admin/overview/${eventName}`}>
-                    {eventName}
-                  </Link>
-                  <div className="edit-delete-icons">
-                    <ReactSVG
-                      className="trash-icon"
-                      src="/trash-can.svg"
-                      onClick={() => handleDeleteEvent(eventName)}
-                    />
-                  </div>
-                </li>
+                <React.Fragment key={eventName}>
+                  <li className="current-event">
+                    <Link className="event" href={`/admin/overview/${eventName}`}>
+                      {eventName}
+                    </Link>
+                    <div className="edit-delete-icons">
+                      <ReactSVG
+                        className="trash-icon"
+                        src="/trash-can.svg"
+                        onClick={() => handleDeleteEvent(eventName)}
+                      />
+                    </div>
+                  </li>
+                </React.Fragment>
               ))}
             </ul>
           </article>
@@ -73,6 +83,15 @@ const EventOverview = () => {
               <li>event 4</li>
             </ul>
           </article>
+
+          {showConfirmDelete && (
+            <ConfirmDelete
+              setShowConfirmDelete={setShowConfirmDelete}
+              eventName={eventNameState}
+              setEvents={setEvents}
+              events={events}
+            />
+          )}
         </div>
       </section>
     </main>
