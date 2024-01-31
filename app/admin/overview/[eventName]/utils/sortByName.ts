@@ -1,11 +1,6 @@
-import { IEvent } from "@/app/utils/models/IEvent";
+import { ISort } from "@/app/utils/models/ISort";
 
-interface ISortByName {
-    event: IEvent;
-    setEvent: React.Dispatch<React.SetStateAction<IEvent | null>>;
-}
-
-export const sortByName = ({ event, setEvent }: ISortByName) => {
+export const sortByName = ({ event, setEvent }: ISort) => {
     let sortedList = [...event.guestList].sort((a, b) =>
         a.name.localeCompare(b.name, 'sv')
     );
