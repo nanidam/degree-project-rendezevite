@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import "./style.scss";
 import { ReactSVG } from "react-svg";
 import { useEffect, useState } from "react";
+import HambugarMenu from "./utils/components/hamburgarMenu";
 
 const Home = () => {
   const router = useRouter();
@@ -27,6 +28,7 @@ const Home = () => {
 
   return (
     <main>
+      <HambugarMenu />
       <nav className="welcome-nav">
         <a className="register-link" href="/register">
           Register
