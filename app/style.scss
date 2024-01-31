@@ -1,42 +1,11 @@
 @import "globals.scss";
 @import "./utils/constants.scss";
 
-.welcome-nav {
+.welcome-span {
   display: flex;
   align-items: center;
   position: absolute;
   right: 0;
-
-  .profile-icon {
-    margin: 10px;
-    cursor: pointer;
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .login-btn {
-    height: 35px;
-    width: 100px;
-    border-radius: 15px;
-    margin: 10px;
-    font-size: 1.3rem;
-    font-family: "Alegreya";
-    background-color: transparent;
-    transition: ease-in-out 0.3s;
-    cursor: pointer;
-
-    &:hover {
-      background: $olive-green;
-      color: $off-white;
-    }
-  }
-
-  .register-link {
-    text-decoration: none;
-    color: $dark-green;
-    font-family: "Alegreya";
-    font-size: 1.3rem;
-  }
 }
 
 .welcome-container {
@@ -45,7 +14,6 @@
   justify-content: center;
   padding: 20px;
   margin: 0 auto;
-  // background-image: url("../public/gold-confetti.png");
 
   .welcome-header {
     font-size: 3rem;
