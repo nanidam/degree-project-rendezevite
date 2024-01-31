@@ -5,13 +5,15 @@ import "./style/hamburgarMenu.scss";
 import { ReactSVG } from "react-svg";
 import Logout from "./logout";
 import { useRouter } from "next/navigation";
+import MenuIconsDesktop from "./menuIconsDesktop";
+import MenuBottomLinks from "./menuBottomContainer";
 
 const HambugarMenu = () => {
-  const router = useRouter();
+  // const router = useRouter();
 
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
   const [glideOut, setGlideOut] = useState<boolean>(false);
-  const [loggedIn, setLoggedIn] = useState<boolean>(true);
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
   //TODO: Add logic to check if user is logged in
   const [isDesktop, setIsDesktop] = useState<boolean>(false);
 
@@ -41,41 +43,12 @@ const HambugarMenu = () => {
       <nav
         className={`menu ${isMenuOpen ? "open" : "close"} ${glideOut ? "glide-out" : ""}  `}
       >
-        <button className="menu-btn" onClick={toggleMenu}>
-          {isDesktop && !isMenuOpen ? (
-            <div className="menu-icons-desktop">
-              {loggedIn && (
-                <>
-                  <ReactSVG className="menu-desktop-icon" src="/svgs/plus.svg" />
-                  <hr className="menu-desktop-hr" />
-                </>
-              )}
-              <ReactSVG className="menu-desktop-icon" src="/svgs/home.svg" />
-
-              {loggedIn && (
-                <>
-                  <ReactSVG className="menu-desktop-icon" src="/svgs/calendar.svg" />
-                </>
-              )}
-              <ReactSVG className="menu-desktop-icon" src="/svgs/diamond.svg" />
-              <ReactSVG className="menu-desktop-icon" src="/svgs/settings.svg" />
-
-              <hr className="menu-desktop-hr" />
-              {loggedIn ? (
-                <Logout />
-              ) : (
-                <>
-                  <ReactSVG className="menu-desktop-icon" src="/svgs/plus.svg" />
-                  <ReactSVG className="menu-desktop-icon" src="/svgs/profile.svg" />
-                </>
-              )}
-            </div>
-          ) : isMenuOpen ? (
-            <ReactSVG className="menu-close-icon" src="/svgs/menu-close.svg" />
-          ) : (
-            <ReactSVG className="menu-open-icon" src="/svgs/menu-open.svg" />
-          )}
-        </button>
+        <MenuIconsDesktop
+          onClick={toggleMenu}
+          isDesktop={isDesktop}
+          isMenuOpen={isMenuOpen}
+          loggedIn={loggedIn}
+        ></MenuIconsDesktop>
 
         <ul
           className={`menu-items ${isMenuOpen ? "open" : "close"} ${
@@ -127,30 +100,7 @@ const HambugarMenu = () => {
           <hr className="menu-hr" />
 
           <div className="menu-bottom-container">
-            {loggedIn ? (
-              <Logout></Logout>
-            ) : (
-              <>
-                <button
-                  className="menu-bottom"
-                  onClick={() => {
-                    router.push("/register");
-                  }}
-                >
-                  <ReactSVG src="/svgs/plus.svg" />
-                  Register
-                </button>
-                <button
-                  className="menu-bottom"
-                  onClick={() => {
-                    router.push("/api/auth/signin");
-                  }}
-                >
-                  <ReactSVG src="/svgs/profile.svg" />
-                  Login
-                </button>
-              </>
-            )}
+            <MenuBottomLinks loggedIn={loggedIn}></MenuBottomLinks>
           </div>
         </ul>
       </nav>
