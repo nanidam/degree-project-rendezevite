@@ -9,7 +9,7 @@ const Logout = () => {
   };
   return (
     <section className="logout-btn-container">
-      <ReactSVG className="logout-icon" src="/logout.svg" onClick={handleLogout} />
+      <ReactSVG className="logout-icon" src="/svgs/logout-btn.svg" onClick={handleLogout} />
     </section>
   );
 };
