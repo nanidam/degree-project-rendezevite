@@ -62,14 +62,14 @@ export const GuestList = ({
         <button
           className="sort-btn sort-rsvp-btn"
           data-sort="responded"
-          onClick={() => sortByRsvp()}
+          onClick={() => sortByRsvp({ event, setEvent })}
         >
           RSVP
         </button>
         <button
           className="sort-btn sort-attending-btn"
           data-sort="attending"
-          onClick={() => sortByAttending()}
+          onClick={() => sortByAttending({ event, setEvent })}
         >
           Attending
         </button>
