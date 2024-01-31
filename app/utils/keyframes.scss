@@ -4,14 +4,34 @@
     transform-origin: left;
     transform-skew: 20deg;
   }
-  50% {
+  100% {
     transform: translateX(0);
     transform-origin: center;
     transform-skew: 0;
   }
+}
+
+@keyframes glideIn {
+  0% {
+    transform: translateX(-50%);
+    transform-origin: left;
+    transform-skew: 20deg;
+  }
   100% {
     transform: translateX(0);
     transform-origin: center;
+    transform-skew: 0;
+  }
+}
+
+@keyframes glideOut {
+  0% {
+    transform: translateX(200px);
+    transform-origin: right;
+  }
+  100% {
+    transform: translateX(0);
+    transform-origin: left;
   }
 }
 
