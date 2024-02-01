@@ -23,6 +23,9 @@ import { navigateNext } from "../utils/navigateNext";
 import { navigateFirst } from "../utils/navigateFirst";
 import { navigatePrevious } from "../utils/navigatePrevious";
 import { navigateLast } from "../utils/navigateLast";
+import { saveEditGuest } from "../utils/saveEditGuest";
+import ConfirmDelete from "@/app/utils/components/confirmDelete";
+import { ReactSVG } from "react-svg";
 
 interface GuestListProps {
   event: IEvent;
@@ -40,6 +43,7 @@ export const GuestList = ({
   const [editModeId, setEditModeId] = useState<string | null>(null);
   const [paginatedList, setPaginatedList] = useState<IGuest[]>([]);
   const [page, setPage] = useState(0);
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
 
   useEffect(() => {
     setPaginatedList(event.guestList.slice(0, 5));
@@ -47,14 +51,6 @@ export const GuestList = ({
   }, [event, setPaginatedList, setPage]);
 
   const totalPages = Math.ceil(event.guestList.length / 5) || 1;
-  const handleSaveClick = async (
-    e: React.FormEvent<HTMLFormElement>,
-    guestId: string
-  ) => {
-    e.preventDefault();
-
-    console.log("save", guestId);
-  };
 
   return (
     <article className="admin-wrapper">
@@ -89,12 +85,16 @@ export const GuestList = ({
             header={
               <div className="accordion-info">
                 <p className="guest-name">{guest.name}</p>
-                <p className="guest-rsvpd">X</p>
-                <p className="guest-rsvpd">V</p>
+                <div className="guest-rsvpd">
+                  <ReactSVG src="/svgs/positive.svg" />
+                </div>
+                <div className="guest-rsvpd">
+                  <ReactSVG src="/svgs/negative.svg" />
+                </div>
               </div>
             }
           >
-            <form onSubmit={(e) => handleSaveClick(e, guest.id)}>
+            <form onSubmit={(e) => saveEditGuest({ e, guestId: guest.id })}>
               <label htmlFor="guest-name">
                 Name:
                 <input
@@ -407,6 +407,14 @@ export const GuestList = ({
 
                   <button
                     type="button"
+                    onClick={() => setShowConfirmDelete(true)}
+                    className="cancel-btn"
+                  >
+                    Delete
+                  </button>
+
+                  <button
+                    type="button"
                     onClick={() =>
                       cancelEditMode(
                         event.guestList,
@@ -421,6 +429,14 @@ export const GuestList = ({
                 </>
               )}
             </form>
+            {showConfirmDelete && (
+              <ConfirmDelete
+                setShowConfirmDelete={setShowConfirmDelete}
+                guestId={guest.id}
+                event={event}
+                setEvent={setEvent}
+              />
+            )}
           </AccordionItem>
         ))}
         <div className="pagination">
