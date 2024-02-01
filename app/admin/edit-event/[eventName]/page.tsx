@@ -7,7 +7,6 @@ const EditEvent = async ({
 }: {
   readonly params: { readonly eventName: string };
 }) => {
-  console.log(eventName);
   const userId = await getUserId();
   if (!userId) return;
 

@@ -9,7 +9,6 @@ export const updateEventPassword = async (eventPassword: string, eventId: string
         data: { eventPassword },
     });
 
-    console.log(result)
     return result.eventPassword
 }
 

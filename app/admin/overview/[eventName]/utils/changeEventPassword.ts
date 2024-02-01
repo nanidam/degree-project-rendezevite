@@ -7,7 +7,7 @@ export const changeEventPassword = async ({ e, eventId, setEditPassword }: IChan
     const data = new FormData(e.currentTarget);
     const eventPassword = data.get("eventPassword") as string;
 
-    const newPassword = await updateEventPassword(eventPassword, eventId);
+    await updateEventPassword(eventPassword, eventId);
 
     setEditPassword(false);
 };
