@@ -25,6 +25,7 @@ import { navigatePrevious } from "../utils/navigatePrevious";
 import { navigateLast } from "../utils/navigateLast";
 import { saveEditGuest } from "../utils/saveEditGuest";
 import ConfirmDelete from "@/app/utils/components/confirmDelete";
+import { ReactSVG } from "react-svg";
 
 interface GuestListProps {
   event: IEvent;
@@ -84,8 +85,12 @@ export const GuestList = ({
             header={
               <div className="accordion-info">
                 <p className="guest-name">{guest.name}</p>
-                <p className="guest-rsvpd">X</p>
-                <p className="guest-rsvpd">V</p>
+                <div className="guest-rsvpd">
+                  <ReactSVG src="/svgs/positive.svg" />
+                </div>
+                <div className="guest-rsvpd">
+                  <ReactSVG src="/svgs/negative.svg" />
+                </div>
               </div>
             }
           >

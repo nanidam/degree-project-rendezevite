@@ -8,9 +8,7 @@ export const EventInfo = ({ eventDate, eventId }: EventInfoProps) => {
     <article className="admin-wrapper">
       <h3>Info</h3>
       <p>Event date: {eventDate}</p>
-      <p>
-        Event link: www.rendezevite.com/<a>{eventId}</a>
-      </p>
+      <p>Event link: www.rendezevite.com/{eventId}</p>
       {/* <button className="admin-btn" onClick={editInvite}>
           Edit invitation
         </button> */}
