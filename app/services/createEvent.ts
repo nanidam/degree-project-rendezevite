@@ -2,19 +2,17 @@
 
 import prisma from "../db";
 import { getEvent } from "./getEvent";
-interface ICreateEvent {
+export interface ICreateEvent {
   eventName: string;
   eventDate: string;
   userId: string;
   eventPassword: string;
+  eventId?: string
 }
 
 const createEvent = async ({ eventDate, eventName, userId, eventPassword }: ICreateEvent) => {
   const existingEvent = await getEvent(userId, eventName);
-  if (existingEvent) {
-    console.error("Error creating event:", "Event already exists");
-    return null;
-  }
+  if (existingEvent) return;
 
   const newEvent = await prisma.event.create({
     data: {
@@ -25,7 +23,6 @@ const createEvent = async ({ eventDate, eventName, userId, eventPassword }: ICre
     },
   });
 
-  console.log("Created event:", newEvent);
   return newEvent;
 };
 
