@@ -8,10 +8,10 @@ export interface IEvent {
     userId: string;
     eventPassword: string;
     includeFood: boolean | null;
-    includeAllergies: boolean;
+    includeAllergies: boolean | null;
     inviteLink: string | null;
     template: string | null;
-    text: string;
-    header: string;
+    text: string | null;
+    header: string | null;
     guestList: IGuest[];
 }
