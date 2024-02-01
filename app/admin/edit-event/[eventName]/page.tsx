@@ -14,7 +14,7 @@ const EditEvent = async ({
   const event = await getEvent(userId, eventName);
   if (!event) return;
 
-  return <CreateEditEvent event={event} />;
+  return <CreateEditEvent event={event} userId={userId} />;
 };
 
 export default EditEvent;

@@ -5,17 +5,17 @@ import "./style/createEditEvent.scss";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import ReturnBtn from "@/app/utils/components/returnBtn";
-import { handleCreateEvent } from "../handleCreateEvent";
+import { handleCreateEditEvent } from "../handleCreateEditEvent";
 import { IEvent } from "../models/IEvent";
 
 interface CreateEditEventProps {
   event?: IEvent;
+  userId: string;
 }
-const CreateEditEvent = ({ event }: CreateEditEventProps) => {
+const CreateEditEvent = ({ event, userId }: CreateEditEventProps) => {
   const router = useRouter();
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
-  console.log(event?.eventDate);
-  // TODO: Fix EYE in password
+  // TODO: Fix EYE in password?
   return (
     <>
       <section className="create-event-container">
@@ -34,12 +34,14 @@ const CreateEditEvent = ({ event }: CreateEditEventProps) => {
         </article>
         <article className="create-event-wrapper">
           <form
-            onSubmit={(e) => handleCreateEvent({ e, router, setErrorMsg })}
+            onSubmit={(e) =>
+              handleCreateEditEvent({ e, router, setErrorMsg, event, userId })
+            }
             className="create-event-form"
           >
             <div className="create-event-form-wrapper">
               <label className="create-event-label" htmlFor="event-name">
-                Event name:
+                Event Name:
                 <input
                   className="create-event-input"
                   type="text"
@@ -49,7 +51,7 @@ const CreateEditEvent = ({ event }: CreateEditEventProps) => {
                 />
               </label>
               <label className="create-event-label" htmlFor="event-date">
-                Event date:
+                Event Date:
                 <input
                   className="create-event-input"
                   type="date"
@@ -58,7 +60,7 @@ const CreateEditEvent = ({ event }: CreateEditEventProps) => {
                 />
               </label>
               <label className="create-event-label" htmlFor="event-date">
-                Event password:
+                Event Password:
                 <input
                   className="create-event-input"
                   type="text"
