@@ -24,6 +24,7 @@ import { navigateFirst } from "../utils/navigateFirst";
 import { navigatePrevious } from "../utils/navigatePrevious";
 import { navigateLast } from "../utils/navigateLast";
 import { saveEditGuest } from "../utils/saveEditGuest";
+import ConfirmDelete from "@/app/utils/components/confirmDelete";
 
 interface GuestListProps {
   event: IEvent;
@@ -41,6 +42,7 @@ export const GuestList = ({
   const [editModeId, setEditModeId] = useState<string | null>(null);
   const [paginatedList, setPaginatedList] = useState<IGuest[]>([]);
   const [page, setPage] = useState(0);
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
 
   useEffect(() => {
     setPaginatedList(event.guestList.slice(0, 5));
@@ -400,6 +402,14 @@ export const GuestList = ({
 
                   <button
                     type="button"
+                    onClick={() => setShowConfirmDelete(true)}
+                    className="cancel-btn"
+                  >
+                    Delete
+                  </button>
+
+                  <button
+                    type="button"
                     onClick={() =>
                       cancelEditMode(
                         event.guestList,
@@ -414,6 +424,14 @@ export const GuestList = ({
                 </>
               )}
             </form>
+            {showConfirmDelete && (
+              <ConfirmDelete
+                setShowConfirmDelete={setShowConfirmDelete}
+                guestId={guest.id}
+                event={event}
+                setEvent={setEvent}
+              />
+            )}
           </AccordionItem>
         ))}
         <div className="pagination">
