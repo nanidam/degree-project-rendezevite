@@ -57,9 +57,9 @@ const CreateRsvp = ({
           </p>
           <div className="svgs-wrapper">
             {/* <ReactSVG src="/cutlery.svg" /> */}
-            <ReactSVG src="/dinner.svg" />
-            <ReactSVG src="/cake-piece.svg" />
-            <ReactSVG src="/pink-cocktail.svg" />
+            <ReactSVG src="/svgs/dinner.svg" />
+            <ReactSVG src="/svgs/cake-piece.svg" />
+            <ReactSVG src="/svgs/pink-cocktail.svg" />
           </div>
         </article>
 
