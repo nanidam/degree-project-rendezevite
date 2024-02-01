@@ -23,6 +23,7 @@ import { navigateNext } from "../utils/navigateNext";
 import { navigateFirst } from "../utils/navigateFirst";
 import { navigatePrevious } from "../utils/navigatePrevious";
 import { navigateLast } from "../utils/navigateLast";
+import { saveEditGuest } from "../utils/saveEditGuest";
 
 interface GuestListProps {
   event: IEvent;
@@ -47,14 +48,6 @@ export const GuestList = ({
   }, [event, setPaginatedList, setPage]);
 
   const totalPages = Math.ceil(event.guestList.length / 5) || 1;
-  const handleSaveClick = async (
-    e: React.FormEvent<HTMLFormElement>,
-    guestId: string
-  ) => {
-    e.preventDefault();
-
-    console.log("save", guestId);
-  };
 
   return (
     <article className="admin-wrapper">
@@ -94,7 +87,7 @@ export const GuestList = ({
               </div>
             }
           >
-            <form onSubmit={(e) => handleSaveClick(e, guest.id)}>
+            <form onSubmit={(e) => saveEditGuest({ e, guestId: guest.id })}>
               <label htmlFor="guest-name">
                 Name:
                 <input
