@@ -1,3 +1,5 @@
+@import "../../../../../utils/constants.scss";
+
 .admin-wrapper {
   .sorting-btns {
     margin-bottom: 1px;
@@ -8,6 +10,73 @@
     .sort-rsvp-btn,
     .sort-attending-btn {
       width: 25%;
+    }
+  }
+
+  .szh-accordion {
+    // Pagination Container
+    width: 100%;
+    // outline: 2px solid rgb(77, 17, 27);
+
+    .pagination {
+      list-style: none;
+      height: 31.5px;
+      width: 31.5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2px;
+      padding: 0;
+      cursor: pointer;
+      width: 100%;
+
+      .page-item {
+        list-style: none;
+        padding: 2px 12px;
+        height: 31.5px;
+        width: 31.5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2px;
+        background-color: #f0f0f0; /* Light Grey */
+        color: #333; /* Dark Grey */
+        border-radius: 50%; /* Rounded */
+        margin-right: 5px; /* Spacing between items */
+
+        &.active {
+          background-color: #1e50ff; /* Blue */
+          border-radius: 50%;
+        }
+      }
+    }
+
+    .szh-accordion__item {
+      .szh-accordion__item-heading {
+        .szh-accordion__item-btn {
+          padding: 0;
+          display: flex;
+          .accordion-info {
+            display: flex;
+            justify-content: left;
+            align-items: left;
+            width: 100%;
+
+            .guest-name {
+              // display: flex;
+              outline: 1px solid rgb(255, 0, 0);
+              width: 50%;
+            }
+
+            .guest-rsvpd {
+              outline: 1px solid green;
+              width: 25%;
+              text-align: center;
+              // display: flex;
+            }
+          }
+        }
+      }
     }
   }
 }

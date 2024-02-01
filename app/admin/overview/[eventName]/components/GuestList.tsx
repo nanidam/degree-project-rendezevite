@@ -1,7 +1,7 @@
 import "./style/guestList.scss";
 import { IGuest } from "@/app/utils/models/IGuest";
 import { Accordion, AccordionItem } from "@szhsin/react-accordion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { handleName } from "../utils/handleName";
 import { handleEmail } from "../utils/handleEmail";
 import { editGuest } from "../utils/editGuest";
@@ -19,14 +19,16 @@ import { sortByRsvp } from "../utils/sortByRsvp";
 import { sortByAttending } from "../utils/sortByAttending";
 import { sortByName } from "../utils/sortByName";
 import { IEvent } from "@/app/utils/models/IEvent";
+import { navigateNext } from "../utils/navigateNext";
+import { navigateFirst } from "../utils/navigateFirst";
+import { navigatePrevious } from "../utils/navigatePrevious";
+import { navigateLast } from "../utils/navigateLast";
 
 interface GuestListProps {
   event: IEvent;
   setEvent: React.Dispatch<React.SetStateAction<IEvent | null>>;
   editGuestList: IGuest[];
   setEditGuestList: React.Dispatch<React.SetStateAction<IGuest[]>>;
-  includeFood?: boolean | null;
-  includeAllergies?: boolean | null;
 }
 
 export const GuestList = ({
@@ -34,11 +36,17 @@ export const GuestList = ({
   setEvent,
   editGuestList,
   setEditGuestList,
-  includeFood,
-  includeAllergies,
 }: GuestListProps) => {
   const [editModeId, setEditModeId] = useState<string | null>(null);
+  const [paginatedList, setPaginatedList] = useState<IGuest[]>([]);
+  const [page, setPage] = useState(0);
 
+  useEffect(() => {
+    setPaginatedList(event.guestList.slice(0, 5));
+    setPage(1);
+  }, [event, setPaginatedList, setPage]);
+
+  const totalPages = Math.ceil(event.guestList.length / 5) || 1;
   const handleSaveClick = async (
     e: React.FormEvent<HTMLFormElement>,
     guestId: string
@@ -55,28 +63,37 @@ export const GuestList = ({
         <button
           className="sort-btn sort-name-btn"
           data-sort="name"
-          onClick={() => sortByName({ event, setEvent })}
+          onClick={() => sortByName({ event, setEvent, setPage })}
         >
           Name
         </button>
         <button
           className="sort-btn sort-rsvp-btn"
           data-sort="responded"
-          onClick={() => sortByRsvp({ event, setEvent })}
+          onClick={() => sortByRsvp({ event, setEvent, setPage })}
         >
-          RSVP
+          {"RSVP'd"}
         </button>
         <button
           className="sort-btn sort-attending-btn"
           data-sort="attending"
-          onClick={() => sortByAttending({ event, setEvent })}
+          onClick={() => sortByAttending({ event, setEvent, setPage })}
         >
           Attending
         </button>
       </div>
       <Accordion>
-        {event.guestList.map((guest: IGuest) => (
-          <AccordionItem key={guest.id} header={guest.name}>
+        {paginatedList.map((guest: IGuest) => (
+          <AccordionItem
+            key={guest.id}
+            header={
+              <div className="accordion-info">
+                <p className="guest-name">{guest.name}</p>
+                <p className="guest-rsvpd">X</p>
+                <p className="guest-rsvpd">V</p>
+              </div>
+            }
+          >
             <form onSubmit={(e) => handleSaveClick(e, guest.id)}>
               <label htmlFor="guest-name">
                 Name:
@@ -189,7 +206,7 @@ export const GuestList = ({
 
                   <hr />
 
-                  {includeFood && (
+                  {event.includeFood && (
                     <>
                       <label htmlFor="diet">
                         Diet:
@@ -218,7 +235,7 @@ export const GuestList = ({
                     </>
                   )}
 
-                  {includeAllergies && (
+                  {event.includeAllergies && (
                     <>
                       <label htmlFor="allergies">
                         Allergies:
@@ -319,7 +336,7 @@ export const GuestList = ({
 
                   <hr />
 
-                  {includeFood && (
+                  {event.includeFood && (
                     <>
                       <label htmlFor="additional-guest-diet">
                         Additional guest diet:
@@ -349,7 +366,7 @@ export const GuestList = ({
                     </>
                   )}
 
-                  {includeAllergies && (
+                  {event.includeAllergies && (
                     <>
                       <label htmlFor="additional-guest-allergies">
                         Additional guest allergies:
@@ -406,6 +423,52 @@ export const GuestList = ({
             </form>
           </AccordionItem>
         ))}
+        <div className="pagination">
+          <button
+            className={`first-btn${page === 1 ? " disabled" : ""}`}
+            disabled={page === 1}
+            onClick={() => navigateFirst({ setPage, event, setPaginatedList })}
+            aria-label="First page"
+          >
+            «
+          </button>
+
+          <button
+            className={`previous-btn${page === 1 ? " disabled" : ""}`}
+            disabled={page === 1}
+            onClick={() =>
+              navigatePrevious({ page, setPage, event, setPaginatedList })
+            }
+            aria-label="Previous page"
+          >
+            ‹
+          </button>
+
+          <p className="total-pages">
+            <b className="current-page-numb">{page}</b> of {totalPages}
+          </p>
+          <button
+            className={`next-btn${page === totalPages ? " disabled" : ""}`}
+            disabled={page === totalPages}
+            onClick={() =>
+              navigateNext({ page, setPage, event, setPaginatedList })
+            }
+            aria-label="Next page"
+          >
+            ›
+          </button>
+
+          <button
+            className={`last-btn${page === totalPages ? " disabled" : ""}`}
+            disabled={page === totalPages}
+            onClick={() =>
+              navigateLast({ page, setPage, event, setPaginatedList })
+            }
+            aria-label="Last page"
+          >
+            »
+          </button>
+        </div>
       </Accordion>
     </article>
   );

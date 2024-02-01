@@ -65,8 +65,6 @@ const AdminOverview = ({
         setEvent={setEvent}
         editGuestList={editGuestList}
         setEditGuestList={setEditGuestList}
-        includeFood={event.includeFood}
-        includeAllergies={event.includeAllergies}
       />
     </section>
   );
