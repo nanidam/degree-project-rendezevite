@@ -7,6 +7,7 @@ import createEvent from "@/app/services/createEvent";
 import { useRouter } from "next/navigation";
 import Logout from "@/app/utils/components/logout";
 import Image from "next/image";
+import ReturnBtn from "@/app/utils/components/returnBtn";
 
 const CREATE_EVENT_STATUS = {
   EMPTY_NAME: "Please give your event a name",
@@ -82,12 +83,12 @@ const CreateEvent = () => {
         <h1 className="create-event-header">Create Event</h1>
         <article className="info-text-wrapper">
           <p className="info-text">
-            Your first step is to furnish essential information for your event, including an
-            event name to help you track invitations.
+            Your first step is to furnish essential information for your event,
+            including an event name to help you track invitations.
           </p>
           <p className="info-text">
-            Select a date for your occasion, and the password will functions as a secure
-            access key for your guests to retrieve their invitations.
+            Select a date for your occasion, and the password will functions as
+            a secure access key for your guests to retrieve their invitations.
           </p>
         </article>
         <article className="create-event-wrapper">
@@ -104,7 +105,11 @@ const CreateEvent = () => {
               </label>
               <label className="create-event-label" htmlFor="event-date">
                 Event date:
-                <input className="create-event-input" type="date" name="event-date" />
+                <input
+                  className="create-event-input"
+                  type="date"
+                  name="event-date"
+                />
               </label>
               <label className="create-event-label" htmlFor="event-date">
                 Event password:
@@ -116,12 +121,20 @@ const CreateEvent = () => {
                 />
               </label>
               {errorMsg && <span className="error-message">{errorMsg}</span>}
-              <button className="submit-event-btn" type="submit">
-                Next -{">"}
-              </button>
+              <div className="next-return-wrapper">
+                <ReturnBtn />
+                <button className="submit-event-btn" type="submit">
+                  Next
+                </button>
+              </div>
             </div>
             <div className="envelope-wrapper">
-              <Image src="/gold-envelope.png" alt="envelope" width={200} height={200} />
+              <Image
+                src="/gold-envelope.png"
+                alt="envelope"
+                width={200}
+                height={200}
+              />
             </div>
           </form>
         </article>
