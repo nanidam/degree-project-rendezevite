@@ -15,5 +15,4 @@ export const getEvent = async (userId: string, eventName: string) => {
   if (event) {
     return event as IEvent;
   }
-  return null;
 };
