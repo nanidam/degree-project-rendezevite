@@ -9,7 +9,7 @@ import MenuBottomLinks from "./menuBottomContainer";
 const HamburgerMenu = () => {
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
   const [glideOut, setGlideOut] = useState<boolean>(false);
-  const [loggedIn, setLoggedIn] = useState<boolean>(true);
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
   //TODO: Add logic to check if user is logged in
   const [isDesktop, setIsDesktop] = useState<boolean>(false);
 

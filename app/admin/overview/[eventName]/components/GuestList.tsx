@@ -86,9 +86,11 @@ export const GuestList = ({
               <div className="accordion-info">
                 <p className="guest-name">{guest.name}</p>
                 <div className="guest-rsvpd">
-                  <ReactSVG src="/svgs/positive.svg" />
+                  {guest.hasResponded ?? <ReactSVG src="/svgs/positive.svg" />}
+                  <ReactSVG src="/svgs/negative.svg" />
                 </div>
                 <div className="guest-rsvpd">
+                  {guest.attending ?? <ReactSVG src="/svgs/positive.svg" />}
                   <ReactSVG src="/svgs/negative.svg" />
                 </div>
               </div>
