@@ -1,0 +1,125 @@
+@import "../../../globals.scss";
+@import "../../constants.scss";
+@import "../../keyframes.scss";
+
+.create-event-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  font-family: "Alegreya";
+
+  .create-event-header {
+    text-align: center;
+    animation: swingIn 0.5s ease-in-out forwards;
+  }
+
+  .info-text-wrapper {
+    background-color: $white;
+    border-radius: 15px;
+    padding: 10px;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    animation: swingIn 0.5s ease-in-out forwards;
+
+    .info-text {
+      margin: 10px;
+    }
+  }
+
+  .create-event-wrapper {
+    animation: swingIn 0.5s ease-in-out forwards;
+
+    .create-event-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 1.3rem;
+      background-color: $white;
+      border-radius: 15px;
+      padding: 10px;
+
+      .create-event-form-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .create-event-label {
+          width: 100%;
+          margin-bottom: 20px;
+          font-size: 1.4rem;
+        }
+
+        .create-event-input {
+          border: none;
+          border-bottom: 1px solid $grey;
+          background-color: transparent;
+          font-size: 1.2rem;
+          margin: 10px 0;
+          width: 100%;
+        }
+
+        .next-return-wrapper {
+          display: flex;
+          width: 100%;
+          justify-content: center;
+          gap: 15px;
+          .submit-event-btn {
+            margin: 15px 0;
+            height: 40px;
+            border-radius: 15px;
+            width: 40%;
+            background-color: transparent;
+            border-color: $olive-green;
+            font-size: 1.2rem;
+            transition: ease-in-out 0.3s;
+            cursor: pointer;
+
+            &:hover {
+              background: $olive-green;
+              color: $off-white;
+            }
+          }
+        }
+      }
+    }
+
+    .envelope-wrapper {
+      display: none;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .create-event-container {
+    justify-content: center;
+    align-items: center;
+
+    .info-text-wrapper {
+      max-width: calc(729px - 40px);
+      text-align: center;
+    }
+
+    .create-event-wrapper {
+      .create-event-form {
+        flex-direction: row;
+        justify-content: center;
+        gap: 30px;
+
+        .create-event-form-wrapper {
+          margin: 30px;
+
+          .next-return-wrapper {
+            .submit-event-btn {
+              width: 30%;
+            }
+          }
+        }
+
+        .envelope-wrapper {
+          display: block;
+          margin-right: 15px;
+        }
+      }
+    }
+  }
+}

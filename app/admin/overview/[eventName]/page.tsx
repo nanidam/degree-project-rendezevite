@@ -50,7 +50,11 @@ const AdminOverview = ({
       </h1>
       <HamburgerMenu />
 
-      <EventInfo eventDate={event.eventDate} eventId={event.id} />
+      <EventInfo
+        eventDate={event.eventDate}
+        eventId={event.id}
+        eventName={event.eventName}
+      />
 
       <EventPassword eventPassword={event.eventPassword} eventId={event.id} />
 
