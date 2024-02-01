@@ -3,7 +3,6 @@
 import { useState } from "react";
 import "./style/createEditEvent.scss";
 import { useRouter } from "next/navigation";
-import Logout from "@/app/utils/components/logout";
 import Image from "next/image";
 import ReturnBtn from "@/app/utils/components/returnBtn";
 import { handleCreateEvent } from "../handleCreateEvent";
@@ -15,6 +14,8 @@ interface CreateEditEventProps {
 const CreateEditEvent = ({ event }: CreateEditEventProps) => {
   const router = useRouter();
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  console.log(event?.eventDate);
+  // TODO: Fix EYE in password
   return (
     <>
       <section className="create-event-container">
@@ -53,6 +54,7 @@ const CreateEditEvent = ({ event }: CreateEditEventProps) => {
                   className="create-event-input"
                   type="date"
                   name="event-date"
+                  defaultValue={event?.eventDate}
                 />
               </label>
               <label className="create-event-label" htmlFor="event-date">
@@ -62,6 +64,7 @@ const CreateEditEvent = ({ event }: CreateEditEventProps) => {
                   type="text"
                   name="event-password"
                   placeholder="Password"
+                  defaultValue={event?.eventPassword}
                 />
               </label>
               {errorMsg && <span className="error-message">{errorMsg}</span>}
