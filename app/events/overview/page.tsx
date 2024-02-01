@@ -60,16 +60,13 @@ const EventOverview = () => {
               {events.map((eventName) => (
                 <React.Fragment key={eventName}>
                   <li className="current-event">
-                    <Link
-                      className="event"
-                      href={`/admin/overview/${eventName}`}
-                    >
+                    <Link className="event" href={`/admin/overview/${eventName}`}>
                       {eventName}
                     </Link>
                     <div className="edit-delete-icons">
                       <ReactSVG
                         className="trash-icon"
-                        src="/trash-can.svg"
+                        src="/svgs/trash-can.svg"
                         onClick={() => handleDeleteEvent(eventName)}
                       />
                     </div>

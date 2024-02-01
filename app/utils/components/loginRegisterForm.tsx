@@ -119,13 +119,13 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
                 {showPassword ? (
                   <ReactSVG
                     className="svg-eye"
-                    src="/closed-eye.svg"
+                    src="/svgs/closed-eye.svg"
                     onClick={handleTogglePasswordVisibility}
                   />
                 ) : (
                   <ReactSVG
                     className="svg-eye"
-                    src="/opened-eye.svg"
+                    src="/svgs/opened-eye.svg"
                     onClick={handleTogglePasswordVisibility}
                   />
                 )}
