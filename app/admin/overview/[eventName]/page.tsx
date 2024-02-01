@@ -1,6 +1,5 @@
 "use client";
 
-import Logout from "@/app/utils/components/logout";
 import "./style.scss";
 import { useCallback, useEffect, useState } from "react";
 import { getEvent } from "@/app/services/getEvent";
@@ -12,6 +11,7 @@ import { GuestList } from "./components/GuestList";
 import { EventInfo } from "./components/EventInfo";
 import { EventPassword } from "./components/EventPassword";
 import { InviteGuests } from "./components/InviteGuests";
+import HamburgerMenu from "@/app/utils/components/hamburgerMenu";
 
 const AdminOverview = ({
   params: { eventName },
@@ -48,7 +48,7 @@ const AdminOverview = ({
       <h1 className="admin-header">
         {event.eventName.charAt(0).toUpperCase() + event.eventName.slice(1)}
       </h1>
-      <Logout></Logout>
+      <HamburgerMenu />
 
       <EventInfo eventDate={event.eventDate} eventId={event.id} />
 

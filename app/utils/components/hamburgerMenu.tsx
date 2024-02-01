@@ -1,19 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import "./style/hamburgarMenu.scss";
+import "./style/hamburgerMenu.scss";
 import { ReactSVG } from "react-svg";
-import Logout from "./logout";
-import { useRouter } from "next/navigation";
 import MenuIconsDesktop from "./menuIconsDesktop";
 import MenuBottomLinks from "./menuBottomContainer";
 
-const HambugarMenu = () => {
-  // const router = useRouter();
-
+const HamburgerMenu = () => {
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
   const [glideOut, setGlideOut] = useState<boolean>(false);
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
+  const [loggedIn, setLoggedIn] = useState<boolean>(true);
   //TODO: Add logic to check if user is logged in
   const [isDesktop, setIsDesktop] = useState<boolean>(false);
 
@@ -41,7 +37,9 @@ const HambugarMenu = () => {
   return (
     <>
       <nav
-        className={`menu ${isMenuOpen ? "open" : "close"} ${glideOut ? "glide-out" : ""}  `}
+        className={`menu ${isMenuOpen ? "open" : "close"} ${
+          glideOut ? "glide-out" : ""
+        }  `}
       >
         <MenuIconsDesktop
           onClick={toggleMenu}
@@ -100,7 +98,7 @@ const HambugarMenu = () => {
           <hr className="menu-hr" />
 
           <div className="menu-bottom-container">
-            <MenuBottomLinks loggedIn={loggedIn}></MenuBottomLinks>
+            <MenuBottomLinks loggedIn={loggedIn} />
           </div>
         </ul>
       </nav>
@@ -108,4 +106,4 @@ const HambugarMenu = () => {
   );
 };
 
-export default HambugarMenu;
+export default HamburgerMenu;
