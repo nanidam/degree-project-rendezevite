@@ -1,26 +1,26 @@
 "use client";
 
+import { ReactSVG } from "react-svg";
 import "./style.scss";
 import HamburgerMenu from "./utils/components/hamburgerMenu";
 import RegisterLoginHome from "./utils/components/registerLoginHome";
+import RendezEviteLogo from "./utils/components/rendezEviteLogo";
 
 const Home = () => {
   return (
     <main>
-      <HamburgerMenu />
       <span className="welcome-span">
         <RegisterLoginHome></RegisterLoginHome>
       </span>
-
+      {/* <RendezEviteLogo></RendezEviteLogo> */}
       <section className="welcome-container">
-        <h1 className="welcome-header-svg">RendezEvite icon</h1>
         <article className="welcome-text-container">
           <h2 className="welcome-header">Easy, simple, done!</h2>
           <p className="welcome-text">
-            Whether it&apos;s a casual gathering or a special celebration,
-            RendezEvite makes it easy to customize your invites and manage all
-            the details seamlessly. <br /> <br /> Join us and experience the
-            simplicity of event planning at your fingertips.
+            Whether it&apos;s a casual gathering or a special celebration, RendezEvite makes
+            it easy to customize your invites and manage all the details seamlessly. <br />{" "}
+            <br /> Join us and experience the simplicity of event planning at your
+            fingertips.
           </p>
         </article>
         <article className="overview-wrapper how-to-use">
