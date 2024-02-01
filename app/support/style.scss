@@ -1,0 +1,58 @@
+@import "../globals.scss";
+@import "../utils/constants.scss";
+@import "../utils/keyframes.scss";
+
+.support {
+  padding: 10px;
+
+  .support-wrapper {
+    background-color: $white;
+    border-radius: 15px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+
+    .support-text {
+      font-family: "Alegreya";
+      font-size: 1.3rem;
+    }
+
+    .support-svgs {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20%;
+      margin: 10px;
+    }
+
+    .support-btn-return {
+      align-self: center;
+      margin: 15px 0;
+      height: 40px;
+      border-radius: 15px;
+      width: 200px;
+      background-color: transparent;
+      border-color: $olive-green;
+      font-size: 1.2rem;
+      transition: ease-in-out 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        background: $olive-green;
+        color: $off-white;
+      }
+    }
+  }
+}
+@media screen and (min-width: 768px) {
+  .support {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+
+    .support-wrapper {
+      max-width: 400px;
+    }
+  }
+}
