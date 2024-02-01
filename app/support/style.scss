@@ -24,24 +24,6 @@
       gap: 20%;
       margin: 10px;
     }
-
-    .support-btn-return {
-      align-self: center;
-      margin: 15px 0;
-      height: 40px;
-      border-radius: 15px;
-      width: 200px;
-      background-color: transparent;
-      border-color: $olive-green;
-      font-size: 1.2rem;
-      transition: ease-in-out 0.3s;
-      cursor: pointer;
-
-      &:hover {
-        background: $olive-green;
-        color: $off-white;
-      }
-    }
   }
 }
 @media screen and (min-width: 768px) {

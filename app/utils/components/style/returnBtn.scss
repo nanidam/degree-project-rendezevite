@@ -1,0 +1,24 @@
+@import "../../constants.scss";
+.about-btn-return {
+  align-self: center;
+  margin: 15px 0;
+  height: 40px;
+  border-radius: 15px;
+  width: 40%;
+  background-color: transparent;
+  border-color: $tan;
+  font-size: 1.2rem;
+  transition: ease-in-out 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    background: $tan;
+    color: $off-white;
+  }
+}
+
+@media screen and (min-width: 767px) {
+  .about-btn-return {
+    width: 30%;
+  }
+}

@@ -2,6 +2,7 @@
 
 import { ReactSVG } from "react-svg";
 import "./style.scss";
+import ReturnBtn from "../utils/components/returnBtn";
 
 const Support = () => {
   return (
@@ -9,8 +10,8 @@ const Support = () => {
       <h1>Support Page</h1>
       <article className="support-wrapper">
         <p className="support-text">
-          If you encounter any issues with the application, please don&apos;t hesitate to
-          contact our {""}
+          If you encounter any issues with the application, please don&apos;t
+          hesitate to contact our {""}
           <a href="mailto:rendezevite@gmail.com">support</a>.
         </p>
         <div className="support-svgs">
@@ -18,13 +19,7 @@ const Support = () => {
           <ReactSVG src="/svgs/setting-tools.svg" />
         </div>
 
-        <button
-          className="support-btn-return"
-          type="button"
-          onClick={() => window.history.back()}
-        >
-          Return
-        </button>
+        <ReturnBtn />
       </article>
     </section>
   );

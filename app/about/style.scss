@@ -26,24 +26,6 @@
       margin: 0;
       margin-bottom: 15px;
     }
-
-    .about-btn-return {
-      align-self: center;
-      margin: 15px 0;
-      height: 40px;
-      border-radius: 15px;
-      width: 200px;
-      background-color: transparent;
-      border-color: $olive-green;
-      font-size: 1.2rem;
-      transition: ease-in-out 0.3s;
-      cursor: pointer;
-
-      &:hover {
-        background: $olive-green;
-        color: $off-white;
-      }
-    }
   }
 }
 
