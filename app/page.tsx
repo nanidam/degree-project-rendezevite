@@ -1,50 +1,17 @@
 "use client";
-import { useRouter } from "next/navigation";
+
 import "./style.scss";
-import { ReactSVG } from "react-svg";
-import { useEffect, useState } from "react";
 import HambugarMenu from "./utils/components/hamburgarMenu";
+import RegisterLoginHome from "./utils/components/registerLoginHome";
 
 const Home = () => {
-  const router = useRouter();
-  const [desktopMode, setDesktopMode] = useState(false);
-
-  const handleLogin = () => {
-    router.push("/api/auth/signin");
-  };
-
-  useEffect(() => {
-    const handleResize = () => {
-      setDesktopMode(window.innerWidth >= 768);
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
   return (
     <main>
       <HambugarMenu />
-      <nav className="welcome-nav">
-        <a className="register-link" href="/register">
-          Register
-        </a>
-        {desktopMode ? (
-          <button className="login-btn" type="button" onClick={handleLogin}>
-            Login
-          </button>
-        ) : (
-          <ReactSVG
-            className="profile-icon"
-            src="/profile-icon.svg"
-            onClick={handleLogin}
-          />
-        )}
-      </nav>
+      <span className="welcome-span">
+        <RegisterLoginHome></RegisterLoginHome>
+      </span>
+
       <section className="welcome-container">
         <h1 className="welcome-header-svg">RendezEvite icon</h1>
         <article className="welcome-text-container">

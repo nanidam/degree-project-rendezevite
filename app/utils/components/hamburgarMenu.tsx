@@ -1,18 +1,21 @@
 "use client";
 
-import { useState } from "react";
-import "./style/menu.scss";
+import { useEffect, useState } from "react";
+import "./style/hamburgarMenu.scss";
 import { ReactSVG } from "react-svg";
 import Logout from "./logout";
 import { useRouter } from "next/navigation";
+import MenuIconsDesktop from "./menuIconsDesktop";
+import MenuBottomLinks from "./menuBottomContainer";
 
 const HambugarMenu = () => {
-  const router = useRouter();
+  // const router = useRouter();
 
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
   const [glideOut, setGlideOut] = useState<boolean>(false);
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   //TODO: Add logic to check if user is logged in
+  const [isDesktop, setIsDesktop] = useState<boolean>(false);
 
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
@@ -22,16 +25,30 @@ const HambugarMenu = () => {
     }
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <>
-      <nav className={`menu ${isMenuOpen ? "open" : "close"} `}>
-        <button className="menu-btn" onClick={toggleMenu}>
-          {isMenuOpen ? (
-            <ReactSVG className="menu-close-icon" src="/svgs/menu-close.svg" />
-          ) : (
-            <ReactSVG className="menu-open-icon" src="/svgs/menu-open.svg" />
-          )}
-        </button>
+      <nav
+        className={`menu ${isMenuOpen ? "open" : "close"} ${glideOut ? "glide-out" : ""}  `}
+      >
+        <MenuIconsDesktop
+          onClick={toggleMenu}
+          isDesktop={isDesktop}
+          isMenuOpen={isMenuOpen}
+          loggedIn={loggedIn}
+        ></MenuIconsDesktop>
 
         <ul
           className={`menu-items ${isMenuOpen ? "open" : "close"} ${
@@ -50,7 +67,7 @@ const HambugarMenu = () => {
             </>
           )}
 
-          <a className="menu-opt-link" href="/create-event">
+          <a className="menu-opt-link" href="/">
             <li className="menu-opt">
               <ReactSVG src="/svgs/home.svg" />
               <span>Home</span>
@@ -58,7 +75,7 @@ const HambugarMenu = () => {
           </a>
 
           {loggedIn && (
-            <a className="menu-opt-link" href="/create-event">
+            <a className="menu-opt-link" href="/events">
               <li className="menu-opt">
                 <ReactSVG src="/svgs/calendar.svg" />
                 <span>Events</span>
@@ -66,14 +83,14 @@ const HambugarMenu = () => {
             </a>
           )}
 
-          <a className="menu-opt-link" href="/create-event">
+          <a className="menu-opt-link" href="/about">
             <li className="menu-opt">
               <ReactSVG src="/svgs/diamond.svg" />
               <span>About</span>
             </li>
           </a>
 
-          <a className="menu-opt-link" href="/create-event">
+          <a className="menu-opt-link" href="/support">
             <li className="menu-opt">
               <ReactSVG className="menu-opt-icon" src="/svgs/settings.svg" />
               <span>Support</span>
@@ -83,30 +100,7 @@ const HambugarMenu = () => {
           <hr className="menu-hr" />
 
           <div className="menu-bottom-container">
-            {loggedIn ? (
-              <Logout></Logout>
-            ) : (
-              <>
-                <button
-                  className="menu-bottom"
-                  onClick={() => {
-                    router.push("/register");
-                  }}
-                >
-                  <ReactSVG src="/svgs/plus.svg" />
-                  Register
-                </button>
-                <button
-                  className="menu-bottom"
-                  onClick={() => {
-                    router.push("/api/auth/signin");
-                  }}
-                >
-                  <ReactSVG src="/svgs/profile.svg" />
-                  Login
-                </button>
-              </>
-            )}
+            <MenuBottomLinks loggedIn={loggedIn}></MenuBottomLinks>
           </div>
         </ul>
       </nav>

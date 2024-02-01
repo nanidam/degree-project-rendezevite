@@ -35,6 +35,30 @@
   }
 }
 
+@keyframes glideInDesktop {
+  0% {
+    transform: translateX(-70px);
+    transform-origin: center;
+    transform-skew: 20deg;
+  }
+  100% {
+    transform: translateX(0);
+    transform-origin: center;
+    transform-skew: 0;
+  }
+}
+
+@keyframes glideOutDesktop {
+  0% {
+    transform: translateX(0);
+    transform-origin: center;
+  }
+  100% {
+    transform: translateX(0);
+    transform-origin: left;
+  }
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
