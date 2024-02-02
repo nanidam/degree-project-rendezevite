@@ -4,8 +4,7 @@ import prisma from "../db";
 import { ICreateEvent } from "./createEvent";
 
 
-const updateEventNameDatePassword = async ({ eventDate, eventName, userId, eventPassword, eventId }: ICreateEvent) => {
-
+const updateEventNameDatePassword = async ({ eventDate, eventName, userId, eventPassword, eventId, event }: ICreateEvent) => {
     const updatedEvent = await prisma.event.update({
         where: {
             id: eventId
@@ -14,7 +13,8 @@ const updateEventNameDatePassword = async ({ eventDate, eventName, userId, event
             eventName: eventName.toLowerCase(),
             eventDate,
             userId,
-            eventPassword
+            eventPassword,
+            template: event?.template
         }
     })
 

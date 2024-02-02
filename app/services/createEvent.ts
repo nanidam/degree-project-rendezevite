@@ -1,6 +1,7 @@
 "use server";
 
 import prisma from "../db";
+import { IEvent } from "../utils/models/IEvent";
 import { getEvent } from "./getEvent";
 export interface ICreateEvent {
   eventName: string;
@@ -8,6 +9,7 @@ export interface ICreateEvent {
   userId: string;
   eventPassword: string;
   eventId?: string
+  event?: IEvent
 }
 
 const createEvent = async ({ eventDate, eventName, userId, eventPassword }: ICreateEvent) => {
