@@ -3,7 +3,12 @@
 import prisma from "../db";
 import getUserId from "./getUserId";
 
-const updateEventText = async (header: string, text: string, eventName: string) => {
+interface IUpdateEventText {
+  header: string;
+  text: string;
+  eventName: string;
+}
+const updateEventText = async ({ header, text, eventName }: IUpdateEventText) => {
   const userId = await getUserId();
   if (userId) {
     const event = await prisma.event.findFirst({

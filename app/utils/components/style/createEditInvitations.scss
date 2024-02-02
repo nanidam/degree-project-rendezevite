@@ -1,0 +1,115 @@
+@import "../../../globals.scss";
+@import "../../../utils/constants.scss";
+@import "../../../utils/keyframes.scss";
+
+.create-inv-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+
+  .create-inv-header {
+    animation: fadeIn 0.5s ease-in-out forwards;
+  }
+
+  .create-inv-wrapper {
+    width: 100%;
+    font-family: "Alegreya";
+    font-size: 1.2rem;
+    background-color: $white;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+    animation: swingIn 0.5s ease-in-out forwards;
+
+    .create-inv-form {
+      display: flex;
+      flex-direction: column;
+
+      .create-inv-label {
+        margin-top: 10px;
+        color: $dark-green;
+        font-family: "Dancing script";
+        font-size: 1.6rem;
+      }
+
+      .create-inv-input {
+        height: 40px;
+      }
+
+      .create-inv-textarea {
+        height: 300px;
+      }
+
+      .create-inv-error {
+        text-align: center;
+        background-color: $white;
+        border-radius: 15px;
+        border: 1px solid red;
+        color: black;
+        padding: 10px;
+      }
+
+      .create-inv-btn {
+        align-self: center;
+        margin: 15px 0;
+        height: 40px;
+        border-radius: 15px;
+        width: 50%;
+        background-color: transparent;
+        border-color: $olive-green;
+        font-size: 1.2rem;
+        transition: ease-in-out 0.3s;
+        cursor: pointer;
+
+        &:hover {
+          background: $olive-green;
+          color: $off-white;
+        }
+      }
+
+      .next-return-wrapper {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        gap: 15px;
+        .submit-event-btn {
+          margin: 15px 0;
+          height: 40px;
+          border-radius: 15px;
+          width: 40%;
+          background-color: transparent;
+          border-color: $olive-green;
+          font-size: 1.2rem;
+          transition: ease-in-out 0.3s;
+          cursor: pointer;
+
+          &:hover {
+            background: $olive-green;
+            color: $off-white;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .create-inv-container {
+    .create-inv-wrapper {
+      max-width: 600px;
+
+      .create-inv-form {
+        .create-inv-btn {
+          width: 200px;
+        }
+
+        .next-return-wrapper {
+          .submit-event-btn {
+            width: 30%;
+          }
+        }
+      }
+    }
+  }
+}
