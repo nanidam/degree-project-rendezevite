@@ -20,6 +20,8 @@ const AdminOverview = ({
 }) => {
   const [event, setEvent] = useState<IEvent | null>(null);
   const [editGuestList, setEditGuestList] = useState<IGuest[]>([]);
+  // TODO: EventName validation
+  console.log(eventName);
 
   const fetchAndSetEvents = useCallback(async () => {
     const userId = await getUserId();
@@ -50,7 +52,11 @@ const AdminOverview = ({
       </h1>
       <HamburgerMenu />
 
-      <EventInfo eventDate={event.eventDate} eventId={event.id} />
+      <EventInfo
+        eventDate={event.eventDate}
+        eventId={event.id}
+        eventName={event.eventName}
+      />
 
       <EventPassword eventPassword={event.eventPassword} eventId={event.id} />
 
