@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import Providers from "./utils/components/Providers";
 import HamburgerMenu from "./utils/components/hamburgerMenu";
 import RendezEviteLogo from "./utils/components/rendezEviteLogo";
+import Footer from "./utils/components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <HamburgerMenu />
         <RendezEviteLogo />
         <Providers>{children}</Providers>
+        <Footer />
       </body>
     </html>
   );

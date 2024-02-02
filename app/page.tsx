@@ -1,10 +1,7 @@
 "use client";
 
-import { ReactSVG } from "react-svg";
 import "./style.scss";
-import HamburgerMenu from "./utils/components/hamburgerMenu";
 import RegisterLoginHome from "./utils/components/registerLoginHome";
-import RendezEviteLogo from "./utils/components/rendezEviteLogo";
 
 const Home = () => {
   return (
@@ -12,7 +9,6 @@ const Home = () => {
       <span className="welcome-span">
         <RegisterLoginHome></RegisterLoginHome>
       </span>
-      {/* <RendezEviteLogo></RendezEviteLogo> */}
       <section className="welcome-container">
         <article className="welcome-text-container">
           <h2 className="welcome-header">Easy, simple, done!</h2>
@@ -49,9 +45,6 @@ const Home = () => {
           </div>
         </article>
       </section>
-      <footer>
-        <p>© 2023 RendezEvite. All rights reserved.</p>
-      </footer>
     </main>
   );
 };
