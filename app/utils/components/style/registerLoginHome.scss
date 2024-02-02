@@ -2,9 +2,10 @@
 
 .register-link {
   text-decoration: none;
-  color: $dark-green;
   font-family: "Alegreya";
   font-size: 1.3rem;
+  font-weight: bold;
+  color: $tan;
 }
 
 .profile-icon {
@@ -29,11 +30,4 @@
     background: $olive-green;
     color: $off-white;
   }
-}
-
-.register-link {
-  text-decoration: none;
-  color: $dark-green;
-  font-family: "Alegreya";
-  font-size: 1.3rem;
 }
