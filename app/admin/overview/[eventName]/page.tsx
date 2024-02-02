@@ -20,6 +20,8 @@ const AdminOverview = ({
 }) => {
   const [event, setEvent] = useState<IEvent | null>(null);
   const [editGuestList, setEditGuestList] = useState<IGuest[]>([]);
+  // TODO: EventName cannot handle spaces in URL
+  console.log(eventName);
 
   const fetchAndSetEvents = useCallback(async () => {
     const userId = await getUserId();
