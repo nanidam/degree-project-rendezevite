@@ -1,0 +1,138 @@
+@import "../../constants.scss";
+
+.footer {
+  background-color: $mid-orange;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  .footer-logo-contact {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .footer-info-container {
+      .footer-info {
+        font-size: 0.9rem;
+        font-family: "Alegreya";
+        text-align: center;
+        padding: 0 10px;
+        display: none;
+      }
+
+      .footer-mail-container {
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .footer-mail-svg {
+          display: none;
+        }
+
+        .footer-email {
+          text-decoration: none;
+          font-size: 1.2rem;
+          font-family: "Alegreya";
+          color: $mid-green;
+          transition: ease-in-out 0.3s;
+          cursor: help;
+
+          &:hover {
+            color: $dark-green;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  .footer-hr {
+    display: none;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+
+    .footer-terms,
+    .footer-year,
+    .footer-github {
+      font-size: 1.1rem;
+      font-family: "Alegreya";
+      text-decoration: none;
+      color: $dark-green;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .footer-github {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-right: 10px;
+    }
+
+    .footer-year {
+      cursor: unset;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 767px) {
+  .footer {
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+
+    .footer-logo-contact {
+      display: flex;
+      flex-direction: row;
+      gap: 40px;
+      margin-top: 20px;
+
+      .footer-info-container {
+        .footer-info {
+          display: flex;
+          text-align: left;
+          margin: 0;
+          max-width: 400px;
+        }
+
+        .footer-mail-container {
+          justify-content: unset;
+
+          .footer-mail-svg {
+            display: block;
+          }
+        }
+      }
+    }
+
+    .footer-hr {
+      display: flex;
+      transform: rotate(90deg);
+      width: 70px;
+      margin: 0;
+      border-color: $green-transparent;
+    }
+
+    .footer-links {
+      display: block;
+    }
+  }
+}
