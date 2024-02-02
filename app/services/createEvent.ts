@@ -1,18 +1,10 @@
 "use server";
 
 import prisma from "../db";
-import { IEvent } from "../utils/models/IEvent";
+import { ICreateUpdateEvent } from "../utils/models/ICreateUpdateEvent";
 import { getEvent } from "./getEvent";
-export interface ICreateEvent {
-  eventName: string;
-  eventDate: string;
-  userId: string;
-  eventPassword: string;
-  eventId?: string
-  event?: IEvent
-}
 
-const createEvent = async ({ eventDate, eventName, userId, eventPassword }: ICreateEvent) => {
+const createEvent = async ({ eventDate, eventName, userId, eventPassword }: ICreateUpdateEvent) => {
   const existingEvent = await getEvent(userId, eventName);
   if (existingEvent) return;
 

@@ -1,10 +1,10 @@
 "use server";
 
 import prisma from "../db";
-import { ICreateEvent } from "./createEvent";
+import { ICreateUpdateEvent } from "../utils/models/ICreateUpdateEvent";
 
 
-const updateEventNameDatePassword = async ({ eventDate, eventName, userId, eventPassword, eventId, event }: ICreateEvent) => {
+const updateEventNameDatePassword = async ({ eventDate, eventName, userId, eventPassword, eventId, event }: ICreateUpdateEvent) => {
     const updatedEvent = await prisma.event.update({
         where: {
             id: eventId
