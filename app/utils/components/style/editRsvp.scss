@@ -1,0 +1,151 @@
+@import "../../../globals.scss";
+@import "../../../utils/constants.scss";
+
+.create-rsvp-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+
+  .create-rsvp-wrapper {
+    .create-rsvp-text-container {
+      background-color: $white;
+      border-radius: 15px;
+      padding: 10px;
+      margin-bottom: 10px;
+      animation: swingIn 0.5s ease-in-out forwards;
+
+      .create-rsvp-subheader {
+        margin: 0 0 30px;
+      }
+
+      .create-rsvp-text {
+        font-family: "Alegreya";
+        font-size: 1.2rem;
+        margin: 10px 0;
+      }
+
+      .svgs-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+        margin-top: 10px;
+      }
+    }
+
+    .create-rsvp-form-container {
+      background-color: $white;
+      border-radius: 15px;
+      padding: 0 10px;
+      animation: swingIn 0.5s ease-in-out forwards;
+
+      .create-rsvp-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+
+        .create-rsvp-fieldset {
+          margin-bottom: 20px;
+          margin-top: 20px;
+          border-radius: 15px;
+          padding: 20px;
+
+          .create-rsvp-legend {
+            font-size: 1.2rem;
+            font-family: "Alegreya";
+            position: relative;
+          }
+
+          .create-rsvp-label {
+            font-size: 1.2rem;
+            font-family: "Alegreya";
+            border-color: $olive-green;
+            margin: 10px;
+            display: inline-flex;
+            flex-direction: row;
+            align-items: center;
+
+            .create-rsvp-radio {
+              appearance: none;
+              -webkit-appearance: none;
+              width: 20px;
+              height: 20px;
+              border-radius: 50%;
+              border: 1px solid $grey;
+              margin-right: 5px;
+              cursor: pointer;
+
+              &:checked {
+                background-color: $tan;
+              }
+            }
+          }
+        }
+
+        .submit-inv-btn {
+          align-self: center;
+          margin: 15px 0;
+          height: 40px;
+          border-radius: 15px;
+          width: 50%;
+          background-color: transparent;
+          border-color: $olive-green;
+          font-size: 1.2rem;
+          font-family: "Alegreya";
+          transition: ease-in-out 0.3s;
+          cursor: pointer;
+
+          &:hover {
+            background: $olive-green;
+            color: $off-white;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .create-rsvp-container {
+    .create-rsvp-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-content: flex-end;
+      gap: 10px;
+
+      .create-rsvp-text-container {
+        max-width: 550px;
+        height: 370px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 10px;
+      }
+
+      .create-rsvp-form-container {
+        max-width: 550px;
+        height: 370px;
+        padding: 0 10px;
+      }
+    }
+  }
+}
+
+@keyframes swingIn {
+  0% {
+    transform: translateX(-50%);
+    transform-origin: left;
+    transform-skew: 20deg;
+  }
+  50% {
+    transform: translateX(0);
+    transform-origin: center;
+    transform-skew: 0;
+  }
+  100% {
+    transform: translateX(0);
+    transform-origin: center;
+  }
+}
