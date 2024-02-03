@@ -35,16 +35,15 @@ export const authOptions: NextAuthOptions = {
             credentials?.email === user?.email &&
             credentials?.password === decryptedPassword
           ) {
-            return user;
-          } else {
-            return null;
+            return { ...user, access: "admin" };
           }
         }
         if (credentials?.loginType === "guest") {
+          console.log("what is up")
           return null // Login logic for guest
         }
-        return null
 
+        return null
       },
     }),
   ],

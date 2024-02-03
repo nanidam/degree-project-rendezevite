@@ -1,26 +1,17 @@
 "use client";
 import LoginRegisterForm from "@/app/utils/components/loginRegisterForm";
-import { signIn } from "next-auth/react";
-
-const Invitation = () => {
-  const loginAsGuest = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const email = e.currentTarget.email.value;
-    const password = e.currentTarget.password.value;
-
-    await signIn("credentials", {
-      email,
-      password,
-      loginType: "guest",
-      redirect: false,
-      // callbackUrl: "/events",
-    });
-  };
+import login from "../../utils/login";
+// TODO: if invitecode(eventID) is not found, show a component with an error text.
+// Create error component
+// this component should recieve a textas prop
+const Invitation = ({ params: { inviteCode } }: { params: { inviteCode: string } }) => {
+  console.log(inviteCode);
   return (
     <LoginRegisterForm
       loginRegisterHeader={"Login"}
-      handleSubmit={loginAsGuest}
+      handleSubmit={login}
       loginType="guest"
+      inviteCode={inviteCode}
     />
   );
 };
