@@ -1,0 +1,44 @@
+@import "../../../../../globals.scss";
+@import "../../../../../utils/constants.scss";
+
+.invite-guests {
+  background-color: $white;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+  margin: 20px;
+  border-radius: 15px;
+
+  .invite-guest-form {
+    display: flex;
+    flex-direction: column;
+
+    .invite-guest-label {
+      margin-top: 10px;
+    }
+
+    .invite-guest-input {
+      height: 45px;
+      border: 1px solid transparent;
+      border-bottom-color: $grey;
+      padding-left: 10px;
+    }
+
+    .invite-guest-btn {
+      width: 150px;
+      height: 45px;
+      align-self: center;
+      margin: 10px 0;
+      border-radius: 15px;
+      background-color: transparent;
+      border-color: $olive-green;
+      transition: ease-in-out 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        background: $olive-green;
+        color: $white;
+      }
+    }
+  }
+}

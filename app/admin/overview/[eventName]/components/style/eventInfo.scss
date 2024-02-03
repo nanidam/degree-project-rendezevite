@@ -1,0 +1,28 @@
+@import "../../../../../utils/constants.scss";
+@import "../../../../../utils/keyframes.scss";
+
+.edit-event-wrapper {
+  background-color: $white;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+  margin: 20px;
+  border-radius: 15px;
+
+  .edit-event-btn {
+    width: 150px;
+    height: 45px;
+    align-self: center;
+    margin: 10px 0;
+    border-radius: 15px;
+    background-color: transparent;
+    border-color: $olive-green;
+    transition: ease-in-out 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      background: $olive-green;
+      color: $white;
+    }
+  }
+}

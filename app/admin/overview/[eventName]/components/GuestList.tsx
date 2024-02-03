@@ -42,8 +42,19 @@ export const GuestList = ({
 }: GuestListProps) => {
   const [editModeId, setEditModeId] = useState<string | null>(null);
   const [paginatedList, setPaginatedList] = useState<IGuest[]>([]);
-  const [page, setPage] = useState(0);
-  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+  const [page, setPage] = useState<number>(0);
+  const [showConfirmDelete, setShowConfirmDelete] = useState<boolean>(false);
+  const [expandedItems, setExpandedItems] = useState<string[]>([]);
+
+  const toggleExpandSymbol = (guestId: string) => {
+    setExpandedItems((prevExpandedItems) => {
+      if (prevExpandedItems.includes(guestId)) {
+        return prevExpandedItems.filter((id) => id !== guestId);
+      } else {
+        return [guestId];
+      }
+    });
+  };
 
   useEffect(() => {
     setPaginatedList(event.guestList.slice(0, 5));
@@ -53,25 +64,46 @@ export const GuestList = ({
   const totalPages = Math.ceil(event.guestList.length / 5) || 1;
 
   return (
-    <article className="admin-wrapper">
+    <article className="guestlist-container">
       <h3>Guestlist:</h3>
+      <p className="guestlist-text">
+        Click on each <i>header</i> to sort the guest list in ascending order. Click the
+        same header again to sort the guest list in descending order
+      </p>
+      <div className="guestlist-explanations">
+        <p className="explanation">
+          <ReactSVG src="/svgs/positive.svg" /> Indicates that the guest has RSVP&apos;d
+          and/or will be attending the event.
+        </p>
+        <span className="explanation">
+          <ReactSVG src="/svgs/negative.svg" />
+          <p className="explanation-negative">
+            Indicates that the guest has <b>not</b> {""}
+            RSVP&apos;d and/or will <b>not</b> be attending the event.
+          </p>
+        </span>
+        <p className="explanation">
+          <ReactSVG src="/svgs/question-mark.svg" /> Still waiting guest to respond.
+        </p>
+      </div>
+
       <div className="sorting-btns">
         <button
-          className="sort-btn sort-name-btn"
+          className="sorting-btn sort-name-btn"
           data-sort="name"
           onClick={() => sortByName({ event, setEvent, setPage })}
         >
-          Name
+          Guest Name
         </button>
         <button
-          className="sort-btn sort-rsvp-btn"
+          className="sorting-btn sort-rsvp-btn"
           data-sort="responded"
           onClick={() => sortByRsvp({ event, setEvent, setPage })}
         >
           {"RSVP'd"}
         </button>
         <button
-          className="sort-btn sort-attending-btn"
+          className="sorting-btn sort-attending-btn"
           data-sort="attending"
           onClick={() => sortByAttending({ event, setEvent, setPage })}
         >
@@ -82,46 +114,54 @@ export const GuestList = ({
         {paginatedList.map((guest: IGuest) => (
           <AccordionItem
             key={guest.id}
+            onClick={() => toggleExpandSymbol(guest.id)}
             header={
               <div className="accordion-info">
-                <p className="guest-name">{guest.name}</p>
+                <span className="guest-name-wrapper">
+                  {expandedItems.includes(guest.id) ? (
+                    <ReactSVG className="gustlist-symbols" src="/svgs/expand-less.svg" />
+                  ) : (
+                    <ReactSVG className="gustlist-symbols" src="/svgs/expand-more.svg" />
+                  )}
+
+                  <p className="guest-name">{guest.name}</p>
+                </span>
                 <div className="guest-rsvpd">
                   {guest.hasResponded ?? <ReactSVG src="/svgs/positive.svg" />}
-                  <ReactSVG src="/svgs/negative.svg" />
+                  <ReactSVG className="gustlist-symbols" src="/svgs/negative.svg" />
                 </div>
                 <div className="guest-rsvpd">
                   {guest.attending ?? <ReactSVG src="/svgs/positive.svg" />}
-                  <ReactSVG src="/svgs/negative.svg" />
+                  <ReactSVG className="gustlist-symbols" src="/svgs/negative.svg" />
                 </div>
               </div>
             }
           >
-            <form onSubmit={(e) => saveEditGuest({ e, guestId: guest.id })}>
-              <label htmlFor="guest-name">
+            <form
+              className="guestlist-guest-form"
+              onSubmit={(e) => saveEditGuest({ e, guestId: guest.id })}
+            >
+              <label className="guestlist-label" htmlFor="guest-name">
                 Name:
                 <input
+                  className="guestlist-input"
                   name="guest-name"
                   type="text"
-                  value={
-                    editGuestList.find((g) => g.id === guest.id)?.name || ""
-                  }
-                  onChange={(e) =>
-                    handleName(e, guest.id, setEditGuestList, editGuestList)
-                  }
+                  value={editGuestList.find((g) => g.id === guest.id)?.name || ""}
+                  onChange={(e) => handleName(e, guest.id, setEditGuestList, editGuestList)}
                   readOnly={editModeId !== guest.id}
                 />
               </label>
 
               <hr />
 
-              <label htmlFor="guest-email">
+              <label className="guestlist-label" htmlFor="guest-email">
                 Email:
                 <input
+                  className="guestlist-input"
                   name="guest-email"
                   type="text"
-                  value={
-                    editGuestList.find((g) => g.id === guest.id)?.email || ""
-                  }
+                  value={editGuestList.find((g) => g.id === guest.id)?.email || ""}
                   onChange={(e) =>
                     handleEmail(e, guest.id, setEditGuestList, editGuestList)
                   }
@@ -131,27 +171,26 @@ export const GuestList = ({
 
               <hr />
 
-              <label htmlFor="has-responded">
+              <label className="guestlist-label" htmlFor="has-responded">
                 Has responded:
                 <select
+                  className="guestlist-selected"
                   name="has-responded"
                   value={
-                    editGuestList
-                      .find((g) => g.id === guest.id)
-                      ?.hasResponded.toString() || "false"
+                    editGuestList.find((g) => g.id === guest.id)?.hasResponded.toString() ||
+                    "false"
                   }
                   onChange={(e) =>
-                    handleHasResponded(
-                      e,
-                      guest.id,
-                      setEditGuestList,
-                      editGuestList
-                    )
+                    handleHasResponded(e, guest.id, setEditGuestList, editGuestList)
                   }
                   disabled={editModeId !== guest.id}
                 >
-                  <option value="true">Yes</option>
-                  <option value="false">No</option>
+                  <option className="guestlist-opt" value="true">
+                    Yes
+                  </option>
+                  <option className="guestlist-opt" value="false">
+                    No
+                  </option>
                 </select>
               </label>
 
@@ -159,9 +198,10 @@ export const GuestList = ({
 
               {guest.hasResponded && (
                 <>
-                  <label htmlFor="attending">
+                  <label className="guestlist-label" htmlFor="attending">
                     Attending:
                     <select
+                      className="guestlist-select"
                       name="attending"
                       value={
                         editGuestList
@@ -169,38 +209,32 @@ export const GuestList = ({
                           ?.attending.toString() || "false"
                       }
                       onChange={(e) =>
-                        handleAttending(
-                          e,
-                          guest.id,
-                          setEditGuestList,
-                          editGuestList
-                        )
+                        handleAttending(e, guest.id, setEditGuestList, editGuestList)
                       }
                       disabled={editModeId !== guest.id}
                     >
-                      <option value="true">Yes</option>
-                      <option value="false">No</option>
+                      <option className="guestlist-opt" value="true">
+                        Yes
+                      </option>
+                      <option className="guestlist-opt" value="false">
+                        No
+                      </option>
                     </select>
                   </label>
 
                   <hr />
 
-                  <label htmlFor="guest-number">
+                  <label className="guestlist-label" htmlFor="guest-number">
                     Phone number:
                     <input
+                      className="guestlist-input"
                       name="guest-number"
                       type="text"
                       value={
-                        editGuestList.find((g) => g.id === guest.id)
-                          ?.phoneNumber || ""
+                        editGuestList.find((g) => g.id === guest.id)?.phoneNumber || ""
                       }
                       onChange={(e) =>
-                        handlePhoneNumber(
-                          e,
-                          guest.id,
-                          setEditGuestList,
-                          editGuestList
-                        )
+                        handlePhoneNumber(e, guest.id, setEditGuestList, editGuestList)
                       }
                       readOnly={editModeId !== guest.id}
                     />
@@ -210,21 +244,16 @@ export const GuestList = ({
 
                   {event.includeFood && (
                     <>
-                      <label htmlFor="diet">
+                      <label className="guestlist-label" htmlFor="diet">
                         Diet:
                         <select
+                          className="guestlist-select"
                           name="diet"
                           value={
-                            editGuestList.find((g) => g.id === guest.id)
-                              ?.diet || "meat"
+                            editGuestList.find((g) => g.id === guest.id)?.diet || "meat"
                           }
                           onChange={(e) =>
-                            handleDiet(
-                              e,
-                              guest.id,
-                              setEditGuestList,
-                              editGuestList
-                            )
+                            handleDiet(e, guest.id, setEditGuestList, editGuestList)
                           }
                           disabled={editModeId !== guest.id}
                         >
@@ -239,22 +268,17 @@ export const GuestList = ({
 
                   {event.includeAllergies && (
                     <>
-                      <label htmlFor="allergies">
+                      <label className="guestlist-label" htmlFor="allergies">
                         Allergies:
                         <input
+                          className="guestlist-input"
                           name="allergies"
                           type="text"
                           value={
-                            editGuestList.find((g) => g.id === guest.id)
-                              ?.allergies || ""
+                            editGuestList.find((g) => g.id === guest.id)?.allergies || ""
                           }
                           onChange={(e) =>
-                            handleAllergies(
-                              e,
-                              guest.id,
-                              setEditGuestList,
-                              editGuestList
-                            )
+                            handleAllergies(e, guest.id, setEditGuestList, editGuestList)
                           }
                           readOnly={editModeId !== guest.id}
                         />
@@ -263,22 +287,15 @@ export const GuestList = ({
                     </>
                   )}
 
-                  <label htmlFor="comments">
+                  <label className="guestlist-label" htmlFor="comments">
                     Comments:
                     <input
+                      className="guestlist-input"
                       name="comments"
                       type="text"
-                      value={
-                        editGuestList.find((g) => g.id === guest.id)
-                          ?.comments || ""
-                      }
+                      value={editGuestList.find((g) => g.id === guest.id)?.comments || ""}
                       onChange={(e) =>
-                        handleComments(
-                          e,
-                          guest.id,
-                          setEditGuestList,
-                          editGuestList
-                        )
+                        handleComments(e, guest.id, setEditGuestList, editGuestList)
                       }
                       readOnly={editModeId !== guest.id}
                     />
@@ -289,14 +306,15 @@ export const GuestList = ({
               {guest.additionalGuest.name.length > 0 && guest.hasResponded && (
                 <>
                   <hr />
-                  <label htmlFor="additional-guest">
+                  <label className="guestlist-label" htmlFor="additional-guest">
                     Additional guest:
                     <input
+                      className="guestlist-input"
                       name="additional-guest"
                       type="text"
                       value={
-                        editGuestList.find((g) => g.id === guest.id)
-                          ?.additionalGuest.name || ""
+                        editGuestList.find((g) => g.id === guest.id)?.additionalGuest
+                          .name || ""
                       }
                       onChange={(e) =>
                         handleAdditionalGuestName(
@@ -312,9 +330,10 @@ export const GuestList = ({
 
                   <hr />
 
-                  <label htmlFor="additional-guest-attending">
+                  <label className="guestlist-label" htmlFor="additional-guest-attending">
                     Additional guest attending:
                     <select
+                      className="guestlist-select"
                       name="additional-guest-attending"
                       value={
                         editGuestList
@@ -331,8 +350,12 @@ export const GuestList = ({
                       }
                       disabled={editModeId !== guest.id}
                     >
-                      <option value="true">Yes</option>
-                      <option value="false">No</option>
+                      <option className="guestlist-opt" value="true">
+                        Yes
+                      </option>
+                      <option className="guestlist-opt" value="false">
+                        No
+                      </option>
                     </select>
                   </label>
 
@@ -340,9 +363,10 @@ export const GuestList = ({
 
                   {event.includeFood && (
                     <>
-                      <label htmlFor="additional-guest-diet">
+                      <label className="guestlist-label" htmlFor="additional-guest-diet">
                         Additional guest diet:
                         <select
+                          className="guestlist-select"
                           name="dditional-guest-diet"
                           value={
                             editGuestList
@@ -359,9 +383,15 @@ export const GuestList = ({
                           }
                           disabled={editModeId !== guest.id}
                         >
-                          <option value="meat">Meat</option>
-                          <option value="vegetarian">Vegetarian</option>
-                          <option value="vegan">Vegan</option>
+                          <option className="guestlist-opt" value="meat">
+                            Meat
+                          </option>
+                          <option className="guestlist-opt" value="vegetarian">
+                            Vegetarian
+                          </option>
+                          <option className="guestlist-opt" value="vegan">
+                            Vegan
+                          </option>
                         </select>
                       </label>
                       <hr />
@@ -370,9 +400,13 @@ export const GuestList = ({
 
                   {event.includeAllergies && (
                     <>
-                      <label htmlFor="additional-guest-allergies">
+                      <label
+                        className="guestlist-label"
+                        htmlFor="additional-guest-allergies"
+                      >
                         Additional guest allergies:
                         <input
+                          className="guestlist-input"
                           name="additional-guest-allergies"
                           type="text"
                           value={
@@ -389,10 +423,9 @@ export const GuestList = ({
                 </>
               )}
 
-              <br />
-
               {editModeId !== guest.id && (
                 <button
+                  className="edit-guest-btn"
                   onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
                     editGuest(e, guest.id, setEditModeId)
                   }
@@ -403,28 +436,26 @@ export const GuestList = ({
 
               {editModeId === guest.id && (
                 <>
-                  <button type="submit" className="save-btn">
-                    Save
-                  </button>
+                  <div className="guestlist-save-cancel">
+                    <button type="submit" className="guestlist-btn guestlist-save-btn">
+                      Save
+                    </button>
 
-                  <button
-                    type="button"
-                    onClick={() => setShowConfirmDelete(true)}
-                    className="cancel-btn"
-                  >
-                    Delete
-                  </button>
+                    <button
+                      type="button"
+                      onClick={() => setShowConfirmDelete(true)}
+                      className="guestlist-btn guestlist-delete-btn"
+                    >
+                      Delete
+                    </button>
+                  </div>
 
                   <button
                     type="button"
                     onClick={() =>
-                      cancelEditMode(
-                        event.guestList,
-                        setEditModeId,
-                        setEditGuestList
-                      )
+                      cancelEditMode(event.guestList, setEditModeId, setEditGuestList)
                     }
-                    className="cancel-btn"
+                    className="guestlist-cancel-btn"
                   >
                     Cancel
                   </button>
@@ -454,9 +485,7 @@ export const GuestList = ({
           <button
             className={`previous-btn${page === 1 ? " disabled" : ""}`}
             disabled={page === 1}
-            onClick={() =>
-              navigatePrevious({ page, setPage, event, setPaginatedList })
-            }
+            onClick={() => navigatePrevious({ page, setPage, event, setPaginatedList })}
             aria-label="Previous page"
           >
             ‹
@@ -468,9 +497,7 @@ export const GuestList = ({
           <button
             className={`next-btn${page === totalPages ? " disabled" : ""}`}
             disabled={page === totalPages}
-            onClick={() =>
-              navigateNext({ page, setPage, event, setPaginatedList })
-            }
+            onClick={() => navigateNext({ page, setPage, event, setPaginatedList })}
             aria-label="Next page"
           >
             ›
@@ -479,9 +506,7 @@ export const GuestList = ({
           <button
             className={`last-btn${page === totalPages ? " disabled" : ""}`}
             disabled={page === totalPages}
-            onClick={() =>
-              navigateLast({ page, setPage, event, setPaginatedList })
-            }
+            onClick={() => navigateLast({ page, setPage, event, setPaginatedList })}
             aria-label="Last page"
           >
             »

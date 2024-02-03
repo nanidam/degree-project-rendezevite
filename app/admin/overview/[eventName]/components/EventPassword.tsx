@@ -1,33 +1,31 @@
 import { useState } from "react";
 import { changeEventPassword } from "../utils/changeEventPassword";
+import "./style/eventPassword.scss";
 
 interface EventPasswordProps {
   eventPassword: string;
   eventId: string;
 }
 
-export const EventPassword = ({
-  eventPassword,
-  eventId,
-}: EventPasswordProps) => {
+export const EventPassword = ({ eventPassword, eventId }: EventPasswordProps) => {
   const [editPassword, setEditPassword] = useState(false);
 
   // TODO: Make password only show when clicking eye svg.
   return (
-    <article className="admin-wrapper">
+    <article className="event-password-wrapper">
       <h3>Password</h3>
       <p>Change or see your password for the event</p>
       <form
-        className="admin-form"
+        className="admin-form event-password-form"
         onSubmit={(e) => {
           changeEventPassword({ e, eventId, setEditPassword });
         }}
       >
-        <label className="admin-label" htmlFor="eventPassword">
+        <label className="event-password-label" htmlFor="eventPassword">
           Password:
         </label>
         <input
-          className="admin-input"
+          className="event-password-input"
           type={editPassword ? "text" : "password"}
           name="eventPassword"
           readOnly={!editPassword}
@@ -36,14 +34,14 @@ export const EventPassword = ({
         {editPassword ? (
           <div className="password-btn-container">
             <button
-              className="admin-btn save-password-btn"
+              className="password-btn save-password-btn"
               type="submit"
               aria-label="Save new password"
             >
               Save
             </button>
             <button
-              className="admin-btn cancel-password-btn"
+              className="password-btn cancel-password-btn"
               onClick={() => setEditPassword(false)}
               type="button"
               aria-label="Cancel password change"
@@ -53,7 +51,7 @@ export const EventPassword = ({
           </div>
         ) : (
           <button
-            className="admin-btn"
+            className="password-btn"
             type="button"
             onClick={() => setEditPassword(true)}
             aria-label="Change password"

@@ -1,20 +1,58 @@
+@import "../../../../../globals.scss";
 @import "../../../../../utils/constants.scss";
+@import "../../../../../utils/keyframes.scss";
 
-.admin-wrapper {
+.guestlist-container {
+  background-color: $white;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+  margin: 20px;
+  border-radius: 15px;
+  font-family: "Alegreya";
+  font-size: 1.1rem;
+
+  .guestlist-text {
+    margin: 10px;
+  }
+
+  .guestlist-explanations {
+    margin-bottom: 20px;
+
+    .explanation {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin: 10px;
+
+      .explanation-negative {
+        margin: 0;
+      }
+    }
+  }
+
   .sorting-btns {
-    margin-bottom: 1px;
+    .sorting-btn {
+      height: 45px;
+      border: 1px solid transparent;
+      border-bottom-color: $grey;
+      font-family: "Alegreya";
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
     .sort-name-btn {
-      width: 50%;
+      width: 44%;
     }
 
     .sort-rsvp-btn,
     .sort-attending-btn {
-      width: 25%;
+      border-left-color: $grey;
+      width: 28%;
     }
   }
 
   .szh-accordion {
-    // Pagination Container
     width: 100%;
     // outline: 2px solid rgb(77, 17, 27);
 
@@ -39,13 +77,13 @@
         justify-content: center;
         align-items: center;
         margin-top: 2px;
-        background-color: #f0f0f0; /* Light Grey */
-        color: #333; /* Dark Grey */
-        border-radius: 50%; /* Rounded */
-        margin-right: 5px; /* Spacing between items */
+        background-color: #f0f0f0;
+        color: #333;
+        border-radius: 50%;
+        margin-right: 5px;
 
         &.active {
-          background-color: #1e50ff; /* Blue */
+          background-color: #1e50ff;
           border-radius: 50%;
         }
       }
@@ -56,23 +94,156 @@
         .szh-accordion__item-btn {
           padding: 0;
           display: flex;
+          width: 100%;
+          height: 45px;
+          text-align: left;
+          border: none;
+          border-bottom: 1px solid $grey;
+          margin: 2px 0;
+          transition: ease-in-out 0.3s;
+          cursor: pointer;
+
+          &:hover {
+            background-color: rgba(25, 181, 35, 0.521);
+          }
+
           .accordion-info {
             display: flex;
             justify-content: left;
             align-items: left;
             width: 100%;
 
-            .guest-name {
-              // display: flex;
-              outline: 1px solid rgb(255, 0, 0);
-              width: 50%;
+            .guest-name-wrapper {
+              display: flex;
+              padding: 0 5px;
+              width: 44%;
+
+              .guest-name {
+                font-family: "Alegreya";
+                font-size: 1.1rem;
+                font-weight: bold;
+                margin-top: 12px;
+              }
+
+              .gustlist-symbols {
+                margin-top: 10px;
+              }
             }
 
             .guest-rsvpd {
-              outline: 1px solid green;
-              width: 25%;
+              width: 28%;
               text-align: center;
-              // display: flex;
+
+              .gustlist-symbols {
+                margin-top: 5px;
+              }
+            }
+          }
+        }
+      }
+
+      .szh-accordion__item-content {
+        background-color: $white;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        padding: 15px;
+        animation: fadeIn 0.5s ease-in-out;
+
+        .szh-accordion__item-panel {
+          .guestlist-guest-form {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 10px;
+
+            hr {
+              width: 100%;
+            }
+
+            .guestlist-label {
+              font-weight: bold;
+              margin-right: 5px;
+
+              .guestlist-input {
+                background-color: transparent;
+                border: 1px solid transparent;
+                width: 75%;
+                color: $tan;
+                cursor: pointer;
+
+                &:focus {
+                  outline: none;
+                  border-bottom: 1px solid $tan;
+                }
+              }
+
+              .guestlist-selected {
+                height: 30px;
+                border-color: transparent;
+                // border-bottom-color: $grey;
+                margin: 5px;
+              }
+            }
+
+            .edit-guest-btn {
+              width: 75px;
+              height: 40px;
+              align-self: center;
+              margin: 10px 0;
+              border-radius: 15px;
+              background-color: transparent;
+              border-color: $blue;
+              color: $blue;
+              font-family: "Alegreya";
+              font-size: 1rem;
+              transition: ease-in-out 0.3s;
+              cursor: pointer;
+
+              &:hover {
+                background: $blue;
+                color: $white;
+              }
+            }
+
+            .guestlist-save-cancel {
+              display: flex;
+              justify-content: center;
+              gap: 10px;
+
+              .guestlist-btn {
+                background-color: transparent;
+                border-radius: 15px;
+                height: 40px;
+                width: 90px;
+                cursor: pointer;
+              }
+
+              .guestlist-save-btn {
+                border-color: $olive-green;
+
+                &:hover {
+                  background-color: $olive-green;
+                  color: $white;
+                }
+              }
+
+              .guestlist-delete-btn {
+                border-color: $tan;
+
+                &:hover {
+                  background-color: $tan;
+                  color: $white;
+                }
+              }
+            }
+
+            .guestlist-cancel-btn {
+              background-color: transparent;
+              border: none;
+              text-decoration: underline;
+              color: $dark-green;
+              margin-top: 10px;
+              cursor: pointer;
             }
           }
         }
