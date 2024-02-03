@@ -1,16 +1,21 @@
 import { useState } from "react";
 import { changeEventPassword } from "../utils/changeEventPassword";
 import "./style/eventPassword.scss";
+import { ReactSVG } from "react-svg";
 
-interface EventPasswordProps {
+interface IEventPasswordProps {
   eventPassword: string;
   eventId: string;
 }
 
-export const EventPassword = ({ eventPassword, eventId }: EventPasswordProps) => {
-  const [editPassword, setEditPassword] = useState(false);
+export const EventPassword = ({ eventPassword, eventId }: IEventPasswordProps) => {
+  const [editPassword, setEditPassword] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  // TODO: Make password only show when clicking eye svg.
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <article className="event-password-wrapper">
       <h3>Password</h3>
@@ -24,13 +29,29 @@ export const EventPassword = ({ eventPassword, eventId }: EventPasswordProps) =>
         <label className="event-password-label" htmlFor="eventPassword">
           Password:
         </label>
-        <input
-          className="event-password-input"
-          type={editPassword ? "text" : "password"}
-          name="eventPassword"
-          readOnly={!editPassword}
-          defaultValue={eventPassword}
-        />
+        <div className="event-password-container">
+          <input
+            className="event-password-input"
+            type={editPassword || !showPassword ? "text" : "password"}
+            name="eventPassword"
+            readOnly={!editPassword}
+            defaultValue={eventPassword}
+          />
+          {showPassword ? (
+            <ReactSVG
+              className="show-hide-password-svg"
+              src="/svgs/opened-eye.svg"
+              onClick={toggleShowPassword}
+            />
+          ) : (
+            <ReactSVG
+              className="show-hide-password-svg"
+              src="/svgs/closed-eye.svg"
+              onClick={toggleShowPassword}
+            />
+          )}
+        </div>
+
         {editPassword ? (
           <div className="password-btn-container">
             <button
