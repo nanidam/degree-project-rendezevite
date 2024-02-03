@@ -9,6 +9,7 @@ import Link from "next/link";
 
 interface LoginRegisterFormProps {
   loginRegisterHeader: string;
+  loginType?: string;
   handleSubmit?: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
   handleRegister?: (data: FormData) => Promise<string | undefined>;
 }
@@ -17,6 +18,7 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
   loginRegisterHeader,
   handleSubmit,
   handleRegister,
+  loginType,
 }) => {
   const [registerMsg, setRegisterMsg] = React.useState<string | undefined>(undefined);
   const [showPassword, setShowPassword] = React.useState<boolean>(false);
@@ -55,7 +57,6 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
       }
     }
   };
-
   return (
     <>
       {/* TODO: remove value when dev is done */}
@@ -95,7 +96,7 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
                   id="email"
                   name="email"
                   placeholder="Your email"
-                  value="hej@mail.com"
+                  // value="hej@mail.com"
                   required
                 />
               </div>
@@ -112,7 +113,7 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
                   placeholder={
                     loginRegisterHeader === "Register" ? "Choose a password" : "Password"
                   }
-                  value="Testtest123"
+                  // value="Testtest123"
                   required
                 />
 

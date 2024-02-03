@@ -17,7 +17,13 @@ const Login = () => {
     });
   };
 
-  return <LoginRegisterForm loginRegisterHeader="Login" handleSubmit={handleLogin} />;
+  return (
+    <LoginRegisterForm
+      loginRegisterHeader="Login"
+      handleSubmit={handleLogin}
+      loginType="admin"
+    />
+  );
 };
 
 export default Login;

@@ -11,26 +11,40 @@ export const authOptions: NextAuthOptions = {
       credentials: {
         email: { label: "Email", placeholder: "Enter Email" },
         password: { label: "Password", placeholder: "Password", type: "password" },
+        loginType: {
+          label: "Login Type",
+          placeholder: "Login Type",
+          type: "select",
+          options: ["admin", "guest"],
+        }
       },
       async authorize(credentials) {
-        const user = await prisma.user.findUnique({
-          where: { email: credentials?.email },
-        });
+        if (credentials?.loginType === "admin") {
+          const user = await prisma.user.findUnique({
+            where: { email: credentials?.email },
+          });
 
-        const bytes = CryptoJS.AES.decrypt(
-          user?.hashedPassword!,
-          process.env.DECRYPT_SECRET!
-        );
-        const decryptedPassword = bytes.toString(CryptoJS.enc.Utf8);
+          const bytes = CryptoJS.AES.decrypt(
+            user?.hashedPassword!,
+            process.env.DECRYPT_SECRET!
+          );
+          const decryptedPassword = bytes.toString(CryptoJS.enc.Utf8);
+          console.log(credentials)
 
-        if (
-          credentials?.email === user?.email &&
-          credentials?.password === decryptedPassword
-        ) {
-          return user;
-        } else {
-          return null;
+          if (
+            credentials?.email === user?.email &&
+            credentials?.password === decryptedPassword
+          ) {
+            return user;
+          } else {
+            return null;
+          }
         }
+        if (credentials?.loginType === "guest") {
+          return null // Login logic for guest
+        }
+        return null
+
       },
     }),
   ],
