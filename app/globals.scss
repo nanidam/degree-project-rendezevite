@@ -9,10 +9,25 @@ body {
   margin: 10px 0 0;
 }
 
+h1 {
+  font-size: 2.5rem;
+  font-family: "OverlockSC";
+  font-weight: bold;
+  margin: 10px 0;
+  text-align: center;
+}
+
 h2 {
   color: $dark-green;
   font-family: "Dancing script";
   font-size: 1.6rem;
+}
+
+h3 {
+  font-size: 1.4rem;
+  font-family: "OverlockSC";
+  color: $green;
+  margin: 10px 0;
 }
 
 @media screen and (min-width: 768px) {
