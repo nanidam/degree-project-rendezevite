@@ -1,6 +1,7 @@
 import { IEvent } from "@/app/utils/models/IEvent";
 import { IGuest } from "@/app/utils/models/IGuest";
 import { handleInviteGuests } from "../utils/handleInviteGuests";
+import "./style/inviteGuests.scss";
 
 interface InviteGuestsProps {
   eventId: string;
@@ -14,45 +15,45 @@ export const InviteGuests = ({
   setEditGuestList,
 }: InviteGuestsProps) => {
   return (
-    <article className="admin-wrapper">
+    <article className="invite-guests">
       <form
-        className="admin-form"
-        onSubmit={(e) =>
-          handleInviteGuests({ e, eventId, setEvent, setEditGuestList })
-        }
+        className="invite-guest-form"
+        onSubmit={(e) => handleInviteGuests({ e, eventId, setEvent, setEditGuestList })}
       >
         <h3>Invite guests</h3>
-        <label className="admin-label" htmlFor="guestName">
-          Guest name:
+        <label className="invite-guest-label" htmlFor="guestName">
+          Guest&apos;s name:
         </label>
         <input
-          className="admin-input"
+          className="invite-guest-input"
           type="text"
           name="guestName"
-          placeholder="Guest name"
+          placeholder="John Doe"
+          required
         />
 
-        <label className="admin-label" htmlFor="guestEmail">
-          Guest email:
+        <label className="invite-guest-label" htmlFor="guestEmail">
+          Guest&apos;s email:
         </label>
         <input
-          className="admin-input"
+          className="invite-guest-input"
           type="email"
           name="guestEmail"
-          placeholder="Guest email"
+          placeholder="john.doe@example.com"
+          required
         />
 
-        <label className="admin-label" htmlFor="additionalGuest">
-          Additional guest name:
+        <label className="invite-guest-label" htmlFor="additionalGuest">
+          Additional guest&apos;s name:
         </label>
         <input
-          className="admin-input"
+          className="invite-guest-input"
           type="text"
           name="additionalGuest"
-          placeholder="Additional guest name"
+          placeholder="Jane Doe"
         />
 
-        <button className="admin-btn" type="submit">
+        <button className="invite-guest-btn" type="submit">
           Invite
         </button>
       </form>
