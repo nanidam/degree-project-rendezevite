@@ -44,12 +44,14 @@ export const EventPassword = ({ eventPassword, eventId }: IEventPasswordProps) =
               className="show-hide-password-svg"
               src="/svgs/opened-eye.svg"
               onClick={toggleShowPassword}
+              aria-label="Opened eye to show password"
             />
           ) : (
             <ReactSVG
               className="show-hide-password-svg"
               src="/svgs/closed-eye.svg"
               onClick={toggleShowPassword}
+              aria-label="Closed eye to hide password"
             />
           )}
         </div>
