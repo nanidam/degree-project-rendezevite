@@ -1,6 +1,6 @@
-@import "../../../../globals.scss";
-@import "../../../../utils/constants.scss";
-@import "../../../../utils/keyframes.scss";
+@import "../../../globals.scss";
+@import "../../../utils/constants.scss";
+@import "../../../utils/keyframes.scss";
 
 .create-inv-container {
   display: flex;
@@ -67,6 +67,29 @@
           color: $off-white;
         }
       }
+
+      .next-return-wrapper {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        gap: 15px;
+        .submit-event-btn {
+          margin: 15px 0;
+          height: 40px;
+          border-radius: 15px;
+          width: 40%;
+          background-color: transparent;
+          border-color: $olive-green;
+          font-size: 1.2rem;
+          transition: ease-in-out 0.3s;
+          cursor: pointer;
+
+          &:hover {
+            background: $olive-green;
+            color: $off-white;
+          }
+        }
+      }
     }
   }
 }
@@ -79,6 +102,12 @@
       .create-inv-form {
         .create-inv-btn {
           width: 200px;
+        }
+
+        .next-return-wrapper {
+          .submit-event-btn {
+            width: 30%;
+          }
         }
       }
     }
