@@ -1,4 +1,5 @@
 // Colors
+$blue: #4275a2;
 $olive-green: #85915e;
 $green-transparent: #baf38457;
 $green: #618833;
@@ -7,9 +8,11 @@ $dark-green: #283618;
 $cream: #fdf9ef;
 $tan: #dda15e;
 $mid-orange: #fbca7b;
+$orange-transparent: #fbca7b95;
 $rusty-orange: #bc6c25;
 $off-white: #fdf7f2;
 $white: #fffefb;
+$light-grey: #e5e5e5;
 $grey: #7a7a7a;
 $black: #000000;
 
@@ -24,18 +27,19 @@ $menu-desktop-background: #fff0e4;
 @font-face {
   font-family: "Cedarville";
   src: url("../../public/fonts/CedarvilleCursive-Regular.ttf");
-  src: url("../../public/fonts/CedarvilleCursive-Regular.ttf");
 }
 
 @font-face {
   font-family: "Alegreya";
   src: url("../../public/fonts/Alegreya_Sans/AlegreyaSans-Regular.ttf");
-  //   font-weight: 400;
-  //   font-style: normal;
 }
 
 @font-face {
   font-family: "Dancing script";
   src: url("../../public/fonts/DancingScript-VariableFont_wght.ttf");
-  src: url("../../public/fonts/DancingScript-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: "OverlockSC";
+  src: url("../../public/fonts/OverlockSC-Regular.ttf");
 }
