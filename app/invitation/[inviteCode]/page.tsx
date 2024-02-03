@@ -1,16 +1,8 @@
+import LoginRegisterForm from "@/app/utils/components/loginRegisterForm";
 import TemplateGeometricDesign from "@/app/utils/components/templateGeoDesign";
 
 const Invitation = () => {
-  return (
-    <>
-      <TemplateGeometricDesign
-        header="Testing"
-        text="Testing"
-        rsvpGeneric={true}
-        rsvpFood={false}
-      />
-    </>
-  );
+  return <LoginRegisterForm loginRegisterHeader={"login"} />;
 };
 
 export default Invitation;
