@@ -1,32 +1,36 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import "./style/eventInfo.scss";
+import { useRouter } from "next/navigation";
 import { ReactSVG } from "react-svg";
 import { useState } from "react";
 
-interface EventInfoProps {
+interface IEventInfoProps {
   eventDate: string;
   eventId: string;
   eventName: string;
 }
 
 //TODO: copy btn
-export const EventInfo = ({ eventDate, eventId, eventName }: EventInfoProps) => {
+export const EventInfo = ({ eventDate, eventId, eventName }: IEventInfoProps) => {
   const router = useRouter();
   const [isCopied, setIsCopied] = useState(false);
+
+  const INVITATION_LINK = `www.rendezevite.com/invitation/${eventId}`;
+
   const editEvent = () => {
     router.push(`/admin/edit-event/${eventName}`);
   };
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(`www.rendezevite.com/invitation/${eventId}`);
+    navigator.clipboard.writeText(INVITATION_LINK);
     setIsCopied(true);
 
     setTimeout(() => {
       setIsCopied(false);
     }, 2000);
   };
+
   return (
     <article className="edit-event-wrapper">
       <h3>Information</h3>
@@ -35,11 +39,11 @@ export const EventInfo = ({ eventDate, eventId, eventName }: EventInfoProps) => 
         {eventDate}
       </p>
       <p className="event-info">
-        <b>Event Link: </b>
+        <b>Invitation Link: </b>
       </p>
       <div className="event-link-wrapper">
-        <a className="event-link" href={`www.rendezevite.com/invitation/${eventId}`}>
-          www.rendezevite.com/invitation/{eventId}{" "}
+        <a className="event-link" href={INVITATION_LINK}>
+          {INVITATION_LINK}
         </a>
         <ReactSVG className="copy-svg" onClick={copyToClipboard} src="/svgs/copy.svg" />
       </div>
