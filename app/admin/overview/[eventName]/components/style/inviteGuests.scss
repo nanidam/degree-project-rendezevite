@@ -13,8 +13,27 @@
     display: flex;
     flex-direction: column;
 
+    .gold-flags-banner {
+      display: none;
+    }
+
+    .invite-guest-text {
+      font-family: "Alegreya";
+      font-size: 1.1rem;
+      margin: 10px 0;
+    }
+
+    .invite-guest-icons {
+      display: flex;
+      justify-content: space-around;
+      margin: 10px 0;
+    }
+
     .invite-guest-label {
       margin-top: 10px;
+      font-family: "Alegreya";
+      font-size: 1.1rem;
+      font-weight: bold;
     }
 
     .invite-guest-input {
@@ -22,6 +41,9 @@
       border: 1px solid transparent;
       border-bottom-color: $grey;
       padding-left: 10px;
+      background-color: transparent;
+      font-family: "Alegreya";
+      font-size: 1.1rem;
     }
 
     .invite-guest-btn {
@@ -33,6 +55,8 @@
       background-color: transparent;
       border-color: $olive-green;
       transition: ease-in-out 0.3s;
+      font-family: "Alegreya";
+      font-size: 1rem;
       cursor: pointer;
 
       &:hover {
@@ -46,5 +70,22 @@
 @media screen and (min-width: 768px) {
   .invite-guests {
     width: 500px;
+
+    .invite-guest-form {
+      .gold-flags-banner {
+        display: block;
+        overflow: hidden;
+        opacity: 0.5;
+        margin-left: -50px;
+      }
+
+      .invite-guest-title {
+        margin-top: -50px;
+      }
+
+      .invite-guest-btn {
+        margin-top: 20px;
+      }
+    }
   }
 }
