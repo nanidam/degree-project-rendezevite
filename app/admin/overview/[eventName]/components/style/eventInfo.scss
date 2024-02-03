@@ -8,6 +8,51 @@
   padding: 0 20px;
   margin: 20px;
   border-radius: 15px;
+  font-family: "Alegreya";
+  font-size: 1.1rem;
+
+  .event-info {
+    margin: 0;
+    padding: 5px;
+  }
+
+  .event-link-wrapper {
+    border: 1px solid $grey;
+    display: flex;
+    flex-direction: row;
+    height: 45px;
+
+    .event-link {
+      overflow: auto;
+      text-decoration: none;
+      color: $olive-green;
+      background-color: transparent;
+      margin: 0 10px;
+      display: flex;
+      height: 40px;
+      align-items: center;
+      flex: 1;
+    }
+
+    .copy-svg {
+      width: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $light-grey;
+      border: 1px solid $grey;
+      transition: ease-in-out 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $grey;
+      }
+    }
+  }
+
+  .copy-confirmation {
+    text-align: center;
+  }
 
   .edit-event-btn {
     width: 150px;
@@ -16,6 +61,7 @@
     margin: 10px 0;
     border-radius: 15px;
     background-color: transparent;
+
     border-color: $olive-green;
     transition: ease-in-out 0.3s;
     cursor: pointer;
@@ -24,5 +70,12 @@
       background: $olive-green;
       color: $white;
     }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .edit-event-wrapper {
+    width: 500px;
+    height: 250px;
   }
 }
