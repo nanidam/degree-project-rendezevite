@@ -39,60 +39,70 @@
       font-family: "Alegreya";
       font-size: 1.1rem;
       font-weight: bold;
+      transition: ease-in-out 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $mid-orange;
+      }
     }
 
     .sort-name-btn {
       width: 44%;
+      background-color: transparent;
     }
 
     .sort-rsvp-btn,
     .sort-attending-btn {
       border-left-color: $grey;
+      background-color: transparent;
       width: 28%;
     }
   }
 
   .szh-accordion {
     width: 100%;
-    // outline: 2px solid rgb(77, 17, 27);
+
+    .szh-accordion__ite,
+    .szh-accordion__item--status-entered,
+    .szh-accordion__item--expanded {
+      .szh-accordion__item-heading {
+        background-color: $mid-orange;
+      }
+    }
 
     .pagination {
-      list-style: none;
-      height: 31.5px;
-      width: 31.5px;
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-top: 2px;
-      padding: 0;
-      cursor: pointer;
-      width: 100%;
 
-      .page-item {
-        list-style: none;
-        padding: 2px 12px;
-        height: 31.5px;
-        width: 31.5px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 2px;
-        background-color: #f0f0f0;
-        color: #333;
-        border-radius: 50%;
-        margin-right: 5px;
+      .pagination-btn {
+        background-color: transparent;
+        height: 50px;
+        width: 50px;
+        border: none;
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        font-family: "Alegreya";
+        transition: ease-in-out 0.3s;
+        cursor: pointer;
 
-        &.active {
-          background-color: #1e50ff;
-          border-radius: 50%;
+        &:hover {
+          background-color: $mid-orange;
+          color: $white;
         }
+      }
+
+      .total-pages {
+        font-family: "Alegreya";
+        font-size: 1.3rem;
+        margin: 0;
       }
     }
 
     .szh-accordion__item {
       .szh-accordion__item-heading {
         .szh-accordion__item-btn {
-          padding: 0;
           display: flex;
           width: 100%;
           height: 45px;
@@ -100,11 +110,13 @@
           border: none;
           border-bottom: 1px solid $grey;
           margin: 2px 0;
+          padding: 0;
+          background-color: transparent;
           transition: ease-in-out 0.3s;
           cursor: pointer;
 
           &:hover {
-            background-color: rgba(25, 181, 35, 0.521);
+            background-color: $mid-orange;
           }
 
           .accordion-info {
@@ -115,7 +127,6 @@
 
             .guest-name-wrapper {
               display: flex;
-              padding: 0 5px;
               width: 44%;
 
               .guest-name {
@@ -143,10 +154,7 @@
       }
 
       .szh-accordion__item-content {
-        background-color: $white;
-        border-bottom-left-radius: 15px;
-        border-bottom-right-radius: 15px;
-        padding: 15px;
+        padding: 0 15px;
         animation: fadeIn 0.5s ease-in-out;
 
         .szh-accordion__item-panel {
@@ -155,6 +163,8 @@
             flex-direction: column;
             gap: 5px;
             margin-bottom: 10px;
+            padding: 15px 20px 0;
+            background-color: $very-light-orange;
 
             hr {
               width: 100%;
@@ -168,7 +178,7 @@
                 background-color: transparent;
                 border: 1px solid transparent;
                 width: 75%;
-                color: $tan;
+                color: $rusty-orange;
                 cursor: pointer;
 
                 &:focus {
@@ -191,7 +201,7 @@
               align-self: center;
               margin: 10px 0;
               border-radius: 15px;
-              background-color: transparent;
+              background-color: $white;
               border-color: $blue;
               color: $blue;
               font-family: "Alegreya";
@@ -211,7 +221,7 @@
               gap: 10px;
 
               .guestlist-btn {
-                background-color: transparent;
+                background-color: $white;
                 border-radius: 15px;
                 height: 40px;
                 width: 90px;
@@ -242,12 +252,18 @@
               border: none;
               text-decoration: underline;
               color: $dark-green;
-              margin-top: 10px;
+              margin: 10px 0;
               cursor: pointer;
             }
           }
         }
       }
     }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .guestlist-container {
+    width: 500px;
   }
 }
