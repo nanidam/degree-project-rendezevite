@@ -1,5 +1,6 @@
 "use client";
 
+import "./style.scss";
 import { useCallback, useEffect, useState } from "react";
 import { getEvent } from "@/app/services/getEvent";
 import getUserId from "@/app/services/getUserId";
