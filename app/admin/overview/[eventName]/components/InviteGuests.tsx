@@ -2,6 +2,7 @@ import { IEvent } from "@/app/utils/models/IEvent";
 import { IGuest } from "@/app/utils/models/IGuest";
 import { handleInviteGuests } from "../utils/handleInviteGuests";
 import "./style/inviteGuests.scss";
+import { ReactSVG } from "react-svg";
 
 interface InviteGuestsProps {
   eventId: string;
@@ -14,13 +15,34 @@ export const InviteGuests = ({
   setEvent,
   setEditGuestList,
 }: InviteGuestsProps) => {
+  //TODO: If invited guest email already exists, show error
   return (
     <article className="invite-guests">
       <form
         className="invite-guest-form"
         onSubmit={(e) => handleInviteGuests({ e, eventId, setEvent, setEditGuestList })}
       >
-        <h3>Invite guests</h3>
+        <div className="gold-flags-banner">
+          <ReactSVG src="/svgs/gold-flags-banner.svg" />
+        </div>
+
+        <h3 className="invite-guest-title">Invite guests</h3>
+        <p className="invite-guest-text">
+          By inviting a guest, they will receive an email containing a login link to access
+          and view their invitation. However, additional guests will not receive an
+          invitation.
+        </p>
+        <p className="invite-guest-text">
+          Please leave <i>additional guest&apos;s name</i> <b>blank</b> if the guest do not
+          have any.
+        </p>
+
+        <div className="invite-guest-icons">
+          <ReactSVG src="/svgs/green-mail.svg" />
+          <ReactSVG src="/svgs/disco-ball.svg" />
+          <ReactSVG src="/svgs/music-note.svg" />
+        </div>
+
         <label className="invite-guest-label" htmlFor="guestName">
           Guest&apos;s name:
         </label>
