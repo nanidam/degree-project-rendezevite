@@ -29,14 +29,16 @@ export const EventPassword = ({ eventPassword, eventId }: IEventPasswordProps) =
         <label className="event-password-label" htmlFor="eventPassword">
           Password:
         </label>
+
         <div className="event-password-container">
           <input
             className="event-password-input"
-            type={editPassword || !showPassword ? "text" : "password"}
+            type={editPassword || showPassword ? "text" : "password"}
             name="eventPassword"
             readOnly={!editPassword}
             defaultValue={eventPassword}
           />
+
           {showPassword || editPassword ? (
             <ReactSVG
               className="show-hide-password-svg"
