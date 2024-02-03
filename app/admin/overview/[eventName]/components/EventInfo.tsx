@@ -11,7 +11,6 @@ interface IEventInfoProps {
   eventName: string;
 }
 
-//TODO: copy btn
 export const EventInfo = ({ eventDate, eventId, eventName }: IEventInfoProps) => {
   const router = useRouter();
   const [isCopied, setIsCopied] = useState(false);
@@ -35,12 +34,10 @@ export const EventInfo = ({ eventDate, eventId, eventName }: IEventInfoProps) =>
     <article className="edit-event-wrapper">
       <h3>Information</h3>
       <p className="event-info">
-        <b>Event Date: </b>
-        {eventDate}
+        Event Date:
+        <span className="event-date">{eventDate}</span>
       </p>
-      <p className="event-info">
-        <b>Invitation Link: </b>
-      </p>
+      <p className="event-info">Invitation Link:</p>
       <div className="event-link-wrapper">
         <a className="event-link" href={INVITATION_LINK}>
           {INVITATION_LINK}
