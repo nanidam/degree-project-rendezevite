@@ -83,7 +83,7 @@ export const GuestList = ({
           </p>
         </span>
         <p className="explanation">
-          <ReactSVG src="/svgs/question-mark.svg" /> Still waiting guest to respond.
+          <ReactSVG src="/svgs/question-mark.svg" /> Still waiting for guest to respond.
         </p>
       </div>
 
@@ -127,12 +127,20 @@ export const GuestList = ({
                   <p className="guest-name">{guest.name}</p>
                 </span>
                 <div className="guest-rsvpd">
-                  {guest.hasResponded ?? <ReactSVG src="/svgs/positive.svg" />}
-                  <ReactSVG className="gustlist-symbols" src="/svgs/negative.svg" />
+                  {guest.hasResponded ? (
+                    <ReactSVG src="/svgs/positive.svg" />
+                  ) : (
+                    <ReactSVG className="gustlist-symbols" src="/svgs/negative.svg" />
+                  )}
                 </div>
                 <div className="guest-rsvpd">
-                  {guest.attending ?? <ReactSVG src="/svgs/positive.svg" />}
-                  <ReactSVG className="gustlist-symbols" src="/svgs/negative.svg" />
+                  {guest.attending ? (
+                    <ReactSVG src="/svgs/positive.svg" />
+                  ) : guest.hasResponded ? (
+                    <ReactSVG className="gustlist-symbols" src="/svgs/negative.svg" />
+                  ) : (
+                    <ReactSVG className="gustlist-symbols" src="/svgs/question-mark.svg" />
+                  )}
                 </div>
               </div>
             }
@@ -474,7 +482,7 @@ export const GuestList = ({
         ))}
         <div className="pagination">
           <button
-            className={`first-btn${page === 1 ? " disabled" : ""}`}
+            className={`first-btn${page === 1 ? " disabled" : ""} pagination-btn`}
             disabled={page === 1}
             onClick={() => navigateFirst({ setPage, event, setPaginatedList })}
             aria-label="First page"
@@ -483,7 +491,7 @@ export const GuestList = ({
           </button>
 
           <button
-            className={`previous-btn${page === 1 ? " disabled" : ""}`}
+            className={`previous-btn${page === 1 ? " disabled" : ""} pagination-btn`}
             disabled={page === 1}
             onClick={() => navigatePrevious({ page, setPage, event, setPaginatedList })}
             aria-label="Previous page"
@@ -495,7 +503,7 @@ export const GuestList = ({
             <b className="current-page-numb">{page}</b> of {totalPages}
           </p>
           <button
-            className={`next-btn${page === totalPages ? " disabled" : ""}`}
+            className={`next-btn${page === totalPages ? " disabled" : ""} pagination-btn`}
             disabled={page === totalPages}
             onClick={() => navigateNext({ page, setPage, event, setPaginatedList })}
             aria-label="Next page"
@@ -504,7 +512,7 @@ export const GuestList = ({
           </button>
 
           <button
-            className={`last-btn${page === totalPages ? " disabled" : ""}`}
+            className={`last-btn${page === totalPages ? " disabled" : ""} pagination-btn`}
             disabled={page === totalPages}
             onClick={() => navigateLast({ page, setPage, event, setPaginatedList })}
             aria-label="Last page"

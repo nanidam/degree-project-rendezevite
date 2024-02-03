@@ -11,15 +11,21 @@ interface IEventPasswordProps {
 export const EventPassword = ({ eventPassword, eventId }: IEventPasswordProps) => {
   const [editPassword, setEditPassword] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [editedPassword, setEditedPassword] = useState<string>(eventPassword);
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
+  const handleCancel = () => {
+    setEditPassword(false);
+    setEditedPassword(eventPassword);
+  };
+
   return (
     <article className="event-password-wrapper">
       <h3>Password</h3>
-      <p>Change or see your password for the event</p>
+      <p className="event-password-text">See or change your password for the event.</p>
       <form
         className="admin-form event-password-form"
         onSubmit={(e) => {
@@ -27,7 +33,7 @@ export const EventPassword = ({ eventPassword, eventId }: IEventPasswordProps) =
         }}
       >
         <label className="event-password-label" htmlFor="eventPassword">
-          Password:
+          <b>Password:</b>
         </label>
 
         <div className="event-password-container">
@@ -36,7 +42,8 @@ export const EventPassword = ({ eventPassword, eventId }: IEventPasswordProps) =
             type={editPassword || showPassword ? "text" : "password"}
             name="eventPassword"
             readOnly={!editPassword}
-            defaultValue={eventPassword}
+            value={editedPassword}
+            onChange={(e) => setEditedPassword(e.target.value)}
           />
 
           {showPassword || editPassword ? (
@@ -67,7 +74,7 @@ export const EventPassword = ({ eventPassword, eventId }: IEventPasswordProps) =
             </button>
             <button
               className="password-btn cancel-password-btn"
-              onClick={() => setEditPassword(false)}
+              onClick={handleCancel}
               type="button"
               aria-label="Cancel password change"
             >

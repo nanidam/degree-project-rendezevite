@@ -50,28 +50,32 @@ const AdminOverview = ({
       <h1 className="admin-header">
         {event.eventName.charAt(0).toUpperCase() + event.eventName.slice(1)}
       </h1>
-      <HamburgerMenu />
 
-      <EventInfo
-        eventDate={event.eventDate}
-        eventId={event.id}
-        eventName={event.eventName}
-      />
+      <article className="admin-overview-container">
+        <div className="admin-overview-wrapper">
+          <EventInfo
+            eventDate={event.eventDate}
+            eventId={event.id}
+            eventName={event.eventName}
+          />
 
-      <EventPassword eventPassword={event.eventPassword} eventId={event.id} />
+          <EventPassword eventPassword={event.eventPassword} eventId={event.id} />
+        </div>
+        <div className="admin-overview-wrapper">
+          <InviteGuests
+            eventId={event.id}
+            setEvent={setEvent}
+            setEditGuestList={setEditGuestList}
+          />
 
-      <InviteGuests
-        eventId={event.id}
-        setEvent={setEvent}
-        setEditGuestList={setEditGuestList}
-      />
-
-      <GuestList
-        event={event}
-        setEvent={setEvent}
-        editGuestList={editGuestList}
-        setEditGuestList={setEditGuestList}
-      />
+          <GuestList
+            event={event}
+            setEvent={setEvent}
+            editGuestList={editGuestList}
+            setEditGuestList={setEditGuestList}
+          />
+        </div>
+      </article>
     </section>
   );
 };
