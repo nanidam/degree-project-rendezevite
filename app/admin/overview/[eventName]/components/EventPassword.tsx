@@ -37,7 +37,7 @@ export const EventPassword = ({ eventPassword, eventId }: IEventPasswordProps) =
             readOnly={!editPassword}
             defaultValue={eventPassword}
           />
-          {showPassword ? (
+          {showPassword || editPassword ? (
             <ReactSVG
               className="show-hide-password-svg"
               src="/svgs/opened-eye.svg"
