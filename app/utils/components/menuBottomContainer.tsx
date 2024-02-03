@@ -17,6 +17,7 @@ const MenuBottomLinks: React.FC<IHamburgarMenuProps> = ({ loggedIn }) => {
         <>
           <button
             className="menu-bottom"
+            aria-label="Register"
             onClick={() => {
               router.push("/register");
             }}
@@ -26,6 +27,7 @@ const MenuBottomLinks: React.FC<IHamburgarMenuProps> = ({ loggedIn }) => {
           </button>
           <button
             className="menu-bottom"
+            aria-label="Login"
             onClick={() => {
               router.push("/api/auth/signin");
             }}

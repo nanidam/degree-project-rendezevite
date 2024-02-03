@@ -16,7 +16,12 @@ const MenuIconsDesktop: React.FC<IHamburgarMenuProps> = ({
 }) => {
   return (
     <>
-      <button className="menu-btn" onClick={onClick}>
+      <button
+        className="menu-btn"
+        onClick={onClick}
+        aria-expanded={isMenuOpen}
+        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+      >
         {isDesktop && !isMenuOpen ? (
           <div className="menu-icons-desktop">
             {loggedIn && (
