@@ -39,14 +39,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: $light-grey;
-      border: 1px solid $grey;
       transform: scaleX(-1);
       transition: ease-in-out 0.3s;
       cursor: pointer;
 
       &:hover {
-        background-color: $grey;
+        transform: scalex(-1.1);
       }
     }
   }
