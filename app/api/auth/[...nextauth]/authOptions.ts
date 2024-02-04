@@ -2,12 +2,17 @@ import prisma from "@/app/db";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import CryptoJS from "crypto-js";
+import { Adapter } from "next-auth/adapters";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { use } from "react";
 
 export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
+  adapter: PrismaAdapter(prisma) as Adapter,
   providers: [
     CredentialsProvider({
       name: "creds",
+
       credentials: {
         email: { label: "Email", placeholder: "Enter Email" },
         password: { label: "Password", placeholder: "Password", type: "password" },
@@ -52,15 +57,34 @@ export const authOptions: NextAuthOptions = {
             },
           });
           if (event) {
-            return { id: event.guestList[0].id, email: credentials.email, access: "guest", name: event.guestList[0].name };
+            return {
+              id: event.guestList[0].id,
+              email: credentials.email,
+              access: "guest",
+              name: event.guestList[0].name
+            };
           }
         }
 
-        return null
+        return null;
       },
     }),
   ],
   pages: {
     signIn: "/login",
   },
+  session: {
+    strategy: "jwt",
+  },
+
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) return { ...token, ...user }
+      return token
+    },
+    async session({ session, token }) {
+      return { ...session, id: token.id, access: token.access };
+    },
+  },
+
 };

@@ -6,7 +6,7 @@ import { ReactSVG } from "react-svg";
 import React from "react";
 import { REGISTER_STATUS } from "@/app/utils/constants";
 import Link from "next/link";
-import login, { ILogin } from "../login";
+import login from "../login";
 
 interface LoginRegisterFormProps {
   loginRegisterHeader: string;
@@ -77,7 +77,11 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
         <article className="login-register-wrapper">
           <form
             className="login-register-form"
-            onSubmit={(e) => login({ e, loginType, eventId: inviteCode })}
+            onSubmit={
+              handleRegister
+                ? undefined
+                : (e) => login({ e, loginType, eventId: inviteCode })
+            }
             action={handleAction}
           >
             <fieldset className="login-register-fieldset">
