@@ -73,16 +73,16 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/login",
   },
+  // jwt = webtoken
   session: {
     strategy: "jwt",
   },
-
   callbacks: {
     async jwt({ token, user }) {
       if (user) return { ...token, ...user }
       return token
     },
-    async session({ session, token }) {
+    async session({ session, token, user }) {
       return { ...session, id: token.id, access: token.access };
     },
   },
