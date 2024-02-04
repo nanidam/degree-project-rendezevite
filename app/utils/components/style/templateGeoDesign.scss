@@ -1,3 +1,6 @@
+@import "../../../globals.scss";
+@import "../../../utils/constants.scss";
+
 .template-bg {
   background-color: #27264b;
   background-image: url("../../../../public/templateGeoDesign.png");
@@ -69,6 +72,29 @@
       }
     }
   }
+
+  .next-return-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 15px;
+    .submit-event-btn {
+      margin: 15px 0;
+      height: 40px;
+      border-radius: 15px;
+      width: 40%;
+      background-color: transparent;
+      border-color: $olive-green;
+      font-size: 1.2rem;
+      transition: ease-in-out 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        background: $olive-green;
+        color: $off-white;
+      }
+    }
+  }
 }
 
 @media screen and (max-height: 667px) {
@@ -93,6 +119,11 @@
     .template-text-container {
       max-height: 320px;
     }
+    .next-return-wrapper {
+      .submit-event-btn {
+        width: 30%;
+      }
+    }
   }
 }
 
@@ -105,6 +136,11 @@
         .rsvp-input {
           font-size: 1.3rem;
         }
+      }
+    }
+    .next-return-wrapper {
+      .submit-event-btn {
+        width: 30%;
       }
     }
   }

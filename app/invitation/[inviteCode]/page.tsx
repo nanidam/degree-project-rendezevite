@@ -1,5 +1,6 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
 import LoginRegisterForm from "@/app/utils/components/loginRegisterForm";
+import { ISession } from "@/app/utils/models/ISession";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
@@ -8,13 +9,17 @@ import { redirect } from "next/navigation";
 // this component should recieve a textas prop
 // Handle manual redirect if trying to access /welcome or /rsvp
 // Handle manual redirect if trying to access /admin if logged in as guest
+
 const Invitation = async ({
   params: { inviteCode },
 }: {
   params: { inviteCode: string };
 }) => {
-  const session = await getServerSession(authOptions);
-  if (session) redirect(`/invitation/${inviteCode}/welcome`);
+  const session = (await getServerSession(authOptions)) as ISession | null;
+  if (session) {
+    if (session.access === "admin") redirect("/unauthorized");
+    else redirect(`/invitation/${inviteCode}/welcome`);
+  }
   return (
     <LoginRegisterForm
       loginRegisterHeader={"Invitation"}

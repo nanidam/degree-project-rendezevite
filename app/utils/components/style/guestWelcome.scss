@@ -1,0 +1,79 @@
+@import "../../../globals.scss";
+@import "../../../utils/constants.scss";
+.wrapper-invitation {
+  padding: 20px;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .welcome-title {
+    font-size: 24px;
+    color: #333;
+  }
+
+  .sub-title {
+    font-size: 16px;
+    color: #666;
+  }
+
+  .welcome-text {
+    font-size: 18px;
+    color: #444;
+  }
+
+  .welcome-span {
+    display: block;
+    margin-top: 10px;
+
+    .guest-name {
+      font-size: 20px;
+      color: #222;
+    }
+
+    .additional-guest-prefix {
+      font-size: 18px;
+      color: #555;
+      text-align: center;
+    }
+
+    .additional-guest-name {
+      font-size: 20px;
+      color: #222;
+    }
+  }
+
+  .next-return-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 15px;
+    .submit-event-btn {
+      margin: 15px 0;
+      height: 40px;
+      border-radius: 15px;
+      width: 40%;
+      background-color: transparent;
+      border-color: $olive-green;
+      font-size: 1.2rem;
+      transition: ease-in-out 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        background: $olive-green;
+        color: $off-white;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper-invitation {
+    .next-return-wrapper {
+      .submit-event-btn {
+        width: 30%;
+      }
+    }
+  }
+}
