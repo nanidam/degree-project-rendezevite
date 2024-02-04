@@ -13,6 +13,10 @@
     height: 100%;
   }
 
+  &.close {
+    height: 0;
+  }
+
   .menu-btn {
     cursor: pointer;
     display: flex;
