@@ -6,19 +6,17 @@ import { ReactSVG } from "react-svg";
 import React from "react";
 import { REGISTER_STATUS } from "@/app/utils/constants";
 import Link from "next/link";
-import { ILogin } from "../login";
+import login, { ILogin } from "../login";
 
 interface LoginRegisterFormProps {
   loginRegisterHeader: string;
   loginType: string;
-  handleSubmit?: ({ e, loginType }: ILogin) => Promise<void>;
   handleRegister?: (data: FormData) => Promise<string | undefined>;
   inviteCode?: string;
 }
 
 const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
   loginRegisterHeader,
-  handleSubmit,
   handleRegister,
   loginType,
   inviteCode,
@@ -67,25 +65,19 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
       <section className="login-register-container">
         <h1>{loginRegisterHeader}</h1>
         <article className="login-register-wrapper">
-          {loginRegisterHeader === "Login" ? (
-            <p className="login-register-text">
-              To login you need to use your registered email and password.
-            </p>
-          ) : (
-            <p className="login-register-text">
-              To register a new account, you need to enter a valid email and choose a
-              password.
-            </p>
-          )}
+          <p className="login-register-text">
+            {loginType === "" &&
+              "To register a new account, you need to enter a valid email and choose a password."}
+            {loginType === "admin" &&
+              "To login you need to use your registered email and password."}
+            {loginType === "guest" &&
+              "To see the invitation please login with your email and event password."}
+          </p>
         </article>
         <article className="login-register-wrapper">
           <form
             className="login-register-form"
-            onSubmit={
-              handleSubmit
-                ? (e) => handleSubmit({ e, loginType, eventId: inviteCode })
-                : undefined
-            }
+            onSubmit={(e) => login({ e, loginType, eventId: inviteCode })}
             action={handleAction}
           >
             <fieldset className="login-register-fieldset">
@@ -166,7 +158,7 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
 
             <div className="btns-container">
               <button className="login-register-btn" type="submit">
-                {loginRegisterHeader}
+                {loginRegisterHeader !== "Register" ? "Login" : "Register"}
               </button>
               <button
                 className="cancel-login-register-btn"

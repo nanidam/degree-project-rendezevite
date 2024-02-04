@@ -14,8 +14,9 @@ const login = async ({ e, loginType, eventId }: ILogin) => {
         email,
         password,
         loginType,
-        redirect: loginType === "admin" ? true : false,
-        callbackUrl: loginType === "admin" ? "/events" : "/test"
+        redirect: true,
+        callbackUrl: loginType === "admin" ? "/events" : `/invitation/${eventId}/welcome`,
+        eventId
     });
 };
 

@@ -9,7 +9,7 @@ import MenuBottomLinks from "./menuBottomContainer";
 const HamburgerMenu = () => {
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
   const [glideOut, setGlideOut] = useState<boolean>(false);
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
+  const [loggedIn, setLoggedIn] = useState<boolean>(true);
   //TODO: Add logic to check if user is logged in
   const [isDesktop, setIsDesktop] = useState<boolean>(false);
 
@@ -37,9 +37,7 @@ const HamburgerMenu = () => {
   return (
     <>
       <nav
-        className={`menu ${isMenuOpen ? "open" : "close"} ${
-          glideOut ? "glide-out" : ""
-        }  `}
+        className={`menu ${isMenuOpen ? "open" : "close"} ${glideOut ? "glide-out" : ""}  `}
       >
         <MenuIconsDesktop
           onClick={toggleMenu}
