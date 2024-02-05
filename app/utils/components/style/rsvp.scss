@@ -12,7 +12,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 15px;
+
+  .template-container {
+    padding: 0 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40%;
+
+    .template-header {
+      font-size: 2.5rem;
+      color: white;
+      text-align: center;
+    }
+  }
 
   .form-rsvp {
     width: 100%;
