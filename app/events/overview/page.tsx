@@ -1,6 +1,5 @@
 "use client";
 
-import Logout from "../../utils/components/logout";
 import "./style.scss";
 import { ReactSVG } from "react-svg";
 import Link from "next/link";
@@ -45,7 +44,6 @@ const EventOverview = () => {
         Events <br />
         Overview
       </h1>
-      <Logout></Logout>
       <section className="event-overview-container">
         <article className="create-event">
           <button className="create-event-btn" onClick={createEvent}>
