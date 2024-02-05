@@ -48,6 +48,20 @@
         overflow-y: scroll;
         background-color: $white;
 
+        &::-webkit-scrollbar {
+          width: 10px;
+        }
+
+        &::-webkit-scrollbar-track {
+          background: $light-grey;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: $grey;
+          border-radius: 5px;
+          border: 3px solid $grey;
+        }
+
         .event {
           font-size: 1.2rem;
           display: flex;
