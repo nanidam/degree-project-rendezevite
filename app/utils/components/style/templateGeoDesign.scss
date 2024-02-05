@@ -12,135 +12,114 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 15px;
 
-  .template-header {
-    font-size: 2rem;
-    color: white;
-    margin-top: 60%;
-    max-width: 300px;
-    text-align: center;
-  }
+  .template-container {
+    padding: 0 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40%;
 
-  .template-text-container {
-    width: 100%;
-    padding: 0 80px;
-    font-size: 1rem;
-    text-align: center;
-    box-sizing: border-box;
-    color: white;
-    height: 400px;
+    .template-header {
+      font-size: 1.5rem;
+      color: white;
+      text-align: center;
+    }
 
-    .rsvp-form {
-      height: 100%;
-      width: 100%;
+    .template-text-container {
       font-size: 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      align-items: center;
-      text-align: left;
+      text-align: center;
+      color: white;
+      width: 100%;
+      height: 50vh;
 
-      .rsvp-wrapper {
+      .rsvp-form {
+        height: 100%;
         width: 100%;
-      }
-
-      .rsvp-input {
-        border: none;
-        border-bottom: 1px solid white;
-        background-color: transparent;
-        color: white;
         font-size: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        text-align: left;
 
-        &:focus {
-          outline: goldenrod;
+        .rsvp-wrapper {
+          width: 100%;
         }
-      }
 
-      .rsvp-btn {
-        width: 120px;
-        height: 36px;
-        border-radius: 15px;
-        border-color: rgb(233, 196, 105);
-        background-color: transparent;
-        color: white;
+        .rsvp-input {
+          border: none;
+          border-bottom: 1px solid white;
+          background-color: transparent;
+          color: white;
+          font-size: 1rem;
 
-        &:hover {
-          background-color: rgb(233, 196, 105);
-          color: black;
+          &:focus {
+            outline: goldenrod;
+          }
+        }
+
+        .rsvp-btn {
+          width: 120px;
+          height: 36px;
+          border-radius: 15px;
+          border-color: rgb(233, 196, 105);
+          background-color: transparent;
+          color: white;
+
+          &:hover {
+            background-color: rgb(233, 196, 105);
+            color: black;
+          }
         }
       }
     }
   }
 
   .next-return-wrapper {
-    display: flex;
     width: 100%;
+    display: flex;
     justify-content: center;
-    gap: 15px;
-    .submit-event-btn {
-      margin: 15px 0;
-      height: 40px;
-      border-radius: 15px;
-      width: 40%;
+    gap: 20px;
+
+    .invitation-btn {
       background-color: transparent;
-      border-color: $olive-green;
-      font-size: 1.2rem;
+      border: none;
+      padding: 0;
       transition: ease-in-out 0.3s;
       cursor: pointer;
 
       &:hover {
-        background: $olive-green;
-        color: $off-white;
+        transform: scale(1.2);
+      }
+
+      .invitation-navigation-arrow-left {
+        transform: rotate(180deg);
+        margin-bottom: 5px;
       }
     }
   }
 }
 
-@media screen and (max-height: 667px) {
+@media screen and (min-height: 667px) and (min-height: 730px) {
   .template-bg {
-    .template-header {
-      margin-top: 45%;
-      max-width: 200px;
-    }
-
-    .template-text-container {
-      max-height: 300px;
-    }
-  }
-}
-
-@media screen and (max-width: 360px) {
-  .template-bg {
-    .template-header {
-      max-width: 200px;
-    }
-
-    .template-text-container {
-      max-height: 320px;
-    }
-    .next-return-wrapper {
-      .submit-event-btn {
-        width: 30%;
+    .template-container {
+      .template-header {
+        margin-top: 25%;
+        font-size: 2rem;
       }
     }
   }
 }
 
-@media screen and (min-width: 400px) {
+@media screen and (max-width: 340px) {
   .template-bg {
-    .template-text-container {
-      .rsvp-form {
-        font-size: 1.3rem;
+    .template-container {
+      margin-top: 50%;
 
-        .rsvp-input {
-          font-size: 1.3rem;
-        }
-      }
-    }
-    .next-return-wrapper {
-      .submit-event-btn {
-        width: 30%;
+      .template-text-container {
+        height: 49vh;
       }
     }
   }
