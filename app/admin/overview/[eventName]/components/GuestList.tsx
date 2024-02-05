@@ -72,21 +72,21 @@ export const GuestList = ({
       </p>
       <div className="guestlist-explanations">
         <span className="explanation">
-          <ReactSVG src="/svgs/positive.svg" />
+          <ReactSVG src="/svgs/positive.svg" aria-label="Yes" />
           <p>
             Indicates that the guest has RSVP&apos;d and/or will be attending the event.
           </p>
         </span>
 
         <span className="explanation">
-          <ReactSVG src="/svgs/negative.svg" />
+          <ReactSVG src="/svgs/negative.svg" aria-label="No" />
           <p className="explanation-negative">
             Indicates that the guest has <b>not</b> {""}
             RSVP&apos;d and/or will <b>not</b> be attending the event.
           </p>
         </span>
         <span className="explanation">
-          <ReactSVG src="/svgs/question-mark.svg" />
+          <ReactSVG src="/svgs/question-mark.svg" aria-label="Not responded" />
           <p>Still waiting for guest to respond.</p>{" "}
         </span>
       </div>
@@ -123,27 +123,55 @@ export const GuestList = ({
               <div className="accordion-info">
                 <span className="guest-name-wrapper">
                   {expandedItems.includes(guest.id) ? (
-                    <ReactSVG className="gustlist-symbols" src="/svgs/expand-less.svg" />
+                    <ReactSVG
+                      className="gustlist-symbols"
+                      src="/svgs/expand-less.svg"
+                      aria-label="Collapse symbol"
+                    />
                   ) : (
-                    <ReactSVG className="gustlist-symbols" src="/svgs/expand-more.svg" />
+                    <ReactSVG
+                      className="gustlist-symbols"
+                      src="/svgs/expand-more.svg"
+                      aria-label="Expand symbol"
+                    />
                   )}
 
                   <p className="guest-name">{guest.name}</p>
                 </span>
                 <div className="guest-rsvpd">
                   {guest.hasResponded ? (
-                    <ReactSVG src="/svgs/positive.svg" />
+                    <ReactSVG
+                      className="gustlist-symbols"
+                      src="/svgs/positive.svg"
+                      aria-label="Yes"
+                    />
                   ) : (
-                    <ReactSVG className="gustlist-symbols" src="/svgs/negative.svg" />
+                    <ReactSVG
+                      className="gustlist-symbols"
+                      src="/svgs/negative.svg"
+                      aria-label="No"
+                    />
                   )}
                 </div>
                 <div className="guest-rsvpd">
                   {guest.attending ? (
-                    <ReactSVG src="/svgs/positive.svg" />
+                    <ReactSVG
+                      className="gustlist-symbols"
+                      src="/svgs/positive.svg"
+                      aria-label="Yes"
+                    />
                   ) : guest.hasResponded ? (
-                    <ReactSVG className="gustlist-symbols" src="/svgs/negative.svg" />
+                    <ReactSVG
+                      className="gustlist-symbols"
+                      src="/svgs/negative.svg"
+                      aria-label="No"
+                    />
                   ) : (
-                    <ReactSVG className="gustlist-symbols" src="/svgs/question-mark.svg" />
+                    <ReactSVG
+                      className="gustlist-symbols"
+                      src="/svgs/question-mark.svg"
+                      aria-label="Not responded"
+                    />
                   )}
                 </div>
               </div>
@@ -186,7 +214,7 @@ export const GuestList = ({
               <label className="guestlist-label" htmlFor="has-responded">
                 Has responded:
                 <select
-                  className="guestlist-selected"
+                  className="guestlist-select"
                   name="has-responded"
                   value={
                     editGuestList.find((g) => g.id === guest.id)?.hasResponded.toString() ||
@@ -196,6 +224,7 @@ export const GuestList = ({
                     handleHasResponded(e, guest.id, setEditGuestList, editGuestList)
                   }
                   disabled={editModeId !== guest.id}
+                  aria-label="Select Yes or No if guest has responded"
                 >
                   <option className="guestlist-opt" value="true">
                     Yes
@@ -224,6 +253,7 @@ export const GuestList = ({
                         handleAttending(e, guest.id, setEditGuestList, editGuestList)
                       }
                       disabled={editModeId !== guest.id}
+                      aria-label="Select Yes or No for Guest Attending"
                     >
                       <option className="guestlist-opt" value="true">
                         Yes
@@ -268,6 +298,7 @@ export const GuestList = ({
                             handleDiet(e, guest.id, setEditGuestList, editGuestList)
                           }
                           disabled={editModeId !== guest.id}
+                          aria-label="Select meat, vegetarian or vegan for guest's diet"
                         >
                           <option value="meat">Meat</option>
                           <option value="vegetarian">Vegetarian</option>
@@ -361,6 +392,7 @@ export const GuestList = ({
                         )
                       }
                       disabled={editModeId !== guest.id}
+                      aria-label="Select Yes or No for Additional Guest Attending"
                     >
                       <option className="guestlist-opt" value="true">
                         Yes
@@ -394,6 +426,7 @@ export const GuestList = ({
                             )
                           }
                           disabled={editModeId !== guest.id}
+                          aria-label="Select meat, vegetarian or vegan for additional guest diet"
                         >
                           <option className="guestlist-opt" value="meat">
                             Meat
@@ -484,47 +517,47 @@ export const GuestList = ({
             )}
           </AccordionItem>
         ))}
-        <div className="pagination">
-          <button
-            className={`first-btn${page === 1 ? " disabled" : ""} pagination-btn`}
-            disabled={page === 1}
-            onClick={() => navigateFirst({ setPage, event, setPaginatedList })}
-            aria-label="First page"
-          >
-            «
-          </button>
-
-          <button
-            className={`previous-btn${page === 1 ? " disabled" : ""} pagination-btn`}
-            disabled={page === 1}
-            onClick={() => navigatePrevious({ page, setPage, event, setPaginatedList })}
-            aria-label="Previous page"
-          >
-            ‹
-          </button>
-
-          <p className="total-pages">
-            <b className="current-page-numb">{page}</b> of {totalPages}
-          </p>
-          <button
-            className={`next-btn${page === totalPages ? " disabled" : ""} pagination-btn`}
-            disabled={page === totalPages}
-            onClick={() => navigateNext({ page, setPage, event, setPaginatedList })}
-            aria-label="Next page"
-          >
-            ›
-          </button>
-
-          <button
-            className={`last-btn${page === totalPages ? " disabled" : ""} pagination-btn`}
-            disabled={page === totalPages}
-            onClick={() => navigateLast({ page, setPage, event, setPaginatedList })}
-            aria-label="Last page"
-          >
-            »
-          </button>
-        </div>
       </Accordion>
+      <div className="pagination">
+        <button
+          className={`first-btn${page === 1 ? " disabled" : ""} pagination-btn`}
+          disabled={page === 1}
+          onClick={() => navigateFirst({ setPage, event, setPaginatedList })}
+          aria-label="First page"
+        >
+          «
+        </button>
+
+        <button
+          className={`previous-btn${page === 1 ? " disabled" : ""} pagination-btn`}
+          disabled={page === 1}
+          onClick={() => navigatePrevious({ page, setPage, event, setPaginatedList })}
+          aria-label="Previous page"
+        >
+          ‹
+        </button>
+
+        <p className="total-pages">
+          <b className="current-page-numb">{page}</b> of {totalPages}
+        </p>
+        <button
+          className={`next-btn${page === totalPages ? " disabled" : ""} pagination-btn`}
+          disabled={page === totalPages}
+          onClick={() => navigateNext({ page, setPage, event, setPaginatedList })}
+          aria-label="Next page"
+        >
+          ›
+        </button>
+
+        <button
+          className={`last-btn${page === totalPages ? " disabled" : ""} pagination-btn`}
+          disabled={page === totalPages}
+          onClick={() => navigateLast({ page, setPage, event, setPaginatedList })}
+          aria-label="Last page"
+        >
+          »
+        </button>
+      </div>
     </article>
   );
 };
