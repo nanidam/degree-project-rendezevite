@@ -1,5 +1,4 @@
 "use client";
-
 import { ReactSVG } from "react-svg";
 import "./style/logoutBtn.scss";
 import { signOut } from "next-auth/react";

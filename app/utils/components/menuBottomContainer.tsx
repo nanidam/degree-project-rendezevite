@@ -1,6 +1,6 @@
 import "./style/menuBottomContainer.scss";
-import Logout from "./logout";
 import { ReactSVG } from "react-svg";
+import Logout from "./logout";
 
 interface IHamburgarMenuProps {
   loggedIn: boolean;
@@ -10,7 +10,7 @@ const MenuBottomLinks: React.FC<IHamburgarMenuProps> = ({ loggedIn }) => {
   return (
     <>
       {loggedIn ? (
-        <Logout />
+        <Logout></Logout>
       ) : (
         <>
           <a
