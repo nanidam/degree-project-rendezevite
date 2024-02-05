@@ -10,6 +10,7 @@ import { IEvent } from "./models/IEvent";
 export const checkAccess = async (eventId: string) => {
     const session = (await getServerSession(authOptions)) as ISession | null;
     if (!session) redirect(`/invitation/${eventId}`);
+    if (session.access === "admin") redirect("/unauthorized");
 
     const event = (await prisma.event.findUnique({
         where: {
