@@ -7,7 +7,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 0 20px;
   height: 100vh;
 
   .login-register-wrapper {
@@ -24,8 +24,8 @@
 
     .invitation-mail-svg {
       text-align: center;
+      animation: rock 1.5s ease-in-out infinite alternate;
     }
-
     .login-register-form {
       .login-register-fieldset {
         border-radius: 15px;

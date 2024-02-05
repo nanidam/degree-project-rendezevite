@@ -91,3 +91,13 @@
     transform: translateX(-100%) rotate(0deg);
   }
 }
+
+@keyframes rock {
+  0%,
+  100% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+}
