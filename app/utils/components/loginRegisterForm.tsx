@@ -73,6 +73,7 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
             {loginType === "guest" &&
               "To see the invitation please login with your email and event password."}
           </p>
+          <ReactSVG className="invitation-mail-svg" src="/svgs/invitation-card.svg" />
         </article>
         <article className="login-register-wrapper">
           <form
