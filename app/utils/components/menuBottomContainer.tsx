@@ -1,3 +1,4 @@
+import "./style/menuBottomContainer.scss";
 import { ReactSVG } from "react-svg";
 import Logout from "./logout";
 import { useRouter } from "next/navigation";
@@ -15,8 +16,8 @@ const MenuBottomLinks: React.FC<IHamburgarMenuProps> = ({ loggedIn }) => {
         <Logout></Logout>
       ) : (
         <>
-          <button
-            className="menu-bottom"
+          <a
+            className="menu-bottom-link"
             aria-label="Register"
             onClick={() => {
               router.push("/register");
@@ -24,9 +25,9 @@ const MenuBottomLinks: React.FC<IHamburgarMenuProps> = ({ loggedIn }) => {
           >
             <ReactSVG src="/svgs/plus.svg" />
             Register
-          </button>
-          <button
-            className="menu-bottom"
+          </a>
+          <a
+            className="menu-bottom-link"
             aria-label="Login"
             onClick={() => {
               router.push("/api/auth/signin");
@@ -34,7 +35,7 @@ const MenuBottomLinks: React.FC<IHamburgarMenuProps> = ({ loggedIn }) => {
           >
             <ReactSVG src="/svgs/profile.svg" />
             Login
-          </button>
+          </a>
         </>
       )}
     </>

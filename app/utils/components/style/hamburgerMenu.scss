@@ -48,11 +48,11 @@
           display: flex;
           justify-content: space-evenly;
 
-          .menu-bottom {
-            border: none;
-            border-radius: 50%;
-            background-color: transparent;
-          }
+          // .menu-bottom {
+          //   border: none;
+          //   border-radius: 50%;
+          //   background-color: transparent;
+          // }
         }
       }
     }
@@ -65,20 +65,9 @@
           display: flex;
           justify-content: space-evenly;
 
-          .menu-bottom {
-            border: none;
-            border-radius: 50%;
-            background-color: transparent;
-            padding: 10px;
-            width: 70px;
-            color: $grey;
-
-            transition: background-color 0.3s ease;
-            cursor: pointer;
-
+          .logout-btn-container {
             &:hover {
-              background-color: $grey;
-              color: $white;
+              background-color: $white;
             }
           }
         }

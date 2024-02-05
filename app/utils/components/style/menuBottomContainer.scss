@@ -1,0 +1,27 @@
+@import "../../constants.scss";
+
+.menu-bottom-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 50%;
+  width: 55px;
+  padding: 10px;
+  background-color: transparent;
+  transition: ease-in-out 0.3s;
+  color: $grey;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $white;
+    color: $grey;
+  }
+}
+
+@media screen and (min-width: 767px) {
+  .menu-bottom-link {
+    color: $white;
+  }
+}
