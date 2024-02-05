@@ -21,7 +21,22 @@ export const sendMail = async (email: string) => {
 
   await mailConfig({
     to: email,
-    subject: "Your RendezEvite password",
-    body: "Hello, here is your RendezEvite password: " + decryptedPassword,
+    subject: "Your RendezEvite Password",
+    body: `<h3>Dear Madam/Sir,</h3>
+    <p>You have requested to have your password sent to you. <br/>If you haven't made such a request, please disregard this message.</p>
+    <p>Your password is: <b>${decryptedPassword}</b></p>
+    <p>
+        Click here to be redirected to the login page:
+        <button onclick="window.location.href = '/'"><a>Rendez Evite</a></button>
+    </p>
+    
+    <p>We wish you a wonderful day!</p>
+    
+    <p>
+        Kind regards,<br/>
+        <img src="../../public/svgs/logo-footer.svg" alt="Rendez Evite logo" width="100px"/>
+    </p>`,
   });
 };
+
+//TODO: confirm how the mail looks

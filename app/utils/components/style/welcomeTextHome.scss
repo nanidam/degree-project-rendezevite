@@ -1,0 +1,36 @@
+@import "../../../utils/constants.scss";
+@import "../../../utils/keyframes.scss";
+
+.home-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .home-header {
+    font-size: 3.2rem;
+    font-family: "Alegreya";
+    text-align: center;
+  }
+
+  .home-icon {
+    text-align: center;
+    animation: slideWiggleFadeInOut 4s ease-in-out infinite;
+  }
+
+  .home-text {
+    font-family: "Alegreya";
+    font-size: 1.3rem;
+    background-color: $white;
+    padding: 20px;
+    border-radius: 15px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .home-text-container {
+    width: 780px;
+    text-align: center;
+    align-items: center;
+    padding: 0;
+  }
+}
