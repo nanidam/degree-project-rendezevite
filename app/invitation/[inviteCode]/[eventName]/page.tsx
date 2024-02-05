@@ -1,5 +1,6 @@
 import { checkAccess } from "@/app/utils/checkAccess";
 import TemplateGeometricDesign from "@/app/utils/components/templateGeoDesign";
+import { redirect } from "next/navigation";
 
 const GuestInvitation = async ({
   params: { inviteCode },
