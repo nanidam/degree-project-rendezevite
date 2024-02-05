@@ -14,11 +14,21 @@ const EventOverview = () => {
   const [events, setEvents] = useState<string[]>([]);
   const [showConfirmDelete, setShowConfirmDelete] = useState<boolean>(false);
   const [eventNameState, setEventNameState] = useState<string>("");
+  const [pastEvents, setPastEvents] = useState<string[]>([]);
 
   const fetchAndSetEvents = async () => {
     const data = await getAllEvents();
     if (data) {
-      setEvents(data.map((event) => event.eventName));
+      //Check event.eventdate has passed => setPastEvents
+      //Check event.eventdate has NOT passed => setEvents
+      const currentDate = new Date();
+      const upcomingEvents = data.filter(
+        (event) => new Date(event.eventDate) > currentDate
+      );
+      const pastEvents = data.filter((event) => new Date(event.eventDate) <= currentDate);
+
+      setEvents(upcomingEvents.map((event) => event.eventName));
+      setPastEvents(pastEvents.map((event) => event.eventName));
     }
   };
 
@@ -49,13 +59,13 @@ const EventOverview = () => {
         </article>
 
         <div className="event-wrapper">
-          <article className="current-events-container">
+          <article className="events-container">
             <h2>Current events:</h2>
-            <ul className="current-events">
+            <ul className="events">
               {events.map((eventName) => (
                 <React.Fragment key={eventName}>
-                  <li className="current-event">
-                    <Link className="event" href={`/admin/overview/${eventName}`}>
+                  <li className="event">
+                    <Link className="event-link" href={`/admin/overview/${eventName}`}>
                       {eventName}
                     </Link>
                     <div className="edit-delete-icons">
@@ -71,12 +81,19 @@ const EventOverview = () => {
             </ul>
           </article>
 
-          <article className="past-events-container">
+          <article className="events-container">
             <h2>Past events:</h2>
-            <ul>
-              <li>event 3</li>
-              <li>event 4</li>
-            </ul>
+            {pastEvents.length > 0 ? (
+              <ul className="events">
+                {pastEvents.map((eventName) => (
+                  <li key={eventName} className="event">
+                    {eventName}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="no-past-events">You currently have no past events.</p>
+            )}
           </article>
 
           {showConfirmDelete && (
