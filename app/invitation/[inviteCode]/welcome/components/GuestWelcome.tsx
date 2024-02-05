@@ -1,6 +1,6 @@
 "use client";
-import { IEvent } from "../models/IEvent";
-import { ISession } from "../models/ISession";
+import { IEvent } from "../../../../utils/models/IEvent";
+import { ISession } from "../../../../utils/models/ISession";
 import { useRouter } from "next/navigation";
 import "./style/guestWelcome.scss";
 

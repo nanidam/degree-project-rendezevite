@@ -1,6 +1,6 @@
 import { checkAccess } from "@/app/utils/checkAccess";
-import GuestWelcome from "@/app/utils/components/guestWelcome";
 import { redirect } from "next/navigation";
+import GuestWelcome from "./components/guestWelcome";
 
 const Welcome = async ({ params: { inviteCode } }: { params: { inviteCode: string } }) => {
   const info = await checkAccess(inviteCode);
