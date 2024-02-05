@@ -40,10 +40,7 @@ const EventOverview = () => {
 
   return (
     <main>
-      <h1 className="event-overview-header">
-        Events <br />
-        Overview
-      </h1>
+      <h1 className="event-overview-header">Events Overview</h1>
       <section className="event-overview-container">
         <article className="create-event">
           <button className="create-event-btn" onClick={createEvent}>
