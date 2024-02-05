@@ -9,6 +9,10 @@ body {
   margin: 10px 0 0;
 }
 
+main {
+  height: 100vh;
+}
+
 h1 {
   font-size: 2.5rem;
   font-family: "OverlockSC";
@@ -33,5 +37,9 @@ h3 {
 @media screen and (min-width: 768px) {
   :root {
     margin-left: 50px;
+  }
+
+  main {
+    height: 80vh;
   }
 }
