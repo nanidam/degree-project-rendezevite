@@ -16,13 +16,13 @@ const AccordionHomePage = () => {
     clearInterval(intervalId);
   };
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setShowFeatures((prevShowFeatures) => !prevShowFeatures);
-    }, 5000);
+  // useEffect(() => {
+  //   const intervalId = setInterval(() => {
+  //     setShowFeatures((prevShowFeatures) => !prevShowFeatures);
+  //   }, 5000);
 
-    return () => clearInterval(intervalId);
-  }, [setShowFeatures]);
+  //   return () => clearInterval(intervalId);
+  // }, [setShowFeatures]);
 
   return (
     <>
