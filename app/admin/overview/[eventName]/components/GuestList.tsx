@@ -71,10 +71,13 @@ export const GuestList = ({
         same header again to sort the guest list in descending order
       </p>
       <div className="guestlist-explanations">
-        <p className="explanation">
-          <ReactSVG src="/svgs/positive.svg" /> Indicates that the guest has RSVP&apos;d
-          and/or will be attending the event.
-        </p>
+        <span className="explanation">
+          <ReactSVG src="/svgs/positive.svg" />
+          <p>
+            Indicates that the guest has RSVP&apos;d and/or will be attending the event.
+          </p>
+        </span>
+
         <span className="explanation">
           <ReactSVG src="/svgs/negative.svg" />
           <p className="explanation-negative">
@@ -82,9 +85,10 @@ export const GuestList = ({
             RSVP&apos;d and/or will <b>not</b> be attending the event.
           </p>
         </span>
-        <p className="explanation">
-          <ReactSVG src="/svgs/question-mark.svg" /> Still waiting for guest to respond.
-        </p>
+        <span className="explanation">
+          <ReactSVG src="/svgs/question-mark.svg" />
+          <p>Still waiting for guest to respond.</p>{" "}
+        </span>
       </div>
 
       <div className="sorting-btns">
