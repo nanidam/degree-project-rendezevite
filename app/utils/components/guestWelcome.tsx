@@ -6,7 +6,7 @@ import "./style/guestWelcome.scss";
 
 interface IGuestWelcomeProps {
   event: IEvent;
-  session: ISession | null;
+  session: ISession;
 }
 
 // TODO: Only send in relevant info, check if event.guestlist contains all guests. if so remove.

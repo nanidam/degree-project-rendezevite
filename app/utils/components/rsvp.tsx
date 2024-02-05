@@ -1,4 +1,10 @@
-const Rsvp = () => {
+import { IGuest } from "../models/IGuest";
+import "./style/rsvp.scss";
+
+interface RsvpProps {
+  guest: IGuest | undefined;
+}
+const Rsvp = ({ guest }: RsvpProps) => {
   //   const handleRsvp = (event: React.FormEvent<HTMLFormElement>) => {
   //     event.preventDefault();
   //     console.log("RSVP CLICK!!! ");
@@ -6,7 +12,7 @@ const Rsvp = () => {
 
   return (
     <>
-      <section className="container-rsvp">
+      <section className="template-bg">
         {/* {guest.hasResponded ? (
           <h1 className="title-rsvp">Response Received</h1>
         ) : (
@@ -19,7 +25,7 @@ const Rsvp = () => {
           <div className="guest-container">
             <div className="guest-name-container">
               <label className="guest-label" htmlFor="guest-name">
-                Guest:
+                Guest: asdsad
               </label>
               {/* {guest ? (
               <span className="guest-name">
@@ -38,7 +44,9 @@ const Rsvp = () => {
             </div>
 
             <div className="attending">
-              <label htmlFor="attending">Attending:</label>
+              <label htmlFor="attending" className="guest-label">
+                Attending:
+              </label>
               <input
                 type="radio"
                 name="attending"
@@ -86,7 +94,9 @@ const Rsvp = () => {
             </div>
 
             <div className="diet">
-              <label htmlFor="diet">Diet:</label>
+              <label htmlFor="diet" className="guest-label">
+                Diet:
+              </label>
               <input
                 type="radio"
                 name="diet"

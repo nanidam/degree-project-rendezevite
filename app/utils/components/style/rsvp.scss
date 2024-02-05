@@ -14,64 +14,88 @@
   align-items: center;
   border-radius: 15px;
 
-  .template-header {
-    font-size: 2rem;
-    color: white;
-    margin-top: 60%;
-    max-width: 300px;
-    text-align: center;
-  }
-
-  .template-text-container {
+  .form-rsvp {
     width: 100%;
-    padding: 0 80px;
-    font-size: 1rem;
-    text-align: center;
-    box-sizing: border-box;
-    color: white;
-    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20vh;
 
-    .rsvp-form {
-      height: 100%;
-      width: 100%;
-      font-size: 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      align-items: center;
-      text-align: left;
-
-      .rsvp-wrapper {
-        width: 100%;
+    .guest-container {
+      .guest-label {
+        color: white;
+        font-size: 1.5rem;
       }
 
-      .rsvp-input {
-        border: none;
-        border-bottom: 1px solid white;
-        background-color: transparent;
-        color: white;
-        font-size: 1rem;
-
-        &:focus {
-          outline: goldenrod;
-        }
-      }
-
-      .rsvp-btn {
-        width: 120px;
-        height: 36px;
-        border-radius: 15px;
-        border-color: rgb(233, 196, 105);
-        background-color: transparent;
-        color: white;
-
-        &:hover {
-          background-color: rgb(233, 196, 105);
-          color: black;
+      .attending,
+      .diet {
+        .checkbox-option {
+          color: white;
+          font-size: 1.3rem;
         }
       }
     }
   }
+
+  // .template-header {
+  //   font-size: 2rem;
+  //   color: white;
+  //   margin-top: 60%;
+  //   max-width: 300px;
+  //   text-align: center;
+  // }
+
+  // .template-text-container {
+  //   width: 100%;
+  //   padding: 0 80px;
+  //   font-size: 1rem;
+  //   text-align: center;
+  //   box-sizing: border-box;
+  //   color: white;
+  //   height: 400px;
+
+  //   .rsvp-form {
+  //     height: 100%;
+  //     width: 100%;
+  //     font-size: 1rem;
+  //     display: flex;
+  //     flex-direction: column;
+  //     justify-content: space-around;
+  //     align-items: center;
+  //     text-align: left;
+
+  //     .rsvp-wrapper {
+  //       width: 100%;
+  //     }
+
+  //     .rsvp-input {
+  //       border: none;
+  //       border-bottom: 1px solid white;
+  //       background-color: transparent;
+  //       color: white;
+  //       font-size: 1rem;
+
+  //       &:focus {
+  //         outline: goldenrod;
+  //       }
+  //     }
+
+  //     .rsvp-btn {
+  //       width: 120px;
+  //       height: 36px;
+  //       border-radius: 15px;
+  //       border-color: rgb(233, 196, 105);
+  //       background-color: transparent;
+  //       color: white;
+
+  //       &:hover {
+  //         background-color: rgb(233, 196, 105);
+  //         color: black;
+  //       }
+  //     }
+  //   }
+  // }
 
   .next-return-wrapper {
     display: flex;
@@ -98,50 +122,10 @@
 }
 
 @media screen and (max-height: 667px) {
-  .template-bg {
-    .template-header {
-      margin-top: 45%;
-      max-width: 200px;
-    }
-
-    .template-text-container {
-      max-height: 300px;
-    }
-  }
 }
 
 @media screen and (max-width: 360px) {
-  .template-bg {
-    .template-header {
-      max-width: 200px;
-    }
-
-    .template-text-container {
-      max-height: 320px;
-    }
-    .next-return-wrapper {
-      .submit-event-btn {
-        width: 30%;
-      }
-    }
-  }
 }
 
 @media screen and (min-width: 400px) {
-  .template-bg {
-    .template-text-container {
-      .rsvp-form {
-        font-size: 1.3rem;
-
-        .rsvp-input {
-          font-size: 1.3rem;
-        }
-      }
-    }
-    .next-return-wrapper {
-      .submit-event-btn {
-        width: 30%;
-      }
-    }
-  }
 }
