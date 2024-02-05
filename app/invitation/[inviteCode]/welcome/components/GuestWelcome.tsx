@@ -1,8 +1,9 @@
 "use client";
-import { IEvent } from "../../../../utils/models/IEvent";
-import { ISession } from "../../../../utils/models/ISession";
-import { useRouter } from "next/navigation";
+
 import "./style/guestWelcome.scss";
+import { ISession } from "@/app/utils/models/ISession";
+import { IEvent } from "@/app/utils/models/IEvent";
+import { useRouter } from "next/router";
 
 interface IGuestWelcomeProps {
   event: IEvent;
