@@ -1,10 +1,17 @@
 @import "../../constants.scss";
 
-.logo-link {
-  text-decoration: none;
-  cursor: pointer;
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  .rendezEviteLogo {
-    text-align: center;
+  .logo-link {
+    text-decoration: none;
+    cursor: pointer;
+
+    .rendezEviteLogo {
+      text-align: center;
+      width: 120px;
+    }
   }
 }

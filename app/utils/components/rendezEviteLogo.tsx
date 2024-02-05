@@ -21,15 +21,19 @@ const RendezEviteLogo = () => {
   }, []);
 
   return (
-    <>
-      <a href="/" className="logo-link">
-        {isDesktop ? (
-          <ReactSVG src="/svgs/rendezevite-logo-desktop.svg" className="rendezEviteLogo" />
-        ) : (
-          <ReactSVG src="/svgs/rendezevite-logo-mobile.svg" className="rendezEviteLogo" />
-        )}
+    <div className="logo-wrapper">
+      <a href="/" className="logo-link" aria-label="Go to RendezEvite Home">
+        <ReactSVG
+          src={
+            isDesktop
+              ? "/svgs/rendezevite-logo-desktop.svg"
+              : "/svgs/rendezevite-logo-mobile.svg"
+          }
+          className="rendezEviteLogo"
+          aria-hidden="true"
+        />
       </a>
-    </>
+    </div>
   );
 };
 
