@@ -16,7 +16,7 @@ const Invitation = async ({
   params: { inviteCode: string };
 }) => {
   const session = (await getServerSession(authOptions)) as ISession | null;
-  if (session) redirect(`/invitation/${inviteCode}/welcome`);
+  if (session && session.access !== "admin") redirect(`/invitation/${inviteCode}/welcome`);
 
   return (
     <LoginRegisterForm
