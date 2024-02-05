@@ -24,8 +24,8 @@ import { navigateFirst } from "../utils/navigateFirst";
 import { navigatePrevious } from "../utils/navigatePrevious";
 import { navigateLast } from "../utils/navigateLast";
 import { saveEditGuest } from "../utils/saveEditGuest";
-import ConfirmDelete from "@/app/utils/components/confirmDelete";
 import { ReactSVG } from "react-svg";
+import ConfirmDelete from "@/app/utils/components/confirmDelete";
 
 interface GuestListProps {
   event: IEvent;

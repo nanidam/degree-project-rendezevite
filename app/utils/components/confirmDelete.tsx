@@ -1,5 +1,5 @@
-import { deleteEvent } from "@/app/services/deleteEvent";
 import "./style/confirmDelete.scss";
+import { deleteEvent } from "@/app/services/deleteEvent";
 import { deleteGuest } from "@/app/services/deleteGuest";
 import { IEvent } from "../models/IEvent";
 
@@ -49,8 +49,7 @@ const ConfirmDelete: React.FC<IConfirmDeleteProps> = ({
     <section className="confirm-delete-container">
       <article className="confirm-delete">
         <h1 className="confirm-delete-header">
-          Are you sure you want to delete{" "}
-          <span className="event-name">{eventName}</span>?
+          Are you sure you want to delete <span className="event-name">{eventName}</span>?
         </h1>
         <p className="confirm-delete-text">
           {events && "Once you delete the event, it cannot be undone."}

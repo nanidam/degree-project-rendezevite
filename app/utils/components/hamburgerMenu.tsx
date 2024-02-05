@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import "./style/hamburgerMenu.scss";
+import { useEffect, useState } from "react";
 import { ReactSVG } from "react-svg";
-import MenuIconsDesktop from "./menuIconsDesktop";
 import MenuBottomLinks from "./menuBottomContainer";
+import MenuIconsDesktop from "./menuIconsDesktop";
 
 const HamburgerMenu = () => {
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);

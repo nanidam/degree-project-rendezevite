@@ -11,7 +11,7 @@ import { GuestList } from "./components/GuestList";
 import { EventInfo } from "./components/EventInfo";
 import { EventPassword } from "./components/EventPassword";
 import { InviteGuests } from "./components/InviteGuests";
-import HamburgerMenu from "@/app/utils/components/hamburgerMenu";
+import HamburgerMenu from "@/app/utils/components/HamburgerMenu";
 
 const AdminOverview = ({
   params: { eventName },

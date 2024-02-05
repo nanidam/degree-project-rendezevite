@@ -10,10 +10,10 @@ const Home = () => {
   return (
     <main>
       <span className="welcome-span">
-        <RegisterLoginHome></RegisterLoginHome>
+        <RegisterLoginHome />
       </span>
       <section className="welcome-container">
-        <WelcomeTextHome></WelcomeTextHome>
+        <WelcomeTextHome />
         <ShortInstructions />
         <AccordionHomePage />
       </section>
