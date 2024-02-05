@@ -30,9 +30,6 @@ const GuestWelcome = ({ event, session }: IGuestWelcomeProps) => {
           )}
         </span>
         <div className="next-return-wrapper">
-          <button className="submit-event-btn" type="button" disabled>
-            Previous
-          </button>
           <button
             className="submit-event-btn"
             type="button"
