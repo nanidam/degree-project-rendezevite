@@ -1,0 +1,66 @@
+@import "../globals.scss";
+@import "../utils/constants.scss";
+
+.unauthorized {
+  padding: 10px;
+  height: 80vh;
+
+  .unauthorized-wrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: $white;
+    padding: 10px;
+    border-radius: 15px;
+    margin: 20px 0;
+
+    .unauthorized-svg {
+      align-self: center;
+      margin-top: 10px;
+    }
+
+    .unauthorized-text {
+      font-family: "Alegreya";
+      font-size: 1.1rem;
+      margin: 10px;
+
+      .support-link {
+        color: $rusty-orange;
+        font-weight: bold;
+        cursor: pointer;
+
+        &:hover {
+          color: $black;
+        }
+      }
+    }
+  }
+
+  .unauthorized-return-btn {
+    font-family: "Alegreya";
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    color: $blue;
+    margin: 10px 0;
+    cursor: pointer;
+
+    &:hover {
+      color: $black;
+    }
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .unauthorized {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .unauthorized-wrapper {
+      width: 500px;
+    }
+  }
+}
