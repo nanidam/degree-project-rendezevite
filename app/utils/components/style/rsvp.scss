@@ -23,7 +23,8 @@
     margin-top: 20vh;
 
     .guest-container {
-      .guest-label {
+      .guest-label,
+      .guest-name {
         color: white;
         font-size: 1.5rem;
       }
@@ -35,6 +36,10 @@
           font-size: 1.3rem;
         }
       }
+    }
+
+    .additional-guest {
+      color: $white;
     }
   }
 
