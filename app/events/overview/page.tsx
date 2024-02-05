@@ -19,8 +19,6 @@ const EventOverview = () => {
   const fetchAndSetEvents = async () => {
     const data = await getAllEvents();
     if (data) {
-      //Check event.eventdate has passed => setPastEvents
-      //Check event.eventdate has NOT passed => setEvents
       const currentDate = new Date();
       const upcomingEvents = data.filter(
         (event) => new Date(event.eventDate) > currentDate
