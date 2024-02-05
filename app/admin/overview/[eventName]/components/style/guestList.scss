@@ -71,35 +71,6 @@
       }
     }
 
-    .pagination {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      .pagination-btn {
-        background-color: transparent;
-        height: 50px;
-        width: 50px;
-        border: none;
-        font-size: 2.5rem;
-        margin-bottom: 10px;
-        font-family: "Alegreya";
-        transition: ease-in-out 0.3s;
-        cursor: pointer;
-
-        &:hover {
-          background-color: $mid-orange;
-          color: $white;
-        }
-      }
-
-      .total-pages {
-        font-family: "Alegreya";
-        font-size: 1.3rem;
-        margin: 0;
-      }
-    }
-
     .szh-accordion__item {
       .szh-accordion__item-heading {
         .szh-accordion__item-btn {
@@ -154,7 +125,6 @@
       }
 
       .szh-accordion__item-content {
-        padding: 0 15px;
         animation: fadeIn 0.5s ease-in-out;
 
         .szh-accordion__item-panel {
@@ -187,11 +157,10 @@
                 }
               }
 
-              .guestlist-selected {
+              .guestlist-select {
                 height: 30px;
                 border-color: transparent;
-                // border-bottom-color: $grey;
-                margin: 5px;
+                margin: 10px;
               }
             }
 
@@ -260,10 +229,54 @@
       }
     }
   }
+
+  .pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    .pagination-btn {
+      background-color: transparent;
+      height: 50px;
+      width: 50px;
+      border: none;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      font-family: "Alegreya";
+      transition: ease-in-out 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $mid-orange;
+        color: $white;
+      }
+    }
+
+    .total-pages {
+      font-family: "Alegreya";
+      font-size: 1.3rem;
+      margin: 0;
+    }
+  }
 }
 
 @media screen and (min-width: 768px) {
   .guestlist-container {
     width: 500px;
+
+    .szh-accordion {
+      max-height: 400px;
+      overflow-y: scroll;
+
+      .szh-accordion__item.szh-accordion__item--status-entered.szh-accordion__item--expanded {
+        .szh-accordion__item-content {
+          .szh-accordion__item-panel {
+            .guestlist-guest-form {
+            }
+          }
+        }
+      }
+    }
   }
 }
