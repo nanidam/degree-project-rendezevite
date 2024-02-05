@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Providers from "./utils/components/Providers";
 import HamburgerMenu from "./utils/components/hamburgerMenu";
-import RendezEviteLogo from "./utils/components/RendezEviteLogo";
-import Footer from "./utils/components/Footer";
+import RendezEviteLogo from "./utils/components/rendezEviteLogo";
+import Footer from "./utils/components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
