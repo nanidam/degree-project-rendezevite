@@ -142,3 +142,15 @@
     }
   }
 }
+
+@media screen and (min-height: 790px) {
+  .login-register-container {
+    height: 78vh;
+  }
+}
+
+@media screen and (min-height: 1200px) {
+  .login-register-container {
+    height: 100vh;
+  }
+}
