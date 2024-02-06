@@ -6,6 +6,7 @@ interface IHamburgarMenuProps {
   isDesktop: boolean;
   isMenuOpen: boolean;
   loggedIn: boolean;
+  access: string | null;
 }
 
 const MenuIconsDesktop: React.FC<IHamburgarMenuProps> = ({
@@ -13,6 +14,7 @@ const MenuIconsDesktop: React.FC<IHamburgarMenuProps> = ({
   isDesktop,
   isMenuOpen,
   loggedIn,
+  access,
 }) => {
   return (
     <>
@@ -46,7 +48,9 @@ const MenuIconsDesktop: React.FC<IHamburgarMenuProps> = ({
             ) : (
               <>
                 <ReactSVG className="menu-desktop-icon" src="/svgs/plus.svg" />
-                <ReactSVG className="menu-desktop-icon" src="/svgs/profile.svg" />
+                {access !== "guest" && (
+                  <ReactSVG className="menu-desktop-icon" src="/svgs/profile.svg" />
+                )}
               </>
             )}
           </div>
