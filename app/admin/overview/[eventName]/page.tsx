@@ -65,6 +65,7 @@ const AdminOverview = ({
             eventId={event.id}
             setEvent={setEvent}
             setEditGuestList={setEditGuestList}
+            guestList={event.guestList}
           />
 
           <GuestList
