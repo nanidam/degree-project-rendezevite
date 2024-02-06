@@ -1,9 +1,15 @@
+"use client";
+import { getSession } from "next-auth/react";
+import "./style/registerLoginHome.scss";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { ReactSVG } from "react-svg";
-import "./style/registerLoginHome.scss";
+import { ISession } from "../models/ISession";
 
-const RegisterLoginHome = () => {
+interface IRegisterLoginHomeProps {
+  readonly session: ISession | null;
+}
+const RegisterLoginHome = ({ session }: IRegisterLoginHomeProps) => {
   const router = useRouter();
   const [desktopMode, setDesktopMode] = useState(false);
 
@@ -23,6 +29,8 @@ const RegisterLoginHome = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  if (session) return null;
 
   return (
     <>
