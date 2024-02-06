@@ -15,7 +15,6 @@ interface CreateEditEventProps {
 const CreateEditEvent = ({ event, userId }: CreateEditEventProps) => {
   const router = useRouter();
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
-  // TODO: Fix EYE in password?
   return (
     <>
       <section className="create-event-container">
