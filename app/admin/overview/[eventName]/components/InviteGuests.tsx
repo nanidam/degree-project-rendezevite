@@ -3,24 +3,37 @@ import { IGuest } from "@/app/utils/models/IGuest";
 import { handleInviteGuests } from "../utils/handleInviteGuests";
 import "./style/inviteGuests.scss";
 import { ReactSVG } from "react-svg";
+import { useState } from "react";
 
 interface InviteGuestsProps {
   eventId: string;
   setEvent: React.Dispatch<React.SetStateAction<IEvent | null>>;
   setEditGuestList: React.Dispatch<React.SetStateAction<IGuest[]>>;
+  guestList: IGuest[];
 }
 
 export const InviteGuests = ({
   eventId,
   setEvent,
   setEditGuestList,
+  guestList,
 }: InviteGuestsProps) => {
-  //TODO: If invited guest email already exists, show error
+  const [errorMsg, setErrorMsg] = useState("");
+  //TODO reset inout field after invite
   return (
     <article className="invite-guests">
       <form
         className="invite-guest-form"
-        onSubmit={(e) => handleInviteGuests({ e, eventId, setEvent, setEditGuestList })}
+        onSubmit={(e) =>
+          handleInviteGuests({
+            e,
+            eventId,
+            setEvent,
+            setEditGuestList,
+            guestList,
+            setErrorMsg,
+          })
+        }
       >
         <div className="gold-flags-banner">
           <ReactSVG src="/svgs/gold-flags-banner.svg" />
@@ -74,6 +87,7 @@ export const InviteGuests = ({
           name="additionalGuest"
           placeholder="Jane Doe"
         />
+        {errorMsg && <span className="error-message">{errorMsg}</span>}
 
         <button className="invite-guest-btn" type="submit">
           Invite

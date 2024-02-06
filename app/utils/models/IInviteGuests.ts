@@ -6,4 +6,6 @@ export interface IInviteGuests {
     eventId: string;
     setEvent: React.Dispatch<React.SetStateAction<IEvent | null>>;
     setEditGuestList: React.Dispatch<React.SetStateAction<IGuest[]>>;
+    guestList: IGuest[];
+    setErrorMsg: React.Dispatch<React.SetStateAction<string>>
 }
