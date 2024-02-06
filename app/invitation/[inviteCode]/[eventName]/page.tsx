@@ -1,5 +1,5 @@
 import { checkAccess } from "@/app/utils/checkAccess";
-import TemplateGeometricDesign from "@/app/utils/components/templateGeoDesign";
+import GeometricDesign from "@/app/utils/components/geometricDesign";
 import { redirect } from "next/navigation";
 
 const GuestInvitation = async ({
@@ -10,7 +10,7 @@ const GuestInvitation = async ({
   const info = await checkAccess(inviteCode);
 
   return (
-    <TemplateGeometricDesign
+    <GeometricDesign
       header={info.event.header!}
       text={info.event.text!}
       eventId={info.event.id}
