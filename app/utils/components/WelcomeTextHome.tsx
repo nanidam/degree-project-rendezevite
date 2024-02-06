@@ -1,3 +1,4 @@
+"use client";
 import { ReactSVG } from "react-svg";
 import "./style/welcomeTextHome.scss";
 
