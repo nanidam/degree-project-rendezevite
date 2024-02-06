@@ -32,7 +32,6 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
     setShowPassword(!showPassword);
   };
 
-  //TODO: test all cases. Does every case need a break of their own?
   const handleAction = async (data: FormData) => {
     if (handleRegister) {
       const result = await handleRegister(data);
