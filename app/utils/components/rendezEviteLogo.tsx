@@ -21,7 +21,7 @@ const RendezEviteLogo = () => {
   }, []);
 
   return (
-    <div className="logo-wrapper">
+    <header className="logo-wrapper">
       <a href="/" className="logo-link" aria-label="Go to RendezEvite Home">
         <ReactSVG
           src={
@@ -33,7 +33,7 @@ const RendezEviteLogo = () => {
           aria-hidden="true"
         />
       </a>
-    </div>
+    </header>
   );
 };
 
