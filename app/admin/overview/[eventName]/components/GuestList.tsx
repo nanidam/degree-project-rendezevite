@@ -23,7 +23,7 @@ import { navigateNext } from "../utils/navigateNext";
 import { navigateFirst } from "../utils/navigateFirst";
 import { navigatePrevious } from "../utils/navigatePrevious";
 import { navigateLast } from "../utils/navigateLast";
-import { saveEditGuest } from "../utils/saveEditGuest";
+import { handleSaveEditGuest } from "../utils/handleSaveEditGuest";
 import ConfirmDelete from "@/app/utils/components/confirmDelete";
 import { ReactSVG } from "react-svg";
 
@@ -179,7 +179,17 @@ export const GuestList = ({
           >
             <form
               className="guestlist-guest-form"
-              onSubmit={(e) => saveEditGuest({ e, guestId: guest.id })}
+              onSubmit={(e) =>
+                handleSaveEditGuest({
+                  e,
+                  guestId: guest.id,
+                  setEvent,
+                  editGuestList,
+                  setEditGuestList,
+                  event,
+                  setEditModeId,
+                })
+              }
             >
               <label className="guestlist-label" htmlFor="guest-name">
                 Name:
@@ -237,116 +247,109 @@ export const GuestList = ({
 
               <hr />
 
-              {guest.hasResponded && (
-                <>
-                  <label className="guestlist-label" htmlFor="attending">
-                    Attending:
-                    <select
-                      className="guestlist-select"
-                      name="attending"
-                      value={
-                        editGuestList
-                          .find((g) => g.id === guest.id)
-                          ?.attending.toString() || "false"
-                      }
-                      onChange={(e) =>
-                        handleAttending(e, guest.id, setEditGuestList, editGuestList)
-                      }
-                      disabled={editModeId !== guest.id}
-                      aria-label="Select Yes or No for Guest Attending"
-                    >
-                      <option className="guestlist-opt" value="true">
-                        Yes
-                      </option>
-                      <option className="guestlist-opt" value="false">
-                        No
-                      </option>
-                    </select>
-                  </label>
+              <>
+                <label className="guestlist-label" htmlFor="attending">
+                  Attending:
+                  <select
+                    className="guestlist-select"
+                    name="attending"
+                    value={
+                      editGuestList.find((g) => g.id === guest.id)?.attending.toString() ||
+                      "false"
+                    }
+                    onChange={(e) =>
+                      handleAttending(e, guest.id, setEditGuestList, editGuestList)
+                    }
+                    disabled={editModeId !== guest.id}
+                    aria-label="Select Yes or No for Guest Attending"
+                  >
+                    <option className="guestlist-opt" value="true">
+                      Yes
+                    </option>
+                    <option className="guestlist-opt" value="false">
+                      No
+                    </option>
+                  </select>
+                </label>
 
-                  <hr />
+                <hr />
 
-                  <label className="guestlist-label" htmlFor="guest-number">
-                    Phone number:
-                    <input
-                      className="guestlist-input"
-                      name="guest-number"
-                      type="text"
-                      value={
-                        editGuestList.find((g) => g.id === guest.id)?.phoneNumber || ""
-                      }
-                      onChange={(e) =>
-                        handlePhoneNumber(e, guest.id, setEditGuestList, editGuestList)
-                      }
-                      readOnly={editModeId !== guest.id}
-                    />
-                  </label>
+                <label className="guestlist-label" htmlFor="guest-number">
+                  Phone number:
+                  <input
+                    className="guestlist-input"
+                    name="guest-number"
+                    type="text"
+                    value={editGuestList.find((g) => g.id === guest.id)?.phoneNumber || ""}
+                    onChange={(e) =>
+                      handlePhoneNumber(e, guest.id, setEditGuestList, editGuestList)
+                    }
+                    readOnly={editModeId !== guest.id}
+                  />
+                </label>
 
-                  <hr />
+                <hr />
 
-                  {event.includeFood && (
-                    <>
-                      <label className="guestlist-label" htmlFor="diet">
-                        Diet:
-                        <select
-                          className="guestlist-select"
-                          name="diet"
-                          value={
-                            editGuestList.find((g) => g.id === guest.id)?.diet || "meat"
-                          }
-                          onChange={(e) =>
-                            handleDiet(e, guest.id, setEditGuestList, editGuestList)
-                          }
-                          disabled={editModeId !== guest.id}
-                          aria-label="Select meat, vegetarian or vegan for guest's diet"
-                        >
-                          <option value="meat">Meat</option>
-                          <option value="vegetarian">Vegetarian</option>
-                          <option value="vegan">Vegan</option>
-                        </select>
-                      </label>
-                      <hr />
-                    </>
-                  )}
+                {event.includeFood && (
+                  <>
+                    <label className="guestlist-label" htmlFor="diet">
+                      Diet:
+                      <select
+                        className="guestlist-select"
+                        name="diet"
+                        value={editGuestList.find((g) => g.id === guest.id)?.diet || "meat"}
+                        onChange={(e) =>
+                          handleDiet(e, guest.id, setEditGuestList, editGuestList)
+                        }
+                        disabled={editModeId !== guest.id}
+                        aria-label="Select meat, vegetarian or vegan for guest's diet"
+                      >
+                        <option value="meat">Meat</option>
+                        <option value="vegetarian">Vegetarian</option>
+                        <option value="vegan">Vegan</option>
+                      </select>
+                    </label>
+                    <hr />
+                  </>
+                )}
 
-                  {event.includeAllergies && (
-                    <>
-                      <label className="guestlist-label" htmlFor="allergies">
-                        Allergies:
-                        <input
-                          className="guestlist-input"
-                          name="allergies"
-                          type="text"
-                          value={
-                            editGuestList.find((g) => g.id === guest.id)?.allergies || ""
-                          }
-                          onChange={(e) =>
-                            handleAllergies(e, guest.id, setEditGuestList, editGuestList)
-                          }
-                          readOnly={editModeId !== guest.id}
-                        />
-                      </label>
-                      <hr />
-                    </>
-                  )}
+                {event.includeAllergies && (
+                  <>
+                    <label className="guestlist-label" htmlFor="allergies">
+                      Allergies:
+                      <input
+                        className="guestlist-input"
+                        name="allergies"
+                        type="text"
+                        value={
+                          editGuestList.find((g) => g.id === guest.id)?.allergies || ""
+                        }
+                        onChange={(e) =>
+                          handleAllergies(e, guest.id, setEditGuestList, editGuestList)
+                        }
+                        readOnly={editModeId !== guest.id}
+                      />
+                    </label>
+                    <hr />
+                  </>
+                )}
 
-                  <label className="guestlist-label" htmlFor="comments">
-                    Comments:
-                    <input
-                      className="guestlist-input"
-                      name="comments"
-                      type="text"
-                      value={editGuestList.find((g) => g.id === guest.id)?.comments || ""}
-                      onChange={(e) =>
-                        handleComments(e, guest.id, setEditGuestList, editGuestList)
-                      }
-                      readOnly={editModeId !== guest.id}
-                    />
-                  </label>
-                </>
-              )}
+                <label className="guestlist-label" htmlFor="comments">
+                  Comments:
+                  <input
+                    className="guestlist-input"
+                    name="comments"
+                    type="text"
+                    value={editGuestList.find((g) => g.id === guest.id)?.comments || ""}
+                    onChange={(e) =>
+                      handleComments(e, guest.id, setEditGuestList, editGuestList)
+                    }
+                    readOnly={editModeId !== guest.id}
+                  />
+                </label>
+              </>
 
-              {guest.additionalGuest.name.length > 0 && guest.hasResponded && (
+              {guest.additionalGuest.name.length > 0 && (
                 <>
                   <hr />
                   <label className="guestlist-label" htmlFor="additional-guest">
@@ -411,7 +414,7 @@ export const GuestList = ({
                         Additional guest diet:
                         <select
                           className="guestlist-select"
-                          name="dditional-guest-diet"
+                          name="additional-guest-diet"
                           value={
                             editGuestList
                               .find((g) => g.id === guest.id)
