@@ -9,6 +9,7 @@ import { redirect } from "next/navigation";
 // this component should recieve a textas prop
 // Handle manual redirect if trying to access /welcome or /rsvp
 // Handle manual redirect if trying to access /admin if logged in as guest
+// error when signing in to incorrect event ?
 
 const Invitation = async ({
   params: { inviteCode },
