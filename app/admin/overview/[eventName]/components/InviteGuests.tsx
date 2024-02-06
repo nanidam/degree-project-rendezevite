@@ -3,7 +3,7 @@ import { IGuest } from "@/app/utils/models/IGuest";
 import { handleInviteGuests } from "../utils/handleInviteGuests";
 import "./style/inviteGuests.scss";
 import { ReactSVG } from "react-svg";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 interface InviteGuestsProps {
   eventId: string;
@@ -19,10 +19,11 @@ export const InviteGuests = ({
   guestList,
 }: InviteGuestsProps) => {
   const [errorMsg, setErrorMsg] = useState("");
-  //TODO reset inout field after invite
+  const formRef = useRef(null);
   return (
     <article className="invite-guests">
       <form
+        ref={formRef}
         className="invite-guest-form"
         onSubmit={(e) =>
           handleInviteGuests({
@@ -32,6 +33,7 @@ export const InviteGuests = ({
             setEditGuestList,
             guestList,
             setErrorMsg,
+            formRef,
           })
         }
       >
