@@ -14,7 +14,8 @@
   align-items: center;
 
   .template-container {
-    padding: 0 80px;
+    width: 55%;
+    // padding: 0 75px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -28,26 +29,85 @@
     }
   }
 
-  .form-rsvp {
+  .rsvp-form {
     width: 100%;
+    max-height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    .guest-container {
-      .guest-label,
-      .guest-name {
-        color: white;
-        font-size: 1.5rem;
+    .form-container {
+      color: white;
+      font-size: 1.1rem;
+      font-family: "Alegreya";
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-height: 300px;
+      overflow-y: scroll;
+      overflow-x: unset;
+      scroll-behavior: smooth;
+      margin-bottom: 15px;
+
+      &::-webkit-scrollbar {
+        width: 10px;
       }
 
-      .attending,
-      .diet {
-        .checkbox-option {
-          color: white;
-          font-size: 1.3rem;
+      &::-webkit-scrollbar-track {
+        background: $dark-purple;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $purple;
+        border-radius: 5px;
+        border: 3px solid $purple;
+      }
+
+      .guest-name,
+      .rsvp-attending {
+        border-bottom: 1px solid $cream;
+        width: 100%;
+        margin: 5px 0;
+      }
+
+      .rsvp-radio-input[type="radio"] {
+        margin: 0 5px;
+        appearance: none;
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 1px solid $grey;
+        margin-right: 5px;
+        cursor: pointer;
+
+        &:checked {
+          background-color: $tan;
         }
+      }
+      .checkbox-option {
+        font-family: "Alegreya";
+      }
+
+      .rsvp-label {
+        margin-top: 10px;
+      }
+
+      .rsvp-input {
+        border: 1px solid transparent;
+        border-bottom: 1px solid $cream;
+        background-color: transparent;
+        font-size: 1.1rem;
+        font-family: "Alegreya";
+        margin-bottom: 10px;
+        padding-left: 5px;
+        color: $white;
+      }
+
+      .rsvp-diet {
+        width: 100%;
+        border-bottom: 1px solid $cream;
       }
     }
 
@@ -56,64 +116,29 @@
     }
   }
 
-  // .template-header {
-  //   font-size: 2rem;
-  //   color: white;
-  //   margin-top: 60%;
-  //   max-width: 300px;
-  //   text-align: center;
-  // }
+  .rsvp-btn-container {
+    width: 100%;
+    text-align: center;
+    margin: 10px;
 
-  // .template-text-container {
-  //   width: 100%;
-  //   padding: 0 80px;
-  //   font-size: 1rem;
-  //   text-align: center;
-  //   box-sizing: border-box;
-  //   color: white;
-  //   height: 400px;
+    .rsvp-submit-btn {
+      height: 45px;
+      width: 70px;
+      border-radius: 15px;
+      background-color: transparent;
+      border-color: $white;
+      color: $white;
+      font-family: "Alegreya";
+      font-size: 1rem;
+      transition: ease-in-out 0.3s;
+      cursor: pointer;
 
-  //   .rsvp-form {
-  //     height: 100%;
-  //     width: 100%;
-  //     font-size: 1rem;
-  //     display: flex;
-  //     flex-direction: column;
-  //     justify-content: space-around;
-  //     align-items: center;
-  //     text-align: left;
-
-  //     .rsvp-wrapper {
-  //       width: 100%;
-  //     }
-
-  //     .rsvp-input {
-  //       border: none;
-  //       border-bottom: 1px solid white;
-  //       background-color: transparent;
-  //       color: white;
-  //       font-size: 1rem;
-
-  //       &:focus {
-  //         outline: goldenrod;
-  //       }
-  //     }
-
-  //     .rsvp-btn {
-  //       width: 120px;
-  //       height: 36px;
-  //       border-radius: 15px;
-  //       border-color: rgb(233, 196, 105);
-  //       background-color: transparent;
-  //       color: white;
-
-  //       &:hover {
-  //         background-color: rgb(233, 196, 105);
-  //         color: black;
-  //       }
-  //     }
-  //   }
-  // }
+      &:hover {
+        background-color: $white;
+        color: $blue-purple;
+      }
+    }
+  }
 
   .next-return-wrapper {
     width: 100%;
@@ -140,11 +165,47 @@
   }
 }
 
-@media screen and (max-height: 667px) {
+@media screen and (min-height: 667px) and (min-height: 730px) {
+  .template-bg {
+    .template-container {
+      .template-header {
+        margin-top: 35%;
+      }
+    }
+  }
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (min-height: 667px) and (min-height: 830px) {
+  .template-bg {
+    .template-container {
+      width: 65%;
+      height: 633px;
+      margin-top: 50%;
+
+      .template-header {
+        margin-top: 35%;
+      }
+
+      .rsvp-form {
+        margin-top: 20px;
+        width: 100%;
+
+        .form-container {
+          font-size: 1.3rem;
+        }
+      }
+    }
+  }
 }
 
-@media screen and (min-width: 400px) {
+@media screen and (max-width: 340px) {
+  .template-bg {
+    .template-container {
+      margin-top: 50%;
+
+      .template-text-container {
+        height: 49vh;
+      }
+    }
+  }
 }
