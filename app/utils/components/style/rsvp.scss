@@ -3,7 +3,7 @@
 
 .template-bg {
   background-color: #27264b;
-  background-image: url("../../../../public/templateGeoDesign.png");
+  background-image: url("../../../../public/geometricDesignMobile.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -15,175 +15,167 @@
 
   .template-container {
     width: 58%;
-    // padding: 0 75px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-top: 35%;
 
-    .template-header {
-      font-size: 2.5rem;
-      color: white;
-      text-align: center;
+    .gemetric-desktop,
+    .invitation-envelope {
+      display: none;
     }
-  }
 
-  .rsvp-form {
-    width: 100%;
-    max-height: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    .template-wrapper {
+      .template-header {
+        font-size: 2.5rem;
+        color: white;
+        text-align: center;
+      }
+    }
 
-    .form-container {
-      color: white;
-      font-size: 1.1rem;
-      font-family: "Alegreya";
+    .rsvp-form {
+      width: 100%;
+      height: 360px;
       display: flex;
       flex-direction: column;
-      width: 100%;
-      max-height: 300px;
-      overflow-y: scroll;
-      overflow-x: unset;
-      scroll-behavior: smooth;
-      margin-bottom: 15px;
+      justify-content: center;
+      align-items: center;
 
-      &::-webkit-scrollbar {
-        width: 10px;
-      }
-
-      &::-webkit-scrollbar-track {
-        background: $dark-purple;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background-color: $purple;
-        border-radius: 5px;
-        border: 3px solid $purple;
-      }
-
-      .guest-name,
-      .rsvp-attending {
-        border-bottom: 1px solid $cream;
+      .form-container {
+        color: white;
+        font-size: 1.1rem;
+        font-family: "Alegreya";
+        display: flex;
+        flex-direction: column;
         width: 100%;
-        margin: 5px 0;
-      }
+        height: 350px;
+        overflow-y: scroll;
+        overflow-x: unset;
+        scroll-behavior: smooth;
+        margin-bottom: 15px;
 
-      .rsvp-radio-input[type="radio"] {
-        margin: 0 5px;
-        appearance: none;
-        -webkit-appearance: none;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        border: 1px solid $grey;
-        margin-right: 5px;
-        cursor: pointer;
+        &::-webkit-scrollbar {
+          width: 10px;
+        }
 
-        &:checked {
-          background-color: $tan;
+        &::-webkit-scrollbar-track {
+          background: $dark-purple;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: $purple;
+          border-radius: 5px;
+          border: 3px solid $purple;
+        }
+
+        .guest-name,
+        .rsvp-attending {
+          border-bottom: 1px solid $cream;
+          width: 100%;
+          margin: 5px 0;
+        }
+
+        .rsvp-radio-input[type="radio"] {
+          margin: 0 5px;
+          appearance: none;
+          -webkit-appearance: none;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          border: 1px solid $grey;
+          margin-right: 5px;
+          cursor: pointer;
+
+          &:checked {
+            background-color: $tan;
+          }
+        }
+
+        .checkbox-option {
+          font-family: "Alegreya";
+        }
+
+        .rsvp-label {
+          margin-top: 10px;
+          font-family: "Alegreya";
+        }
+
+        .rsvp-input {
+          border: 1px solid transparent;
+          border-bottom: 1px solid $cream;
+          background-color: transparent;
+          font-size: 1.1rem;
+          font-family: "Alegreya";
+          margin-bottom: 10px;
+          padding-left: 5px;
+          color: $white;
+          width: calc(100% - 10px);
+        }
+
+        .rsvp-diet {
+          width: 100%;
+          border-bottom: 1px solid $cream;
+          padding-bottom: 10px;
         }
       }
 
-      .checkbox-option {
-        font-family: "Alegreya";
-      }
+      .additional-guest {
+        color: $light-blue;
 
-      .rsvp-label {
-        margin-top: 10px;
-        font-family: "Alegreya";
+        .rsvp-label {
+          margin-top: 15px;
+          padding-top: 15px;
+        }
       }
+    }
 
-      .rsvp-input {
-        border: 1px solid transparent;
-        border-bottom: 1px solid $cream;
+    .send-return-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+
+      .invitation-btn {
         background-color: transparent;
-        font-size: 1.1rem;
-        font-family: "Alegreya";
-        margin-bottom: 10px;
-        padding-left: 5px;
+        border: none;
+        padding: 0;
+        transition: ease-in-out 0.3s;
+        cursor: pointer;
+
+        &:hover {
+          transform: scale(1.2);
+        }
+
+        .invitation-navigation-arrow-left {
+          transform: rotate(180deg);
+          margin-bottom: 5px;
+        }
+      }
+
+      .rsvp-submit-btn {
+        height: 45px;
+        width: 70px;
+        border-radius: 15px;
+        background-color: transparent;
+        border-color: $white;
         color: $white;
-        width: calc(100% - 10px);
-      }
+        font-family: "Alegreya";
+        font-size: 1rem;
+        transition: ease-in-out 0.3s;
+        cursor: pointer;
 
-      .rsvp-diet {
-        width: 100%;
-        border-bottom: 1px solid $cream;
-        padding-bottom: 10px;
-      }
-    }
-
-    .additional-guest {
-      color: $light-blue;
-
-      .rsvp-label {
-        margin-top: 15px;
-        padding-top: 15px;
-      }
-    }
-  }
-
-  .rsvp-btn-container {
-    width: 100%;
-    text-align: center;
-    margin: 10px;
-
-    .rsvp-submit-btn {
-      height: 45px;
-      width: 70px;
-      border-radius: 15px;
-      background-color: transparent;
-      border-color: $white;
-      color: $white;
-      font-family: "Alegreya";
-      font-size: 1rem;
-      transition: ease-in-out 0.3s;
-      cursor: pointer;
-
-      &:hover {
-        background-color: $white;
-        color: $blue-purple;
-      }
-    }
-  }
-
-  .next-return-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-
-    .invitation-btn {
-      background-color: transparent;
-      border: none;
-      padding: 0;
-      transition: ease-in-out 0.3s;
-      cursor: pointer;
-
-      &:hover {
-        transform: scale(1.2);
-      }
-
-      .invitation-navigation-arrow-left {
-        transform: rotate(180deg);
-        margin-bottom: 5px;
+        &:hover {
+          background-color: $white;
+          color: $blue-purple;
+        }
       }
     }
   }
 }
 
-// @media screen and (min-height: 667px) and (min-height: 730px) {
-//   .template-bg {
-//     .template-container {
-//       .template-header {
-//         // margin-top: 35%;
-//       }
-//     }
-//   }
-// }
-
+//Long screens
 @media screen and (min-height: 667px) and (min-height: 830px) {
   .template-bg {
     .template-container {
@@ -202,7 +194,7 @@
     }
   }
 }
-
+// Smaller phones
 @media screen and (max-width: 340px) {
   .template-bg {
     .template-container {
@@ -210,6 +202,62 @@
 
       .template-text-container {
         height: 49vh;
+      }
+    }
+  }
+}
+
+// Desktop
+@media screen and (min-width: 800px) {
+  .template-bg {
+    background-image: none;
+    background-color: transparent;
+    margin-top: 30px;
+    min-height: unset;
+    padding-top: 20%;
+
+    .template-container {
+      width: 50%;
+      padding: 0;
+      margin-top: 0;
+
+      .gemetric-desktop {
+        border-radius: 15px;
+        display: block;
+        background-color: $blue-purple;
+        animation: fadeIn 1s ease-in-out forwards;
+        z-index: 10;
+      }
+
+      .invitation-envelope {
+        display: flex;
+        position: absolute;
+        margin-right: 20%;
+        margin-bottom: 20%;
+      }
+
+      .template-wrapper {
+        position: absolute;
+        margin-top: 20px;
+        width: 500px;
+        height: 300px;
+        animation: fadeIn 1s ease-in-out forwards;
+
+        z-index: 11;
+
+        .template-header {
+          margin: 10px;
+          height: 35px;
+        }
+
+        .rsvp-form {
+          height: unset;
+
+          .form-container {
+            max-height: 220px;
+            width: 95%;
+          }
+        }
       }
     }
   }
