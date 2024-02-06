@@ -21,9 +21,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang="en">
       <body className={inter.className}>
         <Providers>
+          <RendezEviteLogo />
           <main>
             <HamburgerMenu session={session} />
-            <RendezEviteLogo />
             {children}
           </main>
         </Providers>
