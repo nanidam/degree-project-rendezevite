@@ -16,9 +16,9 @@ const GuestWelcome = ({ event, session }: IGuestWelcomeProps) => {
   const router = useRouter();
   return (
     <>
-      <section className="template-bg ">
-        <article className="template-container">
-          <h1 className="template-header">
+      <section className="welcome-bg">
+        <article className="welcome-container">
+          <h1 className="welcome-header">
             Welcome to <br />
             {event.eventName}
           </h1>

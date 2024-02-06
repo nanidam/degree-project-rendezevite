@@ -1,7 +1,7 @@
 @import "../../../globals.scss";
 @import "../../../utils/constants.scss";
 
-.template-bg {
+.welcome-bg {
   background-color: #27264b;
   background-image: url("../../../../public/templateGeoDesign.png");
   background-size: cover;
@@ -13,7 +13,7 @@
   flex-direction: column;
   align-items: center;
 
-  .template-container {
+  .welcome-container {
     width: 58%;
     display: flex;
     flex-direction: column;
@@ -21,8 +21,8 @@
     align-items: center;
     margin-top: 35%;
 
-    .template-header {
-      font-size: 2.5rem;
+    .welcome-header {
+      font-size: 2.3rem;
       color: white;
       text-align: center;
     }
