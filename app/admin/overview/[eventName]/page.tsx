@@ -14,14 +14,13 @@ import { InviteGuests } from "./components/InviteGuests";
 import HamburgerMenu from "@/app/utils/components/hamburgerMenu";
 
 const AdminOverview = ({
-  params: { eventName },
+  params: { eventName: encodedEventName },
 }: {
   readonly params: { readonly eventName: string };
 }) => {
   const [event, setEvent] = useState<IEvent | null>(null);
   const [editGuestList, setEditGuestList] = useState<IGuest[]>([]);
-  // TODO: EventName validation
-  console.log(eventName);
+  const eventName = decodeURIComponent(encodedEventName);
 
   const fetchAndSetEvents = useCallback(async () => {
     const userId = await getUserId();
