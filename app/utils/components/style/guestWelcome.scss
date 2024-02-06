@@ -1,46 +1,66 @@
 @import "../../../globals.scss";
 @import "../../../utils/constants.scss";
-.wrapper-invitation {
-  padding: 20px;
-  border: 1px solid #ccc;
+
+.template-bg {
+  background-color: #27264b;
+  background-image: url("../../../../public/templateGeoDesign.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 115vh;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 
-  .welcome-title {
-    font-size: 24px;
-    color: #333;
-  }
+  .template-container {
+    width: 58%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35%;
 
-  .sub-title {
-    font-size: 16px;
-    color: #666;
-  }
-
-  .welcome-text {
-    font-size: 18px;
-    color: #444;
-  }
-
-  .welcome-span {
-    display: block;
-    margin-top: 10px;
-
-    .guest-name {
-      font-size: 20px;
-      color: #222;
-    }
-
-    .additional-guest-prefix {
-      font-size: 18px;
-      color: #555;
+    .template-header {
+      font-size: 2.5rem;
+      color: white;
       text-align: center;
     }
 
-    .additional-guest-name {
-      font-size: 20px;
-      color: #222;
+    .sub-header {
+      color: $white;
+      font-family: "Alegreya";
+      font-size: 1.2rem;
+    }
+
+    .invitation-welcome-text {
+      color: $white;
+      font-family: "Dancing script";
+      font-size: 1.5rem;
+    }
+  }
+
+  .invitation-guests {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: $white;
+    font-family: "Dancing script";
+    font-size: 2rem;
+    margin: 15px 0;
+
+    .invitation-span {
+      display: block;
+      margin-top: 10px;
+
+      .invitation-guestname,
+      .additional-guest-prefix,
+      .additional-guestname {
+        margin: 0;
+        text-align: center;
+      }
     }
   }
 
@@ -49,30 +69,39 @@
     width: 100%;
     justify-content: center;
     gap: 15px;
-    .submit-event-btn {
-      margin: 15px 0;
-      height: 40px;
-      border-radius: 15px;
-      width: 40%;
+
+    .invitation-next-btn {
+      margin: 20px;
       background-color: transparent;
-      border-color: $olive-green;
-      font-size: 1.2rem;
+      border: none;
       transition: ease-in-out 0.3s;
+      transform: rotate(180deg);
       cursor: pointer;
 
       &:hover {
-        background: $olive-green;
-        color: $off-white;
+        transform: scale(1.2);
       }
     }
   }
 }
 
-@media screen and (min-width: 768px) {
-  .wrapper-invitation {
-    .next-return-wrapper {
-      .submit-event-btn {
-        width: 30%;
+@media screen and (min-height: 667px) and (min-height: 830px) {
+  .template-bg {
+    .template-container {
+      width: 65%;
+      height: 600px;
+      margin-top: 50%;
+    }
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .template-bg {
+    .template-container {
+      margin-top: 45%;
+
+      .template-text-container {
+        height: 49vh;
       }
     }
   }
