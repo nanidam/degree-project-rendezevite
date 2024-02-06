@@ -16,9 +16,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <HamburgerMenu />
-        <RendezEviteLogo />
-        <Providers>{children}</Providers>
+        <Providers>
+          <main>
+            <HamburgerMenu />
+            <RendezEviteLogo />
+            {children}
+          </main>
+        </Providers>
         <Footer />
       </body>
     </html>
