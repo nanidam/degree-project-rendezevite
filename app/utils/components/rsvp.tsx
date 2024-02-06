@@ -250,34 +250,6 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
                 </>
               )}
             </div>
-            {/* {!guest.hasResponded && !loading ? (
-          <div className="submit-btn-container">
-            <button className="submit-btn" type="submit">
-              Send
-            </button>
-          </div>
-        ) : (
-          <div className="loader-container">
-            <PacmanLoader
-              color="orange"
-              loading={loading}
-              size={100}
-              aria-label="Loading Spinner"
-              data-testid="loader"
-            />
-          </div>
-        )} */}
-            {/* {loading && (
-          <div className="loader-container">
-            <PacmanLoader
-              color="orange"
-              loading={loading}
-              size={30}
-              aria-label="Loading Spinner"
-              data-testid="loader"
-            />
-          </div>
-        )} */}
           </form>
           {!guest.hasResponded && (
             <div className="rsvp-btn-container">
@@ -286,13 +258,12 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
               </button>
             </div>
           )}
-
           <div className="next-return-wrapper">
             <button
               className="invitation-btn"
               type="button"
               onClick={() => {
-                router.push(`/invitation/${eventId}/welcome`);
+                router.push(`/invitation/${eventId}/${eventName}`);
               }}
             >
               <ReactSVG
@@ -304,6 +275,17 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
           </div>
         </article>
       </section>
+      {/* {loading && (
+          <div className="loader-container">
+            <PacmanLoader
+              color="orange"
+              loading={loading}
+              size={30}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          </div>
+        )} */}
     </>
   );
 };
