@@ -114,10 +114,17 @@
     display: flex;
     gap: 20px;
     justify-content: center;
+    height: 65vh;
 
     .events-container {
       width: 40%;
       max-width: 500px;
     }
+  }
+}
+
+@media screen and (min-width: 1800px) {
+  .event-wrapper {
+    height: 80vh;
   }
 }

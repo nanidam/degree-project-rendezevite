@@ -48,17 +48,17 @@ const EventOverview = () => {
 
   return (
     <main>
-      <h1 className="event-overview-header">Events Overview</h1>
+      <h1 className="event-overview-header">Events</h1>
       <section className="event-overview-container">
         <article className="create-event">
           <button className="create-event-btn" onClick={createEvent}>
-            Create event
+            Create Event
           </button>
         </article>
 
         <div className="event-wrapper">
           <article className="events-container">
-            <h2>Current events:</h2>
+            <h2>Current Events:</h2>
             <ul className="events">
               {events.map((eventName) => (
                 <React.Fragment key={eventName}>
@@ -80,7 +80,7 @@ const EventOverview = () => {
           </article>
 
           <article className="events-container">
-            <h2>Past events:</h2>
+            <h2>Past Events:</h2>
             {pastEvents.length > 0 ? (
               <ul className="events">
                 {pastEvents.map((eventName) => (
