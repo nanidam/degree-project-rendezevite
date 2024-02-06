@@ -53,7 +53,7 @@ const HamburgerMenu = () => {
         >
           {loggedIn && (
             <>
-              <a className="menu-opt-link" href="/create-event">
+              <a className="menu-opt-link" href="/events/create-event">
                 <li className="menu-opt">
                   <ReactSVG src="/svgs/plus.svg" />
                   <span>Create Event</span>
