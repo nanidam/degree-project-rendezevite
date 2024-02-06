@@ -1,16 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import "./style/hamburgerMenu.scss";
+import { useEffect, useState } from "react";
 import { ReactSVG } from "react-svg";
 import MenuIconsDesktop from "./menuIconsDesktop";
-import MenuBottomLinks from "./menuBottomContainer";
+import { ISession } from "../models/ISession";
+import MenuBottomLinks from "./menuBottomLinks";
 
-const HamburgerMenu = () => {
+const HamburgerMenu = ({ session }: { session: ISession }) => {
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
   const [glideOut, setGlideOut] = useState<boolean>(false);
-  const [loggedIn, setLoggedIn] = useState<boolean>(true);
-  //TODO: Add logic to check if user is logged in
   const [isDesktop, setIsDesktop] = useState<boolean>(false);
 
   const toggleMenu = () => {
@@ -43,15 +42,16 @@ const HamburgerMenu = () => {
           onClick={toggleMenu}
           isDesktop={isDesktop}
           isMenuOpen={isMenuOpen}
-          loggedIn={loggedIn}
-        ></MenuIconsDesktop>
+          loggedIn={session !== null && session.access === "admin"}
+          access={session?.access}
+        />
 
         <ul
           className={`menu-items ${isMenuOpen ? "open" : "close"} ${
             glideOut ? "glide-out" : ""
           } `}
         >
-          {loggedIn && (
+          {session !== null && session.access === "admin" && (
             <>
               <a className="menu-opt-link" href="/events/create-event">
                 <li className="menu-opt">
@@ -70,7 +70,7 @@ const HamburgerMenu = () => {
             </li>
           </a>
 
-          {loggedIn && (
+          {session !== null && session.access === "admin" && (
             <a className="menu-opt-link" href="/events">
               <li className="menu-opt">
                 <ReactSVG src="/svgs/calendar.svg" />
@@ -96,7 +96,7 @@ const HamburgerMenu = () => {
           <hr className="menu-hr" />
 
           <div className="menu-bottom-container">
-            <MenuBottomLinks loggedIn={loggedIn} />
+            <MenuBottomLinks session={session} />
           </div>
         </ul>
       </nav>
