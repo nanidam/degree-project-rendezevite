@@ -10,7 +10,7 @@ interface IGuestWelcomeProps {
   event: IEvent;
   session: ISession;
 }
-
+// Show real guest
 // TODO: Only send in relevant info, check if event.guestlist contains all guests. if so remove.
 const GuestWelcome = ({ event, session }: IGuestWelcomeProps) => {
   const router = useRouter();
