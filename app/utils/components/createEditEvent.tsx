@@ -19,17 +19,15 @@ const CreateEditEvent = ({ event, userId }: CreateEditEventProps) => {
   return (
     <>
       <section className="create-event-container">
-        <h1 className="create-event-header">
-          {event ? "Edit Event" : "Create Event"}
-        </h1>
+        <h1 className="create-event-header">{event ? "Edit Event" : "Create Event"}</h1>
         <article className="info-text-wrapper">
           <p className="info-text">
-            Your first step is to furnish essential information for your event,
-            including an event name to help you track invitations.
+            Your first step is to furnish essential information for your event, including an
+            event name to help you track invitations.
           </p>
           <p className="info-text">
-            Select a date for your occasion, and the password will functions as
-            a secure access key for your guests to retrieve their invitations.
+            Select a date for your occasion, and the password will functions as a secure
+            access key for your guests to retrieve their invitations.
           </p>
         </article>
         <article className="create-event-wrapper">
@@ -83,6 +81,8 @@ const CreateEditEvent = ({ event, userId }: CreateEditEventProps) => {
                 alt="envelope"
                 width={200}
                 height={200}
+                priority
+                aria-label="Gold envelope"
               />
             </div>
           </form>
