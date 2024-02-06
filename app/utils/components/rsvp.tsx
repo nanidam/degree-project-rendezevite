@@ -170,20 +170,14 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
               {guest.additionalGuest.name.length > 0 && (
                 <>
                   <div className="additional-guest">
-                    <div className="guest-name-container">
-                      <p className="guest-name">
-                        Additional Guest: {guest.additionalGuest.name}
-                      </p>
-                    </div>
+                    <p className="guest-name">Guest 1+: {guest.additionalGuest.name}</p>
 
-                    <div className="attending">
-                      <label
-                        className="attending-label"
-                        htmlFor="additional-guest-attending"
-                      >
+                    <div className="rsvp-attending">
+                      <label className="rsvp-label" htmlFor="additional-guest-attending">
                         Attending:
                       </label>
                       <input
+                        className="rsvp-radio-input"
                         type="radio"
                         id="additional-guest-attending"
                         name="additional-guest-attending"
@@ -193,23 +187,24 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
                       />
                       <span className="checkbox-option">Yes</span>
                       <input
+                        className="rsvp-radio-input"
                         type="radio"
                         id="additional-guest-not-attending"
                         name="additional-guest-not-attending"
                         value="false"
                         disabled={guestState.hasResponded}
-                        defaultChecked={
-                          guestState.additionalGuest.attending && guestState.hasResponded
-                        }
+                        defaultChecked={!guestState.additionalGuest.attending}
                       />
                       <span className="checkbox-option">No</span>
                     </div>
 
-                    <div className="diet">
+                    <div className="rsvp-diet">
                       <label className="guest-label" htmlFor="additional-guest-diet">
                         Diet:
                       </label>
+                      <br />
                       <input
+                        className="rsvp-radio-input"
                         type="radio"
                         name="additional-guest-diet"
                         value="meat"
@@ -217,7 +212,9 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
                         disabled={guestState.hasResponded}
                       />
                       <span className="checkbox-option">Meat</span>
+                      <br />
                       <input
+                        className="rsvp-radio-input"
                         type="radio"
                         name="additional-guest-diet"
                         value="vegetarian"
@@ -225,7 +222,9 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
                         defaultChecked={guestState.additionalGuest.diet === "vegetarian"}
                       />
                       <span className="checkbox-option">Vegetarian</span>
+                      <br />
                       <input
+                        className="rsvp-radio-input"
                         type="radio"
                         name="additional-guest-diet"
                         value="vegan"
@@ -235,20 +234,18 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
                       <span className="checkbox-option">Vegan</span>
                     </div>
 
-                    <div className="allergies">
-                      <label className="guest-label" htmlFor="additional-guest-allergies">
-                        Allergies:
-                      </label>
-                      <input
-                        className="text-input"
-                        type="text"
-                        name="additional-guest-allergies"
-                        placeholder="Allergies"
-                        disabled={guestState.hasResponded}
-                        defaultValue={guestState.additionalGuest.allergies ?? ""}
-                        maxLength={24}
-                      />
-                    </div>
+                    <label className="rsvp-label" htmlFor="additional-guest-allergies">
+                      Allergies:
+                    </label>
+                    <input
+                      className="rsvp-input"
+                      type="text"
+                      name="additional-guest-allergies"
+                      placeholder="Allergies"
+                      disabled={guestState.hasResponded}
+                      defaultValue={guestState.additionalGuest.allergies ?? ""}
+                      maxLength={24}
+                    />
                   </div>
                 </>
               )}

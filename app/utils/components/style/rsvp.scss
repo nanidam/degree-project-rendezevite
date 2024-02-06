@@ -14,7 +14,7 @@
   align-items: center;
 
   .template-container {
-    width: 55%;
+    width: 58%;
     // padding: 0 75px;
     display: flex;
     flex-direction: column;
@@ -86,12 +86,14 @@
           background-color: $tan;
         }
       }
+
       .checkbox-option {
         font-family: "Alegreya";
       }
 
       .rsvp-label {
         margin-top: 10px;
+        font-family: "Alegreya";
       }
 
       .rsvp-input {
@@ -103,16 +105,23 @@
         margin-bottom: 10px;
         padding-left: 5px;
         color: $white;
+        width: calc(100% - 10px);
       }
 
       .rsvp-diet {
         width: 100%;
         border-bottom: 1px solid $cream;
+        padding-bottom: 10px;
       }
     }
 
     .additional-guest {
-      color: $white;
+      color: $rusty-orange;
+
+      .rsvp-label {
+        margin-top: 15px;
+        padding-top: 15px;
+      }
     }
   }
 
@@ -165,15 +174,15 @@
   }
 }
 
-@media screen and (min-height: 667px) and (min-height: 730px) {
-  .template-bg {
-    .template-container {
-      .template-header {
-        margin-top: 35%;
-      }
-    }
-  }
-}
+// @media screen and (min-height: 667px) and (min-height: 730px) {
+//   .template-bg {
+//     .template-container {
+//       .template-header {
+//         // margin-top: 35%;
+//       }
+//     }
+//   }
+// }
 
 @media screen and (min-height: 667px) and (min-height: 830px) {
   .template-bg {
@@ -181,10 +190,6 @@
       width: 65%;
       height: 633px;
       margin-top: 50%;
-
-      .template-header {
-        margin-top: 35%;
-      }
 
       .rsvp-form {
         margin-top: 20px;
