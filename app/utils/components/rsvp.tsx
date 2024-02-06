@@ -4,6 +4,7 @@ import { IGuest } from "../models/IGuest";
 import { rsvp } from "../rsvp";
 import "./style/rsvp.scss";
 import { useRouter } from "next/navigation";
+import { ReactSVG } from "react-svg";
 
 interface RsvpProps {
   guest: IGuest;
@@ -59,9 +60,8 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
           )}
           <form className="form-rsvp" onSubmit={handleRsvp}>
             <div className="guest-container">
-              <div className="guest-name-container">
-                <p className="guest-name">Guest: {guest.name}</p>
-              </div>
+              <p className="guest-name">Guest: {guest.name}</p>
+              <div className="guest-name-container"></div>
 
               <div className="attending">
                 <label htmlFor="attending" className="guest-label">
@@ -289,13 +289,17 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
 
           <div className="next-return-wrapper">
             <button
-              className="submit-event-btn"
+              className="invitation-btn"
               type="button"
               onClick={() => {
-                router.push(`/invitation/${eventId}/${eventName}`);
+                router.push(`/invitation/${eventId}/welcome`);
               }}
             >
-              Previous
+              <ReactSVG
+                className="invitation-navigation-arrow"
+                src="/svgs/arrow.svg"
+                aria-label="Return"
+              ></ReactSVG>
             </button>
           </div>
         </article>
