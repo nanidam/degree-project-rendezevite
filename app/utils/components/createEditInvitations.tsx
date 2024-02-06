@@ -8,15 +8,13 @@ import ReturnBtn from "./returnBtn";
 import createEditInvitations from "../createEditInvitations";
 
 //TODO: add character counter
-
+// Eventname length must be limited by smallest template
+// header and body must be conditionally limited based on templates chosen
 interface ICreateEditInvitationsProps {
   eventName: string;
   event?: IEvent;
 }
-const CreateEditInvitations = ({
-  eventName,
-  event,
-}: ICreateEditInvitationsProps) => {
+const CreateEditInvitations = ({ eventName, event }: ICreateEditInvitationsProps) => {
   const router = useRouter();
 
   const [header, setHeader] = useState<string>(event?.header || "");
@@ -25,17 +23,12 @@ const CreateEditInvitations = ({
 
   return (
     <section className="create-inv-container">
-      <h1 className="create-inv-header">
-        {event ? "Edit" : "Create"} invitation
-      </h1>
+      <h1 className="create-inv-header">{event ? "Edit" : "Create"} invitation</h1>
       <article className="create-inv-wrapper">
+        <p>Select a header for your invitations and craft the desired message.</p>
         <p>
-          Select a header for your invitations and craft the desired message.
-        </p>
-        <p>
-          Kindly note that, currently, there is no option to modify fonts and
-          colors, as they are optimized to best suit the overall design of the
-          invitations.
+          Kindly note that, currently, there is no option to modify fonts and colors, as
+          they are optimized to best suit the overall design of the invitations.
         </p>
       </article>
       <article className="create-inv-wrapper">
