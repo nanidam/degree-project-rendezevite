@@ -99,7 +99,7 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
                     name="attending"
                     value="true"
                     disabled={guestState.hasResponded}
-                    defaultChecked={guestState.hasResponded ? guestState.attending : false}
+                    defaultChecked={guestState.attending}
                     required
                     onClick={() => {
                       if (!guestAttendingState) setGuestAttendingState(true);
@@ -112,7 +112,7 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
                     name="attending"
                     value="false"
                     disabled={guestState.hasResponded}
-                    defaultChecked={!guestState.attending === guestState.hasResponded}
+                    defaultChecked={!guestState.attending}
                     required
                     onClick={() => {
                       if (guestAttendingState) setGuestAttendingState(false);
