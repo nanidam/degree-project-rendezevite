@@ -7,6 +7,7 @@ import { rsvp } from "../rsvp";
 import { useRouter } from "next/navigation";
 import { ReactSVG } from "react-svg";
 import Image from "next/image";
+import Loading from "./loading";
 
 interface RsvpProps {
   guest: IGuest;
@@ -20,11 +21,12 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
   const [addGuestAttendingState, setAddGuestAttendingState] = useState(
     guest.additionalGuest.attending
   );
-
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleRsvp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setLoading(true);
     const form = event.target as HTMLFormElement;
     const formData = new FormData(form);
 
@@ -51,12 +53,16 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
       additionalGuestName: guest.additionalGuest.name,
     })) as IGuest;
 
-    setGuestState(updatedGuest);
-    setResponded(updatedGuest.hasResponded);
+    if (updatedGuest) {
+      setGuestState(updatedGuest);
+      setResponded(updatedGuest.hasResponded);
+      setLoading(false);
+    }
   };
 
   return (
     <>
+      {loading && <Loading />}
       <section className="template-bg">
         <article className="template-container">
           <Image
@@ -209,11 +215,7 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
                           name="additional-guest-attending"
                           value="true"
                           disabled={guestState.hasResponded || !guestAttendingState}
-                          defaultChecked={
-                            guestState.hasResponded
-                              ? guestState.additionalGuest.attending
-                              : false
-                          }
+                          defaultChecked={guestState.additionalGuest.attending}
                           required={guestAttendingState}
                           onChange={() => {
                             setAddGuestAttendingState(true);
@@ -227,11 +229,7 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
                           name="additional-guest-attending"
                           value="false"
                           disabled={guestState.hasResponded || !guestAttendingState}
-                          defaultChecked={
-                            guestState.hasResponded
-                              ? !guestState.additionalGuest.attending
-                              : false
-                          }
+                          defaultChecked={!guestState.additionalGuest.attending}
                           required={guestAttendingState}
                           onChange={() => {
                             setAddGuestAttendingState(false);
