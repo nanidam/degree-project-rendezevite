@@ -1,6 +1,6 @@
 import { IGuest } from "./IGuest";
 
-export interface IInvitationRsvp {
+export interface IInvitationRsvpProps {
   guest: IGuest;
   eventId: string;
   eventName: string;
