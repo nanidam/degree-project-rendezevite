@@ -43,9 +43,6 @@
         color: $black;
         width: 100%;
         height: 48vh;
-
-        .flowers-info-text {
-        }
       }
     }
 
@@ -104,9 +101,8 @@
   .flowers-invitation-info {
     background-image: none;
     background-color: transparent;
-    margin-top: 30px;
     min-height: unset;
-    padding-top: 20%;
+    padding-top: 10%;
 
     .flowers-info-container {
       width: 75%;
