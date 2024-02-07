@@ -21,9 +21,9 @@ const Unauthorized = () => {
           </a>{" "}
           for assistance. Thank you for your understanding.
         </p>
-        <button className="unauthorized-return-btn" type="button">
+        <a className="unauthorized-return" href="/">
           Return to main page
-        </button>
+        </a>
       </article>
     </section>
   );

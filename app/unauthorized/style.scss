@@ -35,7 +35,7 @@
     }
   }
 
-  .unauthorized-return-btn {
+  .unauthorized-return {
     font-family: "Alegreya";
     font-size: 1.1rem;
     font-weight: bold;
@@ -45,6 +45,7 @@
     color: $blue;
     margin: 10px 0;
     cursor: pointer;
+    text-align: center;
 
     &:hover {
       color: $black;
