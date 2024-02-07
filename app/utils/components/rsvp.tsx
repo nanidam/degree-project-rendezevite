@@ -15,6 +15,11 @@ interface RsvpProps {
 }
 const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
   const [guestState, setGuestState] = useState<IGuest>(guest);
+  const [responded, setResponded] = useState(guest.hasResponded);
+  const [guestAttendingState, setGuestAttendingState] = useState(guest.attending);
+  const [addGuestAttendingState, setAddGuestAttendingState] = useState(
+    guest.additionalGuest.attending
+  );
 
   const router = useRouter();
 
@@ -47,7 +52,10 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
     })) as IGuest;
 
     setGuestState(updatedGuest);
+    setResponded(updatedGuest.hasResponded);
   };
+
+  console.log(responded);
 
   return (
     <>
@@ -65,7 +73,7 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
           <ReactSVG className="invitation-envelope" src="/svgs/invitation-envelope.svg" />
 
           <div className="template-wrapper">
-            {guest.hasResponded ? (
+            {responded ? (
               <h1 className="template-header">Responded</h1>
             ) : (
               <>
@@ -87,8 +95,11 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
                     name="attending"
                     value="true"
                     disabled={guestState.hasResponded}
-                    defaultChecked={guestState.attending === guestState.hasResponded}
+                    defaultChecked={guestState.hasResponded ? guestState.attending : false}
                     required
+                    onClick={() => {
+                      if (!guestAttendingState) setGuestAttendingState(true);
+                    }}
                   />
                   <span className="checkbox-option">Yes</span>
                   <input
@@ -99,6 +110,9 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
                     disabled={guestState.hasResponded}
                     defaultChecked={!guestState.attending === guestState.hasResponded}
                     required
+                    onClick={() => {
+                      if (guestAttendingState) setGuestAttendingState(false);
+                    }}
                   />
                   <span className="checkbox-option">No</span>
                 </div>
@@ -111,9 +125,9 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
                   type="text"
                   name="phoneNumber"
                   placeholder="07XX XXX XXX"
-                  disabled={guestState.hasResponded}
+                  disabled={guestState.hasResponded || !guestAttendingState}
                   defaultValue={guestState.phoneNumber ?? ""}
-                  required
+                  required={guestAttendingState}
                 />
 
                 <div className="rsvp-diet">
@@ -127,8 +141,8 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
                     name="diet"
                     value="meat"
                     defaultChecked={guestState.diet === "meat"}
-                    disabled={guestState.hasResponded}
-                    required
+                    disabled={guestState.hasResponded || !guestAttendingState}
+                    required={guestAttendingState}
                   />
                   <span className="checkbox-option">Meat</span>
                   <br />
@@ -138,8 +152,8 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
                     name="diet"
                     value="vegetarian"
                     defaultChecked={guestState.diet === "vegetarian"}
-                    disabled={guestState.hasResponded}
-                    required
+                    disabled={guestState.hasResponded || !guestAttendingState}
+                    required={guestAttendingState}
                   />
                   <span className="checkbox-option">Vegetarian</span>
                   <br />
@@ -149,8 +163,8 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
                     name="diet"
                     value="vegan"
                     defaultChecked={guestState.diet === "vegan"}
-                    disabled={guestState.hasResponded}
-                    required
+                    disabled={guestState.hasResponded || !guestAttendingState}
+                    required={guestAttendingState}
                   />
                   <span className="checkbox-option">Vegan</span>
                 </div>
@@ -164,7 +178,7 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
                   name="allergies"
                   placeholder="Allergies"
                   defaultValue={guestState.allergies ?? ""}
-                  disabled={guestState.hasResponded}
+                  disabled={guestState.hasResponded || !guestAttendingState}
                   maxLength={24} // TODO: adapt to this template DISPLAY max char available
                 />
 
@@ -177,14 +191,14 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
                   name="comments"
                   placeholder="Additional info"
                   defaultValue={guestState.comments ?? ""}
-                  disabled={guestState.hasResponded}
+                  disabled={guestState.hasResponded || !guestAttendingState}
                   maxLength={24}
                 />
 
                 {guest.additionalGuest.name.length > 0 && (
                   <>
                     <div className="additional-guest">
-                      <p className="guest-name">Guest 1+: {guest.additionalGuest.name}</p>
+                      <p className="guest-name">Guest +1: {guest.additionalGuest.name}</p>
 
                       <div className="rsvp-attending">
                         <label className="rsvp-label" htmlFor="additional-guest-attending">
@@ -196,18 +210,34 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
                           id="additional-guest-attending"
                           name="additional-guest-attending"
                           value="true"
-                          disabled={guestState.hasResponded}
-                          defaultChecked={guestState.additionalGuest.attending}
+                          disabled={guestState.hasResponded || !guestAttendingState}
+                          defaultChecked={
+                            guestState.hasResponded
+                              ? guestState.additionalGuest.attending
+                              : false
+                          }
+                          required={guestAttendingState}
+                          onChange={() => {
+                            setAddGuestAttendingState(true);
+                          }}
                         />
                         <span className="checkbox-option">Yes</span>
                         <input
                           className="rsvp-radio-input"
                           type="radio"
                           id="additional-guest-not-attending"
-                          name="additional-guest-not-attending"
+                          name="additional-guest-attending"
                           value="false"
-                          disabled={guestState.hasResponded}
-                          defaultChecked={!guestState.additionalGuest.attending}
+                          disabled={guestState.hasResponded || !guestAttendingState}
+                          defaultChecked={
+                            guestState.hasResponded
+                              ? !guestState.additionalGuest.attending
+                              : false
+                          }
+                          required={guestAttendingState}
+                          onChange={() => {
+                            setAddGuestAttendingState(false);
+                          }}
                         />
                         <span className="checkbox-option">No</span>
                       </div>
@@ -223,7 +253,12 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
                           name="additional-guest-diet"
                           value="meat"
                           defaultChecked={guestState.additionalGuest.diet === "meat"}
-                          disabled={guestState.hasResponded}
+                          disabled={
+                            guestState.hasResponded ||
+                            !addGuestAttendingState ||
+                            !guestAttendingState
+                          }
+                          required={addGuestAttendingState}
                         />
                         <span className="checkbox-option">Meat</span>
                         <br />
@@ -232,8 +267,13 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
                           type="radio"
                           name="additional-guest-diet"
                           value="vegetarian"
-                          disabled={guestState.hasResponded}
+                          disabled={
+                            guestState.hasResponded ||
+                            !addGuestAttendingState ||
+                            !guestAttendingState
+                          }
                           defaultChecked={guestState.additionalGuest.diet === "vegetarian"}
+                          required={addGuestAttendingState}
                         />
                         <span className="checkbox-option">Vegetarian</span>
                         <br />
@@ -242,8 +282,13 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
                           type="radio"
                           name="additional-guest-diet"
                           value="vegan"
-                          disabled={guestState.hasResponded}
+                          disabled={
+                            guestState.hasResponded ||
+                            !addGuestAttendingState ||
+                            !guestAttendingState
+                          }
                           defaultChecked={guestState.additionalGuest.diet === "vegan"}
+                          required={addGuestAttendingState}
                         />
                         <span className="checkbox-option">Vegan</span>
                       </div>
@@ -256,36 +301,39 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
                         type="text"
                         name="additional-guest-allergies"
                         placeholder="Allergies"
-                        disabled={guestState.hasResponded}
+                        disabled={
+                          guestState.hasResponded ||
+                          !addGuestAttendingState ||
+                          !guestAttendingState
+                        }
                         defaultValue={guestState.additionalGuest.allergies ?? ""}
                         maxLength={24}
                       />
                     </div>
                   </>
                 )}
+                <div className="send-return-wrapper">
+                  <button
+                    className="invitation-btn"
+                    type="button"
+                    onClick={() => {
+                      router.push(`/invitation/${eventId}/${eventName}`);
+                    }}
+                  >
+                    <ReactSVG
+                      className="invitation-navigation-arrow"
+                      src="/svgs/arrow.svg"
+                      aria-label="Return"
+                    />
+                  </button>
+                  {!responded && (
+                    <button className="rsvp-submit-btn" type="submit">
+                      Send
+                    </button>
+                  )}
+                </div>
               </div>
             </form>
-
-            <div className="send-return-wrapper">
-              <button
-                className="invitation-btn"
-                type="button"
-                onClick={() => {
-                  router.push(`/invitation/${eventId}/${eventName}`);
-                }}
-              >
-                <ReactSVG
-                  className="invitation-navigation-arrow"
-                  src="/svgs/arrow.svg"
-                  aria-label="Return"
-                ></ReactSVG>
-              </button>
-              {!guest.hasResponded && (
-                <button className="rsvp-submit-btn" type="submit">
-                  Send
-                </button>
-              )}
-            </div>
           </div>
         </article>
       </section>

@@ -11,7 +11,8 @@ interface InviteGuestsProps {
   setEditGuestList: React.Dispatch<React.SetStateAction<IGuest[]>>;
   guestList: IGuest[];
 }
-
+// TODO: mail invitation link to invited guests -> node mailer
+// reset error message email alreadu exists if succesful invite after unsucceslfulinvite
 export const InviteGuests = ({
   eventId,
   setEvent,

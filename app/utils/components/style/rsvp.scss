@@ -128,14 +128,18 @@
           padding-top: 15px;
         }
       }
-    }
 
-    .send-return-wrapper {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 5px;
+      .send-return-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+
+        position: absolute;
+        bottom: -55px;
+        left: 0;
+      }
 
       .invitation-btn {
         background-color: transparent;
