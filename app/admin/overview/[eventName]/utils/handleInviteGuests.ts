@@ -14,6 +14,7 @@ export const handleInviteGuests = async ({ e, eventId, setEvent, setEditGuestLis
 
     if (guestList.some(guest => guest.email === guestEmail)) {
         setErrorMsg("Email already exists");
+        setLoading(false);
         return;
     }
 
@@ -27,6 +28,7 @@ export const handleInviteGuests = async ({ e, eventId, setEvent, setEditGuestLis
     if (updatedEvent) {
         setEvent(updatedEvent);
         setEditGuestList(updatedEvent.guestList);
+        setErrorMsg("");
         if (formRef && formRef.current) formRef.current.reset();
     }
     setLoading(false);
