@@ -1,23 +1,31 @@
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
-export interface ILogin {
+interface ILogin {
     e: React.FormEvent<HTMLFormElement>;
     loginType: string;
     eventId?: string;
+    router: ReturnType<typeof useRouter>;
+    setErrorMsg: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
-const login = async ({ e, loginType, eventId }: ILogin) => {
+const login = async ({ e, loginType, eventId, router, setErrorMsg }: ILogin) => {
     e.preventDefault();
-    const email = e.currentTarget.email.value;
-    const password = e.currentTarget.password.value;
+    const email = e.currentTarget.email.value as string;
+    const password = e.currentTarget.password.value as string;
 
-    await signIn("credentials", {
+    const result = await signIn("credentials", {
         email,
         password,
         loginType,
-        redirect: true,
-        callbackUrl: loginType === "admin" ? "/events" : `/invitation/${eventId}/welcome`,
+        redirect: false,
         eventId
     });
+
+    if (result?.status === 200 && loginType === "admin") router.push("/events/overview");
+    if (result?.status === 200 && loginType === "guest") router.push(`/invitation/${eventId}/welcome`);
+    if (result?.status === 401) setErrorMsg("Either you are not invited to this event or your email or password is incorrect")
+
+
 };
 
 export default login

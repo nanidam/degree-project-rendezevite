@@ -1,27 +1,27 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import "./style/loginRegisterForm.scss";
+import { useRouter } from "next/navigation";
 import { ReactSVG } from "react-svg";
-import React from "react";
 import { REGISTER_STATUS } from "@/app/utils/constants";
+import React from "react";
 import Link from "next/link";
 import login from "../login";
 
-interface LoginRegisterFormProps {
+interface ILoginRegisterFormProps {
   loginRegisterHeader: string;
   loginType: string;
   handleRegister?: (data: FormData) => Promise<string | undefined>;
   inviteCode?: string;
 }
 
-const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
+const LoginRegisterForm: React.FC<ILoginRegisterFormProps> = ({
   loginRegisterHeader,
   handleRegister,
   loginType,
   inviteCode,
 }) => {
-  const [registerMsg, setRegisterMsg] = React.useState<string | undefined>(undefined);
+  const [errorMsg, setErrorMsg] = React.useState<string | undefined>(undefined);
   const [showPassword, setShowPassword] = React.useState<boolean>(false);
   const router = useRouter();
   const handleCancel = () => {
@@ -44,7 +44,7 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
         case REGISTER_STATUS.INVALID_PASSWORD_LOWERCASE:
         case REGISTER_STATUS.INVALID_PASSWORD_UPPERCASE:
         case REGISTER_STATUS.INVALID_PASSWORD_SPACES:
-          setRegisterMsg(result);
+          setErrorMsg(result);
           break;
 
         case REGISTER_STATUS.SUCCESS:
@@ -52,11 +52,14 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
           break;
 
         default:
-          setRegisterMsg(REGISTER_STATUS.GENERIC);
+          setErrorMsg(REGISTER_STATUS.GENERIC);
           break;
       }
     }
   };
+
+  const handleLogin = (e: React.FormEvent<HTMLFormElement>) =>
+    login({ e, loginType, eventId: inviteCode, router, setErrorMsg });
 
   return (
     <>
@@ -77,11 +80,7 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
         <article className="login-register-wrapper">
           <form
             className="login-register-form"
-            onSubmit={
-              handleRegister
-                ? undefined
-                : (e) => login({ e, loginType, eventId: inviteCode })
-            }
+            onSubmit={handleRegister ? undefined : (e) => handleLogin(e)}
             action={handleAction}
           >
             <fieldset className="login-register-fieldset">
@@ -158,7 +157,7 @@ const LoginRegisterForm: React.FC<LoginRegisterFormProps> = ({
               </div>
             </fieldset>
 
-            {registerMsg && <p className="login-register-errorMsg">{registerMsg}</p>}
+            {errorMsg && <p className="login-register-errorMsg">{errorMsg}</p>}
 
             <div className="btns-container">
               <button className="login-register-btn" type="submit">

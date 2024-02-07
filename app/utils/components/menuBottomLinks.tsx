@@ -4,13 +4,13 @@ import Logout from "./logout";
 import { ISession } from "../models/ISession";
 
 interface IHamburgarMenuProps {
-  session: ISession;
+  isLoggedIn: boolean;
 }
 
-const MenuBottomLinks: React.FC<IHamburgarMenuProps> = ({ session }) => {
+const MenuBottomLinks: React.FC<IHamburgarMenuProps> = ({ isLoggedIn }) => {
   return (
     <>
-      {session !== null ? (
+      {isLoggedIn ? (
         <Logout />
       ) : (
         <>

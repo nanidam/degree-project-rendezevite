@@ -4,10 +4,11 @@ import "./style/hamburgerMenu.scss";
 import { useEffect, useState } from "react";
 import { ReactSVG } from "react-svg";
 import MenuIconsDesktop from "./menuIconsDesktop";
-import { ISession } from "../models/ISession";
 import MenuBottomLinks from "./menuBottomLinks";
+import { useSession } from "next-auth/react";
+import { IClientSession } from "../models/IClientSession";
 
-const HamburgerMenu = ({ session }: { session: ISession }) => {
+const HamburgerMenu = () => {
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
   const [glideOut, setGlideOut] = useState<boolean>(false);
   const [isDesktop, setIsDesktop] = useState<boolean>(false);
@@ -33,6 +34,13 @@ const HamburgerMenu = ({ session }: { session: ISession }) => {
     };
   }, []);
 
+  const { data, status } = useSession();
+  let access = "";
+  if (data) {
+    const clientSession = data as IClientSession;
+    access = clientSession.access;
+  }
+
   return (
     <>
       <nav
@@ -42,8 +50,8 @@ const HamburgerMenu = ({ session }: { session: ISession }) => {
           onClick={toggleMenu}
           isDesktop={isDesktop}
           isMenuOpen={isMenuOpen}
-          loggedIn={session !== null && session.access === "admin"}
-          access={session?.access}
+          loggedIn={status === "authenticated" && access === "admin"}
+          access={access}
         />
 
         <ul
@@ -51,7 +59,7 @@ const HamburgerMenu = ({ session }: { session: ISession }) => {
             glideOut ? "glide-out" : ""
           } `}
         >
-          {session !== null && session.access === "admin" && (
+          {status === "authenticated" && access === "admin" && (
             <>
               <a className="menu-opt-link" href="/events/create-event">
                 <li className="menu-opt">
@@ -70,7 +78,7 @@ const HamburgerMenu = ({ session }: { session: ISession }) => {
             </li>
           </a>
 
-          {session !== null && session.access === "admin" && (
+          {status === "authenticated" && access === "admin" && (
             <a className="menu-opt-link" href="/events">
               <li className="menu-opt">
                 <ReactSVG src="/svgs/calendar.svg" />
@@ -96,7 +104,7 @@ const HamburgerMenu = ({ session }: { session: ISession }) => {
           <hr className="menu-hr" />
 
           <div className="menu-bottom-container">
-            <MenuBottomLinks session={session} />
+            <MenuBottomLinks isLoggedIn={status === "authenticated"} />
           </div>
         </ul>
       </nav>
