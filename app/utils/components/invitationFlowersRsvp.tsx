@@ -1,61 +1,64 @@
+"use client";
+
 import "./style/invitationFlowersRsvp.scss";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { ReactSVG } from "react-svg";
 import { IGuest } from "../models/IGuest";
 import { rsvp } from "../rsvp";
 import Image from "next/image";
+import Loading from "./loading";
+import { useRouter } from "next/navigation";
+import { IInvitationRsvp } from "../models/IInvitationRsvp";
 
-// interface IRsvpProps {
-//     guest: IGuest;
-//     eventId: string;
-//     eventName: string;
-//   }
-const InvitationFlowersRsvp = () => {
-  // const InvitationFlowersRsvp = ({ guest, eventId, eventName }: RsvpProps) => {
-  //   const router = useRouter();
+const InvitationFlowersRsvp = ({ guest, eventId, eventName }: IInvitationRsvp) => {
+  const [guestState, setGuestState] = useState<IGuest>(guest);
+  const [responded, setResponded] = useState(guest.hasResponded);
+  const [guestAttendingState, setGuestAttendingState] = useState(guest.attending);
+  const [addGuestAttendingState, setAddGuestAttendingState] = useState(
+    guest.additionalGuest.attending
+  );
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
-  //   const [guestState, setGuestState] = useState<IGuest>(guest);
-  //   const [responded, setResponded] = useState(guest.hasResponded);
-  //   const [guestAttendingState, setGuestAttendingState] = useState(guest.attending);
-  //   const [addGuestAttendingState, setAddGuestAttendingState] = useState(
-  //     guest.additionalGuest.attending
-  //   );
+  const handleRsvp = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setLoading(true);
+    const form = event.target as HTMLFormElement;
+    const formData = new FormData(form);
 
-  //   const handleRsvp = async (event: React.FormEvent<HTMLFormElement>) => {
-  //     event.preventDefault();
-  //     const form = event.target as HTMLFormElement;
-  //     const formData = new FormData(form);
+    const guestAttending = formData.get("attending") === "true";
+    const phoneNumber = formData.get("phoneNumber") as string;
+    const guestDiet = formData.get("diet") as string;
+    const guestAllergies = formData.get("allergies") as string;
+    const guestComments = formData.get("comments") as string;
 
-  //     const guestAttending = formData.get("attending") === "true";
-  //     const phoneNumber = formData.get("phoneNumber") as string;
-  //     const guestDiet = formData.get("diet") as string;
-  //     const guestAllergies = formData.get("allergies") as string;
-  //     const guestComments = formData.get("comments") as string;
+    const additionalGuestAttending = formData.get("additional-guest-attending") === "true";
+    const additionalGuestDiet = formData.get("additional-guest-diet") as string;
+    const additionalGuestAllergies = formData.get("additional-guest-allergies") as string;
 
-  //     const additionalGuestAttending = formData.get("additional-guest-attending") === "true";
-  //     const additionalGuestDiet = formData.get("additional-guest-diet") as string;
-  //     const additionalGuestAllergies = formData.get("additional-guest-allergies") as string;
+    const updatedGuest = (await rsvp({
+      guestAttending,
+      phoneNumber,
+      guestDiet,
+      guestAllergies,
+      guestComments,
+      additionalGuestAttending,
+      additionalGuestDiet,
+      additionalGuestAllergies,
+      guestId: guest.id,
+      additionalGuestName: guest.additionalGuest.name,
+    })) as IGuest;
 
-  //     const updatedGuest = (await rsvp({
-  //       guestAttending,
-  //       phoneNumber,
-  //       guestDiet,
-  //       guestAllergies,
-  //       guestComments,
-  //       additionalGuestAttending,
-  //       additionalGuestDiet,
-  //       additionalGuestAllergies,
-  //       guestId: guest.id,
-  //       additionalGuestName: guest.additionalGuest.name,
-  //     })) as IGuest;
-
-  //     setGuestState(updatedGuest);
-  //     setResponded(updatedGuest.hasResponded);
-  //   };
+    if (updatedGuest) {
+      setGuestState(updatedGuest);
+      setResponded(updatedGuest.hasResponded);
+      setLoading(false);
+    }
+  };
 
   return (
     <>
+      {loading && <Loading />}
       <section className="flowers-rsvp">
         <article className="flowers-rsvp-container">
           <Image
@@ -70,8 +73,7 @@ const InvitationFlowersRsvp = () => {
           <ReactSVG className="invitation-envelope" src="/svgs/invitation-envelope.svg" />
 
           <div className="flowers-rsvp-wrapper">
-            {/* {responded ? ( */}
-            {true ? (
+            {responded ? (
               <h1 className="flowers-rsvp-header">Responded</h1>
             ) : (
               <>
@@ -79,10 +81,7 @@ const InvitationFlowersRsvp = () => {
               </>
             )}
 
-            <form
-              className="flowers-rsvp-form"
-              // onSubmit={handleRsvp}
-            >
+            <form className="flowers-rsvp-form" onSubmit={handleRsvp}>
               <div className="rsvp-form-container">
                 <p className="flowers-rsvp-guestname">Guest: {"guest.name"}</p>
 
@@ -95,12 +94,12 @@ const InvitationFlowersRsvp = () => {
                     type="radio"
                     name="attending"
                     value="true"
-                    // disabled={guestState.hasResponded}
-                    // defaultChecked={guestState.hasResponded ? guestState.attending : false}
-                    // required
-                    // onClick={() => {
-                    //   if (!guestAttendingState) setGuestAttendingState(true);
-                    // }}
+                    disabled={guestState.hasResponded}
+                    defaultChecked={guestState.attending}
+                    required
+                    onClick={() => {
+                      if (!guestAttendingState) setGuestAttendingState(true);
+                    }}
                   />
                   <span className="flowers-check-opt">Yes</span>
                   <input
@@ -108,12 +107,12 @@ const InvitationFlowersRsvp = () => {
                     type="radio"
                     name="attending"
                     value="false"
-                    // disabled={guestState.hasResponded}
-                    // defaultChecked={!guestState.attending === guestState.hasResponded}
-                    // required
-                    // onClick={() => {
-                    //   if (guestAttendingState) setGuestAttendingState(false);
-                    // }}
+                    disabled={guestState.hasResponded}
+                    defaultChecked={!guestState.attending}
+                    required
+                    onClick={() => {
+                      if (guestAttendingState) setGuestAttendingState(false);
+                    }}
                   />
                   <span className="flowers-check-opt">No</span>
                 </div>
@@ -126,9 +125,9 @@ const InvitationFlowersRsvp = () => {
                   type="text"
                   name="phoneNumber"
                   placeholder="07XX XXX XXX"
-                  //   disabled={guestState.hasResponded || !guestAttendingState}
-                  //   defaultValue={guestState.phoneNumber ?? ""}
-                  //   required={guestAttendingState}
+                  disabled={guestState.hasResponded || !guestAttendingState}
+                  defaultValue={guestState.phoneNumber ?? ""}
+                  required={guestAttendingState}
                 />
 
                 <div className="flowers-rsvp-diet">
@@ -141,9 +140,9 @@ const InvitationFlowersRsvp = () => {
                     type="radio"
                     name="diet"
                     value="meat"
-                    // defaultChecked={guestState.diet === "meat"}
-                    // disabled={guestState.hasResponded || !guestAttendingState}
-                    // required={guestAttendingState}
+                    defaultChecked={guestState.diet === "meat"}
+                    disabled={guestState.hasResponded || !guestAttendingState}
+                    required={guestAttendingState}
                   />
                   <span className="flowers-check-opt">Meat</span>
                   <br />
@@ -152,9 +151,9 @@ const InvitationFlowersRsvp = () => {
                     type="radio"
                     name="diet"
                     value="vegetarian"
-                    // defaultChecked={guestState.diet === "vegetarian"}
-                    // disabled={guestState.hasResponded || !guestAttendingState}
-                    // required={guestAttendingState}
+                    defaultChecked={guestState.diet === "vegetarian"}
+                    disabled={guestState.hasResponded || !guestAttendingState}
+                    required={guestAttendingState}
                   />
                   <span className="flowers-check-opt">Vegetarian</span>
                   <br />
@@ -163,9 +162,9 @@ const InvitationFlowersRsvp = () => {
                     type="radio"
                     name="diet"
                     value="vegan"
-                    // defaultChecked={guestState.diet === "vegan"}
-                    // disabled={guestState.hasResponded || !guestAttendingState}
-                    // required={guestAttendingState}
+                    defaultChecked={guestState.diet === "vegan"}
+                    disabled={guestState.hasResponded || !guestAttendingState}
+                    required={guestAttendingState}
                   />
                   <span className="flowers-check-opt">Vegan</span>
                 </div>
@@ -178,10 +177,9 @@ const InvitationFlowersRsvp = () => {
                   type="text"
                   name="allergies"
                   placeholder="Allergies"
-                  //   defaultValue={guestState.allergies ?? ""}
-                  //   disabled={guestState.hasResponded || !guestAttendingState}
-                  //   maxLength={24}
-                  // TODO: adapt to this template DISPLAY max char available
+                  defaultValue={guestState.allergies ?? ""}
+                  disabled={guestState.hasResponded || !guestAttendingState}
+                  maxLength={24} // TODO: adapt to this template DISPLAY max char available
                 />
 
                 <label className="flowers-rsvp-label" htmlFor="comments">
@@ -192,13 +190,12 @@ const InvitationFlowersRsvp = () => {
                   type="text"
                   name="comments"
                   placeholder="Additional info"
-                  //   defaultValue={guestState.comments ?? ""}
-                  //   disabled={guestState.hasResponded || !guestAttendingState}
-                  //   maxLength={24}
+                  defaultValue={guestState.comments ?? ""}
+                  disabled={guestState.hasResponded || !guestAttendingState}
+                  maxLength={24}
                 />
 
-                {/* {guest.additionalGuest.name.length > 0 && ( */}
-                {true && (
+                {guest.additionalGuest.name.length > 0 && (
                   <>
                     <div className="flowers-additional-guest">
                       <p className="flowers-rsvp-guestname">
@@ -218,16 +215,12 @@ const InvitationFlowersRsvp = () => {
                           id="additional-guest-attending"
                           name="additional-guest-attending"
                           value="true"
-                          //   disabled={guestState.hasResponded || !guestAttendingState}
-                          //   defaultChecked={
-                          //     guestState.hasResponded
-                          //       ? guestState.additionalGuest.attending
-                          //       : false
-                          //   }
-                          //   required={guestAttendingState}
-                          //   onChange={() => {
-                          //     setAddGuestAttendingState(true);
-                          //   }}
+                          disabled={guestState.hasResponded || !guestAttendingState}
+                          defaultChecked={guestState.additionalGuest.attending}
+                          required={guestAttendingState}
+                          onChange={() => {
+                            setAddGuestAttendingState(true);
+                          }}
                         />
                         <span className="flowers-check-opt">Yes</span>
                         <input
@@ -236,16 +229,12 @@ const InvitationFlowersRsvp = () => {
                           id="additional-guest-not-attending"
                           name="additional-guest-attending"
                           value="false"
-                          //   disabled={guestState.hasResponded || !guestAttendingState}
-                          //   defaultChecked={
-                          //     guestState.hasResponded
-                          //       ? !guestState.additionalGuest.attending
-                          //       : false
-                          //   }
-                          //   required={guestAttendingState}
-                          //   onChange={() => {
-                          //     setAddGuestAttendingState(false);
-                          //   }}
+                          disabled={guestState.hasResponded || !guestAttendingState}
+                          defaultChecked={!guestState.additionalGuest.attending}
+                          required={guestAttendingState}
+                          onChange={() => {
+                            setAddGuestAttendingState(false);
+                          }}
                         />
                         <span className="flowers-check-opt">No</span>
                       </div>
@@ -263,13 +252,13 @@ const InvitationFlowersRsvp = () => {
                           type="radio"
                           name="additional-guest-diet"
                           value="meat"
-                          //   defaultChecked={guestState.additionalGuest.diet === "meat"}
-                          //   disabled={
-                          //     guestState.hasResponded ||
-                          //     !addGuestAttendingState ||
-                          //     !guestAttendingState
-                          //   }
-                          //   required={addGuestAttendingState}
+                          defaultChecked={guestState.additionalGuest.diet === "meat"}
+                          disabled={
+                            guestState.hasResponded ||
+                            !addGuestAttendingState ||
+                            !guestAttendingState
+                          }
+                          required={addGuestAttendingState}
                         />
                         <span className="flowers-check-opt">Meat</span>
                         <br />
@@ -278,13 +267,13 @@ const InvitationFlowersRsvp = () => {
                           type="radio"
                           name="additional-guest-diet"
                           value="vegetarian"
-                          //   disabled={
-                          //     guestState.hasResponded ||
-                          //     !addGuestAttendingState ||
-                          //     !guestAttendingState
-                          //   }
-                          //   defaultChecked={guestState.additionalGuest.diet === "vegetarian"}
-                          //   required={addGuestAttendingState}
+                          disabled={
+                            guestState.hasResponded ||
+                            !addGuestAttendingState ||
+                            !guestAttendingState
+                          }
+                          defaultChecked={guestState.additionalGuest.diet === "vegetarian"}
+                          required={addGuestAttendingState}
                         />
                         <span className="flowers-check-opt">Vegetarian</span>
                         <br />
@@ -293,13 +282,13 @@ const InvitationFlowersRsvp = () => {
                           type="radio"
                           name="additional-guest-diet"
                           value="vegan"
-                          //   disabled={
-                          //     guestState.hasResponded ||
-                          //     !addGuestAttendingState ||
-                          //     !guestAttendingState
-                          //   }
-                          //   defaultChecked={guestState.additionalGuest.diet === "vegan"}
-                          //   required={addGuestAttendingState}
+                          disabled={
+                            guestState.hasResponded ||
+                            !addGuestAttendingState ||
+                            !guestAttendingState
+                          }
+                          defaultChecked={guestState.additionalGuest.diet === "vegan"}
+                          required={addGuestAttendingState}
                         />
                         <span className="flowers-check-opt">Vegan</span>
                       </div>
@@ -315,13 +304,13 @@ const InvitationFlowersRsvp = () => {
                         type="text"
                         name="additional-guest-allergies"
                         placeholder="Allergies"
-                        // disabled={
-                        //   guestState.hasResponded ||
-                        //   !addGuestAttendingState ||
-                        //   !guestAttendingState
-                        // }
-                        // defaultValue={guestState.additionalGuest.allergies ?? ""}
-                        // maxLength={24}
+                        disabled={
+                          guestState.hasResponded ||
+                          !addGuestAttendingState ||
+                          !guestAttendingState
+                        }
+                        defaultValue={guestState.additionalGuest.allergies ?? ""}
+                        maxLength={24}
                       />
                     </div>
                   </>
@@ -330,9 +319,9 @@ const InvitationFlowersRsvp = () => {
                   <button
                     className="flowers-return-btn"
                     type="button"
-                    // onClick={() => {
-                    //   router.push(`/invitation/${eventId}/${eventName}`);
-                    // }}
+                    onClick={() => {
+                      router.push(`/invitation/${eventId}/${eventName}`);
+                    }}
                   >
                     <ReactSVG
                       className="invitation-navigation-arrow"
@@ -340,8 +329,7 @@ const InvitationFlowersRsvp = () => {
                       aria-label="Return"
                     />
                   </button>
-                  {/* {!responded && ( */}
-                  {true && (
+                  {!responded && (
                     <button className="flowers-send-inv-btn" type="submit">
                       Send
                     </button>
@@ -352,17 +340,6 @@ const InvitationFlowersRsvp = () => {
           </div>
         </article>
       </section>
-      {/* {loading && (
-          <div className="loader-container">
-            <PacmanLoader
-              color="orange"
-              loading={loading}
-              size={30}
-              aria-label="Loading Spinner"
-              data-testid="loader"
-            />
-          </div>
-        )} */}
     </>
   );
 };

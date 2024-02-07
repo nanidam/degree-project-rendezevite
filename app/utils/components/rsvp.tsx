@@ -8,13 +8,9 @@ import { useRouter } from "next/navigation";
 import { ReactSVG } from "react-svg";
 import Image from "next/image";
 import Loading from "./loading";
+import { IInvitationRsvp } from "../models/IInvitationRsvp";
 
-interface RsvpProps {
-  guest: IGuest;
-  eventId: string;
-  eventName: string;
-}
-const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
+const Rsvp = ({ guest, eventId, eventName }: IInvitationRsvp) => {
   const [guestState, setGuestState] = useState<IGuest>(guest);
   const [responded, setResponded] = useState(guest.hasResponded);
   const [guestAttendingState, setGuestAttendingState] = useState(guest.attending);
@@ -333,17 +329,6 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
           </div>
         </article>
       </section>
-      {/* {loading && (
-          <div className="loader-container">
-            <PacmanLoader
-              color="orange"
-              loading={loading}
-              size={30}
-              aria-label="Loading Spinner"
-              data-testid="loader"
-            />
-          </div>
-        )} */}
     </>
   );
 };
