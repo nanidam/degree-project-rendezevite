@@ -2,7 +2,7 @@
 @import "../../../utils/constants.scss";
 
 .template-bg {
-  background-color: #27264b;
+  background-color: $blue-purple;
   background-image: url("../../../../public/geometricDesignMobile.png");
   background-size: cover;
   background-position: center;
@@ -29,7 +29,7 @@
     .template-wrapper {
       .template-header {
         font-size: 2.5rem;
-        color: white;
+        color: $white;
         text-align: center;
       }
     }
@@ -43,7 +43,7 @@
       align-items: center;
 
       .form-container {
-        color: white;
+        color: $white;
         font-size: 1.1rem;
         font-family: "Alegreya";
         display: flex;
@@ -198,8 +198,9 @@
     }
   }
 }
+
 // Smaller phones
-@media screen and (max-width: 340px) {
+@media screen and (max-width: 360px) {
   .template-bg {
     .template-container {
       margin-top: 50%;
@@ -245,7 +246,6 @@
         width: 500px;
         height: 300px;
         animation: fadeIn 1s ease-in-out forwards;
-
         z-index: 11;
 
         .template-header {

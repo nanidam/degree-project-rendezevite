@@ -1,0 +1,286 @@
+@import "../../../globals.scss";
+@import "../../../utils/constants.scss";
+@import "../../../utils/keyframes.scss";
+
+.flowers-rsvp {
+  background-color: $white;
+  background-image: url("../../../../public/svgs/invitation-flowers.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 115vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .flowers-rsvp-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 45%;
+
+    .flowers-bg-desktop,
+    .invitation-envelope {
+      display: none;
+    }
+
+    .flowers-rsvp-wrapper {
+      .flowers-rsvp-header {
+        font-size: 2.5rem;
+        color: $black;
+        text-align: center;
+      }
+
+      .flowers-rsvp-form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .rsvp-form-container {
+          color: $black;
+          font-size: 1.2rem;
+          font-family: "Alegreya";
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          height: 300px;
+          overflow-y: scroll;
+          overflow-x: unset;
+          scroll-behavior: smooth;
+          margin-bottom: 15px;
+
+          &::-webkit-scrollbar {
+            width: 10px;
+          }
+
+          &::-webkit-scrollbar-track {
+            background: transparent;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background-color: $peach;
+            border-radius: 5px;
+          }
+
+          .flowers-rsvp-guestname,
+          .flowers-rsvp-attending {
+            border-bottom: 1px solid $grey;
+            width: 100%;
+            margin: 5px 0;
+          }
+
+          .flowers-rsvp-radio[type="radio"] {
+            margin: 0 5px;
+            appearance: none;
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 1px solid $grey;
+            margin-right: 5px;
+            cursor: pointer;
+
+            &:checked {
+              background-color: $peach;
+            }
+          }
+
+          .flowers-check-opt {
+            font-family: "Alegreya";
+          }
+
+          .flowers-rsvp-label {
+            margin-top: 10px;
+            font-family: "Alegreya";
+          }
+
+          .flowers-rsvp-input {
+            border: 1px solid transparent;
+            border-bottom: 1px solid $grey;
+            background-color: transparent;
+            font-size: 1.1rem;
+            font-family: "Alegreya";
+            margin-bottom: 10px;
+            padding-left: 5px;
+            color: $white;
+            width: calc(100% - 10px);
+          }
+
+          .flowers-rsvp-diet {
+            width: 100%;
+            border-bottom: 1px solid $grey;
+            padding-bottom: 10px;
+          }
+        }
+
+        .flowers-additional-guest {
+          color: $dark-green;
+
+          .flowers-rsvp-label {
+            margin-top: 15px;
+            padding-top: 15px;
+          }
+        }
+
+        .flowers-send-return {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 5px;
+
+          position: absolute;
+          bottom: -40px;
+          left: 0;
+        }
+
+        .flowers-return-btn {
+          background-color: transparent;
+          border: none;
+          padding: 0;
+          transition: ease-in-out 0.3s;
+          cursor: pointer;
+
+          &:hover {
+            transform: scale(1.2);
+          }
+
+          .invitation-navigation-arrow-left {
+            transform: rotate(180deg);
+            margin-bottom: 5px;
+          }
+        }
+
+        .flowers-send-inv-btn {
+          height: 45px;
+          width: 70px;
+          border-radius: 15px;
+          background-color: transparent;
+          border-color: $peach;
+          color: $black;
+          font-family: "Alegreya";
+          font-size: 1rem;
+          transition: ease-in-out 0.3s;
+          cursor: pointer;
+
+          &:hover {
+            background-color: $peach;
+          }
+        }
+      }
+    }
+  }
+}
+
+//Long screens
+@media screen and (min-height: 667px) and (min-height: 830px) {
+  .flowers-rsvp {
+    .flowers-rsvp-container {
+      width: 75%;
+      margin-top: 65%;
+
+      .flowers-rsvp-wrapper {
+        width: 100%;
+
+        .flowers-rsvp-header {
+          margin: 20px;
+        }
+
+        .flowers-rsvp-form {
+          font-size: 1.5rem;
+
+          .rsvp-form-container {
+            height: 400px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Smaller phones
+@media screen and (max-width: 360px) {
+  .flowers-rsvp {
+    .flowers-rsvp-container {
+      margin-top: 60%;
+
+      .flowers-rsvp-wrapper {
+        .flowers-rsvp-form {
+          .rsvp-form-container {
+            height: 340px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Desktop
+@media screen and (min-width: 800px) {
+  .flowers-rsvp {
+    background-image: none;
+    background-color: transparent;
+    min-height: unset;
+    padding-top: 15%;
+
+    .flowers-rsvp-container {
+      width: 50%;
+      padding: 0;
+      margin-top: 0;
+
+      .flowers-bg-desktop {
+        border-radius: 15px;
+        display: block;
+        background-color: $white;
+        animation: fadeIn 1s ease-in-out forwards;
+        z-index: 10;
+      }
+
+      .invitation-envelope {
+        display: flex;
+        position: absolute;
+        margin-right: 20%;
+        margin-bottom: 20%;
+      }
+
+      .flowers-rsvp-wrapper {
+        position: absolute;
+        margin-top: 20px;
+        width: 500px;
+        height: 300px;
+        animation: fadeIn 1s ease-in-out forwards;
+        z-index: 11;
+
+        .flowers-rsvp-header {
+          margin: 10px;
+          height: 35px;
+        }
+
+        .flowers-rsvp-form {
+          height: unset;
+
+          .rsvp-form-container {
+            max-height: 220px;
+            width: 90%;
+          }
+
+          .flowers-send-inv-btn {
+            background-color: $mid-green;
+            border-color: $mid-green;
+            color: $white;
+
+            &:hover {
+              border-color: $dark-green;
+              background-color: $dark-green;
+            }
+          }
+        }
+      }
+    }
+  }
+}
