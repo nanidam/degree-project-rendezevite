@@ -3,10 +3,12 @@ import getUserId from "@/app/services/getUserId";
 import EditRsvp from "@/app/utils/components/EditRsvp";
 
 const EditRsvpPage = async ({
-  params: { eventName },
+  params: { eventName: encodedEventName },
 }: {
   params: { eventName: string };
 }) => {
+  const eventName = decodeURIComponent(encodedEventName);
+
   const userId = await getUserId();
   if (!userId) return null;
 

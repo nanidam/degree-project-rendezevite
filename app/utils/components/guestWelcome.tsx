@@ -1,19 +1,18 @@
 "use client";
 
 import "./style/guestWelcome.scss";
-import { IEvent } from "../models/IEvent";
-import { ISession } from "../models/ISession";
 import { useRouter } from "next/navigation";
 import { ReactSVG } from "react-svg";
 import Image from "next/image";
+import { IGuest } from "../models/IGuest";
 
 interface IGuestWelcomeProps {
-  event: IEvent;
-  session: ISession;
+  eventName: string;
+  eventId: string;
+  eventDate: string;
+  guest: IGuest;
 }
-// Show real guest
-// TODO: Only send in relevant info, check if event.guestlist contains all guests. if so remove.
-const GuestWelcome = ({ event, session }: IGuestWelcomeProps) => {
+const GuestWelcome = ({ eventName, eventId, eventDate, guest }: IGuestWelcomeProps) => {
   const router = useRouter();
   return (
     <>
@@ -32,19 +31,17 @@ const GuestWelcome = ({ event, session }: IGuestWelcomeProps) => {
           <div className="welcome-wrapper">
             <h1 className="welcome-header">
               Welcome to <br className="welcome-br" />
-              {event.eventName}
+              {eventName}
             </h1>
-            <p className="sub-header">{event.eventDate}</p>
+            <p className="sub-header">{eventDate}</p>
             <p className="invitation-welcome-text">A special invitation to:</p>
             <article className="invitation-guests">
               <span className="invitation-span">
-                <p className="invitation-guestname"> {event.guestList[0].name}</p>
-                {event.guestList[0].additionalGuest.name.length > 0 && (
+                <p className="invitation-guestname"> {guest.name}</p>
+                {guest.additionalGuest.name.length > 0 && (
                   <>
                     <p className="additional-guest-prefix"> &</p>
-                    <p className="additional-guestname">
-                      {event.guestList[0].additionalGuest.name}
-                    </p>
+                    <p className="additional-guestname">{guest.additionalGuest.name}</p>
                   </>
                 )}
               </span>
@@ -55,7 +52,7 @@ const GuestWelcome = ({ event, session }: IGuestWelcomeProps) => {
                 className="invitation-next-btn"
                 type="button"
                 onClick={() => {
-                  router.push(`/invitation/${event.id}/${event.eventName}`);
+                  router.push(`/invitation/${eventId}/${eventName}`);
                 }}
               >
                 <ReactSVG

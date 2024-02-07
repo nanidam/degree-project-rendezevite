@@ -6,15 +6,16 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getAllEvents } from "@/app/services/getAllEvents";
-import { deleteEvent } from "@/app/services/deleteEvent";
 import ConfirmDelete from "@/app/utils/components/confirmDelete";
 import React from "react";
+import Loading from "@/app/utils/components/loading";
 
 const EventOverview = () => {
   const [events, setEvents] = useState<string[]>([]);
   const [showConfirmDelete, setShowConfirmDelete] = useState<boolean>(false);
   const [eventNameState, setEventNameState] = useState<string>("");
   const [pastEvents, setPastEvents] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const fetchAndSetEvents = async () => {
     const data = await getAllEvents();
@@ -27,6 +28,7 @@ const EventOverview = () => {
 
       setEvents(upcomingEvents.map((event) => event.eventName));
       setPastEvents(pastEvents.map((event) => event.eventName));
+      setLoading(false);
     }
   };
 
@@ -48,6 +50,7 @@ const EventOverview = () => {
 
   return (
     <main>
+      {loading && <Loading />}
       <h1 className="event-overview-header">Events</h1>
       <section className="event-overview-container">
         <article className="create-event">
@@ -81,6 +84,7 @@ const EventOverview = () => {
 
           <article className="events-container">
             <h2>Past Events:</h2>
+
             {pastEvents.length > 0 ? (
               <ul className="events">
                 {pastEvents.map((eventName) => (
@@ -90,7 +94,9 @@ const EventOverview = () => {
                 ))}
               </ul>
             ) : (
-              <p className="no-past-events">You currently have no past events.</p>
+              <p className="no-past-events">
+                {loading ? "" : "You currently have no past events."}
+              </p>
             )}
           </article>
 

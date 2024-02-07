@@ -1,11 +1,11 @@
 import CreateEditInvitations from "@/app/utils/components/createEditInvitations";
 
 const CreateInvitations = ({
-  params: { eventName },
+  params: { eventName: encodedEventName },
 }: {
   readonly params: { readonly eventName: string };
 }) => {
-  console.log(eventName);
+  const eventName = decodeURIComponent(encodedEventName);
   return <CreateEditInvitations eventName={eventName} />;
 };
 

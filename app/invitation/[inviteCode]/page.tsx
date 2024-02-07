@@ -5,10 +5,6 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { ObjectId } from "mongodb";
 
-// TODO: if invitecode(eventID) is not found, show a component with an error text.
-
-// error when signing in to incorrect event ?
-
 const Invitation = async ({
   params: { inviteCode },
 }: {

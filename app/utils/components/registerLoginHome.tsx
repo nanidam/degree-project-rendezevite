@@ -1,5 +1,4 @@
 "use client";
-import { getSession } from "next-auth/react";
 import "./style/registerLoginHome.scss";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
