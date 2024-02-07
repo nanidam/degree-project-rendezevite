@@ -4,16 +4,17 @@ import "./style/guestWelcome.scss";
 import { useRouter } from "next/navigation";
 import { ReactSVG } from "react-svg";
 import Image from "next/image";
-import { IGuest } from "../models/IGuest";
+import { IInvitationWelcomeProps } from "../models/IInvitationWelcomeProps";
+//FIXME: move into mother folder
 
-interface IGuestWelcomeProps {
-  eventName: string;
-  eventId: string;
-  eventDate: string;
-  guest: IGuest;
-}
-const GuestWelcome = ({ eventName, eventId, eventDate, guest }: IGuestWelcomeProps) => {
+const InvitationGeoWelcome = ({
+  eventName,
+  eventId,
+  eventDate,
+  guest,
+}: IInvitationWelcomeProps) => {
   const router = useRouter();
+
   return (
     <>
       <section className="welcome-bg">
@@ -69,4 +70,4 @@ const GuestWelcome = ({ eventName, eventId, eventDate, guest }: IGuestWelcomePro
   );
 };
 
-export default GuestWelcome;
+export default InvitationGeoWelcome;

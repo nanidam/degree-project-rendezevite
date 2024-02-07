@@ -1,5 +1,6 @@
 import { checkAccess } from "@/app/utils/checkAccess";
-import GuestWelcome from "@/app/utils/components/guestWelcome";
+import InvitationGeoWelcome from "@/app/utils/components/guestWelcome";
+import InvitationFlowersWelcome from "@/app/utils/components/invitationFlowersWelcome";
 import { ObjectId } from "mongodb";
 import { redirect } from "next/navigation";
 
@@ -10,9 +11,35 @@ const Welcome = async ({ params: { inviteCode } }: { params: { inviteCode: strin
   const { guest, event } = info;
   const { eventName, id, eventDate } = event;
 
-  return (
-    <GuestWelcome eventName={eventName} eventDate={eventDate} eventId={id} guest={guest} />
-  );
+  if (
+    info.event.template === "templateGeoDesign" ||
+    info.event.template === null ||
+    info.event.template === undefined
+  ) {
+    return (
+      <>
+        <InvitationGeoWelcome
+          eventName={eventName}
+          eventDate={eventDate}
+          eventId={id}
+          guest={guest}
+        />
+      </>
+    );
+  }
+
+  if (info.event.template === "templateFlowerDesign") {
+    return (
+      <>
+        <InvitationFlowersWelcome
+          eventName={eventName}
+          eventDate={eventDate}
+          eventId={id}
+          guest={guest}
+        />
+      </>
+    );
+  }
 };
 
 export default Welcome;

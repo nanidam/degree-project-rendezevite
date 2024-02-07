@@ -9,7 +9,11 @@ const RsvpPage = async ({ params: { inviteCode } }: { params: { inviteCode: stri
 
   const info = await checkAccess(inviteCode);
 
-  if (info.event.template === "templateGeoDesign") {
+  if (
+    info.event.template === "templateGeoDesign" ||
+    info.event.template === null ||
+    info.event.template === undefined
+  ) {
     return (
       <>
         <Rsvp guest={info.guest} eventId={info.event.id} eventName={info.event.eventName} />

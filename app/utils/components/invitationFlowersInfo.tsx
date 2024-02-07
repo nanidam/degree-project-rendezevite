@@ -1,9 +1,16 @@
-import "./style/invitationFlowersInfo.scss";
-import router from "next/router";
-import { ReactSVG } from "react-svg";
-import Image from "next/image";
+"use client";
 
-const InvitationFlowersInfo = () => {
+import "./style/invitationFlowersInfo.scss";
+import Image from "next/image";
+import { ReactSVG } from "react-svg";
+import { useRouter } from "next/navigation";
+import { IInvitationInfoProps } from "../models/IInvitationInfoProps";
+
+//FIXME: move into mother folder
+
+const InvitationFlowersInfo = ({ header, text, eventId }: IInvitationInfoProps) => {
+  const router = useRouter();
+
   return (
     <>
       <section className="flowers-invitation-info">
@@ -19,16 +26,16 @@ const InvitationFlowersInfo = () => {
           />
           <ReactSVG className="invitation-envelope" src="/svgs/invitation-envelope.svg" />
           <div className="flowers-info-wrapper">
-            <h1 className="flowers-info-header">{"header"}</h1>
+            <h1 className="flowers-info-header">{header}</h1>
             <div className="flowers-text-container">
-              <p className="flowers-info-text">{"text"}</p>
+              <p className="flowers-info-text">{text}</p>
             </div>
             <div className="flowers-btn-container">
               <button
                 className="flowers-back-btn"
                 type="button"
                 onClick={() => {
-                  // router.push(`/invitation/${eventId}/welcome`);
+                  router.push(`/invitation/${eventId}/welcome`);
                 }}
               >
                 <ReactSVG
@@ -42,7 +49,7 @@ const InvitationFlowersInfo = () => {
                 className="flowers-next-info-btn"
                 type="button"
                 onClick={() => {
-                  //   router.push(`/invitation/${eventId}/rsvp`);
+                  router.push(`/invitation/${eventId}/rsvp`);
                 }}
               >
                 <ReactSVG

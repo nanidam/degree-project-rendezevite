@@ -1,10 +1,21 @@
+"use client";
+
 import "./style/invitationFlowersWelcome.scss";
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { ReactSVG } from "react-svg";
 import Image from "next/image";
+import { IInvitationWelcomeProps } from "../models/IInvitationWelcomeProps";
 
 //TODO: fix flowers invitation
-const InvitationFlowersWelcome = () => {
+//FIXME: move into mother folder
+const InvitationFlowersWelcome = ({
+  eventName,
+  eventId,
+  eventDate,
+  guest,
+}: IInvitationWelcomeProps) => {
+  const router = useRouter();
+
   return (
     <>
       <section className="flowers-welcome-bg">
@@ -23,24 +34,22 @@ const InvitationFlowersWelcome = () => {
           <div className="flowers-wrapper">
             <h1 className="flowers-header">
               Welcome to <br className="flowers-br" />
-              {"event.eventName"}
+              {eventName}
             </h1>
-            <p className="flowers-sub-header">{"event.eventDate"}</p>
+
+            <p className="flowers-sub-header">{eventDate}</p>
             <p className="flowers-welcome-text">A special invitation to:</p>
             <article className="flowers-invited-guests">
               <span className="flowers-span">
-                <p className="flowers-invited-guestname"> {"event.guestList[0].name"}</p>
-                {/* {event.guestList[0].additionalGuest.name.length > 0 && (
+                <p className="flowers-invited-guestname"> {guest.name}</p>
+                {guest.additionalGuest.name.length > 0 && (
                   <>
                     <p className="flowers-additional-guest-prefix"> &</p>
                     <p className="flowers-additional-guestname">
-                      {event.guestList[0].additionalGuest.name}
+                      {guest.additionalGuest.name}
                     </p>
                   </>
-                )} */}
-
-                <p className="flowers-additional-guest-prefix">&</p>
-                <p className="flowers-additional-guestname">Test 1</p>
+                )}
               </span>
             </article>
 
@@ -49,7 +58,7 @@ const InvitationFlowersWelcome = () => {
                 className="flowers-next-btn"
                 type="button"
                 onClick={() => {
-                  //   router.push(`/invitation/${event.id}/${event.eventName}`);
+                  router.push(`/invitation/${eventId}/${eventName}`);
                 }}
               >
                 <ReactSVG

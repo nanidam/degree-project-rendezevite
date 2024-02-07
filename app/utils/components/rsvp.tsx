@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { ReactSVG } from "react-svg";
 import Image from "next/image";
 import Loading from "./loading";
-import { IInvitationRsvp } from "../models/IInvitationRsvp";
+import { IInvitationRsvp } from "../models/IInvitationRsvpProps";
 
 const Rsvp = ({ guest, eventId, eventName }: IInvitationRsvp) => {
   const [guestState, setGuestState] = useState<IGuest>(guest);

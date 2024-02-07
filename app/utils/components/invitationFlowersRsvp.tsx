@@ -8,9 +8,9 @@ import { rsvp } from "../rsvp";
 import Image from "next/image";
 import Loading from "./loading";
 import { useRouter } from "next/navigation";
-import { IInvitationRsvp } from "../models/IInvitationRsvp";
+import { IInvitationRsvpProps } from "../models/IInvitationRsvpProps";
 
-const InvitationFlowersRsvp = ({ guest, eventId, eventName }: IInvitationRsvp) => {
+const InvitationFlowersRsvp = ({ guest, eventId, eventName }: IInvitationRsvpProps) => {
   const [guestState, setGuestState] = useState<IGuest>(guest);
   const [responded, setResponded] = useState(guest.hasResponded);
   const [guestAttendingState, setGuestAttendingState] = useState(guest.attending);

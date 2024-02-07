@@ -4,13 +4,11 @@ import "./style/invitationGeometricInfo.scss";
 import Image from "next/image";
 import { ReactSVG } from "react-svg";
 import { useRouter } from "next/navigation";
-import { ITemplateGeometricDesignProps } from "../models/ITemplateGeometricDesign";
+import { IInvitationInfoProps } from "../models/IInvitationInfoProps";
 
-const InvitationGeometricInfo: React.FC<ITemplateGeometricDesignProps> = ({
-  header,
-  text,
-  eventId,
-}) => {
+//FIXME: move into mother folder
+
+const InvitationGeometricInfo = ({ header, text, eventId }: IInvitationInfoProps) => {
   const router = useRouter();
 
   return (
