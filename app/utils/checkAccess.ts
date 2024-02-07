@@ -12,7 +12,7 @@ export const checkAccess = async (eventId: string) => {
     if (!session) redirect(`/invitation/${eventId}`);
     if (session.access === "admin") redirect("/unauthorized");
 
-    // TODO trycatch
+    // TODO trycatch, rename all services to services at end
     const event = (await prisma.event.findUnique({
         where: {
             id: eventId,
