@@ -1,5 +1,5 @@
 import { checkAccess } from "@/app/utils/checkAccess";
-import InvitationGeometricWelcome from "@/app/utils/components/InvitationGeoMetricWelcome";
+import InvitationGeometricWelcome from "@/app/utils/components/nvitationGeometricWelcome";
 import InvitationFlowersWelcome from "@/app/utils/components/invitationFlowersWelcome";
 import { ObjectId } from "mongodb";
 import { redirect } from "next/navigation";
