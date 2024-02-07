@@ -26,7 +26,7 @@ const MenuIconsDesktop: React.FC<IHamburgarMenuProps> = ({
       >
         {isDesktop && !isMenuOpen ? (
           <div className="menu-icons-desktop">
-            {loggedIn && (
+            {loggedIn && access === "admin" && (
               <>
                 <ReactSVG className="menu-desktop-icon" src="/svgs/plus.svg" />
                 <hr className="menu-desktop-hr" />
@@ -34,7 +34,7 @@ const MenuIconsDesktop: React.FC<IHamburgarMenuProps> = ({
             )}
             <ReactSVG className="menu-desktop-icon" src="/svgs/home.svg" />
 
-            {loggedIn && (
+            {loggedIn && access === "admin" && (
               <>
                 <ReactSVG className="menu-desktop-icon" src="/svgs/calendar.svg" />
               </>
@@ -48,9 +48,7 @@ const MenuIconsDesktop: React.FC<IHamburgarMenuProps> = ({
             ) : (
               <>
                 <ReactSVG className="menu-desktop-icon" src="/svgs/plus.svg" />
-                {access !== "guest" && (
-                  <ReactSVG className="menu-desktop-icon" src="/svgs/profile.svg" />
-                )}
+                <ReactSVG className="menu-desktop-icon" src="/svgs/profile.svg" />
               </>
             )}
           </div>

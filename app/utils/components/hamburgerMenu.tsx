@@ -50,7 +50,7 @@ const HamburgerMenu = () => {
           onClick={toggleMenu}
           isDesktop={isDesktop}
           isMenuOpen={isMenuOpen}
-          loggedIn={status === "authenticated" && access === "admin"}
+          loggedIn={status === "authenticated"}
           access={access}
         />
 
