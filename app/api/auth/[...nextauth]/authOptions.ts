@@ -4,7 +4,6 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import CryptoJS from "crypto-js";
 
 export const authOptions: NextAuthOptions = {
-  // Configure one or more authentication providers
   providers: [
     CredentialsProvider({
       name: "creds",
@@ -25,6 +24,7 @@ export const authOptions: NextAuthOptions = {
           const user = await prisma.user.findUnique({
             where: { email: credentials?.email },
           });
+          if (!user) return null
 
           const bytes = CryptoJS.AES.decrypt(
             user?.hashedPassword!,
@@ -40,9 +40,16 @@ export const authOptions: NextAuthOptions = {
           }
         }
         if (credentials?.loginType === "guest") {
+
           const event = await prisma.event.findUnique({
             where: {
               id: credentials.eventId,
+              guestList: {
+                some: {
+                  email: credentials.email,
+                },
+              },
+
             },
             include: {
               guestList: {
@@ -68,6 +75,7 @@ export const authOptions: NextAuthOptions = {
   ],
   pages: {
     signIn: "/login",
+    error: "/not-found",
   },
   // jwt = webtoken
   session: {
@@ -78,7 +86,7 @@ export const authOptions: NextAuthOptions = {
       if (user) return { ...token, ...user }
       return token
     },
-    async session({ session, token, user }) {
+    async session({ session, token }) {
       return { ...session, id: token.id, access: token.access };
     },
   },

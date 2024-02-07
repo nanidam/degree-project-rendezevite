@@ -1,5 +1,6 @@
 import { checkAccess } from "@/app/utils/checkAccess";
 import InvitationGeometricInfo from "@/app/utils/components/invitationGeometricInfo";
+import { ObjectId } from "mongodb";
 import { redirect } from "next/navigation";
 
 const GuestInvitation = async ({
@@ -7,6 +8,8 @@ const GuestInvitation = async ({
 }: {
   params: { inviteCode: string };
 }) => {
+  if (!ObjectId.isValid(inviteCode)) redirect("/not-found");
+
   const info = await checkAccess(inviteCode);
 
   return (
