@@ -20,6 +20,7 @@ interface ICreateEditInvitations {
 }
 const createEditInvitations = async ({ e, header, text, eventName, router, setErrorMsg, event }: ICreateEditInvitations) => {
     e.preventDefault();
+    console.log(eventName)
     switch (true) {
         case header === "":
             setErrorMsg(CREATE_INVITATION_STATUS.EMPTY_HEADER);

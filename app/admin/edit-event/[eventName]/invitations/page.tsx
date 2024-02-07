@@ -3,10 +3,12 @@ import getUserId from "@/app/services/getUserId";
 import CreateEditInvitations from "@/app/utils/components/createEditInvitations";
 
 const EditInvitations = async ({
-  params: { eventName },
+  params: { eventName: encodedEventName },
 }: {
   readonly params: { readonly eventName: string };
 }) => {
+  const eventName = decodeURIComponent(encodedEventName);
+
   const userId = await getUserId();
   if (!userId) return;
 

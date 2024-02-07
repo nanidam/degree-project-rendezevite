@@ -3,10 +3,12 @@ import getUserId from "@/app/services/getUserId";
 import CreateEditEvent from "@/app/utils/components/createEditEvent";
 
 const EditEvent = async ({
-  params: { eventName },
+  params: { eventName: encodedEventName },
 }: {
   readonly params: { readonly eventName: string };
 }) => {
+  const eventName = decodeURIComponent(encodedEventName);
+
   const userId = await getUserId();
   if (!userId) return;
 

@@ -1,10 +1,12 @@
 import EditRsvp from "@/app/utils/components/EditRsvp";
 
 const CreateRsvpPage = async ({
-  params: { eventName },
+  params: { eventName: encodedEventName },
 }: {
   params: { eventName: string };
 }) => {
+  const eventName = decodeURIComponent(encodedEventName);
+
   return <EditRsvp eventName={eventName} />;
 };
 
