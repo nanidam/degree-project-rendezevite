@@ -1,5 +1,5 @@
 import { checkAccess } from "@/app/utils/checkAccess";
-import InvitationGeoWelcome from "@/app/utils/components/guestWelcome";
+import InvitationGeometricWelcome from "@/app/utils/components/InvitationGeoMetricWelcome";
 import InvitationFlowersWelcome from "@/app/utils/components/invitationFlowersWelcome";
 import { ObjectId } from "mongodb";
 import { redirect } from "next/navigation";
@@ -18,7 +18,7 @@ const Welcome = async ({ params: { inviteCode } }: { params: { inviteCode: strin
   ) {
     return (
       <>
-        <InvitationGeoWelcome
+        <InvitationGeometricWelcome
           eventName={eventName}
           eventDate={eventDate}
           eventId={id}

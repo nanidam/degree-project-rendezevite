@@ -1,13 +1,13 @@
 "use client";
 
-import "./style/guestWelcome.scss";
+import "./style/invitationGeometricWelcome.scss";
 import { useRouter } from "next/navigation";
 import { ReactSVG } from "react-svg";
 import Image from "next/image";
 import { IInvitationWelcomeProps } from "../models/IInvitationWelcomeProps";
 //FIXME: move into mother folder
 
-const InvitationGeoWelcome = ({
+const InvitationGeometricWelcome = ({
   eventName,
   eventId,
   eventDate,
@@ -70,4 +70,4 @@ const InvitationGeoWelcome = ({
   );
 };
 
-export default InvitationGeoWelcome;
+export default InvitationGeometricWelcome;
