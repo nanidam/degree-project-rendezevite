@@ -55,8 +55,6 @@ const Rsvp = ({ guest, eventId, eventName }: RsvpProps) => {
     setResponded(updatedGuest.hasResponded);
   };
 
-  console.log(responded);
-
   return (
     <>
       <section className="template-bg">
