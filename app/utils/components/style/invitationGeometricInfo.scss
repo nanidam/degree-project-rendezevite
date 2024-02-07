@@ -14,12 +14,11 @@
   align-items: center;
 
   .invitation-main-container {
-    padding: 0 75px;
+    width: 58%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 34%;
 
     .gemetric-desktop,
     .invitation-envelope {
@@ -27,42 +26,61 @@
     }
 
     .invitation-main-wrapper {
+      text-align: center;
+      margin-top: 18vh;
+      width: 100%;
+
       .invitation-main-header {
         font-size: 2.3rem;
         color: white;
         text-align: center;
-        height: 100px;
       }
 
       .main-text-container {
         font-size: 1rem;
         text-align: center;
-        color: white;
+        color: $black;
         width: 100%;
-        height: 48vh;
-      }
-    }
+        height: 57vh;
+        width: 100%;
 
-    .next-return-wrapper {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-
-      .invitation-btn {
-        background-color: transparent;
-        border: none;
-        padding: 0;
-        transition: ease-in-out 0.3s;
-        cursor: pointer;
-
-        &:hover {
-          transform: scale(1.2);
+        .invitation-main-text {
+          max-width: 100%;
+          margin: 0;
+          overflow-wrap: break-word;
+          word-wrap: break-word;
         }
+      }
+      .next-return-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
 
-        .invitation-navigation-arrow-left {
-          transform: rotate(180deg);
-          margin-bottom: 5px;
+        .invitation-btn {
+          margin-top: 5px;
+          background-color: transparent;
+          border: none;
+          padding: 0;
+          transition: ease-in-out 0.3s;
+          cursor: pointer;
+
+          &:hover {
+            transform: scale(1.2);
+          }
+
+          .invitation-navigation-arrow-left {
+            background-color: transparent;
+            border: none;
+            transition: ease-in-out 0.3s;
+            transform: rotate(180deg);
+            cursor: pointer;
+
+            &:hover {
+              transform: scale(1.2) rotate(180deg);
+            }
+          }
         }
       }
     }
@@ -74,10 +92,18 @@
   .invitation-main {
     .invitation-main-container {
       .invitation-main-wrapper {
+        margin-top: 22vh;
+
         .invitation-main-header {
-          margin-top: 25%;
           font-size: 2.3rem;
-          // outline: 2px solid blue;
+        }
+
+        .main-text-container {
+          height: 54vh;
+
+          .invitation-main-text {
+            font-size: 1.2rem;
+          }
         }
       }
     }
@@ -88,11 +114,16 @@
 @media screen and (max-width: 360px) {
   .invitation-main {
     .invitation-main-container {
-      margin-top: 40%;
+      .invitation-main-wrapper {
+        margin-top: 22vh;
 
-      .main-text-container {
-        height: 49vh;
-        // outline: 2px solid green;
+        .invitation-main-header {
+          font-size: 2.3rem;
+        }
+
+        .main-text-container {
+          height: 54vh;
+        }
       }
     }
   }
@@ -146,6 +177,7 @@
 
           .invitation-main-text {
             margin: 0;
+            padding: 0;
           }
         }
       }
