@@ -1,0 +1,219 @@
+@import "../../../globals.scss";
+@import "../../../utils/constants.scss";
+
+.flowers-welcome-bg {
+  background-color: $white;
+  background-image: url("../../../../public/svgs/invitation-flowers.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 115vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .flowers-welcome-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    .flowers-bg-desktop,
+    .invitation-envelope {
+      display: none;
+    }
+
+    .flowers-wrapper {
+      text-align: center;
+      margin-top: 30vh;
+
+      .flowers-header {
+        font-size: 2.3rem;
+        color: $black;
+        text-align: center;
+      }
+
+      .flowers-sub-header {
+        color: $black;
+        font-family: "Alegreya";
+        font-size: 1.2rem;
+      }
+
+      .flowers-welcome-text {
+        color: $black;
+        font-family: "Dancing script";
+        font-size: 1.5rem;
+        margin: 0 10px;
+      }
+    }
+
+    .flowers-invited-guests {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: $black;
+      font-family: "Dancing script";
+      font-size: 2rem;
+      margin: 15px 0;
+
+      .flowers-span {
+        display: block;
+        margin-top: 10px;
+
+        .flowers-invited-guestname,
+        .flowers-additional-guest-prefix,
+        .flowers-additional-guestname {
+          margin: 0;
+          text-align: center;
+        }
+      }
+    }
+
+    .flowers-btn-container {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+
+      .flowers-next-btn {
+        margin: 20px;
+        background-color: transparent;
+        border: none;
+        transition: ease-in-out 0.3s;
+        transform: rotate(180deg);
+        cursor: pointer;
+
+        &:hover {
+          transform: scale(1.2) rotate(180deg);
+        }
+      }
+    }
+  }
+}
+
+//Long screens
+@media screen and (min-height: 667px) and (min-height: 830px) {
+  .flowers-welcome-bg {
+    .flowers-welcome-container {
+      .flowers-wrapper {
+        margin-top: 35vh;
+
+        .flowers-header {
+          font-size: 2.7rem;
+        }
+        .flowers-sub-header {
+          font-size: 1.5rem;
+        }
+
+        .flowers-welcome-text {
+          font-size: 2rem;
+        }
+
+        .flowers-invited-guests {
+          .flowers-span {
+            .flowers-invited-guestname,
+            .flowers-additional-guest-prefix,
+            .flowers-additional-guestname {
+              font-size: 2.2rem;
+              margin: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//Smaller phones
+@media screen and (max-width: 360px) {
+  .flowers-welcome-bg {
+    .flowers-welcome-container {
+      .flowers-wrapper {
+        margin-top: 35vh;
+      }
+    }
+  }
+}
+
+//Desktop
+@media screen and (min-width: 800px) {
+  .flowers-welcome-bg {
+    background-image: none;
+    background-color: transparent;
+    margin-top: 30px;
+    min-height: unset;
+    padding-top: 20%;
+
+    .flowers-welcome-container {
+      width: 50%;
+      padding: 0;
+      margin-top: 0;
+
+      .flowers-bg-desktop {
+        border-radius: 15px;
+        display: block;
+        background-color: $white;
+        animation: fadeIn 1s ease-in-out forwards;
+        z-index: 10;
+      }
+
+      .invitation-envelope {
+        display: flex;
+        position: absolute;
+        margin-right: 20%;
+        margin-bottom: 20%;
+      }
+
+      .flowers-wrapper {
+        position: absolute;
+        margin-top: 10vh;
+        width: 500px;
+        height: 300px;
+        animation: fadeIn 1s ease-in-out forwards;
+        z-index: 11;
+
+        .flowers-header {
+          margin: 10px;
+          height: 45px;
+          font-size: 2.1rem;
+
+          .flowers-br {
+            display: none;
+          }
+        }
+
+        .flowers-sub-header {
+          font-size: 1.3rem;
+          margin: 10px 0;
+        }
+
+        .flowers-welcome-text {
+          font-size: 1.5rem;
+        }
+
+        .flowers-invited-guests {
+          .flowers-span {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            .flowers-invited-guestname,
+            .flowers-additional-guest-prefix,
+            .flowers-additional-guestname {
+              font-size: 1.7rem;
+            }
+
+            .flowers-btn-container {
+              .flowers-next-btn {
+                margin: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

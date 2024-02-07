@@ -1,0 +1,157 @@
+@import "../../../globals.scss";
+@import "../../../utils/constants.scss";
+@import "../../../utils/keyframes.scss";
+
+.flowers-invitation-info {
+  background-color: $white;
+  background-image: url("../../../../public/svgs/invitation-flowers.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 115vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .flowers-info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    .flowers-bg-desktop,
+    .invitation-envelope {
+      display: none;
+    }
+
+    .flowers-info-wrapper {
+      text-align: center;
+      margin-top: 27vh;
+      width: 100%;
+
+      .flowers-info-header {
+        font-size: 2.3rem;
+        color: $black;
+        text-align: center;
+      }
+
+      .flowers-text-container {
+        font-size: 1rem;
+        text-align: center;
+        color: $black;
+        width: 100%;
+        height: 48vh;
+
+        .flowers-info-text {
+        }
+      }
+    }
+
+    .flowers-btn-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+
+      .flowers-back-btn {
+        margin-top: 5px;
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        transition: ease-in-out 0.3s;
+        cursor: pointer;
+
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
+
+      .flowers-next-info-btn {
+        background-color: transparent;
+        border: none;
+        transition: ease-in-out 0.3s;
+        transform: rotate(180deg);
+        cursor: pointer;
+
+        &:hover {
+          transform: scale(1.2) rotate(180deg);
+        }
+      }
+    }
+  }
+}
+
+//Long screens
+@media screen and (min-height: 667px) and (min-height: 830px) {
+  .flowers-invitation-info {
+    .flowers-info-container {
+      .flowers-info-wrapper {
+        margin-top: 30vh;
+
+        .flowers-info-header {
+          font-size: 2.6rem;
+        }
+      }
+    }
+  }
+}
+
+// Desktop
+@media screen and (min-width: 800px) {
+  .flowers-invitation-info {
+    background-image: none;
+    background-color: transparent;
+    margin-top: 30px;
+    min-height: unset;
+    padding-top: 20%;
+
+    .flowers-info-container {
+      width: 75%;
+      padding: 0;
+      margin-top: 0;
+
+      .flowers-bg-desktop {
+        border-radius: 15px;
+        display: block;
+        background-color: $white;
+        animation: fadeIn 1s ease-in-out forwards;
+        z-index: 10;
+      }
+
+      .invitation-envelope {
+        display: flex;
+        position: absolute;
+        margin-right: 20%;
+        margin-bottom: 20%;
+      }
+
+      .flowers-info-wrapper {
+        position: absolute;
+        margin-top: 8vh;
+        width: 500px;
+        height: 350px;
+        animation: fadeIn 1s ease-in-out forwards;
+        z-index: 11;
+
+        .flowers-info-header {
+          margin: 10px;
+          height: 45px;
+          font-size: 2.1rem;
+        }
+
+        .flowers-text-container {
+          height: 210px;
+          padding: 10px;
+          width: unset;
+
+          .flowers-info-text {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
