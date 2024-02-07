@@ -94,6 +94,7 @@
   }
 }
 
+//Long screens
 @media screen and (min-height: 667px) and (min-height: 830px) {
   .welcome-bg {
     .welcome-container {
@@ -104,6 +105,7 @@
   }
 }
 
+//Smaller phones
 @media screen and (max-width: 360px) {
   .welcome-bg {
     .welcome-container {
