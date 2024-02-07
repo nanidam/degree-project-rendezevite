@@ -1,7 +1,8 @@
+import "./style/eventPassword.scss";
 import { useState } from "react";
 import { changeEventPassword } from "../utils/changeEventPassword";
-import "./style/eventPassword.scss";
 import { ReactSVG } from "react-svg";
+import Loading from "@/app/utils/components/loading";
 
 interface IEventPasswordProps {
   eventPassword: string;
@@ -12,6 +13,7 @@ export const EventPassword = ({ eventPassword, eventId }: IEventPasswordProps) =
   const [editPassword, setEditPassword] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [editedPassword, setEditedPassword] = useState<string>(eventPassword);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -24,12 +26,13 @@ export const EventPassword = ({ eventPassword, eventId }: IEventPasswordProps) =
 
   return (
     <article className="event-password-wrapper">
+      {loading && <Loading />}
       <h3>Password</h3>
       <p className="event-password-text">See or change your password for the event.</p>
       <form
         className="admin-form event-password-form"
         onSubmit={(e) => {
-          changeEventPassword({ e, eventId, setEditPassword });
+          changeEventPassword({ e, eventId, setEditPassword, setLoading });
         }}
       >
         <label className="event-password-label" htmlFor="eventPassword">

@@ -9,4 +9,5 @@ export interface IInviteGuests {
     guestList: IGuest[];
     setErrorMsg: React.Dispatch<React.SetStateAction<string>>
     formRef: React.RefObject<HTMLFormElement>;
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }

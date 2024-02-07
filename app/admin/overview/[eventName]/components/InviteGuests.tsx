@@ -1,9 +1,10 @@
+import "./style/inviteGuests.scss";
 import { IEvent } from "@/app/utils/models/IEvent";
 import { IGuest } from "@/app/utils/models/IGuest";
 import { handleInviteGuests } from "../utils/handleInviteGuests";
-import "./style/inviteGuests.scss";
 import { ReactSVG } from "react-svg";
 import { useRef, useState } from "react";
+import Loading from "@/app/utils/components/loading";
 
 interface InviteGuestsProps {
   eventId: string;
@@ -20,9 +21,11 @@ export const InviteGuests = ({
   guestList,
 }: InviteGuestsProps) => {
   const [errorMsg, setErrorMsg] = useState("");
+  const [loading, setLoading] = useState(false);
   const formRef = useRef(null);
   return (
     <article className="invite-guests">
+      {loading && <Loading />}
       <form
         ref={formRef}
         className="invite-guest-form"
@@ -35,6 +38,7 @@ export const InviteGuests = ({
             guestList,
             setErrorMsg,
             formRef,
+            setLoading,
           })
         }
       >

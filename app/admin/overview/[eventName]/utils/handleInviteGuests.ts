@@ -3,8 +3,9 @@ import { IEvent } from "@/app/utils/models/IEvent";
 import { IInviteGuests } from "@/app/utils/models/IInviteGuests";
 
 
-export const handleInviteGuests = async ({ e, eventId, setEvent, setEditGuestList, guestList, setErrorMsg, formRef }: IInviteGuests) => {
+export const handleInviteGuests = async ({ e, eventId, setEvent, setEditGuestList, guestList, setErrorMsg, formRef, setLoading }: IInviteGuests) => {
     e.preventDefault();
+    setLoading(true);
     const data = new FormData(e.currentTarget);
 
     const guestName = data.get("guestName") as string;
@@ -28,4 +29,6 @@ export const handleInviteGuests = async ({ e, eventId, setEvent, setEditGuestLis
         setEditGuestList(updatedEvent.guestList);
         if (formRef && formRef.current) formRef.current.reset();
     }
+    setLoading(false);
+
 };
