@@ -1,5 +1,5 @@
 import { checkAccess } from "@/app/utils/checkAccess";
-import InvitationGeometricRsvp from "@/app/utils/components/InvitationGeometricRsvp";
+import InvitationGeometricRsvp from "@/app/utils/components/invitationGeometricRsvp";
 import InvitationFlowersRsvp from "@/app/utils/components/invitationFlowersRsvp";
 import { ObjectId } from "mongodb";
 import { redirect } from "next/navigation";
