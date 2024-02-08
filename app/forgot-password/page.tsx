@@ -13,11 +13,10 @@ const ForgotPassword = () => {
 
     const result = await sendMail(email);
 
-    console.log(result);
     if (!result) {
       setMsg("Invalid email");
     } else {
-      router.push("/password-sent");
+      setMsg("Email sent. If you don't receive it, please check your junk folder.");
     }
   };
 
@@ -44,9 +43,9 @@ const ForgotPassword = () => {
             <button type="submit" className="reset-password-btn">
               Send
             </button>
-            <button type="button" className="return-btn" onClick={() => router.push("/")}>
-              Back
-            </button>
+            <a className="return-btn" href="/login">
+              To login
+            </a>
           </div>
         </form>
       </article>
