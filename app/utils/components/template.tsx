@@ -15,7 +15,9 @@ interface ITemplateProps {
 }
 const Template = ({ eventName, event }: ITemplateProps) => {
   const router = useRouter();
-  const [selectedTemplate, setSelectedTemplate] = useState<string>("templateGeoDesign");
+  const [selectedTemplate, setSelectedTemplate] = useState<string>(
+    event?.template || "templateGeoDesign"
+  );
 
   const choosingTemplate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,6 +28,8 @@ const Template = ({ eventName, event }: ITemplateProps) => {
     if (!event) router.push(`/events/create-event/${eventName}/invitations`);
     else router.push(`/admin/edit-event/${eventName}/invitations`);
   };
+
+  console.log(event?.template);
 
   return (
     <section className="choose-template-container">
