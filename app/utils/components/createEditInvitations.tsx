@@ -55,7 +55,7 @@ const CreateEditInvitations = ({ eventName, event }: ICreateEditInvitationsProps
             placeholder="Header"
             value={header}
             onChange={(e) => setHeader(e.target.value)}
-            maxLength={22}
+            maxLength={20}
           ></input>
 
           <label className="create-inv-label" htmlFor="create-inv-text">
@@ -67,7 +67,7 @@ const CreateEditInvitations = ({ eventName, event }: ICreateEditInvitationsProps
             placeholder="What do you want your invitation to say?"
             value={text}
             onChange={(e) => setText(e.target.value)}
-            maxLength={415}
+            maxLength={410}
           ></textarea>
 
           {errorMsg && <p className="create-inv-error">{errorMsg}</p>}
