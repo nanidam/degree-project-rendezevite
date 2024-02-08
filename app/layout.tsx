@@ -9,7 +9,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Rendez Evite",
-  description: "Send out invitations to your guests!",
+  description:
+    "Let Rendez Evite help you with your next event! Create stunning, personalized invites effortlessly and send them digitally, saving time and paper. Unleash the power of seamless event coordination with Rendez Evite – your go-to solution for modern, eco-friendly invitations that make every occasion memorable.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -28,5 +29,3 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
-
-// TODO: Metataggar
