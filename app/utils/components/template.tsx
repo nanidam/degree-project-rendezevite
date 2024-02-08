@@ -17,10 +17,6 @@ const Template = ({ eventName, event }: ITemplateProps) => {
   const router = useRouter();
   const [selectedTemplate, setSelectedTemplate] = useState<string>("templateGeoDesign");
 
-  if (eventName.includes(".")) {
-    return null;
-  }
-
   const choosingTemplate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
