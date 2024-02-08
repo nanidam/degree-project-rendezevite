@@ -2,7 +2,7 @@
 
 import "./style.scss";
 import { useCallback, useEffect, useState } from "react";
-import { getEvent } from "@/app/services/getEvent";
+import { getEvent } from "@/app/services/getEventServices";
 import getUserId from "@/app/services/getUserIdServices";
 import { dateFormat } from "@/app/utils/dateFormat";
 import { IEvent } from "@/app/utils/models/IEvent";

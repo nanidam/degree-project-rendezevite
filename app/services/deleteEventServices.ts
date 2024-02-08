@@ -1,7 +1,7 @@
 "use server";
 
 import prisma from "../db";
-import { getEvent } from "./getEvent";
+import { getEvent } from "./getEventServices";
 import getUserId from "./getUserIdServices";
 
 export const deleteEvent = async (eventName: string) => {

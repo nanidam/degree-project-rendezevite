@@ -1,4 +1,4 @@
-import { getEvent } from "@/app/services/getEvent";
+import { getEvent } from "@/app/services/getEventServices";
 import getUserId from "@/app/services/getUserIdServices";
 import CreateEditEvent from "@/app/utils/components/createEditEvent";
 

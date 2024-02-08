@@ -2,7 +2,7 @@
 
 import prisma from "../db";
 import { ICreateUpdateEvent } from "../utils/models/ICreateUpdateEvent";
-import { getEvent } from "./getEvent";
+import { getEvent } from "./getEventServices";
 
 const createEvent = async ({
   eventDate,
