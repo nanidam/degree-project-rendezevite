@@ -14,8 +14,7 @@ interface IInviteGuestsProps {
   eventPassword: string;
   eventName: string;
 }
-// TODO: mail invitation link to invited guests -> node mailer
-// reset error message email alreadu exists if succesful invite after unsucceslfulinvite
+
 export const InviteGuests = ({
   eventId,
   setEvent,

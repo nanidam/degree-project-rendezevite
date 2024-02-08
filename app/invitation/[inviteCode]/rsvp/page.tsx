@@ -1,4 +1,4 @@
-import { checkAccess } from "@/app/utils/checkAccess";
+import { checkAccess } from "@/app/services/checkAccessServices";
 import InvitationGeometricRsvp from "@/app/utils/components/invitationGeometricRsvp";
 import InvitationFlowersRsvp from "@/app/utils/components/invitationFlowersRsvp";
 import { ObjectId } from "mongodb";
@@ -8,6 +8,7 @@ const RsvpPage = async ({ params: { inviteCode } }: { params: { inviteCode: stri
   if (!ObjectId.isValid(inviteCode)) redirect("/not-found");
 
   const info = await checkAccess(inviteCode);
+  if (!info) return null;
 
   if (
     info.event.template === "templateGeoDesign" ||

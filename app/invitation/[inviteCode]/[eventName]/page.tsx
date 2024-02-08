@@ -1,4 +1,4 @@
-import { checkAccess } from "@/app/utils/checkAccess";
+import { checkAccess } from "@/app/services/checkAccessServices";
 import InvitationFlowersInfo from "@/app/utils/components/invitationFlowersInfo";
 import InvitationGeometricInfo from "@/app/utils/components/invitationGeometricInfo";
 import { ObjectId } from "mongodb";
@@ -12,6 +12,7 @@ const GuestInvitation = async ({
   if (!ObjectId.isValid(inviteCode)) redirect("/not-found");
 
   const info = await checkAccess(inviteCode);
+  if (!info) return null;
 
   if (
     info.event.template === "templateGeoDesign" ||

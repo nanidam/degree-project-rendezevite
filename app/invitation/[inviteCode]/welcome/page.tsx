@@ -1,4 +1,4 @@
-import { checkAccess } from "@/app/utils/checkAccess";
+import { checkAccess } from "@/app/services/checkAccessServices";
 import InvitationGeometricWelcome from "@/app/utils/components/invitationGeometricWelcome";
 import InvitationFlowersWelcome from "@/app/utils/components/invitationFlowersWelcome";
 import { ObjectId } from "mongodb";
@@ -8,6 +8,8 @@ const Welcome = async ({ params: { inviteCode } }: { params: { inviteCode: strin
   if (!ObjectId.isValid(inviteCode)) redirect("/not-found");
 
   const info = await checkAccess(inviteCode);
+  if (!info) return null;
+
   const { guest, event } = info;
   const { eventName, id, eventDate } = event;
 
