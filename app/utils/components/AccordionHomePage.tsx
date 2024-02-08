@@ -6,7 +6,6 @@ import ImageCarouselHomePage from "./imageCarouselHomePage";
 
 const AccordionHomePage = () => {
   const [showFeatures, setShowFeatures] = useState<boolean>(true);
-  const intervalId: number = 0;
 
   const showFeaturesClick = () => {
     setShowFeatures(true);
