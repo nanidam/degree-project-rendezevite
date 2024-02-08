@@ -39,10 +39,14 @@
     }
 
     .preview-template {
-      outline: 2px solid black;
+      border-radius: 15px;
       width: 100%;
-      height: 500px;
+      height: auto;
       margin: 20px 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      background-color: $white;
     }
 
     .template-btn {
@@ -97,9 +101,7 @@
 
     .choose-template-form {
       .preview-template {
-        max-width: 400px;
-        background-color: $white;
-        border-radius: 15px;
+        max-width: 600px;
       }
 
       .template-btn {
@@ -108,8 +110,9 @@
       }
 
       .next-return-wrapper {
-        .submit-event-btn {
-          width: 30%;
+        .submit-event-btn,
+        .about-btn-return {
+          width: 150px;
         }
       }
     }
