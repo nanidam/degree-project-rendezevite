@@ -1,6 +1,6 @@
 import { checkAccess } from "@/app/services/checkAccessServices";
-import InvitationGeometricRsvp from "@/app/utils/components/invitationGeometricRsvp";
-import InvitationFlowersRsvp from "@/app/utils/components/invitationFlowersRsvp";
+import InvitationGeometricRsvp from "@/app/invitation/[inviteCode]/rsvp/components/invitationGeometricRsvp";
+import InvitationFlowersRsvp from "@/app/invitation/[inviteCode]/rsvp/components/invitationFlowersRsvp";
 import { ObjectId } from "mongodb";
 import { redirect } from "next/navigation";
 

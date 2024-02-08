@@ -1,14 +1,14 @@
 "use client";
 
-import "./style/invitationGeometricRsvp.scss";
+import "./invitationGeometricRsvp.scss";
 import { useState } from "react";
-import { IGuest } from "../models/IGuest";
-import { rsvp } from "../../services/rsvpServices";
+import { IGuest } from "../../../../utils/models/IGuest";
+import { rsvp } from "../../../../services/rsvpServices";
 import { useRouter } from "next/navigation";
 import { ReactSVG } from "react-svg";
 import Image from "next/image";
-import Loading from "./loading";
-import { IInvitationRsvpProps } from "../models/IInvitationRsvpProps";
+import Loading from "../../../../utils/components/loading";
+import { IInvitationRsvpProps } from "../../../../utils/models/IInvitationRsvpProps";
 
 const InvitationGeometricRsvp = ({ guest, eventId, eventName }: IInvitationRsvpProps) => {
   const [guestState, setGuestState] = useState<IGuest>(guest);

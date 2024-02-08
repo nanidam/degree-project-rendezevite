@@ -1,9 +1,10 @@
-@import "../../../globals.scss";
-@import "../../../utils/constants.scss";
+@import "../../../../globals.scss";
+@import "../../../../utils/constants.scss";
+@import "../../../../utils/keyframes.scss";
 
 .template-bg {
   background-color: $blue-purple;
-  background-image: url("../../../../public/geometricDesignMobile.png");
+  background-image: url("../../../../../public/geometricDesignMobile.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
