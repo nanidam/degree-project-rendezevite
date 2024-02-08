@@ -1,4 +1,4 @@
-import EditRsvp from "@/app/utils/components/EditRsvp";
+import EditRsvp from "@/app/utils/components/editRsvp";
 
 const CreateRsvpPage = async ({
   params: { eventName: encodedEventName },

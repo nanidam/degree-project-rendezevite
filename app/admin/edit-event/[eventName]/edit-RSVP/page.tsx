@@ -1,6 +1,6 @@
 import { getEvent } from "@/app/services/getEventServices";
 import getUserId from "@/app/services/getUserIdServices";
-import EditRsvp from "@/app/utils/components/EditRsvp";
+import EditRsvp from "@/app/utils/components/editRsvp";
 
 const EditRsvpPage = async ({
   params: { eventName: encodedEventName },

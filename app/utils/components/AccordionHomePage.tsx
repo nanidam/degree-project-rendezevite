@@ -1,4 +1,5 @@
 "use client";
+
 import "./style/accordionHomePage.scss";
 import { useState } from "react";
 import { ReactSVG } from "react-svg";

@@ -1,8 +1,9 @@
 "use client";
+
+import "./style/editRsvp.scss";
 import { useRouter } from "next/navigation";
 import { ReactSVG } from "react-svg";
 import createEditRsvp from "../createEditRsvp";
-import "./style/editRsvp.scss";
 import { IEvent } from "../models/IEvent";
 
 interface IEditRsvpProps {
@@ -24,13 +25,13 @@ const EditRsvp = ({ eventName, event }: IEditRsvpProps) => {
             If so, it could be a good idea to ask about diet or allergies.
           </p>
           <p className="create-rsvp-text">
-            By selecting <strong>Yes</strong>, your guests will have the option
-            to choose their food preferences, which include choices such as
-            meat, vegetarian, or vegan.
+            By selecting <strong>Yes</strong>, your guests will have the option to choose
+            their food preferences, which include choices such as meat, vegetarian, or
+            vegan.
           </p>
           <p>
-            Opting for <strong>Yes</strong> in the allergies section allows
-            guests to specify their allergies freely in a text field.
+            Opting for <strong>Yes</strong> in the allergies section allows guests to
+            specify their allergies freely in a text field.
           </p>
           <div className="svgs-wrapper">
             <ReactSVG src="/svgs/dinner.svg" />
@@ -45,9 +46,7 @@ const EditRsvp = ({ eventName, event }: IEditRsvpProps) => {
             onSubmit={(e) => createEditRsvp({ e, eventName, router })}
           >
             <fieldset className="create-rsvp-fieldset">
-              <legend className="create-rsvp-legend">
-                Ask about food preferences?
-              </legend>
+              <legend className="create-rsvp-legend">Ask about food preferences?</legend>
               <label className="create-rsvp-label" htmlFor="ask-about-food-yes">
                 <input
                   className="create-rsvp-radio"
@@ -74,13 +73,8 @@ const EditRsvp = ({ eventName, event }: IEditRsvpProps) => {
             </fieldset>
 
             <fieldset className="create-rsvp-fieldset">
-              <legend className="create-rsvp-legend">
-                Ask about allergies?
-              </legend>
-              <label
-                className="create-rsvp-label"
-                htmlFor="ask-about-allergies-yes"
-              >
+              <legend className="create-rsvp-legend">Ask about allergies?</legend>
+              <label className="create-rsvp-label" htmlFor="ask-about-allergies-yes">
                 <input
                   className="create-rsvp-radio"
                   type="radio"
@@ -91,10 +85,7 @@ const EditRsvp = ({ eventName, event }: IEditRsvpProps) => {
                 />
                 Yes
               </label>
-              <label
-                className="create-rsvp-label"
-                htmlFor="ask-about-allergies-no"
-              >
+              <label className="create-rsvp-label" htmlFor="ask-about-allergies-no">
                 <input
                   className="create-rsvp-radio"
                   type="radio"
