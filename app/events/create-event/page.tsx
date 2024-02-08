@@ -1,5 +1,5 @@
 import "./style.scss";
-import getUserId from "@/app/services/getUserId";
+import getUserId from "@/app/services/getUserIdServices";
 import CreateEditEvent from "@/app/utils/components/createEditEvent";
 import { redirect } from "next/navigation";
 

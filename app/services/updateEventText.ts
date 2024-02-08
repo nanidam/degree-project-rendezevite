@@ -1,7 +1,7 @@
 "use server";
 
 import prisma from "../db";
-import getUserId from "./getUserId";
+import getUserId from "./getUserIdServices";
 
 interface IUpdateEventText {
   header: string;

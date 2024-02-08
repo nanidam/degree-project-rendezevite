@@ -1,5 +1,5 @@
 import { getEvent } from "@/app/services/getEvent";
-import getUserId from "@/app/services/getUserId";
+import getUserId from "@/app/services/getUserIdServices";
 import CreateEditInvitations from "@/app/utils/components/createEditInvitations";
 
 const EditInvitations = async ({

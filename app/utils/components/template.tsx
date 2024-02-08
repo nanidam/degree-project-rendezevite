@@ -1,7 +1,7 @@
 "use client";
 
 import "./style/template.scss";
-import chooseTemplate from "@/app/services/chooseTemplate";
+import chooseTemplate from "@/app/services/chooseTemplateServices";
 import { useRouter } from "next/navigation";
 import { IEvent } from "../models/IEvent";
 import ReturnBtn from "./returnBtn";

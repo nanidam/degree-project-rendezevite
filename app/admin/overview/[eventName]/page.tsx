@@ -3,7 +3,7 @@
 import "./style.scss";
 import { useCallback, useEffect, useState } from "react";
 import { getEvent } from "@/app/services/getEvent";
-import getUserId from "@/app/services/getUserId";
+import getUserId from "@/app/services/getUserIdServices";
 import { dateFormat } from "@/app/utils/dateFormat";
 import { IEvent } from "@/app/utils/models/IEvent";
 import { IGuest } from "@/app/utils/models/IGuest";

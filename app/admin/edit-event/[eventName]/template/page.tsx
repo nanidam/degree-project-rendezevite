@@ -1,5 +1,5 @@
 import { getEvent } from "@/app/services/getEvent";
-import getUserId from "@/app/services/getUserId";
+import getUserId from "@/app/services/getUserIdServices";
 import Template from "@/app/utils/components/template";
 
 const EditTemplate = async ({

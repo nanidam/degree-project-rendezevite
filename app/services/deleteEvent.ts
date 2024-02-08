@@ -2,7 +2,7 @@
 
 import prisma from "../db";
 import { getEvent } from "./getEvent";
-import getUserId from "./getUserId";
+import getUserId from "./getUserIdServices";
 
 export const deleteEvent = async (eventName: string) => {
   const userId = await getUserId();
