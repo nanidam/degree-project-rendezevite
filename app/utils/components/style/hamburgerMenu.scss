@@ -47,12 +47,6 @@
         .menu-bottom-container {
           display: flex;
           justify-content: space-evenly;
-
-          // .menu-bottom {
-          //   border: none;
-          //   border-radius: 50%;
-          //   background-color: transparent;
-          // }
         }
       }
     }
@@ -100,6 +94,7 @@
 
       .menu-hr {
         margin: 0;
+        color: $white;
       }
 
       .menu-bottom-container {
