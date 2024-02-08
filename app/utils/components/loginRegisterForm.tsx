@@ -63,7 +63,6 @@ const LoginRegisterForm: React.FC<ILoginRegisterFormProps> = ({
 
   return (
     <>
-      {/* TODO: remove defaultvalue when dev is done */}
       <section className="login-register-container">
         <h1>{loginRegisterHeader}</h1>
         <article className="login-register-wrapper">
@@ -95,7 +94,6 @@ const LoginRegisterForm: React.FC<ILoginRegisterFormProps> = ({
                   id="email"
                   name="email"
                   placeholder="Your email"
-                  defaultValue="hej@mail.com"
                   required
                 />
               </div>
@@ -113,7 +111,6 @@ const LoginRegisterForm: React.FC<ILoginRegisterFormProps> = ({
                     placeholder={
                       loginRegisterHeader === "Register" ? "Choose a password" : "Password"
                     }
-                    defaultValue="Testtest123"
                     required
                   />
 

@@ -179,7 +179,7 @@ const InvitationGeometricRsvp = ({ guest, eventId, eventName }: IInvitationRsvpP
                   placeholder="Allergies"
                   defaultValue={guestState.allergies ?? ""}
                   disabled={guestState.hasResponded || !guestAttendingState}
-                  maxLength={24} // TODO: adapt to this template DISPLAY max char available
+                  maxLength={24}
                 />
 
                 <label className="rsvp-label" htmlFor="comments">

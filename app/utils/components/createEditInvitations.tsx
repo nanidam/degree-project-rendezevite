@@ -7,9 +7,6 @@ import { IEvent } from "../models/IEvent";
 import ReturnBtn from "./returnBtn";
 import createEditInvitations from "../createEditInvitations";
 
-//TODO: add character counter
-// Eventname length must be limited by smallest template
-// header and body must be conditionally limited based on templates chosen
 interface ICreateEditInvitationsProps {
   eventName: string;
   event?: IEvent;
