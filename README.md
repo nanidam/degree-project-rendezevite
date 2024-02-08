@@ -42,3 +42,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - [ ] Om repot inte ligger publikt, bjud in användaren postmodernistx som granskare till ditt repo.
 - [x] Boka in på redovisningstillfälle på itslearning
 - [ ] Remove values i input för login/registrering
+- [ ] Push branch to new domain vercel
