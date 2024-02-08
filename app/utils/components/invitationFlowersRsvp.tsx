@@ -4,7 +4,7 @@ import "./style/invitationFlowersRsvp.scss";
 import { useState } from "react";
 import { ReactSVG } from "react-svg";
 import { IGuest } from "../models/IGuest";
-import { rsvp } from "../rsvp";
+import { rsvp } from "../../services/rsvpServices";
 import Image from "next/image";
 import Loading from "./loading";
 import { useRouter } from "next/navigation";

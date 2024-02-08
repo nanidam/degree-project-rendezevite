@@ -3,7 +3,7 @@
 import "./style/invitationGeometricRsvp.scss";
 import { useState } from "react";
 import { IGuest } from "../models/IGuest";
-import { rsvp } from "../rsvp";
+import { rsvp } from "../../services/rsvpServices";
 import { useRouter } from "next/navigation";
 import { ReactSVG } from "react-svg";
 import Image from "next/image";
