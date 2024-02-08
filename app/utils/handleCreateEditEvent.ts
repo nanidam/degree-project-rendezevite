@@ -83,7 +83,6 @@ export const handleCreateEditEvent = async ({
           eventPassword,
           eventId: event.id,
         });
-        console.log(result);
       }
       router.push(`/admin/edit-event/${eventName}/template`);
 
