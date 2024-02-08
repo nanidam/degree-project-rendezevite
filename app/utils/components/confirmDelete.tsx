@@ -1,6 +1,6 @@
 import "./style/confirmDelete.scss";
 import { deleteEvent } from "@/app/services/deleteEventServices";
-import { deleteGuest } from "@/app/services/deleteGuest";
+import { deleteGuest } from "@/app/services/deleteGuestServices";
 import { IEvent } from "../models/IEvent";
 
 interface IConfirmDeleteProps {

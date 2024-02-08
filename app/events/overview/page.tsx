@@ -5,7 +5,7 @@ import { ReactSVG } from "react-svg";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { getAllEvents } from "@/app/services/getAllEvents";
+import { getAllEvents } from "@/app/services/getAllEventsServices";
 import ConfirmDelete from "@/app/utils/components/confirmDelete";
 import React from "react";
 import Loading from "@/app/utils/components/loading";
@@ -44,8 +44,6 @@ const EventOverview = () => {
   const handleDeleteEvent = async (eventName: string) => {
     setEventNameState(eventName);
     setShowConfirmDelete(true);
-
-    // setEvents(events.filter((event) => event !== eventName));
   };
 
   return (
@@ -81,10 +79,8 @@ const EventOverview = () => {
               ))}
             </ul>
           </article>
-
           <article className="events-container">
             <h2>Past Events:</h2>
-
             {pastEvents.length > 0 ? (
               <ul className="events">
                 {pastEvents.map((eventName) => (
