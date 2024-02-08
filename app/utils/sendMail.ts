@@ -8,6 +8,7 @@ export const sendMail = async (email: string) => {
     where: { email },
   });
 
+  console.log(existingUser);
   if (!existingUser) {
     return existingUser;
   }
@@ -27,16 +28,16 @@ export const sendMail = async (email: string) => {
     <p>Your password is: <b>${decryptedPassword}</b></p>
     <p>
         Click here to be redirected to the login page:
-        <button onclick="window.location.href = '/'"><a>Rendez Evite</a></button>
+        <a href="https://degree-project-rendezevite.vercel.app/login">Rendez Evite</a>
     </p>
     
     <p>We wish you a wonderful day!</p>
     
     <p>
         Kind regards,<br/>
-        <img src="../../public/svgs/logo-footer.svg" alt="Rendez Evite logo" width="100px"/>
+        The Rendez Evite Team
     </p>`,
   });
-};
 
-//TODO: confirm how the mail looks
+  return existingUser;
+};
