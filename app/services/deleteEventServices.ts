@@ -16,9 +16,14 @@ export const deleteEvent = async (eventName: string) => {
     return;
   }
 
-  await prisma.event.delete({
-    where: {
-      id: event.id,
-    },
-  });
+  try {
+    await prisma.event.delete({
+      where: {
+        id: event.id,
+      },
+    });
+  } catch (error) {
+    console.error("An error occurred while deleting the event:", error);
+    throw error;
+  }
 };
