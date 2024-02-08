@@ -45,6 +45,7 @@ const CreateEditEvent = ({ event, userId }: CreateEditEventProps) => {
                   name="event-name"
                   placeholder="Name"
                   defaultValue={event?.eventName}
+                  maxLength={13}
                 />
               </label>
               <label className="create-event-label" htmlFor="event-date">
@@ -64,6 +65,7 @@ const CreateEditEvent = ({ event, userId }: CreateEditEventProps) => {
                   name="event-password"
                   placeholder="Password"
                   defaultValue={event?.eventPassword}
+                  maxLength={24}
                 />
               </label>
               {errorMsg && <span className="error-message">{errorMsg}</span>}
