@@ -1,6 +1,6 @@
 import { checkAccess } from "@/app/services/checkAccessServices";
-import InvitationFlowersInfo from "@/app/utils/components/invitationFlowersInfo";
-import InvitationGeometricInfo from "@/app/utils/components/invitationGeometricInfo";
+import InvitationFlowersInfo from "@/app/invitation/[inviteCode]/[eventName]/components/invitationFlowersInfo";
+import InvitationGeometricInfo from "@/app/invitation/[inviteCode]/[eventName]/components/invitationGeometricInfo";
 import { ObjectId } from "mongodb";
 import { redirect } from "next/navigation";
 

@@ -1,12 +1,10 @@
 "use client";
 
-import "./style/invitationGeometricInfo.scss";
+import "./invitationGeometricInfo.scss";
 import Image from "next/image";
 import { ReactSVG } from "react-svg";
 import { useRouter } from "next/navigation";
-import { IInvitationInfoProps } from "../models/IInvitationInfoProps";
-
-//FIXME: move into mother folder
+import { IInvitationInfoProps } from "@/app/utils/models/IInvitationInfoProps";
 
 const InvitationGeometricInfo = ({ header, text, eventId }: IInvitationInfoProps) => {
   const router = useRouter();
