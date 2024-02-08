@@ -15,7 +15,7 @@ export const EventInfo = ({ eventDate, eventId, eventName }: IEventInfoProps) =>
   const router = useRouter();
   const [isCopied, setIsCopied] = useState(false);
 
-  const INVITATION_LINK = `www.rendezevite.com/invitation/${eventId}`;
+  const INVITATION_LINK = `https://www.rendezevite.com/invitation/${eventId}`;
 
   const editEvent = () => {
     router.push(`/admin/edit-event/${eventName}`);
