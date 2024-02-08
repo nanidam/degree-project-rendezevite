@@ -1,7 +1,8 @@
 "use client";
 import "./style/accordionHomePage.scss";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ReactSVG } from "react-svg";
+import ImageCarouselHomePage from "./imageCarouselHomePage";
 
 const AccordionHomePage = () => {
   const [showFeatures, setShowFeatures] = useState<boolean>(true);
@@ -9,21 +10,11 @@ const AccordionHomePage = () => {
 
   const showFeaturesClick = () => {
     setShowFeatures(true);
-    clearInterval(intervalId);
   };
 
   const showTemplatesClick = () => {
     setShowFeatures(false);
-    clearInterval(intervalId);
   };
-
-  // useEffect(() => {
-  //   const intervalId = setInterval(() => {
-  //     setShowFeatures((prevShowFeatures) => !prevShowFeatures);
-  //   }, 5000);
-
-  //   return () => clearInterval(intervalId);
-  // }, [setShowFeatures]);
 
   return (
     <>
@@ -62,8 +53,7 @@ const AccordionHomePage = () => {
           </div>
         ) : (
           <div className="accordion-templates">
-            <div>https://www.npmjs.com/package/react-multi-carousel ?</div>
-            <div>Template 2</div>
+            <ImageCarouselHomePage deviceType={"desktop"} />
           </div>
         )}
       </article>
