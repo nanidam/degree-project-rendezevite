@@ -1,14 +1,29 @@
 "use server";
-import prisma from "@/app/db";
-import { mailConfig } from "./mailConfig";
-import CryptoJS from "crypto-js";
 
-export const sendMail = async (email: string) => {
+import prisma from "@/app/db";
+import CryptoJS from "crypto-js";
+import { mailConfig } from "./mailConfig";
+
+interface ISendMail {
+  email: string;
+  mailType: string;
+  eventId?: string;
+  guestName?: string;
+  eventPassword?: string;
+  eventName?: string;
+}
+export const sendMail = async ({
+  email,
+  mailType,
+  eventId,
+  guestName,
+  eventPassword,
+  eventName,
+}: ISendMail) => {
   const existingUser = await prisma.user.findUnique({
     where: { email },
   });
 
-  console.log(existingUser);
   if (!existingUser) {
     return existingUser;
   }
@@ -20,7 +35,7 @@ export const sendMail = async (email: string) => {
 
   const decryptedPassword = bytes.toString(CryptoJS.enc.Utf8);
 
-  await mailConfig({
+  const mail = {
     to: email,
     subject: "Your RendezEvite Password",
     body: `<h3>Dear Madam/Sir,</h3>
@@ -37,7 +52,29 @@ export const sendMail = async (email: string) => {
         Kind regards,<br/>
         The Rendez Evite Team
     </p>`,
-  });
+  };
+
+  if (mailType === "invite-guest") {
+    mail.subject = `${guestName} is invited to a special event!`;
+    mail.body = `<h3>Hi ${guestName},</h3>
+    <p>Someobody you know have thought of you and would like to invite you to a rendezvous :)</p>
+    <p>The event password is : <b>${eventPassword}</b></p>    
+    <p>To retrive your invitation:</p>
+
+    <ul>
+        <li>Sign in using your email address as the login credential.</li>
+        <li>Enter the provided password when logging in.</li>
+        <li>Access the login page through the following link:  <a href="https://degree-project-rendezevite.vercel.app/invitation/${eventId}">${eventName}</a></li>
+    </ul>
+    
+    <p>We wish you a wonderful day!</p>    
+    <p>
+        Kind regards,<br/>
+        The Rendez Evite Team
+    </p>`;
+  }
+
+  await mailConfig(mail);
 
   return existingUser;
 };

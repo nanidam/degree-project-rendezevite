@@ -6,11 +6,13 @@ import { ReactSVG } from "react-svg";
 import { useRef, useState } from "react";
 import Loading from "@/app/utils/components/loading";
 
-interface InviteGuestsProps {
+interface IInviteGuestsProps {
   eventId: string;
   setEvent: React.Dispatch<React.SetStateAction<IEvent | null>>;
   setEditGuestList: React.Dispatch<React.SetStateAction<IGuest[]>>;
   guestList: IGuest[];
+  eventPassword: string;
+  eventName: string;
 }
 // TODO: mail invitation link to invited guests -> node mailer
 // reset error message email alreadu exists if succesful invite after unsucceslfulinvite
@@ -19,7 +21,9 @@ export const InviteGuests = ({
   setEvent,
   setEditGuestList,
   guestList,
-}: InviteGuestsProps) => {
+  eventPassword,
+  eventName,
+}: IInviteGuestsProps) => {
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
   const formRef = useRef(null);
@@ -39,6 +43,8 @@ export const InviteGuests = ({
             setErrorMsg,
             formRef,
             setLoading,
+            eventPassword,
+            eventName,
           })
         }
       >

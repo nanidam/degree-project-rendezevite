@@ -1,17 +1,17 @@
 "use client";
-import { sendMail } from "@/app/utils/sendMail";
+
 import "./style.scss";
+import { sendMail } from "@/app/utils/sendMail";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
 const ForgotPassword = () => {
   const [msg, setMsg] = useState<string | null>(null);
-  const router = useRouter();
   const handleForgotPassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const email = e.currentTarget["forgot-password"].value;
 
-    const result = await sendMail(email);
+    const result = await sendMail({ email, mailType: "forgot-password" });
 
     if (!result) {
       setMsg("Invalid email");

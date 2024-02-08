@@ -11,7 +11,6 @@ import { GuestList } from "./components/GuestList";
 import { EventInfo } from "./components/EventInfo";
 import { EventPassword } from "./components/EventPassword";
 import { InviteGuests } from "./components/InviteGuests";
-import HamburgerMenu from "@/app/utils/components/hamburgerMenu";
 
 const AdminOverview = ({
   params: { eventName: encodedEventName },
@@ -66,6 +65,8 @@ const AdminOverview = ({
             setEvent={setEvent}
             setEditGuestList={setEditGuestList}
             guestList={event.guestList}
+            eventPassword={event.eventPassword}
+            eventName={event.eventName}
           />
 
           <GuestList
