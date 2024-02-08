@@ -5,6 +5,9 @@ import chooseTemplate from "@/app/services/chooseTemplate";
 import { useRouter } from "next/navigation";
 import { IEvent } from "../models/IEvent";
 import ReturnBtn from "./returnBtn";
+import PreviewGeometricCarousel from "@/app/events/create-event/[eventName]/template/components/PreviewGeometricCarousel";
+import PreviewFlowersCarousel from "@/app/events/create-event/[eventName]/template/components/PreviewFlowersCarousel";
+import { useState } from "react";
 
 interface ITemplateProps {
   eventName: string;
@@ -12,6 +15,7 @@ interface ITemplateProps {
 }
 const Template = ({ eventName, event }: ITemplateProps) => {
   const router = useRouter();
+  const [selectedTemplate, setSelectedTemplate] = useState<string>("templateGeoDesign");
 
   if (eventName.includes(".")) {
     return null;
@@ -41,9 +45,8 @@ const Template = ({ eventName, event }: ITemplateProps) => {
               className="template-options"
               id="options"
               name="options"
-              defaultValue={
-                event?.template ? event?.template : "templateGeoDesign"
-              }
+              defaultValue={event?.template ? event?.template : "templateGeoDesign"}
+              onChange={(e) => setSelectedTemplate(e.target.value)}
             >
               <option className="template-option" value="templateGeoDesign">
                 Geometric
@@ -55,7 +58,8 @@ const Template = ({ eventName, event }: ITemplateProps) => {
           </h2>
 
           <div className="preview-template">
-            <div>Preview?</div>
+            {selectedTemplate === "templateGeoDesign" && <PreviewGeometricCarousel />}
+            {selectedTemplate === "templateFlowerDesign" && <PreviewFlowersCarousel />}
           </div>
 
           <div className="next-return-wrapper">
