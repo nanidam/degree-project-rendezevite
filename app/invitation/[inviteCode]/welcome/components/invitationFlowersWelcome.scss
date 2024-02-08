@@ -1,9 +1,9 @@
-@import "../../../globals.scss";
-@import "../../../utils/constants.scss";
+@import "../../../../globals.scss";
+@import "../../../../utils/constants.scss";
 
 .flowers-welcome-bg {
   background-color: $white;
-  background-image: url("../../../../public/svgs/invitation-flowers.svg");
+  background-image: url("../../../../../public/svgs/invitation-flowers.svg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

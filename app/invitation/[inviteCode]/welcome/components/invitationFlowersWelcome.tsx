@@ -1,12 +1,11 @@
 "use client";
 
-import "./style/invitationFlowersWelcome.scss";
+import "./invitationFlowersWelcome.scss";
 import { useRouter } from "next/navigation";
 import { ReactSVG } from "react-svg";
 import Image from "next/image";
-import { IInvitationWelcomeProps } from "../models/IInvitationWelcomeProps";
+import { IInvitationWelcomeProps } from "@/app/utils/models/IInvitationWelcomeProps";
 
-//TODO: fix flowers invitation
 //FIXME: move into mother folder
 const InvitationFlowersWelcome = ({
   eventName,

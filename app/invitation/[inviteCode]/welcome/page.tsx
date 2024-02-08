@@ -1,8 +1,8 @@
 import { checkAccess } from "@/app/services/checkAccessServices";
-import InvitationGeometricWelcome from "@/app/utils/components/invitationGeometricWelcome";
-import InvitationFlowersWelcome from "@/app/utils/components/invitationFlowersWelcome";
 import { ObjectId } from "mongodb";
 import { redirect } from "next/navigation";
+import InvitationGeometricWelcome from "./components/invitationGeometricWelcome";
+import InvitationFlowersWelcome from "./components/invitationFlowersWelcome";
 
 const Welcome = async ({ params: { inviteCode } }: { params: { inviteCode: string } }) => {
   if (!ObjectId.isValid(inviteCode)) redirect("/not-found");
