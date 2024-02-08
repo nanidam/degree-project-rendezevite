@@ -1,15 +1,19 @@
-import { updateEventPassword } from "@/app/services/updateEventPassword";
+import { updateEventPassword } from "@/app/services/updateEventPasswordServices";
 import { IChangeEventPassword } from "@/app/utils/models/IChangeEventPassword";
 
-export const changeEventPassword = async ({ e, eventId, setEditPassword, setLoading }: IChangeEventPassword) => {
-    e.preventDefault();
-    setLoading(true);
-    const data = new FormData(e.currentTarget);
-    const eventPassword = data.get("eventPassword") as string;
+export const changeEventPassword = async ({
+  e,
+  eventId,
+  setEditPassword,
+  setLoading,
+}: IChangeEventPassword) => {
+  e.preventDefault();
+  setLoading(true);
+  const data = new FormData(e.currentTarget);
+  const eventPassword = data.get("eventPassword") as string;
 
-    await updateEventPassword(eventPassword, eventId);
+  await updateEventPassword(eventPassword, eventId);
 
-    setEditPassword(false);
-    setLoading(false);
-
+  setEditPassword(false);
+  setLoading(false);
 };

@@ -1,7 +1,7 @@
 import createEvent from "../services/createEventServices";
 import { useRouter } from "next/navigation";
 import { IEvent } from "./models/IEvent";
-import updateEventNameDatePassword from "../services/updateEventNameDatePassword";
+import updateEventNameDatePassword from "../services/updateEventNameDatePasswordServices";
 
 interface IHandleCreateEvent {
   e: React.FormEvent<HTMLFormElement>;
