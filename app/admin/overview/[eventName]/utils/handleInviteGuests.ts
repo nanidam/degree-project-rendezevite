@@ -1,4 +1,4 @@
-import inviteGuests from "@/app/services/inviteGuests";
+import inviteGuests from "@/app/services/inviteGuestServices";
 import { IEvent } from "@/app/utils/models/IEvent";
 import { IInviteGuests } from "@/app/utils/models/IInviteGuests";
 import { sendMail } from "@/app/utils/sendMail";
