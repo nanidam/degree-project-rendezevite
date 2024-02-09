@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { user, playwrightEvents } from "./constants/constants";
 
-test.only("Admin invite and delete guest", async ({ page }) => {
+test("Admin invite and delete guest", async ({ page }) => {
     await page.goto("./");
     await page.click(".login-btn");
 
