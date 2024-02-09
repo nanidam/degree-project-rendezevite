@@ -88,7 +88,6 @@ test("Create and delete Event", async ({ page }) => {
     await page.click(".submit-inv-btn");
 
     // Verify event created in admin page
-    await page.goto(`/admin/overview/${mockEvent.name}`);
     await page.waitForURL(`/admin/overview/${mockEvent.name}`);
 
     const adminOverviewUrl = await page.url();

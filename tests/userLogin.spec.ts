@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { user } from "./constants/constants";
 
-test.skip("Login and error handling", async ({ page }) => {
+test("Login and error handling", async ({ page }) => {
   await page.goto("./");
   await page.click(".login-btn");
 

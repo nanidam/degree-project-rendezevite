@@ -17,7 +17,7 @@ const createEditRsvp = async ({ e, eventName, router }: ICreateEditRsvp) => {
   const updatedEvent = await updateEventFood(
     includeFood,
     includeAllergies,
-    eventName.toLocaleLowerCase()
+    eventName
   );
 
   if (updatedEvent) {

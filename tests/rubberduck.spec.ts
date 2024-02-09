@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { mockEvent, templates, user } from "./constants/constants";
 
-test("Create Event", async ({ page }) => {
+test.skip("Create Event", async ({ page }) => {
     await page.goto("./");
     await page.click(".login-btn");
 
