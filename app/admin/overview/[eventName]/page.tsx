@@ -11,6 +11,9 @@ import { GuestList } from "./components/GuestList";
 import { EventInfo } from "./components/EventInfo";
 import { EventPassword } from "./components/EventPassword";
 import { InviteGuests } from "./components/InviteGuests";
+import { useSession } from "next-auth/react";
+import { IClientSession } from "@/app/utils/models/IClientSession";
+import { useRouter } from "next/navigation";
 
 const AdminOverview = ({
   params: { eventName: encodedEventName },
@@ -20,6 +23,15 @@ const AdminOverview = ({
   const [event, setEvent] = useState<IEvent | null>(null);
   const [editGuestList, setEditGuestList] = useState<IGuest[]>([]);
   const eventName = decodeURIComponent(encodedEventName);
+  const router = useRouter();
+
+  const { data } = useSession();
+  if (data) {
+    const clientSession = data as IClientSession;
+    if (clientSession.access === "guest") {
+      router.push("/unauthorized");
+    }
+  }
 
   const fetchAndSetEvents = useCallback(async () => {
     const userId = await getUserId();
