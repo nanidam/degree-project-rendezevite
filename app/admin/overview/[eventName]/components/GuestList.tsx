@@ -139,7 +139,9 @@ export const GuestList = ({
                     />
                   )}
 
-                  <p className="guest-name">{guest.name}</p>
+                  <p className="guest-name" data-testid={guest.email}>
+                    {guest.name}
+                  </p>
                 </span>
                 <div className="guest-rsvpd">
                   {guest.hasResponded ? (

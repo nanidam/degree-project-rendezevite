@@ -12,3 +12,13 @@ export const templates = {
     geo: "templateGeoDesign",
     flower: "templateFlowerDesign"
 }
+
+export const playwrightEvents = {
+    editEvent: {
+        eventName: "Test admin",
+        password: "123",
+        newEventName: "Admin Test",
+        newPassword: "321",
+        testEmail: "a@a.se"
+    }
+}
