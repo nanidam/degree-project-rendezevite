@@ -40,7 +40,7 @@ const createEditInvitations = async ({
       const updatedEvent = await updateEventText({
         header,
         text: text,
-        eventName: eventName.toLowerCase(),
+        eventName: eventName,
       });
       if (updatedEvent) {
         if (event) router.push(`/admin/edit-event/${eventName}/edit-RSVP`);

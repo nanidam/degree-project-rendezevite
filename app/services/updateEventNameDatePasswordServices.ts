@@ -17,7 +17,7 @@ const updateEventNameDatePassword = async ({
         id: eventId,
       },
       data: {
-        eventName: eventName.toLowerCase(),
+        eventName: eventName,
         eventDate,
         userId,
         eventPassword,

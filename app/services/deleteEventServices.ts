@@ -5,18 +5,18 @@ import { getEvent } from "./getEventServices";
 import getUserId from "./getUserIdServices";
 
 export const deleteEvent = async (eventName: string) => {
-  const userId = await getUserId();
-  if (!userId) {
-    return;
-  }
-
-  const event = await getEvent(userId, eventName);
-
-  if (!event) {
-    return;
-  }
-
   try {
+    const userId = await getUserId();
+    if (!userId) {
+      return;
+    }
+
+    const event = await getEvent(userId, eventName);
+    console.log(event);
+    if (!event) {
+      return;
+    }
+
     await prisma.event.delete({
       where: {
         id: event.id,

@@ -16,7 +16,7 @@ const createEvent = async ({
   try {
     const newEvent = await prisma.event.create({
       data: {
-        eventName: eventName.toLowerCase(),
+        eventName: eventName,
         eventDate,
         userId,
         eventPassword,

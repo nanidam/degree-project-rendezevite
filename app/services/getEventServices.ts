@@ -6,7 +6,7 @@ export const getEvent = async (userId: string, eventName: string) => {
   try {
     const event = await prisma.event.findFirst({
       where: {
-        eventName: eventName.toLowerCase(),
+        eventName: eventName,
         userId,
       },
       include: {
