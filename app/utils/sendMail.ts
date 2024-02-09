@@ -73,7 +73,7 @@ export const sendMail = async ({
       <ul>
           <li>Sign in using your email address as the login credential.</li>
           <li>Enter the provided password when logging in.</li>
-          <li>Access the login page through the following link:  <a href="https://degree-project-rendezevite.vercel.app/invitation/${eventId}">${eventName}</a></li>
+          <li>Access the login page through the following link:  <a href="https://rendezevite.vercel.app/invitation/${eventId}">${eventName}</a></li>
       </ul>
       
       <p>We wish you a wonderful day!</p>    
