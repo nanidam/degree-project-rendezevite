@@ -19,6 +19,7 @@ export const playwrightEvents = {
         password: "123",
         newEventName: "Admin Test",
         newPassword: "321",
-        testEmail: "a@a.se"
+        testEmail: "a@a.se",
+        link: "/invitation/65c670436fb81ef5241d712a"
     }
 }
