@@ -37,11 +37,21 @@ const RegisterLoginHome = ({ session }: IRegisterLoginHomeProps) => {
         Register
       </a>
       {desktopMode ? (
-        <button className="login-btn" type="button" onClick={handleLogin}>
+        <button
+          className="login-btn"
+          type="button"
+          onClick={handleLogin}
+          aria-label="Login"
+        >
           Login
         </button>
       ) : (
-        <ReactSVG className="profile-icon" src="/svgs/profile.svg" onClick={handleLogin} />
+        <ReactSVG
+          className="profile-icon"
+          src="/svgs/profile.svg"
+          onClick={handleLogin}
+          aria-label="Login"
+        />
       )}
     </>
   );

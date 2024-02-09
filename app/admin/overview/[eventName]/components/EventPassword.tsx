@@ -71,7 +71,7 @@ export const EventPassword = ({ eventPassword, eventId }: IEventPasswordProps) =
             <button
               className="password-btn save-password-btn"
               type="submit"
-              aria-label="Save new password"
+              aria-label="Save changes and update password"
             >
               Save
             </button>
@@ -79,7 +79,7 @@ export const EventPassword = ({ eventPassword, eventId }: IEventPasswordProps) =
               className="password-btn cancel-password-btn"
               onClick={handleCancel}
               type="button"
-              aria-label="Cancel password change"
+              aria-label="Cancel password change and discard changes"
             >
               Cancel
             </button>
@@ -89,7 +89,7 @@ export const EventPassword = ({ eventPassword, eventId }: IEventPasswordProps) =
             className="password-btn"
             type="button"
             onClick={() => setEditPassword(true)}
-            aria-label="Change password"
+            aria-label="Initiate password change process"
           >
             Change Password
           </button>

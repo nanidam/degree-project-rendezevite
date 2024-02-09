@@ -157,13 +157,18 @@ const LoginRegisterForm: React.FC<ILoginRegisterFormProps> = ({
             {errorMsg && <p className="login-register-errorMsg">{errorMsg}</p>}
 
             <div className="btns-container">
-              <button className="login-register-btn" type="submit">
+              <button
+                className="login-register-btn"
+                type="submit"
+                aria-label={loginRegisterHeader !== "Register" ? "Login" : "Register"}
+              >
                 {loginRegisterHeader !== "Register" ? "Login" : "Register"}
               </button>
               <button
                 className="cancel-login-register-btn"
                 type="button"
                 onClick={handleCancel}
+                aria-label="Return to the previous step"
               >
                 Return
               </button>

@@ -47,8 +47,12 @@ const ConfirmDelete: React.FC<IConfirmDeleteProps> = ({
 
   return (
     <section className="confirm-delete-container">
-      <article className="confirm-delete">
-        <h1 className="confirm-delete-header">
+      <article
+        className="confirm-delete"
+        role="dialog"
+        aria-labelledby="confirm-delete-header"
+      >
+        <h1 className="confirm-delete-header" id="confirm-delete-header">
           Are you sure you want to delete <span className="event-name">{eventName}</span>?
         </h1>
         <p className="confirm-delete-text">
@@ -56,10 +60,18 @@ const ConfirmDelete: React.FC<IConfirmDeleteProps> = ({
           {guestId && "Once you the guest, it cannot be undone."}
         </p>
         <div className="confirm-delete-btns">
-          <button className="confirm-delete-btn" onClick={handleConfirmDelete}>
+          <button
+            className="confirm-delete-btn"
+            onClick={handleConfirmDelete}
+            aria-label="Confirm delete"
+          >
             Delete
           </button>
-          <button className="denied-delete-btn" onClick={handleCancel}>
+          <button
+            className="denied-delete-btn"
+            onClick={handleCancel}
+            aria-label="Cancel delete"
+          >
             Cancel
           </button>
         </div>

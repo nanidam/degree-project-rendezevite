@@ -70,7 +70,11 @@ const InvitationFlowersRsvp = ({ guest, eventId, eventName }: IInvitationRsvpPro
             priority={true}
             placeholder="empty"
           />
-          <ReactSVG className="invitation-envelope" src="/svgs/invitation-envelope.svg" />
+          <ReactSVG
+            className="invitation-envelope"
+            src="/svgs/invitation-envelope.svg"
+            aria-label="Invitation envelope icon"
+          />
 
           <div className="flowers-rsvp-wrapper">
             {responded ? (
@@ -319,6 +323,7 @@ const InvitationFlowersRsvp = ({ guest, eventId, eventName }: IInvitationRsvpPro
                   <button
                     className="flowers-return-btn"
                     type="button"
+                    aria-label="Return to previous page"
                     onClick={() => {
                       router.push(`/invitation/${eventId}/${eventName}`);
                     }}
@@ -330,7 +335,11 @@ const InvitationFlowersRsvp = ({ guest, eventId, eventName }: IInvitationRsvpPro
                     />
                   </button>
                   {!responded && (
-                    <button className="flowers-send-inv-btn" type="submit">
+                    <button
+                      className="flowers-send-inv-btn"
+                      type="submit"
+                      aria-label="Send Invitation"
+                    >
                       Send
                     </button>
                   )}

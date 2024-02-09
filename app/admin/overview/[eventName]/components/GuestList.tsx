@@ -96,6 +96,7 @@ export const GuestList = ({
           className="sorting-btn sort-name-btn"
           data-sort="name"
           onClick={() => sortByName({ event, setEvent, setPage })}
+          aria-label="Sort by Guest Name"
         >
           Guest Name
         </button>
@@ -103,6 +104,7 @@ export const GuestList = ({
           className="sorting-btn sort-rsvp-btn"
           data-sort="responded"
           onClick={() => sortByRsvp({ event, setEvent, setPage })}
+          aria-label="Sort by RSVP status"
         >
           {"RSVP'd"}
         </button>
@@ -110,6 +112,7 @@ export const GuestList = ({
           className="sorting-btn sort-attending-btn"
           data-sort="attending"
           onClick={() => sortByAttending({ event, setEvent, setPage })}
+          aria-label="Sort by Attending status"
         >
           Attending
         </button>
@@ -477,6 +480,7 @@ export const GuestList = ({
                   onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
                     editGuest(e, guest.id, setEditModeId)
                   }
+                  aria-label={`Edit guest with name ${guest.name}`}
                 >
                   Edit
                 </button>
@@ -485,7 +489,11 @@ export const GuestList = ({
               {editModeId === guest.id && (
                 <>
                   <div className="guestlist-save-cancel">
-                    <button type="submit" className="guestlist-btn guestlist-save-btn">
+                    <button
+                      type="submit"
+                      className="guestlist-btn guestlist-save-btn"
+                      aria-label={`Save changes for ${guest.name}`}
+                    >
                       Save
                     </button>
 
@@ -493,6 +501,7 @@ export const GuestList = ({
                       type="button"
                       onClick={() => setShowConfirmDelete(true)}
                       className="guestlist-btn guestlist-delete-btn"
+                      aria-label={`Delete ${guest.name}`}
                     >
                       Delete
                     </button>
@@ -504,6 +513,7 @@ export const GuestList = ({
                       cancelEditMode(event.guestList, setEditModeId, setEditGuestList)
                     }
                     className="guestlist-cancel-btn"
+                    aria-label={`Cancel editing for ${guest.name}`}
                   >
                     Cancel
                   </button>

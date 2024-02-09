@@ -21,7 +21,11 @@ const InvitationGeometricInfo = ({ header, text, eventId }: IInvitationInfoProps
           priority={true}
           placeholder="empty"
         />
-        <ReactSVG className="invitation-envelope" src="/svgs/invitation-envelope.svg" />
+        <ReactSVG
+          className="invitation-envelope"
+          src="/svgs/invitation-envelope.svg"
+          aria-label="Invitation envelope icon"
+        />
         <div className="invitation-main-wrapper">
           <h1 className="invitation-main-header">{header}</h1>
           <div className="main-text-container">
@@ -31,6 +35,7 @@ const InvitationGeometricInfo = ({ header, text, eventId }: IInvitationInfoProps
             <button
               className="invitation-btn"
               type="button"
+              aria-label="Return to Welcome page"
               onClick={() => {
                 router.push(`/invitation/${eventId}/welcome`);
               }}
@@ -44,6 +49,7 @@ const InvitationGeometricInfo = ({ header, text, eventId }: IInvitationInfoProps
             <button
               className="invitation-btn"
               type="button"
+              aria-label="Navigate to RSVP page"
               onClick={() => {
                 router.push(`/invitation/${eventId}/rsvp`);
               }}

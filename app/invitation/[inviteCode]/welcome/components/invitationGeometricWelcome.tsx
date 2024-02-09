@@ -28,7 +28,11 @@ const InvitationGeometricWelcome = ({
             priority={true}
             placeholder="empty"
           />
-          <ReactSVG className="invitation-envelope" src="/svgs/invitation-envelope.svg" />
+          <ReactSVG
+            className="invitation-envelope"
+            src="/svgs/invitation-envelope.svg"
+            aria-label="Invitation envelope icon"
+          />
           <div className="welcome-wrapper">
             <h1 className="welcome-header">
               Welcome to <br className="welcome-br" />
@@ -52,6 +56,7 @@ const InvitationGeometricWelcome = ({
               <button
                 className="invitation-next-btn"
                 type="button"
+                aria-label="Next page of invitation"
                 onClick={() => {
                   router.push(`/invitation/${eventId}/${eventName}`);
                 }}

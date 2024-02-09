@@ -63,8 +63,12 @@ const Template = ({ eventName, event }: ITemplateProps) => {
           </div>
 
           <div className="next-return-wrapper">
-            <ReturnBtn />
-            <button className="submit-event-btn" type="submit">
+            <ReturnBtn aria-label="Return to previous step" />
+            <button
+              className="submit-event-btn"
+              type="submit"
+              aria-label="Proceed to the next step"
+            >
               Next
             </button>
           </div>

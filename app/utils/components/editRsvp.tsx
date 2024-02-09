@@ -97,7 +97,11 @@ const EditRsvp = ({ eventName, event }: IEditRsvpProps) => {
                 No
               </label>
             </fieldset>
-            <button className="submit-inv-btn" type="submit">
+            <button
+              className="submit-inv-btn"
+              type="submit"
+              aria-label="Finish creating invitation"
+            >
               Finish!
             </button>
           </form>

@@ -28,34 +28,70 @@ const MenuIconsDesktop: React.FC<IHamburgarMenuProps> = ({
           <div className="menu-icons-desktop">
             {loggedIn && access === "admin" && (
               <>
-                <ReactSVG className="menu-desktop-icon" src="/svgs/plus.svg" />
+                <ReactSVG
+                  className="menu-desktop-icon"
+                  src="/svgs/plus.svg"
+                  aria-label="Register user"
+                />
                 <hr className="menu-desktop-hr" />
               </>
             )}
-            <ReactSVG className="menu-desktop-icon" src="/svgs/home.svg" />
+            <ReactSVG
+              className="menu-desktop-icon"
+              src="/svgs/home.svg"
+              aria-label="Home"
+            />
 
             {loggedIn && access === "admin" && (
               <>
-                <ReactSVG className="menu-desktop-icon" src="/svgs/calendar.svg" />
+                <ReactSVG
+                  className="menu-desktop-icon"
+                  src="/svgs/calendar.svg"
+                  aria-label="My events"
+                />
               </>
             )}
-            <ReactSVG className="menu-desktop-icon" src="/svgs/diamond.svg" />
-            <ReactSVG className="menu-desktop-icon" src="/svgs/settings.svg" />
+            <ReactSVG
+              className="menu-desktop-icon"
+              src="/svgs/diamond.svg"
+              aria-label="About"
+            />
+            <ReactSVG
+              className="menu-desktop-icon"
+              src="/svgs/settings.svg"
+              aria-label="Settings"
+            />
 
             <hr className="menu-desktop-hr" />
             {loggedIn ? (
               <Logout />
             ) : (
               <>
-                <ReactSVG className="menu-desktop-icon" src="/svgs/plus.svg" />
-                <ReactSVG className="menu-desktop-icon" src="/svgs/profile.svg" />
+                <ReactSVG
+                  className="menu-desktop-icon"
+                  src="/svgs/plus.svg"
+                  aria-label="Register user"
+                />
+                <ReactSVG
+                  className="menu-desktop-icon"
+                  src="/svgs/profile.svg"
+                  aria-label="Login"
+                />
               </>
             )}
           </div>
         ) : isMenuOpen ? (
-          <ReactSVG className="menu-close-icon" src="/svgs/menu-close.svg" />
+          <ReactSVG
+            className="menu-close-icon"
+            src="/svgs/menu-close.svg"
+            aria-label="Close menu"
+          />
         ) : (
-          <ReactSVG className="menu-open-icon" src="/svgs/menu-open.svg" />
+          <ReactSVG
+            className="menu-open-icon"
+            src="/svgs/menu-open.svg"
+            aria-label="Open menu"
+          />
         )}
       </button>
     </>

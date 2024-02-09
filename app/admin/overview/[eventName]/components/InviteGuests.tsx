@@ -98,6 +98,8 @@ export const InviteGuests = ({
           type="text"
           name="additionalGuest"
           placeholder="Jane Doe"
+          id="additionalGuest"
+          aria-describedby={errorMsg ? "errorMsg" : undefined}
         />
         {errorMsg && <span className="error-message">{errorMsg}</span>}
 

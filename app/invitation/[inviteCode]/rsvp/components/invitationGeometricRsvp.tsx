@@ -70,7 +70,11 @@ const InvitationGeometricRsvp = ({ guest, eventId, eventName }: IInvitationRsvpP
             priority={true}
             placeholder="empty"
           />
-          <ReactSVG className="invitation-envelope" src="/svgs/invitation-envelope.svg" />
+          <ReactSVG
+            className="invitation-envelope"
+            src="/svgs/invitation-envelope.svg"
+            aria-label="Invitation envelope icon"
+          />
 
           <div className="template-wrapper">
             {responded ? (
@@ -308,6 +312,7 @@ const InvitationGeometricRsvp = ({ guest, eventId, eventName }: IInvitationRsvpP
                   <button
                     className="invitation-btn"
                     type="button"
+                    aria-label="Return to previous page"
                     onClick={() => {
                       router.push(`/invitation/${eventId}/${eventName}`);
                     }}
@@ -319,7 +324,11 @@ const InvitationGeometricRsvp = ({ guest, eventId, eventName }: IInvitationRsvpP
                     />
                   </button>
                   {!responded && (
-                    <button className="rsvp-submit-btn" type="submit">
+                    <button
+                      className="rsvp-submit-btn"
+                      type="submit"
+                      aria-label="Send RSVP"
+                    >
                       Send
                     </button>
                   )}

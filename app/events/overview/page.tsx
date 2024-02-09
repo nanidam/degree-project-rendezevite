@@ -52,7 +52,11 @@ const EventOverview = () => {
       <h1 className="event-overview-header">Events</h1>
       <section className="event-overview-container">
         <article className="create-event">
-          <button className="create-event-btn" onClick={createEvent}>
+          <button
+            className="create-event-btn"
+            onClick={createEvent}
+            aria-label="Create a new event"
+          >
             Create Event
           </button>
         </article>

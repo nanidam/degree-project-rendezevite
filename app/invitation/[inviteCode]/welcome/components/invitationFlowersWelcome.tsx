@@ -29,7 +29,11 @@ const InvitationFlowersWelcome = ({
             placeholder="empty"
           />
 
-          <ReactSVG className="invitation-envelope" src="/svgs/invitation-envelope.svg" />
+          <ReactSVG
+            className="invitation-envelope"
+            src="/svgs/invitation-envelope.svg"
+            aria-label="Invitation envelope icon"
+          />
           <div className="flowers-wrapper">
             <h1 className="flowers-header">
               Welcome to <br className="flowers-br" />
@@ -56,6 +60,7 @@ const InvitationFlowersWelcome = ({
               <button
                 className="flowers-next-btn"
                 type="button"
+                aria-label="Next page of invitation"
                 onClick={() => {
                   router.push(`/invitation/${eventId}/${eventName}`);
                 }}

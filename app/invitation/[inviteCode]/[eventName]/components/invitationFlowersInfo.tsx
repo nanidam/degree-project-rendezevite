@@ -22,7 +22,11 @@ const InvitationFlowersInfo = ({ header, text, eventId }: IInvitationInfoProps) 
             priority={true}
             placeholder="empty"
           />
-          <ReactSVG className="invitation-envelope" src="/svgs/invitation-envelope.svg" />
+          <ReactSVG
+            className="invitation-envelope"
+            src="/svgs/invitation-envelope.svg"
+            aria-label="Invitation envelope icon"
+          />
           <div className="flowers-info-wrapper">
             <h1 className="flowers-info-header">{header}</h1>
             <div className="flowers-text-container">

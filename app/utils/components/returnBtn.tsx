@@ -4,6 +4,7 @@ const ReturnBtn = () => {
     <button
       className="about-btn-return"
       type="button"
+      aria-label="Return to the previous page"
       onClick={() => window.history.back()}
     >
       Return

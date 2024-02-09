@@ -70,8 +70,12 @@ const CreateEditEvent = ({ event, userId }: CreateEditEventProps) => {
               </label>
               {errorMsg && <span className="error-message">{errorMsg}</span>}
               <div className="next-return-wrapper">
-                <ReturnBtn />
-                <button className="submit-event-btn" type="submit">
+                <ReturnBtn aria-label="Return to previous step" />
+                <button
+                  className="submit-event-btn"
+                  type="submit"
+                  aria-label="Proceed to the next step"
+                >
                   Next
                 </button>
               </div>
@@ -84,6 +88,7 @@ const CreateEditEvent = ({ event, userId }: CreateEditEventProps) => {
                 height={200}
                 priority
                 aria-label="Gold envelope"
+                role="img"
               />
             </div>
           </form>

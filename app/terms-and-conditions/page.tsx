@@ -46,7 +46,11 @@ const TermsAndConditions = () => {
           </a>
         </p>
 
-        <button className="terms-back-btn" onClick={() => window.history.back()}>
+        <button
+          className="terms-back-btn"
+          onClick={() => window.history.back()}
+          aria-label="Go back to the previous page"
+        >
           Back
         </button>
       </article>

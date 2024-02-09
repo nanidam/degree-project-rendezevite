@@ -23,12 +23,14 @@ const AccordionHomePage = () => {
           <button
             onClick={showFeaturesClick}
             className={`accordion-header ${showFeatures ? "active" : ""}`}
+            aria-controls="features-content"
           >
             Features
           </button>
           <button
             onClick={showTemplatesClick}
             className={`accordion-header ${!showFeatures ? "active" : ""}`}
+            aria-controls="templates-content"
           >
             Templates
           </button>
@@ -38,15 +40,27 @@ const AccordionHomePage = () => {
           <div className="accordion-features">
             <ul className="feature-list">
               <li className="feature-card">
-                <ReactSVG className="feature-svg" src="/svgs/pen-feature.svg" />{" "}
+                <ReactSVG
+                  className="feature-svg"
+                  src="/svgs/pen-feature.svg"
+                  aria-label="Pen icon"
+                />{" "}
                 <p>Personalize your text</p>
               </li>
               <li className="feature-card">
-                <ReactSVG className="feature-svg" src="/svgs/add-guests.svg" />{" "}
+                <ReactSVG
+                  className="feature-svg"
+                  src="/svgs/add-guests.svg"
+                  aria-label="Add guests icon"
+                />{" "}
                 <p>Create your guest list</p>
               </li>
               <li className="feature-card">
-                <ReactSVG className="feature-svg" src="/svgs/star-feature.svg" />{" "}
+                <ReactSVG
+                  className="feature-svg"
+                  src="/svgs/star-feature.svg"
+                  aria-label="Star icon"
+                />{" "}
                 <p> Track RSVP&apos;d guests</p>
               </li>
             </ul>

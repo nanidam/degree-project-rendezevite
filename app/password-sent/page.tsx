@@ -8,7 +8,11 @@ const PasswordSent = () => {
         You will receive an email with your password. It can take a couple of minutes before
         you recieve it.
       </p>
-      <button type="button" onClick={() => (window.location.href = "/login")}>
+      <button
+        type="button"
+        onClick={() => (window.location.href = "/login")}
+        aria-label="Go to login page"
+      >
         To login
       </button>
     </>

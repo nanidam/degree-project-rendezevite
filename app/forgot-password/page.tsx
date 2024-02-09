@@ -36,11 +36,16 @@ const ForgotPassword = () => {
             name="forgot-password"
             placeholder="Email"
             required
+            aria-describedby={msg ? "forgot-password-error" : undefined}
           />
 
-          {msg && <p className="forgot-password-error">{msg}</p>}
+          {msg && (
+            <p id="forgot-password-error" className="forgot-password-error" role="alert">
+              {msg}
+            </p>
+          )}
           <div className="forgot-return-btn">
-            <button type="submit" className="reset-password-btn">
+            <button type="submit" className="reset-password-btn" aria-live="assertive">
               Send
             </button>
             <a className="return-btn" href="/login">

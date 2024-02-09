@@ -45,7 +45,7 @@ export const EventInfo = ({ eventDate, eventId, eventName }: IEventInfoProps) =>
         <ReactSVG className="copy-svg" onClick={copyToClipboard} src="/svgs/copy.svg" />
       </div>
       {isCopied && <p className="copy-confirmation">Link copied to clipboard!</p>}
-      <button className="edit-event-btn" onClick={editEvent}>
+      <button className="edit-event-btn" onClick={editEvent} aria-label="Edit Invitation">
         Edit Invitation
       </button>
     </article>
