@@ -71,7 +71,7 @@ const EventOverview = () => {
                     <Link className="event-link" href={`/admin/overview/${eventName}`}>
                       {eventName}
                     </Link>
-                    <div className="edit-delete-icons">
+                    <div className="edit-delete-icons" data-testid={eventName}>
                       <ReactSVG
                         className="trash-icon"
                         src="/svgs/trash-can.svg"
