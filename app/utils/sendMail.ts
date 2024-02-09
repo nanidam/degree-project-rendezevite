@@ -46,7 +46,7 @@ export const sendMail = async ({
       <p>Your password is: <b>${decryptedPassword}</b></p>
       <p>
           Click here to be redirected to the login page:
-          <a href="https://degree-project-rendezevite.vercel.app/login">Rendez Evite</a>
+          <a href="https://rendezevite.vercel.app/login">Rendez Evite</a>
       </p>
       
       <p>We wish you a wonderful day!</p>
