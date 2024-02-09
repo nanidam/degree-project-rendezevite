@@ -61,7 +61,7 @@ test("Invite Guest", async ({ page }) => {
     await page.fill("#password", user.password)
 
     await page.click(".login-register-btn");
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(2000)
 
 
     await page.waitForSelector(`[data-testid='${playwrightEvents.guest.eventName}']`)
@@ -69,14 +69,14 @@ test("Invite Guest", async ({ page }) => {
     const editEventUrl = `/admin/overview/${playwrightEvents.guest.eventName}`;
     await page.click(`[href="${editEventUrl}"]`);
 
-    await page.waitForTimeout(2000)
+    await page.waitForTimeout(3000)
 
     await page.click(`[data-testid="${playwrightEvents.guest.email}"]`)
     await page.click(".edit-guest-btn")
     await page.selectOption('.guestlist-select', 'false');
-    await page.waitForTimeout(2000)
+    await page.waitForTimeout(3000)
 
     await page.click("[aria-label='Save changes for a']");
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(3000)
 
 });
