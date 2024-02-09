@@ -1,39 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Rendez Evite
 
-First, run the development server:
+This application is the culmination of my degree project for school, aiming to simplify the event planning process and provide users with an intuitive and collaborative experience.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+RendezEvite simplifies the task of managing guest lists, allowing users to effortlessly organize and keep track of attendees. Choose from a selection of currently two templates to create invitations that reflect the essence of your event. Stay up-to-date with your event's attendance through RendezEvite's real-time RSVP system. Easily track responses, making it simple to plan for the number of attendees. 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application sends invitations automatically to your guestlist. Guests receive secure access to the invitation through a unique link and password, enhancing the overall security of the platform.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Create invitation
+    1. Sign up for an account on RendezEvite.
+    2. Create your invitations. 
+    3. Choose between of our templates.
+    4. Choose what your invitations will say.
+    5. Create guestlist.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+⚛️ React
+➡️ Next.js
+🔒 Next-Auth
+💙 TypeScript
+✉️ Nodemailer
+🔐 Crypto-JS
+📊 MongoDB
+🔍 Prisma
+🎭 Playwright
+🎨 Prettier
+💅 Sass
+🧹 ESLint
+🔄 React Spinners 
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Screenshots
+![image](https://github.com/nanidam/degree-project-rendezevite/assets/114832647/bb1e8508-2a01-44c0-9730-f4d78d3674c8)
+![image](https://github.com/nanidam/degree-project-rendezevite/assets/114832647/9ef786ae-5da0-4700-ae37-e20e4c51fd5c)
+![invitationGeometricExampleInfo](https://github.com/nanidam/degree-project-rendezevite/assets/114832647/1fb489bb-845c-4e03-a58c-db50d6640def)
+![invitationFlowersExampleRsvp](https://github.com/nanidam/degree-project-rendezevite/assets/114832647/5adc7b7b-6103-4938-a610-d8c477833037)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 ## Checklist
 
@@ -41,5 +45,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - [ ] Länka också till ditt live-projekt.
 - [ ] Om repot inte ligger publikt, bjud in användaren postmodernistx som granskare till ditt repo.
 - [x] Boka in på redovisningstillfälle på itslearning
-- [ ] Remove values i input för login/registrering
-- [ ] Push branch to new domain vercel
+- [x] Remove values i input för login/registrering
+- [x] Push branch to new domain vercel
