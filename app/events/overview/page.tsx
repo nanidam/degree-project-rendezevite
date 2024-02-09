@@ -9,7 +9,6 @@ import { getAllEvents } from "@/app/services/getAllEventsServices";
 import ConfirmDelete from "@/app/utils/components/confirmDelete";
 import React from "react";
 import Loading from "@/app/utils/components/loading";
-import { useSession } from "next-auth/react";
 
 const EventOverview = () => {
   const [events, setEvents] = useState<string[]>([]);
@@ -46,8 +45,7 @@ const EventOverview = () => {
     setEventNameState(eventName);
     setShowConfirmDelete(true);
   };
-  const session = useSession();
-  console.log(session);
+
   return (
     <main>
       {loading && <Loading />}
