@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "npx playwright test"
   },
   "dependencies": {
     "@prisma/client": "^5.7.1",
@@ -26,12 +27,14 @@
     "sass": "^1.69.6"
   },
   "devDependencies": {
+    "@playwright/test": "^1.41.2",
     "@types/crypto-js": "^4.2.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
+    "playwright": "^1.41.2",
     "prisma": "^5.7.1",
     "typescript": "^5"
   }
