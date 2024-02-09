@@ -38,12 +38,3 @@ The application sends invitations automatically to your guestlist. Guests receiv
 ![invitationFlowersExampleRsvp](https://github.com/nanidam/degree-project-rendezevite/assets/114832647/5adc7b7b-6103-4938-a610-d8c477833037)
 
 
-
-## Checklist
-
-- [ ] Lämna in koden zippad på itslearning (utan node_modules-mappen så att zippen inte blir orimligt stor) och en länk till ditt repo.
-- [ ] Länka också till ditt live-projekt.
-- [ ] Om repot inte ligger publikt, bjud in användaren postmodernistx som granskare till ditt repo.
-- [x] Boka in på redovisningstillfälle på itslearning
-- [x] Remove values i input för login/registrering
-- [x] Push branch to new domain vercel
