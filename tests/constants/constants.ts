@@ -21,5 +21,14 @@ export const playwrightEvents = {
         newPassword: "321",
         testEmail: "a@a.se",
         link: "/invitation/65c670436fb81ef5241d712a"
+    },
+    guest: {
+        eventId: "65c56117bf60a227d0eb0e0b",
+        eventName: "test2",
+        guestName: "a",
+        additionalGuest: "s",
+        header: "123",
+        text: "1233333333333333333333333333 123123",
+        email: "s@s.s"
     }
 }
