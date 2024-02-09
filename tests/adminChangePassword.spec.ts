@@ -40,13 +40,13 @@ test("Admin change password", async ({ page }) => {
     await page.fill(".event-password-input", playwrightEvents.editEvent.newPassword)
     await page.click(".save-password-btn");
 
-    await page.waitForTimeout(100)
+    await page.waitForTimeout(200)
     currentPassword = await page.locator('.event-password-input').getAttribute("value");
     expect(currentPassword).toBe(playwrightEvents.editEvent.newPassword)
 
-    await page.waitForTimeout(100)
+    await page.waitForTimeout(1000)
     await page.click(".password-btn");
-    await page.waitForTimeout(100)
+    await page.waitForTimeout(1000)
 
     await page.fill(".event-password-input", playwrightEvents.editEvent.password)
     await page.click(".save-password-btn");

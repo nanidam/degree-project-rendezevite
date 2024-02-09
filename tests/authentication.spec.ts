@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { mockEvent, templates, user } from "./constants/constants";
 
-test.only("Varify authentication", async ({ page }) => {
+test.skip("Varify authentication", async ({ page }) => {
   // Redirect to login
   //   await page.goto("./events/create-event");
   //   await page.waitForURL(

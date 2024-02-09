@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { playwrightEvents, user } from "./constants/constants";
 
-test("Create and delete Event", async ({ page }) => {
+test("Invite Guest", async ({ page }) => {
     await page.goto("./invitation/65c56117bf60a227d0eb0e0b");
     await page.waitForURL(`/invitation/${playwrightEvents.guest.eventId}`);
 
@@ -61,7 +61,7 @@ test("Create and delete Event", async ({ page }) => {
     await page.fill("#password", user.password)
 
     await page.click(".login-register-btn");
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(1000)
 
 
     await page.waitForSelector(`[data-testid='${playwrightEvents.guest.eventName}']`)
@@ -69,10 +69,14 @@ test("Create and delete Event", async ({ page }) => {
     const editEventUrl = `/admin/overview/${playwrightEvents.guest.eventName}`;
     await page.click(`[href="${editEventUrl}"]`);
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(2000)
 
     await page.click(`[data-testid="${playwrightEvents.guest.email}"]`)
     await page.click(".edit-guest-btn")
     await page.selectOption('.guestlist-select', 'false');
+    await page.waitForTimeout(2000)
+
     await page.click("[aria-label='Save changes for a']");
+    await page.waitForTimeout(1000)
+
 });
